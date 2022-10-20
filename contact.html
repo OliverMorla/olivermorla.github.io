@@ -1,0 +1,87 @@
+<!-- Home page -->
+<!DOCTYPE html>
+
+<html lang = "eng">
+    <head>
+        <title>OM Official</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="styles.css">
+    </head>  
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            body{
+                background-image:url("background/a_background.svg");
+                background-repeat: no-repeat;
+                background-attachment: fixed;
+                background-size: cover;;
+                font-family: sans-serif;
+            }
+
+            .contact-box{
+                width: 600px;
+                background-color: #fff;
+                box-shadow: 0 0 10px 0 #999;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                position: absolute;
+            }
+            form{
+                margin: 35px;
+            }
+            .input-field{
+                width: 500px;
+                height: 40px;
+                margin-top: 20px;
+                padding-left: 10px;
+                padding-right: 10px;
+                border: 1px solid f777;
+                border-radius: 14px;
+                outline:none;
+            }
+            .button{
+                border-radius: 20px;
+                color: #fff;
+                margin-top: 18px;
+                padding: 10px;
+                background-color: #47c35a;
+                font-size: 12px;
+                border: none;
+                cursor:pointer;
+            }
+            .textarea-field{
+                height: 150px;
+                padding-top: 10px;
+            }
+        </style>
+            <body>
+
+                <!-- Header -->
+                <div class="header">
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="skills.html">Skills</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="resume.html">Resume</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                </div>
+
+                <div>
+                    <h2 class="content">Get in touch!</h2>
+                </div>
+                <div class="contact-box">
+                    <form action="mailto:olivermiguel1129@gmail.com">
+                        <input type="text" class="input-field" placeholder="Enter your Name">
+                        <input type="text" class="input-field" placeholder="Enter your Email">
+                        <input type="text" class="input-field" placeholder="Enter the Subject">
+                        <textarea type="text" class="input-field textarea-field" placeholder="Enter your Message"></textarea>
+                        <button type="submit" class="button">Send Message</button>
+                    </form>
+                </div>
+            </body>
+</html>
