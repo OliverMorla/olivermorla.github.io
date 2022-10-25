@@ -17,6 +17,24 @@
                 border-radius: 300px;
                 box-shadow: 0 5px 10px 0 black;
             }
+            .typewriter h1 {
+            overflow: hidden;
+            border-right: .15em solid red;
+            white-space: nowrap;
+            animation: 
+                typing 3.5s steps(40, end),
+                blink-caret .75s step-end infinite;
+            }
+
+            @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+            }
+
+            @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: rgb(0, 0, 0); }
+            }
         </style>
     </head>  
         <body>
@@ -31,8 +49,8 @@
                 <a href="contact.html">Contact</a>
             </div>
                 <div>
-                    <div class="content">
-                        <h2>Oliver Maldonado</h2>
+                    <div class="content typewriter">
+                        <h1>Oliver Maldonado</h1>
                         <h4 style="font-family: verdana; font-style: italic;">Intermediate Software Engineer</h4>
                         <p>
                             <br>This is my official portfolio website! Here I <br>will showcase
