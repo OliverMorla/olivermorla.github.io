@@ -6,7 +6,7 @@
         <title>OM Official</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="src/styles.css">
     </head>  
         <style>
             *{
@@ -59,7 +59,6 @@
             }
         </style>
             <body>
-
                 <!-- Header -->
                 <div class="header">
                     <a href="index.html">Home</a>
@@ -71,17 +70,28 @@
                     <a href="contact.html">Contact</a>
                 </div>
 
-                <div>
-                    <h2 class="content">Get in touch!</h2>
+                <div class="content-contact">
+                    <h2>Get in touch!</h2>
+                    <div>
+                        <ul>
+                            <li><a href="https://www.linkedin.com/in/oliver-maldonado-aab214156/" class="a-normal" target="_blank">Linkedin</a></li>
+                            <li><a href="https://github.com/OliverMorla" class="a-normal" target="_blank">GitHub</a></li>
+                            <li><a href="https://www.instagram.com/oliverm11_/" class="a-normal" target="_blank">Instagram</a></li>
+                            <!-- <li><a href="" class="a-normal" target="_blank">Twitter</a></li> -->
+                        </ul>
+                    </div>
                 </div>
                 <div class="contact-box">
-                    <form action="mailto:olivermiguel1129@gmail.com">
-                        <input type="text" class="input-field" placeholder="Enter your Name">
-                        <input type="text" class="input-field" placeholder="Enter your Email">
-                        <input type="text" class="input-field" placeholder="Enter the Subject">
-                        <textarea type="text" class="input-field textarea-field" placeholder="Enter your Message"></textarea>
+                    <form method="post" action="src/contact-form-process.php">
+                        <input for="Name" id="Name" name="Name" type="text" class="input-field" placeholder="Enter your Name" requred>
+                        <input for="Email" id="Email" name="Email" type="text" class="input-field" placeholder="Enter your Email" required>
+                        <input type="text" class="input-field" placeholder="Enter the Subject" required>
+                        <textarea for="Message" id="Message" name="Message" type="text" class="input-field textarea-field" placeholder="Enter your Message" rows="6" maxlength="3000" required></textarea>
                         <button type="submit" class="button">Send Message</button>
                     </form>
+                </div>
+                <div class="bheader">
+                    <h2 class="bheader-text">Bottom bar</h2>
                 </div>
             </body>
 </html>
