@@ -149,14 +149,14 @@ a:hover{
 
 .about-div{
     position: relative;
-    transform: translate(45%, 20%);
+    transform: translate(45%, 15%);
     padding: 25px;
     width: 50%;
     box-shadow: 0 0 10px 0 black;
 }
 
 .about-text{
-    font-size: 75%;
+    font-size: 60%;
 }
 
 .skills-img{
