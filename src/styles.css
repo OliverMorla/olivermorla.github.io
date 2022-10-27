@@ -34,8 +34,12 @@ a:hover{
     left: 0;
     top: 0;
     transform: translate(60%,30%);
-
+    opacity: 1;
+    animation-name: fade;
+    animation-duration: 3s;
+    animation-timing-function: ease-in;
 }
+
 
 .viewResume{
     background-color: #28282B;
@@ -50,20 +54,7 @@ a:hover{
     text-decoration: underline;  
     text-align: center;
 }
-#ul{
-    border:1px solid black;
-    list-style-type: square;
-    font-size: 150%;
-    width: 30%;
-    position: absolute;
-    right: 37%;
-    transform: translateY(10%);
-    padding: 3%;
-    background-color: #28282B;
-    overflow: hidden;
-    color:white;
 
-}
 .none{
     padding: 0px;
     color: white;
@@ -165,3 +156,47 @@ a:hover{
     box-shadow: 0 0 15px 0;
 }
 
+.current-nav{
+    background-color: #545454 ;
+
+}
+
+/***************************/
+
+.bottom-position{
+    padding: 20px;
+    background-color:#28282B;
+    color:white;
+    box-shadow: 0 0 10px 0 #28282B;
+}
+
+
+/* Sandbox CSS (below) */
+
+.h2-position{
+    position:relative;
+    padding: 20px;
+    background-color:white;
+    color:white;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-name: h2;
+    animation-delay: 2s;
+    animation-duration: 3s;
+    animation-fill-mode: both;
+}
+
+.table-content-position{
+    position:relative;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 800px; 
+}
+
+.body-sandbox{
+    border: 1px solid #545454;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0;
+}
