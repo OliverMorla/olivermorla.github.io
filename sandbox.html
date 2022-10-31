@@ -1,0 +1,393 @@
+<!-- Sandbox -->
+<!DOCTYPE html> <!-- Defines document type -->
+
+<html lang = "eng"> <!-- Start Root -->
+    <head> 
+        <title>OM Official</title> <!-- Defines title of webpage -->
+        <link rel="stylesheet" href="src/styles.css"> 
+        <!-- Defines relationship between .css & .html file -->
+        <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+        <style> /*Internal CSS*/
+            .a-list{
+                color:black;
+                padding: 0;
+                animation-name: li;
+                animation-duration: 3s;
+                animation-delay: 3s;
+                animation-fill-mode: both;
+                position: relative;
+            }
+            p{
+                margin-left:10px;
+            }
+            .h1-position{
+                position: relative; /* Default center-point is Top-Left*/
+                left: 50%; /* Starts at Left, Shifts Right 50% */
+                transform: translate(-50%, 10%);
+                margin-bottom: 5%;
+                width: fit-content;
+            }
+            .h1-text{
+                border-radius: 5px;
+                padding: 25px;
+                color: white;
+                background-color: #28282B;
+                animation-name: h1;
+                animation-duration: 3s;
+            }
+            .ul-animation{
+                animation-name: li;
+                animation-duration: 3s;
+                animation-delay: 3s;
+                animation-fill-mode: both;
+            }
+            .ul2-position{
+                position: absolute;
+                transform: translate(150%,-100%);
+            }
+            .ul3-position{
+                position: absolute;
+                transform: translate(275%,-100%);
+            }
+            .ul4-position{
+                position: absolute;
+                transform: translate(400%,-100%);
+            }
+
+            @keyframes h1{
+                from {
+                    background-color: white; 
+                }
+                to{
+                    background-color: #28282B;
+                    box-shadow: 0 0 10px 0 #28282B;
+                }
+            }
+            @keyframes h2 {
+                from{
+                    background-color: white; 
+                }
+                to{
+                    background-color: #28282B;
+                    box-shadow: 0 0 10px 0 #28282B;
+                }
+            
+            }
+            @keyframes li {
+                from{
+                    color: white;
+                    left: 100px;
+                }
+                to{
+                    color:black;
+                    left: 0px;
+                }
+            }
+        </style>
+    </head>  
+            <body> <!-- Start of body -->
+    
+                <div class="header"> <!-- Start of Header -->
+                    <a href="index.html">Home</a>
+                    <a href="about.html">About</a>
+                    <a href="skills.html">Skills</a>
+                    <a href="portfolio.html">Portfolio</a>
+                    <a href="resume.html">Resume</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="sandbox.html" class="current-nav">Sandbox</a>
+                </div> <!-- End of Header -->
+
+                <div class="h1-position">
+                    <h1 class="h1-text">Welcome to my Sandbox</h1>
+                </div>
+                <div class="h2-position">
+                    <h2>Table of Contents</h2>
+                </div>
+                <br>
+                <div class="table-content-position">
+                    <ul style="list-style-type: circle; margin-left: 25px;">
+                        <div class="ul-animation">
+                            <li><a href="#html-Home" class="a-list">HTML Home</a></li>
+                            <li><a href="#html-Introduction" class="a-list">HTML Introduction</a></li>
+                            <li><a href="#html-Editors" class="a-list">HTML Editors</a></li>
+                            <li><a href="#html-Basic" class="a-list">HTML Basic</a></li>
+                            <li><a href="#html-Attributes" class="a-list">HTML Attributes</a></li>
+                            <li><a href="#html-Headings" class="a-list">HTML Headings</a></li>
+                            <li><a href="#html-Paragraphs" class="a-list">HTML Paragraphs</a></li>
+                            <li><a href="#html-Styles" class="a-list">HTML Styles</a></li>
+                            <li><a href="#html-Formatting" class="a-list">HTML Formatting</a></li>
+                            <li><a href="#html-Quotations" class="a-list">HTML Quotations</a></li>
+                        </div>
+                        <div class="ul-animation ul2-position">
+                            <li><a href="#html-Comments" class="a-list">HTML Comments</a></li>
+                            <li><a href="#html-Colors" class="a-list">HTML Colors</a></li>
+                            <li><a href="#html-CSS" class="a-list">HTML CSS</a></li>
+                            <li><a href="#html-Links" class="a-list">HTML Links</a></li>
+                            <li><a href="#html-Images" class="a-list">HTML Images</a></li>
+                            <li><a href="#html-Favicon" class="a-list">HTML Favicon</a></li>
+                            <li><a href="#html-Tables" class="a-list">HTML Tables</a></li>
+                            <li><a href="#html-List" class="a-list">HTML List</a></li>
+                            <li><a href="#html-Block" class="a-list">HTML Block & Inline</a></li>
+                            <li><a href="#html-Classes" class="a-list">HTML Classes</a></li>
+                        </div>
+                        <div class="ul-animation ul3-position">
+                            <li><a href="#html-ID" class="a-list">HTML ID</a></li>
+                            <li><a href="#html-IFrames" class="a-list">HTML IFrames</a></li>
+                            <li><a href="#html-JavaScript" class="a-list">HTML JavaScript</a></li>
+                            <li><a href="#html-File-Paths" class="a-list">HTML File Paths</a></li>
+                            <li><a href="#html-Head" class="a-list">HTML Head</a></li>
+                            <li><a href="#html-Layout" class="a-list">HTML Layout</a></li>
+                            <li><a href="#html-Responsive" class="a-list">HTML Responsive</a></li>
+                            <li><a href="#html-Computercode" class="a-list">HTML Computercode</a></li>
+                            <li><a href="#html-Semantics" class="a-list">HTML Semantics</a></li>
+                            <li><a href="#html-Style" class="a-list">HTML Style Guide</a></li>
+                        </div>
+                        <div class="ul-animation ul4-position">
+                            <li><a href="#HTML-Entities" class="a-list">HTML Entities</a></li>
+                            <li><a href="#HTML-Symbols" class="a-list">HTML Symbols</a></li>
+                            <li><a href="#HTML-Emojis" class="a-list">HTML Emojis</a></li>
+                            <li><a href="#HTML-Charset" class="a-list">HTML Charset</a></li>
+                            <li><a href="#HTML-HTML-Encode" class="a-list">HTML URL Encode</a></li>
+                            <li><a href="#HTML-HTMLvsXHTML" class="a-list">HTML vs. XHTML</a></li>
+                            <li><a href="#HTML-Forms" class="a-list">HTML Forms</a></li>
+                            <li><a href="#HTML-Forms-Atr" class="a-list">HTML Forms Atr</a></li>
+                            <li><a href="#HTML-Forms-Elements" class="a-list">HTML Forms Elements</a></li>
+                            <li><a href="#HTML-Input-Types" class="a-list">HTML Input Types</a></li>
+                        </div>
+                    </ul>
+                </div>  
+                <div class="body-sandbox" id="html-Home">
+                    <h2>HTML Home</h2>
+                    <p>
+                        - HTML Stands for <q>Hyper Text Markup Language</q> 
+                        <br>
+                        - A <q>Markup Language</q> is a language that can formatt or structure a document.
+                        <br>
+                        - HTML is the standard markup language for structuring and formatting webpages.
+                    </p>
+                </div>
+                <br>
+                <div class="body-sandbox" id="html-Introduction">
+                    <h2>HTML Introduction</h2>
+                    <p>
+                        - HTML consists of a series of elements.
+                        <br>
+                        - HTML elements tell the browser how to structure the webpage.
+                        <br>
+                        <h3>Example</h3>
+                        <img src="sandbox/image/example-intro.PNG" alt="">
+                        <br>
+                        - The <code>!DOCTYPE html</code> declaration defines what type of document you are working on.
+                        <br>
+                        - The <code> html </code> element is the root/start element of an html page.
+                        <br>
+                        - The <code> head </code> element is where all meta information is stored for the html page.
+                        <br>
+                        - The <code> title </code> element defines the title of the webapge (which is shown on the tab)
+                        <br>
+                        - The <code> body </code> element defines what is shown on the webpage.
+                        <br>
+                        - The <code> h1 </code> element defines large and important heading.
+                        <br>
+                        - The <code> p </code> element defines a paragraph.
+                        <br>
+                        <br>
+                        - The <code> html </code> element is defined with a start tag &ltTagName&gt and a ending that &lt/TagName&gt
+                        <br>
+                        - Some HTML elements have no content (like the <code>br</code> element). These elements are called empty elements. Empty elements do not have an end tag!
+                        <br>
+                        - The purpose of <strong>Web Browsers</strong> is to read an <code> html </code> document and display it correctly.
+                    </p>
+                </div>
+                <br>
+                <div class="body-sandbox" id="html-Editors">
+                    <h2>HTML Editors</h2>
+                    <p>
+                        - For HTML all you need is a simple text-editor.
+                        <br>
+                        - Make sure to format file as <code> .html </code> or <code> .htm </code> and set encoding to UTF-8
+                        <br>
+                        - UTF-8 Encoding is preferred for HTML.
+                    </p>
+                </div>
+                <br>
+                <div class="body-sandbox" id="html-Basic">
+                    <h2>HTML Basic</h2>
+                    <p>
+                        - All HTML documents must start with <code> !DOCTYPE </code>.
+                        <br>
+                        - The document itselt begins with <code> &lthtml> </code> and ends with <code> &lt/html></code>
+                        <br>
+                        - The visible part is inside the &ltbody> 
+                        <br>
+                        <h3>The !DOCTYPE declaration</h3>
+                        <p>
+                            - Represents the document type and helps browsers identify the type.
+                            <br>
+                            - Is not case-sensitive.
+                            <br>
+                            - Declaration standard for HTML5
+                        <h3>HTML Headings</h3>
+                        <p>
+                            - HTML headings are defined with the &lth1> to &lth6>
+                            <br>
+                            - H1 the most important to H6 the least important.
+                            <br>
+                            <button onclick="document.location='sandbox/examples/headers.htm'">Click to see!</button>
+                            <iframe src="sandbox/examples/headers.htm" frameborder="1"></iframe>
+                            <h1>Header 1</h1>
+                            <h2>Header 2</h2>
+                            <h3>Header 3</h3>
+                            <h4>Header 4</h4>
+                            <h5>Header 5</h5>
+                            <h6>Header 6</h6>
+                            <br>
+                            <h3>HTML Paragraphs</h3>
+                            - HTML paragrpahs are defined with the &ltp> element.
+                            <br>
+                            <p>
+                                This is a paragraph
+                            </p>
+                            <h3> HTML Links</h3>
+                            <p>
+                                - HTML Links/HyperLinks are defined using the &lta> or in other words <q>anchor</q>.
+                                <br>
+                                - It requres a <code title="Hypertext Reference">href</code> attribute. This attribute specifies the URL of the page the link goes to.
+                                <br>
+                                - For example: <br><code>&lta href=""> This is is a link &lt/a></code>
+                            </p>
+                            <h3>HTML Images</h3>
+                            <p>
+                                - HTML images are defined with the &ltimg> element or in other words <q>image</q>.
+                                <br>
+                                - It requires a <code title="source"> src </code> and <code title="Alternative text"> alt </code> attribute. The src attribute specifies the path to the image to be displayed. 
+                                <br> 
+                                - <code> width </code> width and <code> height </code> Attributes are optional.
+                                <br>
+                                - For example: <br><code> &ltimg src="" alt=""> </code>
+                                <br>
+                                - Absolute URL (External) & Relative URL (Internal)
+                                <br>
+                                - Tip: It is almost always best to use relative URLs. They will not break if you change domain.
+                                <br>
+                                - The required alt attribute for the <img> tag specifies an alternate text for an image, if the image for some reason cannot be displayed. This can be due to a slow connection, or an error in the src attribute, or if the user uses a screen reader.
+                                <br>
+                                0The <img> tag should also contain the width and height attributes, which specify the width and height of the image (in pixels):
+                            </p>
+                            <h3>Empty HTML Elements</h3>
+                            <p>
+                                - HTML elements with no content are considered <code> <q>empty elements</q> </code>
+                                <br>
+                                - The HTML standard does not require lowercase tags, but W3C recommends lowercase in HTML, and demands lowercase for stricter document types like XHTML.
+                            </p>
+                        
+                        </p>
+                </div>
+                <br>
+                <div class="body-sandbox" id="html-Attributes">
+                    <h2>HTML Attributes</h2>
+                    <p>
+                        - HTML attributes provide additional infomration from the elements, or allow us to manipulate the element.
+                        <br>
+                        - All HTML elements can have attributes.
+                        <br>
+                        - Attributes always specified in the <strong>start tag</strong>
+                        <br>
+                        - Attributes usually come in name/value pairs like: name="value"
+                        <br>
+                        - The style attribute is used to add styles to an element, such as color, font, size, and more.
+                        - You should always include the lang attribute inside the <html> tag, to declare the language of the Web page. This is meant to assist search engines and browsers.
+                        - Country codes can also be added to the language code in the lang attribute. So, the first two characters define the language of the HTML page, and the last two characters define the country.
+                        - The title attribute defines some extra information about an element. The value of the title attribute will be displayed as a tooltip when you mouse over the element:
+                        - However, W3C recommends quotes in HTML, and demands quotes for stricter document types like XHTML.
+                        - Double quotes around attribute values are the most common in HTML, but single quotes can also be used.
+                        <h3>Summary</h3>
+                        <p>
+                            All HTML elements can have attributes
+                            <br>
+                            The href attribute of < a > specifies the URL of the page the link goes to
+                            <br>
+                            The src attribute of < img > specifies the path to the image to be displayed
+                            <br>
+                            The width and height attributes of < img > provide size information for images
+                            <br>
+                            The alt attribute of < img > provides an alternate text for an image
+                            <br>
+                            The style attribute is used to add styles to an element, such as color, font, size, and more
+                            <br>
+                            The lang attribute of the < html > tag declares the language of the Web page
+                            <br>
+                            The title attribute defines some extra information about an element
+                        </p>
+                    </p>
+                </div>
+                <br>
+                <div class="body-sandbox" id="html-Headings">
+                    <h2>HTML Headings</h2>
+                    <p>
+                        - HTML headings are titles or subtitles.
+                        <br>
+                        - Browsers automatically add some white space (a margin) before and after a heading.
+                        <br>
+                        - Search engines use the headings to index the structure and content of your web pages.
+                        <br>
+                        - Use HTML headings for headings only. Don't use headings to make text BIG or bold.
+                    </p>
+                </div>
+                <br>
+                <div class="body-sandbox" id="html-Paragraphs">
+                    <h2>HTML Paragraphs</h2>
+                    <p>
+                        - A paragraph always starts on a new line, and browsers automatically add some white space (a margin) before and after a paragraph.
+                        <br>
+                        - Large or small screens, and resized windows will create different results.
+                    </p>
+                    <h3>HTML Horizontal Rules</h3>
+                    <p>
+                        - The < hr > tag defines a thematic break in an HTML page used to separate content, and is most often displayed as a horizontal rule.
+                    </p>
+                    <h3>HTML Line Breaks</h3>
+                    <p>
+                        - The HTML < br > element defines a line break (new line) without starting new paragraph.
+                    </p>
+                    <h3>HTML <code> pre </code> element</h3>
+                    <p>
+                        - The HTML < pre > element defines preformatted text.
+                        <br>
+                        - The text inside a < pre > element is displayed in a fixed-width font (usually Courier), and it preserves both spaces and line breaks:
+                    </p>
+                </div>
+                <br>
+                <div class="body-sandbox" id="html-Styles">
+                    <h2>HTML Styles</h2>
+                    <p>
+                        Use the style attribute for styling HTML elements
+                        <br>
+                        Use background-color for background color
+                        <br>
+                        Use color for text colors
+                        <br>
+                        Use font-family for text fonts
+                        <br>
+                        Use font-size for text sizes
+                        <br>
+                        Use text-align for text alignment
+                    </p>
+                </div>
+                <br>
+            </body> <!-- End of body -->
+</html> <!-- End Root -->
+
+<!--
+    Elements: <html> <head> <title> <body> <h1> <p> <a> <img> <pre> <hr> <blockquote> <abbr> <bdo> <address> <cite> <q> <link>
+
+    Attributes: width, height, title, lang, style, href, src, cite, dir, rel, target, href=mailto:, id
+
+    CSS: color, font-size, background-color, font-family, text-align, border: 2px solid color, margin, href=#id, float
+
+    Elements (Formatting): <strong> <small> <mark> <ins> <del> <em> <i> <b> <u> <sub> <sup>
+    
+        tr :hover
+        li a:hover
+    -->
