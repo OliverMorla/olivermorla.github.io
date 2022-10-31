@@ -6,24 +6,26 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="src/styles.css">
+        <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+        <script src="src/script.js"></script>
         <style>
             body{
                 overflow: hidden;
                 height: 100%;
                 width: 100%;
             }
+            
             img{
                 border:0.5px solid grey;
                 border-radius: 300px;
                 box-shadow: 0 5px 10px 0 black;
             }
+
             .typewriter h1 {
-            overflow: hidden;
-            border-right: .15em solid red;
-            white-space: nowrap;
-            animation: 
-                typing 3.5s steps(40, end),
-                blink-caret .75s step-end infinite;
+                overflow: hidden;
+                border-right: .15em solid red;
+                white-space: nowrap;
+                animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
             }
 
             @keyframes typing {
@@ -43,7 +45,7 @@
         </style>
     </head>  
         <body>
-            <!-- Header -->
+            <!-- Navegation Bar -->
             <div class="header">
                 <a href="index.html" class="current-nav">Home</a>
                 <a href="about.html">About</a>
@@ -52,6 +54,7 @@
                 <a href="resume.html">Resume</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
+                <a href="sandbox.html">Sandbox</a>
             </div>
                 <div>
                     <div class="content typewriter">
@@ -62,13 +65,13 @@
                             all my projects, resume, and skills.
                         </p>
                         <br>
-                        <h3 class="viewResume">
-                            <a href="resume.html" class="none">View Resume</a> 
+                        <h3 class="index-resume">
+                            <a href="resume.html" class="index-none">View Resume</a> 
                         </h3>
                     </div>
                 </div>
                 <div class="index-img">
-                    <img src="images/picture2.png" alt="profilepic"  width="25%">
+                    <img src="images/picture2.png" alt="Picture of me"  width="25%">
                 </div>
                 <div class="bheader">
                     <h2 class="bheader-text">Bottom bar</h2>
