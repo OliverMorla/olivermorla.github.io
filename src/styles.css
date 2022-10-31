@@ -1,3 +1,4 @@
+/* All pages (below) */
 *{
     margin:0;
     padding: 0;
@@ -9,16 +10,11 @@ body{
     background-color: white;
 }
 
+/* Global - Navegation Bar (below) */
 a{
     text-decoration: none;
     color: white;
     padding: 20px 20px;
-}
-
-.a-normal{
-    text-decoration: none;
-    color: black;
-    padding: 0;
 }
 
 a:active{
@@ -27,69 +23,6 @@ a:active{
 
 a:hover{   
     color:red;
-}
-
-.index-img{
-    position:relative;
-    left: 0;
-    top: 0;
-    transform: translate(60%,30%);
-    opacity: 1;
-    animation-name: fade;
-    animation-duration: 3s;
-    animation-timing-function: ease-in;
-}
-
-
-.viewResume{
-    background-color: #28282B;
-    color: white;
-    padding: 20px;
-    width: 48%;
-}
-
-#h2{
-    font-size: 200%;
-    position: relative;
-    text-decoration: underline;  
-    text-align: center;
-}
-
-.none{
-    padding: 0px;
-    color: white;
-    text-decoration: none;
-}
-
-.header{
-    text-align: right;
-    font-size: 100%;
-    padding:20px;
-    background-color: #28282B;
-    
-}
-
-.content{
-    position: absolute;
-    top: 50%;
-    left: 15%;
-    transform:translateY(-50%)
-}
-
-.content-contact{
-    position: absolute;
-    top: 50%;
-    left: 10%;
-    transform:translateY(-50%)
-}
-
-.content-about{
-    position: absolute;
-    left: 0;
-    border: 1px solid white;
-    border-radius: 5px;
-    padding: 2%;
-    box-shadow: 0 0 15px 0 black;
 }
 
 .bheader{
@@ -106,16 +39,77 @@ a:hover{
     width: 100vw;
 }
 
-.box{
-    border: solid black;
+/* index/Home Page (below) */
+.index-img{
+    position:relative;
+    left: 0;
+    top: 0;
+    transform: translate(60%,30%);
+    opacity: 1;
+    animation-name: fade;
+    animation-duration: 3s;
+    animation-timing-function: ease-in;
 }
 
+.index-resume{
+    background-color: #28282B;
+    color: white;
+    padding: 20px;
+    width: 48%;
+}
+
+.index-none{
+    padding: 0px;
+    color: white;
+    text-decoration: none;
+}
+
+/* Navigation Bar For Home Page (below) */
+.header{
+    text-align: right;
+    font-size: 100%;
+    padding: 20px;
+    background-color: #28282B;
+}
+.content{
+    position: absolute;
+    top: 50%;
+    left: 15%;
+    transform:translateY(-50%)
+}
+
+/* Contact Form (below) */
+.content-contact{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform:translateY(-50%)
+}
+
+.content-about{
+    position: absolute;
+    left: 0;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 2%;
+    box-shadow: 0 0 15px 0 black;
+}
+
+.a-normal{
+    text-decoration: none;
+    color: black;
+    padding: 0;
+}
+
+/* Resume (below) */
 .download{
     color:white;
     background-color:#28282B;
     position: absolute;
     padding: 20px;
 }
+
+/* Portfolio (below) */
 .portfolio-table{
     width: 100vw;
     border-collapse: collapse;
@@ -129,6 +123,7 @@ a:hover{
     padding-left: 15px;
 }
 
+/* About (below) */
 .about-img{
     position: relative;
     float: left;
@@ -149,30 +144,13 @@ a:hover{
 .about-text{
     font-size: 60%;
 }
-
 .skills-img{
     width: 50%;
     transform: translateY(25%);
     box-shadow: 0 0 15px 0;
 }
 
-.current-nav{
-    background-color: #545454 ;
-
-}
-
-/***************************/
-
-.bottom-position{
-    padding: 20px;
-    background-color:#28282B;
-    color:white;
-    box-shadow: 0 0 10px 0 #28282B;
-}
-
-
-/* Sandbox CSS (below) */
-
+/* Sandbox (below) */
 .h2-position{
     position:relative;
     padding: 20px;
@@ -200,3 +178,16 @@ a:hover{
     border-radius: 10px;
     box-shadow: 0 0 10px 0;
 }
+
+.bottom-position{
+    padding: 20px;
+    background-color:#28282B;
+    color:white;
+    box-shadow: 0 0 10px 0 #28282B;
+}
+
+.current-nav{
+    background-color: #545454 ;
+}
+
+/*-------------------------------*/
