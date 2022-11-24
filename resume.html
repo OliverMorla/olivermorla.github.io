@@ -11,6 +11,27 @@
           body{
             overflow-x: hidden;
           }
+          @media screen and (max-width:800px){
+                a{
+                    padding: 10px;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                    
+                }
+                body{
+                    overflow-x: hidden;
+                    scroll-behavior: smooth;
+                }
+                .resume-div{
+                  margin: 0;
+                  position: relative;
+                  margin: 1em 0;
+                }
+                pre{
+                  white-space: normal;
+                }
+            }
         </style>
             <body>
                 <!-- Header -->
@@ -22,9 +43,8 @@
                     <a href="resume.html" class="current-nav">Resume</a>
                     <a href="blog.html">Blog</a>
                     <a href="contact.html">Contact</a>
-                    <a href="sandbox.html">Sandbox</a>
                 </div>
-                <div>
+                <div class="resume-div">
                     <pre>
                   <strong> Here you can learn more about me and my goals. One day I look forward to becoming a professional software engineer. </strong> 
                     </pre>

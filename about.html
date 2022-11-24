@@ -11,6 +11,37 @@
             body{
                 overflow-x: hidden;
             }
+            @media screen and (max-width:800px){
+                a{
+                    padding: 10px;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                    
+                }
+                .content{
+                    position: relative;
+                    font-size: 75%;
+                    transform: translate(0%,75%);
+                }
+                body{
+                    overflow:auto;
+                    scroll-behavior: smooth;
+                }
+                .index-img{
+                    position:relative;
+                    width: 150%;
+                    transform: translate(20%, -130%);
+                }
+                .about-div{
+                    width: 100%;
+                    transform: translateX(0%);
+                
+                }
+                .index-resume{
+                    transform: translateX(20%);
+                }
+            }
         </style>
             <body>
                 <!-- Header -->
@@ -22,7 +53,6 @@
                     <a href="resume.html">Resume</a>
                     <a href="blog.html">Blog</a>
                     <a href="contact.html">Contact</a>
-                    <a href="sandbox.html">Sandbox</a>
                 </div>
                 <div class="about-div">
                     <p style="text-align:center">
@@ -53,6 +83,10 @@
                     </p>
                 </div>
                 <br>
+                
+                <div id="MyClockDisplay" class="clock" onload="showTime()"></div>
+
+    
                 <div class="bheader">
                     <h2 class="bheader-text">Bottom bar</h2>
                 </div>

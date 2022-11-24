@@ -27,6 +27,23 @@
             img{
                 width: 75%;                
             }
+            @media screen and (max-width:800px){
+                a{
+                    padding: 10px;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                    
+                }
+                body{
+                    overflow-x:hidden;
+                    scroll-behavior: smooth;
+                    margin-bottom: 15%;
+                }
+                .portfolio-table{
+                    width: auto;
+                }
+            }
         </style>
             <body>
                 <!-- Header -->
@@ -38,7 +55,6 @@
                     <a href="resume.html">Resume</a>
                     <a href="blog.html">Blog</a>
                     <a href="contact.html">Contact</a>
-                    <a href="sandbox.html">Sandbox</a>
                 </div>
                 <div class="portfolio-title">
                     <h2 class="portfolio-title">Projects & Course Work</h2>
@@ -62,8 +78,22 @@
                             <td><img src="portfolio/svgs/github.svg" alt="github.svg" style="width: 5%;"><a href="https://github.com/OliverMorla/C-MultiToolV2" target="_blank">Source Code</a></td>
                             <td><img src="portfolio/svgs/github.svg" alt="github.svg" style="width: 5%;"><a href="https://github.com/OliverMorla/olivermorla.github.io" target="_blank">Source Code</a></td>
                         </tr>
+                        <br>
+                        <tr>
+                            <th>Python Useful Tools</th>
+                        </tr>
+                        <br>
+                        <br>
+                        <tr>
+                            <td><img src="portfolio/python2.PNG" alt="Python Useful Tools"></td>
+                        </tr>
+                        <tr>
+                            <td><img src="portfolio/svgs/github.svg" alt="github.svg" style="width: 5%;"><a href="https://github.com/OliverMorla/om_useful_tools" target="_blank">Source Code</a></td>  
+                        </tr>
                     </table>
                 </div>
+                <div id="MyClockDisplay" class="clock" onload="displayClock()"></div>
+                <script  src="src/script.js"></script>
                 <div class="bheader">
                     <h2 class="bheader-text">Bottom bar</h2>
                 </div>

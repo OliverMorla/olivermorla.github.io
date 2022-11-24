@@ -28,6 +28,36 @@
                 animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
             }
 
+            @media screen and (max-width:800px){
+                a{
+                    padding: 10px;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                    
+                }
+                .content{
+                    position: relative;
+                    font-size: 75%;
+                    transform: translate(0%,75%);
+                }
+                body{
+                    overflow: hidden;
+                }
+                .index-img{
+                    position:relative;
+                    width: 150%;
+                    transform: translate(20%, -130%);
+                }
+                p{
+                    position: relative;
+                    transform: translateX(-10%);
+                }
+                .index-resume{
+                    transform: translateX(20%);
+                }
+            }
+
             @keyframes typing {
             from { width: 0 }
             to { width: 100% }
@@ -43,6 +73,9 @@
                 100%{opacity: 1;}
             }
         </style>
+        <script>
+            
+        </script>
     </head>  
         <body>
             <!-- Navegation Bar -->
@@ -54,7 +87,6 @@
                 <a href="resume.html">Resume</a>
                 <a href="blog.html">Blog</a>
                 <a href="contact.html">Contact</a>
-                <a href="sandbox.html">Sandbox</a>
             </div>
                 <div>
                     <div class="content typewriter">
@@ -73,6 +105,8 @@
                 <div class="index-img">
                     <img src="images/picture2.png" alt="Picture of me"  width="25%">
                 </div>
+
+
                 <div class="bheader">
                     <h2 class="bheader-text">Bottom bar</h2>
                 </div>

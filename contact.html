@@ -61,6 +61,27 @@
                 height: 150px;
                 padding-top: 10px;
             }
+            @media screen and (max-width:800px){
+                a{
+                    padding: 10px;
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                    
+                }
+                body{
+                    overflow-x:hidden;
+                    scroll-behavior: smooth;             
+                }
+                .input-field, .contact-box, .button{
+                    width: 100%;
+                    transform: translate(-30%,30%);
+                }
+                .content-contact{
+                    transform: translate(25%, 50%);
+                }
+                
+            }
         </style>
             <body>
                 <!-- Header -->
@@ -72,7 +93,6 @@
                     <a href="resume.html">Resume</a>
                     <a href="blog.html">Blog</a>
                     <a href="contact.html" class="current-nav">Contact</a>
-                    <a href="sandbox.html">Sandbox</a>
                 </div>
                 <div class="content-contact">
                     <h2>Get in touch!</h2>
