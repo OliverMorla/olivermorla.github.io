@@ -1,0 +1,147 @@
+*, *::before, *::after{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+}
+
+.stopwatch-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+}
+
+.stopwatch-title{
+    color: white;
+    filter: drop-shadow(1px 0 0 black);
+    font-weight: 900;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+#minutes, #seconds, #mseconds, #stopwatch-columns{
+    color: white;
+    filter: drop-shadow(1px 0 0 black);
+    font-size: 2rem;
+    font-weight: 800;
+}
+
+.stopwatch-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px 0 black inset;
+    padding: 1.5rem;
+    border-radius: 1rem;
+}
+
+.stopwatch-buttons{
+    margin-top: 1rem;
+    display: flex;
+    gap: 1rem;
+}
+
+.button-styles{
+    font-size: 1rem;
+    cursor: pointer;
+    color: white;
+    font-weight: 1000;
+    border-radius: 1rem;
+    filter: drop-shadow(1px 0 0 black);
+    padding: .35rem;
+    background-color: transparent;
+    transition: background-color 1s ease-in-out;
+    text-transform: uppercase;
+}
+
+.button-styles:hover{
+    background-color: #d18cac;
+}
+
+.button-styles.active{
+    cursor:not-allowed;
+    background-color: #CC81A1;
+}
+
+/* ====== menu-toggle-container ===== */
+.menu-toggle-container{
+    display: flex;
+    width: 100%
+
+}
+.menu-toggle-container a{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 25px;
+    width: 30px;
+    margin-right: 2rem;
+}
+
+.menu-button{
+    height: 6px;
+    width: 100%;
+    border-radius: 1rem;
+    background-color: #fff;
+    
+}
+
+.menu-items{
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    box-shadow: 0 5px 25px rgb(139, 44, 86);
+    border-radius: 1rem;
+}
+
+#dark-mode-format{
+    color: #fff;
+}
+
+.dark-mode-button{
+    width: 35px;
+    height: 15px;
+    border-radius: 75px;
+    background-color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dark-mode-button::before{
+    position: absolute;
+    content: "";
+    width: 14px;
+    height: 15px;
+    background-color: #CC81A1;
+    border-radius: 50%;
+    transform: translateX(-12px);
+}
+
+.dark-mode-button.active::before{
+    position: absolute;
+    content: "";
+    width: 14px;
+    height: 15px;
+    background-color: #d80762;
+    border-radius: 50%;
+    transform: translateX(12px);
+}
+
+/* ===== Dark mode ====== */
+
+.stopwatch-container.dark{
+    background: #28282B;
+    background: radial-gradient(circle, rgb(18, 1, 8) 0%, rgb(5, 15, 26) 100%);
+}

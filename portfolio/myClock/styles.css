@@ -1,0 +1,271 @@
+/* ===== All elements ===== */
+html{
+    scroll-behavior: smooth;
+}
+
+*::before, *::after{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: #AFA79F;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* ==== Nav Bar ==== */
+.nav-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #28282B;
+    color: white;
+}
+
+.nav-title{
+    font-size: 1.5rem;
+    margin: .5rem;
+}
+
+.nav-links-container ul{
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.nav-links-container li{
+    list-style-type: none;
+}
+
+.nav-links-container li a{
+    text-decoration: none;
+    color: white;
+    padding: 1rem;
+    display: block;
+}
+
+.nav-links-container li:hover{
+    background-color: grey;
+}
+
+.menu-btn{
+    position: absolute;
+    top: .75rem;
+    right: 1rem;
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 20px;
+}
+
+.menu-btn .bar{
+    height: 2px;
+    width: 100%;
+    background-color: white;
+}
+
+/* ===== Clock Container ===== */
+.clock-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.clock-container > span{
+    display: flex;
+    font-size: 5em;
+    font-weight: 900;
+    margin-right: 20px;
+}
+
+.clock-container > span:last-child{
+    margin-right: 0;
+}
+
+#hours, #minutes, #seconds, #milliseconds, #session{
+    color:white;
+    filter: drop-shadow(0px 0px 2px black );
+    box-shadow: 0px 0px 5px black inset;
+    padding: .25em;
+    border-radius: 0.5em;
+    transition: background-color 1s ease-in-out;
+}
+
+#hours:hover, #minutes:hover, #seconds:hover, #milliseconds:hover, #session:hover{
+    background-color: #28282B;
+}
+
+.clock-style-column{
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    color: white;
+    filter: drop-shadow(0px 0px 2px black);
+}
+
+/* ==== Clock date container ==== */
+.clock-date-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+/* ==== Clock date labels ==== */
+#month-label{
+    color:white;
+    font-weight: 900;
+    font-size: 1.5em;
+}
+
+#month, #day, #year{
+    font-weight: 200;
+    text-decoration: underline;
+}
+
+/* ==== Clock labels ==== */
+.clock-labels{
+    display: flex;
+    color: white;
+    bottom: 0;
+    position: absolute;
+}
+
+#clock-label-title{
+    text-decoration: underline;
+}
+
+#date{
+    font-size: 1.5em;
+    font-weight: bold;
+    display: flex;
+    color: white;
+}
+
+/* ===== Mobile Responsiveness ===== */ 
+@media screen and (max-width: 400px){
+
+    .clock-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        height: 100vh;
+    }
+    
+    .clock-container > span{
+        display: flex;
+        font-size: 1.2rem;
+        font-weight: 900;
+        margin-right: 5px;
+    }
+    
+    .clock-container > span:last-child{
+        margin-right: 0;
+    }
+    
+    #hours, #minutes, #seconds, #milliseconds, #session{
+        color:white;
+        filter: drop-shadow(0px 0px 2px black );
+        box-shadow: 0px 0px 5px black inset;
+        padding: .25em;
+        border-radius: 0.5em;
+        transition: background-color 1s ease-in-out;
+    }
+    
+    #hours:hover, #minutes:hover, #seconds:hover, #milliseconds:hover, #session:hover{
+        background-color: #28282B;
+    }
+    
+    .clock-style-column{
+        margin: 0;
+        padding: 0;
+        font-size: 1em;
+        color: white;
+        filter: drop-shadow(0px 0px 2px black);
+    }
+    
+    /* ==== Clock date container ==== */
+    .clock-date-container{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+    
+    /* ==== Clock date labels ==== */
+    #month-label{
+        color:white;
+        font-weight: 900;
+        font-size: 1rem;
+    }
+    
+    #month, #day, #year{
+        font-weight: 200;
+        text-decoration: underline;
+    }
+    
+    /* ==== Clock labels ==== */
+    .clock-labels{
+        display: flex;
+        color: white;
+        bottom: 0;
+        position: relative;
+    }
+    
+    #clock-label-title{
+        text-decoration: underline;
+    }
+    
+    #date{
+        font-size: 1.2em;
+        font-weight: bold;
+        display: flex;
+        color: white;
+    }
+    
+    .menu-btn{
+        display: flex;
+    }
+
+    .nav-links-container{
+        display: none;
+        width: 100%;
+    }
+
+    .nav-links-container ul{
+        width: 100%;
+        flex-direction: column;
+    }
+    
+    .nav-links-container li a{
+        text-align: center;
+        padding: 0.50rem;
+    }
+
+    .nav-container{
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links-container.active{
+        display: flex;
+    }
+}
+
+@media screen and (max-width: 1200px) {
+    /* ==== Clock labels ==== */
+    .clock-labels{
+        display: flex;
+        color: white;
+        position: relative;
+    }
+    
+    #clock-label-title{
+        text-decoration: underline;
+    }
+}

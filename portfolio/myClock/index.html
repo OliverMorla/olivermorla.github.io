@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="vanilla javascript clock">
+    <meta name="keywords" content="clock">
+    <script src="responsive.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
+    <title>myClock</title>
+</head>
+<body> 
+    <nav class="nav-container">
+        <div class="nav-title">Digital Clock</div>
+        <a href="#" class="menu-btn">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </a>
+        <div class="nav-links-container">
+            <ul>
+                <li><a href="\index.html">Home</a></li>
+                <li><a href="">Projects</a></li>
+                <li><a href="">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="clock-container">
+        <span id="hours">00</span>
+        <span class="clock-style-column">:</span>
+        <span id="minutes">00</span>
+        <span class="clock-style-column">:</span>
+        <span id="seconds">00</span>
+        <span class="clock-style-column">:</span>
+        <span id="milliseconds">00</span>
+        <span id="session">AM</span>
+        <div class="clock-date-container">
+            <span id="date">dayOftheWeek</span>
+            <span id="month-label" title="Month">M - <span id="month"></span></span>
+            <span id="month-label" title="Day">D - <span id="day"></span></span>
+            <span id="month-label" title="Year">Y - <span id="year"></span></span>
+        </div>
+        <div class="clock-labels">
+            <span id="clock-label-title">Format:</span>
+            <span id="clock-label1">Hour</span>
+            <span id="clock-label2">Min</span>
+            <span id="clock-label3">Sec</span>
+            <span id="clock-label4">Mil</span>
+            <span id="clock-label5">Ses</span>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
