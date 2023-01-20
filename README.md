@@ -4,6 +4,7 @@ This is a portfolio website built using HTML, CSS, and JavaScript. It showcases 
 
 # Preview
 ![Screenshot (10)](https://user-images.githubusercontent.com/73266650/212818908-8c389dbe-f09d-4f0e-a071-2c82b541abed.png)
+![Website Preview](https://user-images.githubusercontent.com/73266650/213818706-c208a90c-2ac1-41c1-9486-8b24914e253f.gif)
 
 # Current URL:
 https://olivermorla.com/
