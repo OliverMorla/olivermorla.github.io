@@ -511,7 +511,8 @@
     }
 
     .blog-iframe-container iframe{
-        width: auto;
+        width: 100%;
+        height: 390px;
     }
 
     .about-title-properties{

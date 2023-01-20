@@ -469,6 +469,10 @@ ul li:last-child{
     box-shadow: 0 0 8px 0 black;
 }
 
+.blog-iframe-container iframe{
+    overflow: hidden;
+}
+
 .blog-title-about{
     display: flex;
     flex-flow: row wrap;
