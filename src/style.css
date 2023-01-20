@@ -23,6 +23,7 @@ ul li:last-child{
 
 .darkmode-btn-text{
     display: flex;
+    font-size: 1rem;
 }
 
 .darkmode-btn-background{
@@ -57,7 +58,6 @@ ul li:last-child{
 [data-dark-only].dark{
     color: #fff;
     background: #282828;
-    padding: 1rem;
 }
 
 
@@ -415,6 +415,11 @@ ul li:last-child{
     border-radius: 1rem;
     padding: .5rem;
     cursor: pointer;
+    transition: background-color .25s ease-in-out;
+}
+
+.manual-btn:hover{
+    background-color: #282828;
 }
 
 #radio1:checked ~ .first{
@@ -431,6 +436,10 @@ ul li:last-child{
 
 #radio4:checked ~ .first{
     margin-left: -150vw;
+}
+
+.manual-btn.active{
+    background-color: #282828;
 }
 
 /* ============== Blog Page ============= */

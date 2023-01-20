@@ -6,7 +6,7 @@
         <meta name="author" content="Oliver Morla">
         <meta name="description" content="This is a collection of beginner JS projects">
         <meta name="keywords" content="html, css, js, flexbox">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
         <link rel="stylesheet" href="src/style.css"> <!-- Importing main stylesheet -->
         <link rel="stylesheet" href="src/mobile.css"> <!-- Importing secondary stylesheet -->
@@ -107,7 +107,7 @@
 
                 <!-- Summary Container Start -->
                 <section class="summary-container" data-dark>
-                    <div class="summary-title"> Web & Application <br>developer</div>
+                    <div class="summary-title" data-dark-only> Web & Application <br>developer</div>
                     <div class="summary-details-container">
                         <p class="summary-details">
                             Results-driven, and resourceful, with extensive <br>knowledge in IT & front-end web developing.
@@ -144,12 +144,12 @@
         <!-- Home Container End -->
 
         <!-- Portfolio Container Start -->
-        <div class="portfolio-container" data-dark>
+        <div class="portfolio-container" id="portfolio" data-dark >
 
             <!-- Title Container Start -->
             <div class="portfolio-title-properties">
 
-                <h2 class="portfolio-title" id="portfolio">PORTFOLIO</h2>
+                <h2 class="portfolio-title">PORTFOLIO</h2>
 
                 <!-- Title About Start -->
                 <div class="portfolio-title-about"> 
@@ -223,10 +223,17 @@
 
             <!-- Auto Slide Script Start -->
             <script type="text/javascript" defer>
+                
+                const manualBtn = document.querySelectorAll(".manual-btn")
+
                 var counter = 1;
                 setInterval(() =>{
                     document.getElementById("radio" + counter).checked = true;
                     counter++;
+
+                    manualBtn.forEach((button, key) => {
+                        
+                    })
                     
                     counter = (counter > 4) ? counter = 1 : counter;
                 }, 5000)
@@ -237,10 +244,10 @@
         <!-- Portfolio Container End -->
 
         <!-- Blog Container Start -->
-        <div class="blog-container" data-dark>
+        <div class="blog-container" id="blog" data-dark>
 
             <div class="blog-title-properties">
-                <h2 class="blog-title-text" id="blog">BLOG</h2>
+                <h2 class="blog-title-text" >BLOG</h2>
                 <div class="blog-title-about"> 
                     <div class="blog-flip-text">HERE YOU CAN FIND THE LASTEST</div>
                     <div class="blog-flip-container" data-dark>

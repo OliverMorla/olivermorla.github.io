@@ -36,4 +36,16 @@ gsap.to(".about-title-properties", {
     }
 });
 
+gsap.to(".about-expand-btn", {
+  checked: true,
+  scrollTrigger: {
+    trigger: ".about-skills-container",
+    start: "top center",
+    end: "top 100px",
+    scrub: true,
+    // markers: true,
+    id: "scrub"
+  }
+});
+
 
