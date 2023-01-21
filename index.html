@@ -7,13 +7,15 @@
         <meta name="description" content="This is a collection of beginner JS projects">
         <meta name="keywords" content="html, css, js, flexbox">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="icon" type="image/x-icon" href="favicon/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="favicon/favicon.ico"> 
         <link rel="stylesheet" href="src/style.css"> <!-- Importing main stylesheet -->
-        <link rel="stylesheet" href="src/mobile.css"> <!-- Importing secondary stylesheet -->
+        <link rel="stylesheet" href="src/mobile.css"> <!-- Importing secondary stylesheet (Mobile Support) -->
         <script src="src/responsive.js" defer></script>
     </head>
+
     <!-- Body Container Start -->
     <body>
+
         <!-- Home Container Start -->
         <div class="home-container" data-dark>
 
@@ -34,8 +36,9 @@
                         <li><a href="#blog" data-dark-only>Blog</a></li>
                         <li><a href="#about" data-dark-only>About</a></li>
                         <li>
-                            <div class="darkmode-btn-text">Dark Mode Toggle: 
-                            <div class="darkmode-btn-background"><div class="darkmode-btn"></div></div>
+                            <div class="darkmode-btn-text">Dark Mode Toggle:</div>
+                            <div class="darkmode-btn-background">
+                                <div class="darkmode-btn"></div>
                             </div>
                         </li>
                     </ul>
@@ -67,7 +70,7 @@
                 <!-- Service Container Start -->
                 <section class="service-container">
                     <div class="service-title" data-dark> Services </div>
-                    <div class="service-details-container" data-dark>
+                    <div class="service-details-container">
                         <div class="service-details">
                             <aside>
                                 <img src="svgs/html5.svg" alt="" class="service-detail-logos">
@@ -106,8 +109,8 @@
                 <!-- Service Picture Container End -->
 
                 <!-- Summary Container Start -->
-                <section class="summary-container" data-dark>
-                    <div class="summary-title" data-dark-only> Web & Application <br>developer</div>
+                <section class="summary-container">
+                    <div class="summary-title" data-dark> Web & Application <br>developer</div>
                     <div class="summary-details-container">
                         <p class="summary-details">
                             Results-driven, and resourceful, with extensive <br>knowledge in IT & front-end web developing.
@@ -210,11 +213,11 @@
                 <!-- Slides Container End -->
 
                 <!-- Manual Navigation Start -->
-                <div class="navigation-manual-container">
-                    <label for="radio1" class="manual-btn"></label>
-                    <label for="radio2" class="manual-btn"></label>
-                    <label for="radio3" class="manual-btn"></label>
-                    <label for="radio4" class="manual-btn"></label>
+                <div class="navigation-manual-container" >
+                    <label for="radio1" class="manual-btn" data-dark></label>
+                    <label for="radio2" class="manual-btn" data-dark></label>
+                    <label for="radio3" class="manual-btn" data-dark></label>
+                    <label for="radio4" class="manual-btn" data-dark></label>
                 </div> 
                 <!-- Manual Navigation End -->
 
@@ -236,6 +239,7 @@
                     })
                     
                     counter = (counter > 4) ? counter = 1 : counter;
+
                 }, 5000)
             </script>
             <!-- Auto Slide Script End -->
@@ -295,6 +299,20 @@
                             CSS skills make me a valuable asset for any team looking to build high-quality, interactive web applications.
                         </p>
                         <input type="checkbox" class="about-expand-btn">
+                        <div class="about-skills-wrapper">
+                            <div class="about-skill-title">HTML</div>
+                            <div class="about-skill-bar">
+                                <div class="about-skill-progress" per="90%"></div>
+                            </div>
+                            <div class="about-skill-title">CSS</div>
+                            <div class="about-skill-bar">
+                                <div class="about-skill-progress" per="80%"></div>
+                            </div>
+                            <div class="about-skill-title">JS</div>
+                            <div class="about-skill-bar">
+                                <div class="about-skill-progress" per="65%"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="about-skills-card">
                         <h2> PYTHON | C# </h2>
@@ -306,6 +324,16 @@
                             Entity Framework and LINQ. Overall, my skills in Python and C# make me well-equipped to tackle a wide range of projects and tasks.
                         </p>
                         <input type="checkbox" class="about-expand-btn">
+                        <div class="about-skills-wrapper">
+                            <div class="about-skill-title">PYTHON</div>
+                            <div class="about-skill-bar">
+                                <div class="about-skill-progress" per="40%"></div>
+                            </div>
+                            <div class="about-skill-title">C#</div>
+                            <div class="about-skill-bar">
+                                <div class="about-skill-progress" per="35%"></div>
+                            </div>
+                        </div>
                     </div>
                     <div class="about-skills-card">
                         <h2> SQL | mySQL | NoSQL </h2>
@@ -317,6 +345,12 @@
                             my skills in SQL and NoSQL databases make me well-equipped to work with a wide range of data storage and management systems.
                         </p>
                         <input type="checkbox" class="about-expand-btn">
+                        <div class="about-skills-wrapper">
+                            <div class="about-skill-title">SQL/mySQL</div>
+                            <div class="about-skill-bar">
+                                <div class="about-skill-progress" per="70%"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- About Skills Container End -->
@@ -345,4 +379,5 @@
 
     </body>
     <!-- Body Container End -->
+
 </html>

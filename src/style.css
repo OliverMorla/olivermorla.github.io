@@ -471,6 +471,7 @@ ul li:last-child{
 
 .blog-iframe-container iframe{
     overflow: hidden;
+    margin-bottom: .2rem;
 }
 
 .blog-title-about{
@@ -556,6 +557,27 @@ ul li:last-child{
 
 .about-skills-card > p{
     font-size: 0.85rem;
+}
+
+.about-skills-wrapper{
+    display: flex;
+    flex-direction: column;
+}
+
+.about-skill-title{
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bolder;
+}
+
+.about-skill-bar{
+    background: #282828;
+    height: 15px;
+    max-width: 100%;
+    border-radius: 1rem;
+}
+
+.about-skill-progress{
+
 }
 
 .about-cutoff-text{
