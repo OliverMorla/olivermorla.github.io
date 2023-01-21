@@ -567,6 +567,7 @@ ul li:last-child{
 .about-skill-title{
     font-family: 'Montserrat', sans-serif;
     font-weight: bolder;
+    text-align: end;
 }
 
 .about-skill-bar{
@@ -577,7 +578,27 @@ ul li:last-child{
 }
 
 .about-skill-progress{
+    height: 15px;
+    background: #141414;
+    position: relative;
+    border-radius: 1rem;
+    animation-name: progress;
+    animation-duration: 2s;
+    animation-fill-mode: both;
+}
 
+@keyframes progress {
+    from{ max-width: 0%; }
+    to{ max-width: attr(per); }   
+}
+
+.about-skill-progress::before{
+    font-family: 'Montserrat', sans-serif;
+    content: attr(per);
+    color: #fff;
+    position: absolute;
+    right: 0;
+    font-size: .75rem;
 }
 
 .about-cutoff-text{
