@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 import Typewriter from "typewriter-effect"
 import { motion } from 'framer-motion';
 
-import { ScrollTrigger } from "../../components/scroll/ScrollTrigger"
+import { ScrollTrigger } from "@/components/scroll/ScrollTrigger"
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTwitter, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
 import { faPython, faHtml5, faWordpress } from '@fortawesome/free-brands-svg-icons';
 
 import "./style.scss"
-
+import "@/styles/spacing.scss"
 
 const Home = () => {
   window.scrollTo(0, 0);
@@ -196,7 +196,7 @@ const Home = () => {
       
       {/* Home Page Bottom Section */}
       <div className="bottom-section">
-        <h2 className=""><u>C</u>ertifications </h2>
+        <h2 className="mb-8"><u>C</u>ertifications </h2>
         <div className="cert-content">
           <div className="cert-card">
             <h2> Coursera </h2>

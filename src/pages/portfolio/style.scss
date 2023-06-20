@@ -1,31 +1,33 @@
+@import "@/styles/mixins.scss";
+
 .portfolio-w {
+    margin-top: 100px;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     gap: 10px;
 
-    &::before {
-        content: "";
-        position: relative;
-        top: 0;
-        height: 100px;
-        width: 100%;
-    }
-
-    h2 {
-        margin: .5em
+    h1 {
+        @include sm-down {
+            font-size: 30px;
+        }
     }
 
     .repo-card {
-        margin: .5em;
         cursor: pointer;
+        margin: .5em;
+        padding: 1em;
         color: white;
         background-color: var(--light);
-        padding: 1em;
         box-shadow: 0 0 5px #29292e;
 
         &:hover {
             background-color: var(--dark);
         }
+    }
+
+    @include sm-down {
+        margin-top: 0px;
+        margin: 10px;
     }
 }

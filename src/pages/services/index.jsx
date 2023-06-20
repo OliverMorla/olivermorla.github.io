@@ -1,4 +1,4 @@
-import Error from "../../routes/pages/error/index";
+import Error from "@/routes/pages/error/index";
 
 const Services = () => {
     return (

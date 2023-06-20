@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPencil, faHandPaper } from '@fortawesome/free-solid-svg-icons';
-import {useRef, useState} from "react"
+import { useRef, useState } from "react"
 import emailjs from '@emailjs/browser';
 import { motion } from "framer-motion";
 import "./style.scss"
@@ -37,12 +37,12 @@ const Contact = () => {
             className="contact-w"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            
+
         >
             <div className="details-section">
                 <h3 className="heading mb-4">Let's talk about everything!</h3>
                 <p>Let's connect and explore how we can build the future together.</p>
-                <img src="/assets/" alt="" className='contact-img'/>
+                <img src="/assets/" alt="" className='contact-img' />
             </div>
             <div className="form-section">
 
@@ -69,7 +69,7 @@ const Contact = () => {
                     </div>
                     <div className="row">
                         <div className="wrapper">
-                            <input type="submit" value="Send Message" className="" disabled={isDisabled}/>
+                            <input type="submit" value="Send Message" className="" disabled={isDisabled} />
                         </div>
                     </div>
                 </form>
