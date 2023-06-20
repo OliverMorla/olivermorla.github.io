@@ -13,15 +13,15 @@
         width: 100%;
         padding: 2em;
 
-        .about-us-w {
-            max-width: 200px;
+        // .about-us-w {
+        //     max-width: 200px;
 
-            .heading {}
+        //     .heading {}
 
-            .info {
-                font-size: 12px;
-            }
-        }
+        //     .info {
+        //         font-size: 12px;
+        //     }
+        // }
 
         .features-w {
             .features-list-w {
@@ -40,48 +40,54 @@
             }
         }
 
-        .contact-us-w {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
 
-            .social-icon-w {
-                .heading {}
+        .social-icon-w {
+            .heading {
+                padding: 8px;
+            }
 
-                .icon-w {
-                    display: flex;
-                    gap: 10px;
+            .icon-w {
+                display: flex;
+                gap: 10px;
 
-                    a {
+                a {
+                    color: white;
+
+                    .socials-btn {
+                        padding: 8px;
+                        font-size: 24px;
                         color: white;
+                        cursor: pointer;
+                        transition: all 0.15s ease-in-out;
 
-                        .socials-btn {
-                            cursor: pointer;
-                            width: 12px;
-                            transition: all 0.15s ease-in-out;
-
-                            &:hover {
-                                font-weight: bolder;
-                                transform: scale(1.1);
-                            }
+                        &:hover {
+                            font-weight: bolder;
+                            transform: scale(1.1);
                         }
                     }
                 }
             }
+        }
 
-            .info-w {
-                h3 {}
+        .info-w {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            h3 {}
 
-                address {
-                    font-size: 12px;
-                    transition: all 0.1s ease-in-out;
+            address {
+                font-size: 12px;
+                transition: all 0.1s ease-in-out;
 
-                    &:hover {
-                        font-weight: bolder
-                    }
+                fieldset{
+                    padding: 10px;
                 }
 
+                &:hover {
+                    font-weight: bolder
+                }
             }
+
         }
 
         .newsletter-w {

@@ -43,7 +43,7 @@ const Home = () => {
               loop: true,
               delay: 50,
             }} />
-          <ScrollTrigger
+          {/* <ScrollTrigger
             initial={{ opacity: 0, transform: "translateX(-15px)" }}
             animate={{ opacity: 1, transform: "translateX(0)" }}
             transition={{
@@ -57,7 +57,7 @@ const Home = () => {
                 in collaborative environments, bringing a team-oriented mindset and a detail-oriented
                 approach to every project.
             </p>
-          </ScrollTrigger>
+          </ScrollTrigger> */}
           <div className="stats-w">
             <button id="hire-me-btn">Hire me</button>
             <div className="info-wrapper">
@@ -192,7 +192,7 @@ const Home = () => {
           </div>
         </section>
         </ScrollTrigger>
-        <section className="skills-section scroll">
+        <section className="skills-section">
           <h2> <u>T</u>echnical Skills </h2>
           <ul>
             <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT </li>
