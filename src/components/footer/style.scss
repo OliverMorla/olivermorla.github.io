@@ -1,0 +1,129 @@
+.footer-w {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+    color: white;
+    background-color: var(--dark);
+
+    .section-one {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-evenly;
+        width: 100%;
+        padding: 2em;
+
+        .about-us-w {
+            max-width: 200px;
+
+            .heading {}
+
+            .info {
+                font-size: 12px;
+            }
+        }
+
+        .features-w {
+            .features-list-w {
+                .feature-item {
+                    a {
+                        color: white;
+                        font-size: 12px;
+                        transition: all 0.15s ease-in-out;
+                    }
+
+                    &:hover {
+                        font-weight: bolder;
+                        transform: scale(1.1);
+                    }
+                }
+            }
+        }
+
+        .contact-us-w {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            .social-icon-w {
+                .heading {}
+
+                .icon-w {
+                    display: flex;
+                    gap: 10px;
+
+                    a {
+                        color: white;
+
+                        .socials-btn {
+                            cursor: pointer;
+                            width: 12px;
+                            transition: all 0.15s ease-in-out;
+
+                            &:hover {
+                                font-weight: bolder;
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+                }
+            }
+
+            .info-w {
+                h3 {}
+
+                address {
+                    font-size: 12px;
+                    transition: all 0.1s ease-in-out;
+
+                    &:hover {
+                        font-weight: bolder
+                    }
+                }
+
+            }
+        }
+
+        .newsletter-w {
+            .heading {}
+
+            form {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+
+                input[type=text] {
+                    padding: 1rem;
+                }
+
+                .sub-btn {
+                    cursor: pointer;
+                    background-color: #56565f;
+                    border: none;
+                    appearance: none;
+                    padding: 1rem;
+                    transform: all 0.15s ease-in-out;
+
+                    &:hover {
+                        background-color: #828289;
+                    }
+                }
+            }
+        }
+    }
+
+    .section-two {
+        display: flex;
+        padding: 2em;
+
+        .copyright-w {
+            font-size: 14px;
+            transition: all 0.1s ease-in-out;
+
+            &:hover {
+                font-size: 16px;
+                font-weight: bolder;
+            }
+        }
+    }
+}

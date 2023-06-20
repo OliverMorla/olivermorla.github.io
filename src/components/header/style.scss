@@ -1,0 +1,48 @@
+@import "../../styles/mixins.scss";
+
+.header-w {
+    position: fixed;
+    display: flex;
+    background-color: var(--dark);
+    height: 100px;
+    width: 100%;
+    opacity: .8;
+    z-index: 2;
+    transition: all .15s ease-in-out;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    @include sm-down {
+        opacity: 1;
+        position: relative;
+        height: auto;
+        padding: 2em;
+    }
+
+    .nav-w {
+        width: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .nav-menu-w {
+            display: flex;
+            flex-flow: row wrap;
+            gap: 10px;
+
+            a {
+                padding: .5em 1em;
+                color: white;
+                border-bottom: 1px solid transparent;
+                transition: border-bottom .15s ease-in-out;
+
+                &:hover {
+                    font-weight: bolder;
+                    border-bottom: 1px solid white;
+                }
+            }
+        }
+    }
+}

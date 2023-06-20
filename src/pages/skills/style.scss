@@ -1,0 +1,64 @@
+.skills-w {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        height: 100px;
+        width: 100%;
+        background-color: var(--light);
+    }
+
+    .skill-card {
+        display: flex;
+        flex-direction: column;
+        width: 600px;
+
+        .skill-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: bolder;
+            text-align: end;
+        }
+
+        .skill-bar {
+            background: #b4acac;
+            height: 15px;
+            max-width: 100%;
+            border-radius: 1rem;
+        }
+
+        .skill-progress {
+            height: 15px;
+            background: var(--light);
+            position: relative;
+            border-radius: 1rem;
+            transition: all 2s ease-in-out;
+            animation: progress 1s ease-in-out;
+        }
+
+        @keyframes progress {
+            0% {
+                max-width: 0;
+            }
+
+            100% {
+                max-width: atrr(per);
+            }
+        }
+
+        .skill-progress::before {
+            font-family: 'Montserrat', sans-serif;
+            content: attr(data-per);
+            color: #fff;
+            position: absolute;
+            right: 0;
+            font-size: .75rem;
+        }
+    }
+}
