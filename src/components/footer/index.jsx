@@ -18,16 +18,16 @@ const Footer = () => {
                 <div className="social-icon-w">
                     <h3 className="heading">Contact Me</h3>
                     <div className="icon-w">
-                        <a href={'https://github.com/OliverMorla'}>
+                        <a href={'https://github.com/OliverMorla'} target='_blank'>
                             <FontAwesomeIcon icon={faGithub} className='socials-btn' />
                         </a>
-                        <a href={'https://twitter.com/Oliver1129'}>
+                        <a href={'https://twitter.com/Oliver1129'} target='_blank'>
                             <FontAwesomeIcon icon={faTwitter} className='socials-btn' />
                         </a>
-                        <a href={'https://www.instagram.com/oliverm11_/'}>
+                        <a href={'https://www.instagram.com/oliverm11_/'} target='_blank'>
                             <FontAwesomeIcon icon={faInstagram} className='socials-btn' />
                         </a>
-                        <a href={'https://www.linkedin.com/in/oliver-morla/'}>
+                        <a href={'https://www.linkedin.com/in/oliver-morla/'} target='_blank'>
                             <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
                         </a>
                     </div>

@@ -53,12 +53,15 @@
                 }
             }
 
-
             .Typewriter__wrapper,
             .Typewriter__cursor {
                 color: white;
                 font-weight: bolder;
                 font-size: 48px;
+
+                @include sm-down {
+                    font-size: 36px;
+                }
             }
 
             p {
@@ -118,6 +121,14 @@
                     }
                 }
             }
+
+            // Home Left Side Responsive Ness
+            @include sm-down {
+                width: 350px;
+                // align-items: unset;
+                flex-direction: column;
+                // justify-content: space-evenly;
+            }
         }
 
         .right-section {
@@ -145,6 +156,10 @@
                 @include md-down {
                     width: 350px;
                 }
+            }
+
+            @include sm-down {
+                width: 350px;
             }
         }
 
@@ -186,6 +201,22 @@
                 font-size: 14px;
                 padding: 1em;
             }
+
+            @include sm-down {
+                width: 350px;
+                align-items: none;
+                flex-direction: column;
+                justify-content: unset;
+            }
+        }
+
+        // Top Section Media Queries
+        @include sm-down {
+            width: 350px;
+            gap: 120px;
+            align-items: unset;
+            flex-direction: column;
+            justify-content: unset;
         }
     }
 
@@ -270,6 +301,10 @@
                 margin-top: 40%;
                 font-size: 14px;
             }
+
+            @include sm-down {
+                width: 350px;
+            }
         }
 
         .skills-section {
@@ -316,6 +351,12 @@
                 }
 
                 li {}
+            }
+
+            @include sm-down {
+                width: 350px;
+                margin-left: 0;
+                margin-bottom: 10px;
             }
         }
 
@@ -378,6 +419,13 @@
 
                 p {
                     font-size: 12px;
+                }
+
+                @include sm-down {
+                    width: 350px;
+                    // align-items: none;
+                    flex-direction: column;
+                    // justify-content: unset;
                 }
             }
         }

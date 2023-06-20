@@ -11,6 +11,7 @@ import { faPython, faHtml5, faWordpress } from '@fortawesome/free-brands-svg-ico
 
 import "./style.scss"
 
+
 const Home = () => {
   window.scrollTo(0, 0);
   const parentContainer = useRef()
@@ -20,11 +21,9 @@ const Home = () => {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
     >
-
       <div className="top-section">
 
         <section className="h-left-side">
-
           <div className="heading-w">
             <p className='heading-p'> Hey There! I'm </p>
             <Typewriter
@@ -43,21 +42,7 @@ const Home = () => {
               loop: true,
               delay: 50,
             }} />
-          {/* <ScrollTrigger
-            initial={{ opacity: 0, transform: "translateX(-15px)" }}
-            animate={{ opacity: 1, transform: "translateX(0)" }}
-            transition={{
-              ease: "linear",
-              duration: .4,
-            }}
-          >
-            <p className='summary-p'>
-                Passionate Full Stack Developer with over 2 years of experience specializing in
-                Node.js, Express.js, Next.js, React.js, JavaScript, SCSS, HTML, and SQL. Thrives
-                in collaborative environments, bringing a team-oriented mindset and a detail-oriented
-                approach to every project.
-            </p>
-          </ScrollTrigger> */}
+
           <div className="stats-w">
             <Link to={"/contact"}>
               <button id="hire-me-btn">Hire me</button>
@@ -88,16 +73,16 @@ const Home = () => {
               }
             }}
           >
-            <a href={'https://github.com/OliverMorla'}>
+            <a href={'https://github.com/OliverMorla'} target='_blank'>
               <FontAwesomeIcon icon={faGithub} className='socials-btn' />
             </a>
-            <a href={'https://twitter.com/Oliver1129'}>
+            <a href={'https://twitter.com/Oliver1129'} target='_blank'>
               <FontAwesomeIcon icon={faTwitter} className='socials-btn' />
             </a>
-            <a href={'https://www.instagram.com/oliverm11_/'}>
+            <a href={'https://www.instagram.com/oliverm11_/'} target='_blank'>
               <FontAwesomeIcon icon={faInstagram} className='socials-btn' />
             </a>
-            <a href={'https://www.linkedin.com/in/oliver-morla/'}>
+            <a href={'https://www.linkedin.com/in/oliver-morla/'} target='_blank'>
               <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
             </a>
           </motion.div>
@@ -120,6 +105,7 @@ const Home = () => {
         </motion.section>
 
         <motion.section className="services-section">
+
           <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faHtml5} className='service-logo' />
@@ -137,9 +123,9 @@ const Home = () => {
               <div className="service-title"> Application Development </div>
             </aside>
             <p>
-              Experienced application developer who <br />
-              specializes in creating custom software<br />
-              solutions for businesses.
+              Experienced application developer who
+              <br />specializes in creating custom software
+              <br />solutions for businesses.
             </p>
           </div>
           <div className="service-card">
@@ -148,10 +134,11 @@ const Home = () => {
               <div className="service-title"> UI/UX Design </div>
             </aside>
             <p>
-              Pro designer who specializes in creating <br />
-              intuitive, visually appealing websites.
+              Pro designer who specializes in creating
+              <br />intuitive, visually appealing websites.
             </p>
           </div>
+
         </motion.section>
 
       </div>
@@ -166,6 +153,8 @@ const Home = () => {
           transition={{
             ease: "linear",
             duration: .4,
+            delay: .8
+
           }}
         >
           <section className="about-section">
@@ -194,7 +183,7 @@ const Home = () => {
           </section>
         </ScrollTrigger>
         <section className="skills-section">
-          <h2> <u>T</u>echnical Skills </h2>
+          <h2> <u> T </u> echnical Skills </h2>
           <ul>
             <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT </li>
             <li>Frameworks: Next.js, React-Router, Bootstrap, Tailwind, SCSS</li>
@@ -204,9 +193,10 @@ const Home = () => {
           </ul>
         </section>
       </motion.div>
-
+      
+      {/* Home Page Bottom Section */}
       <div className="bottom-section">
-        <h2><u>C</u>ertifications </h2>
+        <h2 className=""><u>C</u>ertifications </h2>
         <div className="cert-content">
           <div className="cert-card">
             <h2> Coursera </h2>
@@ -224,13 +214,6 @@ const Home = () => {
             <p> Web Development with HTML, CSS, Javascript </p>
           </div>
         </div>
-        <h2><u>P</u>ersonal Experience</h2>
-        <p>
-          - Proven ability in troubleshooting hardware and software issues, leveraging five years' experience in custom PC and server assembly. <br />
-          - Proficient in Windows and Linux administration, performing tasks from system installation and migration to backup/recovery procedures. <br />
-          - Experienced with virtualization technologies, enhancing system scalability and resilience through the creation and management of virtual machines. <br />
-          - Demonstrates adaptability to new technologies and workflows, with a strong aptitude for learning and applying new software applications and tools <br />
-        </p>
       </div>
 
     </motion.main>
