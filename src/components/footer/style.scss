@@ -13,15 +13,17 @@
         width: 100%;
         padding: 2em;
 
-        // .about-us-w {
-        //     max-width: 200px;
+        .about-us-w {
+            max-width: 200px;
 
-        //     .heading {}
+            .heading {
+                padding: 8px;
+            }
 
-        //     .info {
-        //         font-size: 12px;
-        //     }
-        // }
+            .info {
+                font-size: 12px;
+            }
+        }
 
         .features-w {
             .features-list-w {
@@ -58,11 +60,12 @@
                         font-size: 24px;
                         color: white;
                         cursor: pointer;
-                        transition: all 0.15s ease-in-out;
+                        transition: all .15s ease-in-out;
 
                         &:hover {
                             font-weight: bolder;
                             transform: scale(1.1);
+                            color: var(--lightBlue);
                         }
                     }
                 }
@@ -73,25 +76,29 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            h3 {}
+
+            h3 {
+                padding: 8px;
+            }
 
             address {
                 font-size: 12px;
-                transition: all 0.1s ease-in-out;
 
-                fieldset{
+                fieldset {
+                    transition: all .15s ease-in-out;
                     padding: 10px;
-                }
 
-                &:hover {
-                    font-weight: bolder
+                    &:hover {
+                        font-weight: bolder
+                    }
                 }
             }
-
         }
 
-        .newsletter-w {
-            .heading {}
+        .email-contact-w {
+            .heading {
+                padding: 8px;
+            }
 
             form {
                 display: flex;
@@ -102,16 +109,18 @@
                     padding: 1rem;
                 }
 
-                .sub-btn {
+                .send-btn {
                     cursor: pointer;
-                    background-color: #56565f;
-                    border: none;
+                    background-color: var(--dark);
+                    border: 1px solid var(--lightBlue);
+                    color: white;
                     appearance: none;
                     padding: 1rem;
-                    transform: all 0.15s ease-in-out;
+                    transition: all 0.1s ease-in-out;
 
                     &:hover {
-                        background-color: #828289;
+                        color: white;
+                        background-color: var(--lightBlue);
                     }
                 }
             }

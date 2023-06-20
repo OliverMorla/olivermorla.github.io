@@ -14,7 +14,7 @@ import "./style.scss"
 const Home = () => {
   window.scrollTo(0, 0);
   const parentContainer = useRef()
-  
+
   return (
     <motion.main className="home-w"
       initial={{ opacity: 0 }}
@@ -59,7 +59,9 @@ const Home = () => {
             </p>
           </ScrollTrigger> */}
           <div className="stats-w">
-            <button id="hire-me-btn">Hire me</button>
+            <Link to={"/contact"}>
+              <button id="hire-me-btn">Hire me</button>
+            </Link>
             <div className="info-wrapper">
               <h3> 3 Yrs </h3>
               <p> Experience </p>
@@ -157,40 +159,39 @@ const Home = () => {
       <motion.div
         className="middle-section"
         ref={parentContainer}
-
       >
         <ScrollTrigger
-            initial={{ opacity: 0, transform: "translateX(-15px)" }}
-            animate={{ opacity: 1, transform: "translateX(0)" }}
-            transition={{
-              ease: "linear",
-              duration: .4,
-            }}
+          initial={{ opacity: 0, transform: "translateX(-15px)" }}
+          animate={{ opacity: 1, transform: "translateX(0)" }}
+          transition={{
+            ease: "linear",
+            duration: .4,
+          }}
         >
-        <section className="about-section">
-          <div className="about-content">
-            <h2> Positioning Statement </h2>
-            <p>
-              With a relentless focus on creating simple and intuitive user experiences, my work always puts the consumer at the forefront.
-              I firmly believe in the power of technology to simplify lives and make complex processes seamless. This conviction drives me
-              to continually hone my skills, stay abreast of emerging technologies, and create innovative solutions.
+          <section className="about-section">
+            <div className="about-content">
+              <h2> Positioning Statement </h2>
+              <p>
+                With a relentless focus on creating simple and intuitive user experiences, my work always puts the consumer at the forefront.
+                I firmly believe in the power of technology to simplify lives and make complex processes seamless. This conviction drives me
+                to continually hone my skills, stay abreast of emerging technologies, and create innovative solutions.
 
-              In every role, I bring my dedication to clear communication, problem-solving, and service. Helping others, whether it's my team,
-              stakeholders, or the end users of the products I work on, is always a top priority.
+                In every role, I bring my dedication to clear communication, problem-solving, and service. Helping others, whether it's my team,
+                stakeholders, or the end users of the products I work on, is always a top priority.
 
-              Ready to bring my skills and passion to new challenges. Let's connect and explore how we can build the future together.
-            </p>
-          </div>
-          <div className="about-img-w">
-            <img src="/assets/portrait/portrait3.png" alt="" className="about-img" />
-            <fieldset>
-              <legend> Oliver Morla </legend>
-              <p> - Full Stack Developer </p>
-              <p> - Bachelors of Technology in Computer Science </p>
-              <p> - 3+ Years of Experience </p>
-            </fieldset>
-          </div>
-        </section>
+                Ready to bring my skills and passion to new challenges. Let's connect and explore how we can build the future together.
+              </p>
+            </div>
+            <div className="about-img-w">
+              <img src="/assets/portrait/portrait3.png" alt="" className="about-img" />
+              <fieldset>
+                <legend> Oliver Morla </legend>
+                <p> - Full Stack Developer </p>
+                <p> - Bachelors of Technology in Computer Science </p>
+                <p> - 3+ Years of Experience </p>
+              </fieldset>
+            </div>
+          </section>
         </ScrollTrigger>
         <section className="skills-section">
           <h2> <u>T</u>echnical Skills </h2>

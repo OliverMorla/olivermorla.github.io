@@ -109,9 +109,9 @@
                 font-size: 36px;
 
                 .socials-btn {
-                    color: white;
                     cursor: pointer;
-                    transition: .15s ease-in-out;
+                    color: white;
+                    transition: all .15s ease-in-out;
 
                     &:hover {
                         color: var(--lightBlue);

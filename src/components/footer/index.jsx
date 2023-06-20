@@ -7,26 +7,14 @@ const Footer = () => {
     return (
         <footer className="footer-w">
             <div className="section-one">
-                {/* <div className="about-us-w">
+                <div className="about-us-w">
                     <h3 className="heading">About Me</h3>
                     <p className="info">
                         Passionate Full Stack Developer with over 2 years of experience specializing in Node.js, Express.js, Next.js,
                         React.js, JavaScript, SCSS, HTML, and SQL. Thrives in collaborative environments, bringing a team-oriented mindset
                         and a detail-oriented approach to every project.
                     </p>
-                </div> */}
-                {/* <div className="features-w">
-                    <h3 className="heading">Features</h3>
-                    <div className="features-list-w">
-                        <div className="feature-item"><Link to={'/'}>Home</Link></div>
-                        <div className="feature-item"><Link to={'/about'}>About</Link></div>
-                        <div className="feature-item"><Link to={'/skills'}>Skills</Link></div>
-                        <div className="feature-item"><Link to={'/blog'}>Blog</Link></div>
-                        <div className="feature-item"><Link to={'/portfolio'}>Portfolio</Link></div>
-                        <div className="feature-item"><Link to={'/services'}>Services</Link></div>
-                        <div className="feature-item"><Link to={'/contact'}>Contact</Link></div>
-                    </div>
-                </div> */}
+                </div>
                 <div className="social-icon-w">
                     <h3 className="heading">Contact Me</h3>
                     <div className="icon-w">
@@ -49,16 +37,17 @@ const Footer = () => {
                     <address>
                         <fieldset>
                             <legend> Info </legend>
-                            <p> <b>Email:</b> olivermorla3@gmail.com </p>
-                            <p> <b>GitHub:</b> OliverMorla </p>
+                            <p> <b> Email: </b> olivermorla3@gmail.com </p>
+                            <p> <b> GitHub: </b> OliverMorla </p>
+                            <p> <b> Linkedin: </b> OliverMorla </p>
                         </fieldset>
                     </address>
                 </div>
-                <div className="newsletter-w">
-                    <h3 className="heading">Subscribe to Newsletter</h3>
+                <div className="email-contact-w">
+                    <h3 className="heading">Have Questions?</h3>
                     <form>
                         <input type="text" name="email" id="email-n" placeholder='Enter Email' className='newsletter-textbox' />
-                        <button type="submit" className='sub-btn'>Suscribe</button>
+                        <button type="submit" className='send-btn'>Send</button>
                     </form>
                 </div>
             </div>
