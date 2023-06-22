@@ -1,3 +1,5 @@
+@import "@/styles/mixins.scss";
+
 .contact-w {
     display: flex;
     flex-flow: row wrap;
@@ -5,6 +7,10 @@
     align-items: center;
     height: 100vh;
     gap: 30px;
+
+    @include sm-down {
+        margin: 20px;
+    }
 
     .details-section {
         width: 400px;

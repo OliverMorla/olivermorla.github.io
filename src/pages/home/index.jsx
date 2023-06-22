@@ -23,70 +23,80 @@ const Home = () => {
     >
       <div className="top-section">
 
+
         <section className="h-left-side">
-          <div className="heading-w">
-            <p className='heading-p'> Hey There! I'm </p>
-            <Typewriter
-              options={{
-                strings: ['Oliver'],
-                autoStart: true,
-                loop: false,
-                pauseFor: 20000,
-              }} />
-          </div>
-
-          <Typewriter
-            options={{
-              strings: ['Web Developer', 'UI/UX Designer', 'Software Engineer'],
-              autoStart: true,
-              loop: true,
-              delay: 50,
-            }} />
-
-          <div className="stats-w">
-            <Link to={"/contact"}>
-              <button id="hire-me-btn">Hire me</button>
-            </Link>
-            <div className="info-wrapper">
-              <h3> 3 Yrs </h3>
-              <p> Experience </p>
-            </div>
-            <div className="info-wrapper">
-              <h3> 11 </h3>
-              <p> Projects </p>
-            </div>
-            <div className="info-wrapper">
-              <h3> 22 </h3>
-              <p> Age </p>
-            </div>
-          </div>
-
-          <motion.div className="socials-btn-w"
-            initial={{ opacity: 0, x: -40 }}
-            animate={{
-              opacity: 1,
-              x: 0,
-              transition: {
-                delay: .8,
-                staggerChildren: 0.2,
-                delayChildren: 0.5
-              }
+          <ScrollTrigger
+            initial={{ opacity: 0, transform: "translateX(-15px)" }}
+            animate={{ opacity: 1, transform: "translateX(0)" }}
+            transition={{
+              ease: "linear",
+              duration: .4,
+              delay: .4
             }}
           >
-            <a href={'https://github.com/OliverMorla'} target='_blank'>
-              <FontAwesomeIcon icon={faGithub} className='socials-btn' />
-            </a>
-            <a href={'https://twitter.com/Oliver1129'} target='_blank'>
-              <FontAwesomeIcon icon={faTwitter} className='socials-btn' />
-            </a>
-            <a href={'https://www.instagram.com/oliverm11_/'} target='_blank'>
-              <FontAwesomeIcon icon={faInstagram} className='socials-btn' />
-            </a>
-            <a href={'https://www.linkedin.com/in/oliver-morla/'} target='_blank'>
-              <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
-            </a>
-          </motion.div>
+            <div className="heading-w">
+              <p className='heading-p'> Hey There! I'm </p>
+              <Typewriter
+                options={{
+                  strings: ['Oliver'],
+                  autoStart: true,
+                  loop: false,
+                  pauseFor: 20000,
+                }} />
+            </div>
 
+
+            <Typewriter
+              options={{
+                strings: ['Web Developer', 'UI/UX Designer', 'Software Engineer'],
+                autoStart: true,
+                loop: true,
+                delay: 50,
+              }} />
+
+            <div className="stats-w">
+              <Link to={"/contact"}>
+                <button id="hire-me-btn">Hire me</button>
+              </Link>
+              <div className="info-wrapper">
+                <h3> 3 Yrs </h3>
+                <p> Experience </p>
+              </div>
+              <div className="info-wrapper">
+                <h3> 11 </h3>
+                <p> Projects </p>
+              </div>
+              <div className="info-wrapper">
+                <h3> 22 </h3>
+                <p> Age </p>
+              </div>
+            </div>
+            </ScrollTrigger>
+
+
+            <motion.div className="socials-btn-w"
+              initial={{ opacity: 0, x: -40 }}
+              animate={{
+                opacity: 1,
+                x: 0,
+                transition: {
+                  delay: .6,
+                }
+              }}
+            >
+              <a href={'https://github.com/OliverMorla'} target='_blank'>
+                <FontAwesomeIcon icon={faGithub} className='socials-btn' />
+              </a>
+              <a href={'https://twitter.com/Oliver1129'} target='_blank'>
+                <FontAwesomeIcon icon={faTwitter} className='socials-btn' />
+              </a>
+              <a href={'https://www.instagram.com/oliverm11_/'} target='_blank'>
+                <FontAwesomeIcon icon={faInstagram} className='socials-btn' />
+              </a>
+              <a href={'https://www.linkedin.com/in/oliver-morla/'} target='_blank'>
+                <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
+              </a>
+            </motion.div>
         </section>
 
         <motion.section className="right-section"
@@ -153,7 +163,7 @@ const Home = () => {
           transition={{
             ease: "linear",
             duration: .4,
-            delay: .8
+            delay: .4
 
           }}
         >
@@ -193,29 +203,39 @@ const Home = () => {
           </ul>
         </section>
       </motion.div>
-      
+
       {/* Home Page Bottom Section */}
       <div className="bottom-section">
-        <h2 className="mb-8"><u>C</u>ertifications </h2>
-        <div className="cert-content">
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img src="/assets/brands/coursera-white.svg" alt="" />
-            <p> Git and GitHub Essentials </p>
-          </div>
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img src="/assets/brands/coursera-white.svg" alt="" />
-            <p> Intro To Cloud Computing </p>
-          </div>
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img src="/assets/brands/coursera-white.svg" alt="" />
-            <p> Web Development with HTML, CSS, Javascript </p>
-          </div>
-        </div>
-      </div>
+        <ScrollTrigger
+          initial={{ opacity: 0, transform: "translateX(-15px)" }}
+          animate={{ opacity: 1, transform: "translateX(0)" }}
+          transition={{
+            ease: "linear",
+            duration: .4,
+            delay: .4
 
+          }}
+        >
+          <h2 className="mb-8"><u>C</u>ertifications </h2>
+          <div className="cert-content">
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img src="/assets/brands/coursera-white.svg" alt="" />
+              <p> Git and GitHub Essentials </p>
+            </div>
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img src="/assets/brands/coursera-white.svg" alt="" />
+              <p> Intro To Cloud Computing </p>
+            </div>
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img src="/assets/brands/coursera-white.svg" alt="" />
+              <p> Web Development with HTML, CSS, Javascript </p>
+            </div>
+          </div>
+        </ScrollTrigger>
+      </div>
     </motion.main>
   );
 }

@@ -1,14 +1,16 @@
+@import "@/styles/mixins.scss";
+
 .about-w {
+    margin-top: 2px;
     position: relative;
     display: flex;
     flex-direction: column;
     height: 100vh;
-    // flex-grow: 1;
 
     &::before {
         content: "";
         position: relative;
-        height: 100px;
+        min-height: 100px;
         width: 100%;
         background-color: var(--light);
     }
@@ -17,5 +19,15 @@
         display: flex;
         flex-grow: 1;
         height: 100vh;
+    }
+
+    @include sm-down {
+        &::before {
+            content: "";
+            position: relative;
+            min-height: 0;
+            width: 0;
+            background-color: transparent;
+        }
     }
 }

@@ -5,7 +5,7 @@ const About = () => {
   return (
     <motion.main
       className="about-w">
-      <iframe src="/assets/resume/OliverResume.pdf" className="resume" />
+      <iframe src="/assets/resume/OliverResume.pdf" className="resume" frameBorder={0}/>
     </motion.main>
   );
 }
