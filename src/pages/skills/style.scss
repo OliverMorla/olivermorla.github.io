@@ -8,16 +8,13 @@
     width: 100%;
     height: auto;
 
-    
-    
-
     &::before {
         content: "";
         position: relative;
         top: 0;
         height: 100px;
         width: 100%;
-        background-color: var(--dark);
+        background-color: var(--primary);
     }
 
     @include sm-down {
@@ -36,6 +33,7 @@
         width: 600px;
 
         @include sm-down {
+            margin-top: 80px;
             width: 350px;
         }
 
@@ -54,7 +52,7 @@
 
         .skill-progress {
             height: 15px;
-            background: var(--light);
+            background: var(--quinary);
             position: relative;
             border-radius: 1rem;
             transition: all 2s ease-in-out;
@@ -120,7 +118,7 @@
 
         button {
             cursor: pointer;
-            background-color: var(--dark);
+            background-color: var(--primary);
             color: white;
             border: none;
             border-radius: 5px;
@@ -130,7 +128,7 @@
             transition: all 0.15s ease-in-out;
 
             &:hover {
-                background-color: var(--light);
+                background-color: var(--octonary);
                 color: white;
             }
         }

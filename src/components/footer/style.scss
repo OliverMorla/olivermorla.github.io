@@ -5,7 +5,7 @@
     align-items: center;
     padding: 2em;
     color: white;
-    background-color: var(--dark);
+    background-color: var(--primary);
 
     .section-one {
         display: flex;
@@ -66,7 +66,7 @@
                         &:hover {
                             font-weight: bolder;
                             transform: scale(1.1);
-                            color: var(--lightBlue);
+                            color: var(--octonary);
                         }
                     }
                 }
@@ -108,8 +108,8 @@
 
                 .send-btn {
                     cursor: pointer;
-                    background-color: var(--dark);
-                    border: 1px solid var(--lightBlue);
+                    background-color: var(--primary);
+                    border: 1px solid var(--octonary);
                     color: white;
                     appearance: none;
                     padding: 1rem;
@@ -117,7 +117,7 @@
 
                     &:hover {
                         color: white;
-                        background-color: var(--lightBlue);
+                        background-color: var(--octonary);
                     }
                 }
             }

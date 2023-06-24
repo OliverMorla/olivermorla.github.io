@@ -84,11 +84,11 @@
                     border: none;
                     padding: 1em 2em;
                     background-color: transparent;
-                    border: 2px solid var(--lightBlue);
+                    border: 2px solid var(--octonary);
                     transition: .15s ease-in-out;
 
                     &:hover {
-                        background-color: var(--lightBlue);
+                        background-color: var(--octonary);
                     }
                 }
 
@@ -117,7 +117,7 @@
                     transition: all .15s ease-in-out;
 
                     &:hover {
-                        color: var(--lightBlue);
+                        color: var(--octonary);
                     }
                 }
             }
@@ -137,7 +137,7 @@
                 border-radius: 50%;
                 box-shadow: 0 0 2px black;
                 animation: float 3s ease-in-out infinite;
-                border: solid 2px var(--dark);
+                border: solid 2px var(--primary);
 
                 @keyframes float {
                     0% {
@@ -166,7 +166,7 @@
         .services-section {
             width: 80%;
             height: 200px;
-            background-color: var(--dark);
+            background-color: var(--primary);
             transform: translateY(50%);
             position: absolute;
             bottom: 0;
@@ -226,7 +226,8 @@
         flex-flow: row wrap;
         justify-content: center;
         align-items: center;
-        background-color: var(--grey);
+        background-color: white;
+        color: var(--primary);
         width: 100%;
         height: 100vh;
 
@@ -311,7 +312,7 @@
             padding: 16px;
             width: 500px;
             height: 400px;
-            background-color: var(--dark);
+            background-color: var(--primary);
             transform: translateY(50%);
             margin-left: 80px;
             position: absolute;
@@ -385,6 +386,7 @@
             color: white;
             font-weight: 900;
             font-size: 36px;
+            text-align: center;
         }
 
         .cert-content {
@@ -410,7 +412,7 @@
 
                 &:hover {
                     transform: translateY(-10px);
-                    background-color: var(--lightBlue);
+                    background-color: var(--octonary);
                 }
 
                 h2 {}

@@ -71,32 +71,32 @@ const Home = () => {
                 <p> Age </p>
               </div>
             </div>
-            </ScrollTrigger>
+          </ScrollTrigger>
 
 
-            <motion.div className="socials-btn-w"
-              initial={{ opacity: 0, x: -40 }}
-              animate={{
-                opacity: 1,
-                x: 0,
-                transition: {
-                  delay: .6,
-                }
-              }}
-            >
-              <a href={'https://github.com/OliverMorla'} target='_blank'>
-                <FontAwesomeIcon icon={faGithub} className='socials-btn' />
-              </a>
-              <a href={'https://twitter.com/Oliver1129'} target='_blank'>
-                <FontAwesomeIcon icon={faTwitter} className='socials-btn' />
-              </a>
-              <a href={'https://www.instagram.com/oliverm11_/'} target='_blank'>
-                <FontAwesomeIcon icon={faInstagram} className='socials-btn' />
-              </a>
-              <a href={'https://www.linkedin.com/in/oliver-morla/'} target='_blank'>
-                <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
-              </a>
-            </motion.div>
+          <motion.div className="socials-btn-w"
+            initial={{ opacity: 0, x: -40 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: {
+                delay: .6,
+              }
+            }}
+          >
+            <a href={'https://github.com/OliverMorla'} target='_blank'>
+              <FontAwesomeIcon icon={faGithub} className='socials-btn' />
+            </a>
+            <a href={'https://twitter.com/Oliver1129'} target='_blank'>
+              <FontAwesomeIcon icon={faTwitter} className='socials-btn' />
+            </a>
+            <a href={'https://www.instagram.com/oliverm11_/'} target='_blank'>
+              <FontAwesomeIcon icon={faInstagram} className='socials-btn' />
+            </a>
+            <a href={'https://www.linkedin.com/in/oliver-morla/'} target='_blank'>
+              <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
+            </a>
+          </motion.div>
         </section>
 
         <motion.section className="right-section"

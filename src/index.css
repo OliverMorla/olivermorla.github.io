@@ -1,18 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Work+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
 
 :root {
-    --dark: #1A1A1D;
-    --light: #1F2833;
-    --grey: #C5C6C7;
-    --lightBlue: #66FCF1;
-    --darkBlue: #45A29E;
+    --primary: #1A1A1D;
+    --secondary: #282828;
+    --tertiary: #3A3A3C;
+    --quaternary: #4A4A4D;
+    --quinary: #0C0032;
+    --senary: #190061;
+    --septenary: #240090;
+    --octonary: #3500D3;
 }
 
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
 }
 
 html,
@@ -26,7 +29,7 @@ body,
 }
 
 a {
-    color: black;
+    color: var(--quinary);
     text-decoration: none;
 }
 
