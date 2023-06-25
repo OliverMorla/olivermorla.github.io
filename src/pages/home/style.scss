@@ -6,22 +6,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(-45deg, #29292e, #38383f, #878796, #494952);
-    animation: gradient 4s ease infinite;
-
-    @keyframes gradient {
-        0% {
-            background-position: 0% 50%;
-        }
-
-        50% {
-            background-position: 100% 50%;
-        }
-
-        100% {
-            background-position: 0% 50%;
-        }
-    }
+    background: linear-gradient(-45deg, #1a1a1a, #282828);
 
     .top-section {
         position: relative;
@@ -122,7 +107,7 @@
                 }
             }
 
-            // Home Left Side Responsive Ness
+            // Home Left Side Responsiveness
             @include sm-down {
                 width: 350px;
                 // align-items: unset;
@@ -135,9 +120,8 @@
             .section-img {
                 width: 500px;
                 border-radius: 50%;
-                box-shadow: 0 0 2px black;
+                box-shadow: 0 2px 8px var(--octonary);
                 animation: float 3s ease-in-out infinite;
-                border: solid 2px var(--primary);
 
                 @keyframes float {
                     0% {
@@ -180,6 +164,7 @@
             .service-card {
                 display: flex;
                 flex-direction: column;
+                height: 80px;
 
                 aside {
                     display: flex;
@@ -409,6 +394,7 @@
                 width: 300px;
                 padding: 1em 2em;
                 transition: all .15s ease-in-out;
+                gap: 20px;
 
                 &:hover {
                     transform: translateY(-10px);

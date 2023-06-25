@@ -141,7 +141,7 @@ const Home = () => {
           <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faWordpress} className='service-logo' />
-              <div className="service-title"> UI/UX Design </div>
+              <div className="service-title"> UI/UX Web Design </div>
             </aside>
             <p>
               Pro designer who specializes in creating
@@ -193,7 +193,7 @@ const Home = () => {
           </section>
         </ScrollTrigger>
         <section className="skills-section">
-          <h2> <u> T </u> echnical Skills </h2>
+          <h2> Technical Skills </h2>
           <ul>
             <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT </li>
             <li>Frameworks: Next.js, React-Router, Bootstrap, Tailwind, SCSS</li>
@@ -216,7 +216,7 @@ const Home = () => {
 
           }}
         >
-          <h2 className="mb-8"><u>C</u>ertifications </h2>
+          <h2 className="mb-8"> Certifications </h2>
           <div className="cert-content">
             <div className="cert-card">
               <h2> Coursera </h2>
@@ -232,6 +232,11 @@ const Home = () => {
               <h2> Coursera </h2>
               <img src="/assets/brands/coursera-white.svg" alt="" />
               <p> Web Development with HTML, CSS, Javascript </p>
+            </div>
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img src="/assets/brands/coursera-white.svg" alt="" />
+              <p> Web Development with React.js </p>
             </div>
           </div>
         </ScrollTrigger>
