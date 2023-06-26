@@ -116,6 +116,7 @@
         .right-section {
             .section-img {
                 width: 500px;
+                height: 500px;
                 border-radius: 50%;
                 box-shadow: 0 2px 8px var(--octonary);
                 animation: float 3s ease-in-out infinite;
@@ -136,6 +137,7 @@
 
                 @include md-down {
                     width: 350px;
+                    height: 350px;
                 }
             }
 
@@ -238,6 +240,7 @@
             .about-img-w {
                 .about-img {
                     width: 500px;
+                    height: 500px;
                     box-shadow: 0 0 6px black;
                     animation: float 3s ease-in-out infinite;
 
@@ -257,6 +260,7 @@
 
                     @include sm-down {
                         width: 350px;
+                        height: 350px;
                     }
                 }
 
@@ -402,7 +406,10 @@
 
                 h2 {}
 
-                img {}
+                img {
+                    height: 250px;
+                    width: 250px;
+                }
 
                 p {
                     font-size: 12px;

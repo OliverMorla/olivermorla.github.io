@@ -1,7 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, lazy, Suspense, useCallback } from 'react';
+// import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import Typewriter from "typewriter-effect"
+// import Typewriter from "typewriter-effect"
+
+const Typewriter = lazy(() => import('typewriter-effect'));
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInstagram, faTwitter, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons'
@@ -10,52 +13,75 @@ import { faPython, faHtml5, faWordpress } from '@fortawesome/free-brands-svg-ico
 import "./style.scss"
 import "@/styles/spacing.scss"
 
-const fadeIn = {
-  hidden: {
-    x: -80,
-    opacity: 0,
-  },
-
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      delay: .4
-    }
-  }
-}
 
 const Home = () => {
   window.scrollTo(0, 0);
+
+  const fadeIn = {
+    hidden: {
+      x: -80,
+      opacity: 0,
+      transition: {
+        delay: .6
+      }
+    },
+
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: .4
+      }
+    },
+
+    visible2: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        delay: .6
+      }
+    }
+  }
 
   const topSection = useRef(null)
   const middleSection = useRef(null)
   const bottomSection = useRef(null)
 
+  const typewriterInit = useCallback(
+    (typewriter) => {
+      typewriter
+        .pauseFor(500)
+        .typeString("Oliver")
+        .pauseFor(3000)
+        .deleteAll()
+        .pauseFor(1000)
+        .typeString("a")
+        .start();
+    },
+    []
+  );
+
   return (
-    <motion.main
-      className="home-w"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1, transition: { duration: .5 } }}
-      
-    >
+    <main className="home-w">
 
       {/* Top Section */}
-      <div
+      <motion.div
         className="top-section"
         ref={topSection}
+        variants={fadeIn}
+        initial="hidden"
+        animate="visible"
       >
 
-        <motion.section
-          className="left-section"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-        >
+        <section className="left-section">
 
           <div className="heading-w">
             <p className='heading-p'> Hey There! I'm </p>
-            <Typewriter
+            <Suspense fallback={<div>Loading...</div>}>
+              <Typewriter onInit={typewriterInit} />
+            </Suspense>
+
+            {/* <Typewriter
               onInit={(typewriter) => {
                 typewriter
                   .pauseFor(500)
@@ -65,24 +91,20 @@ const Home = () => {
                   .pauseFor(1000)
                   .typeString("a")
                   .start()
-              }} />
+              }} /> */}
+
           </div>
 
           <Typewriter
             options={{
               strings: ['Web Developer', 'UI/UX Designer', 'Software Engineer'],
-              
               autoStart: true,
               loop: true,
               delay: 100,
-            }} />
+            }}
+          />
 
-          <motion.div
-            className="stats-w"
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible"
-          >
+          <div className="stats-w" >
 
             <Link to={"/contact"}>
               <button id="hire-me-btn">Hire me</button>
@@ -100,13 +122,13 @@ const Home = () => {
               <p> Age </p>
             </div>
 
-          </motion.div>
+          </div>
 
           <motion.div
             className="socials-btn-w"
             variants={fadeIn}
             initial="hidden"
-            animate="visible"
+            animate="visible2"
           >
 
             <a href={'https://github.com/OliverMorla'} target='_blank'>
@@ -124,20 +146,15 @@ const Home = () => {
 
           </motion.div>
 
-        </motion.section>
+        </section>
 
-        <motion.section
-          className="right-section"
-          variants={fadeIn}
-          initial="hidden"
-          animate="visible"
-        >
+        <section className="right-section">
           <img src="/assets/portrait/portrait2.webp" alt="" className="section-img" />
-        </motion.section>
+        </section>
 
-        <motion.section className="services-section">
+        <section className="services-section">
 
-          <motion.div className="service-card">
+          <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faHtml5} className='service-logo' />
               <div className="service-title"> Web Development </div>
@@ -152,7 +169,7 @@ const Home = () => {
               <br />in building and maintaining high-quality
               <br />websites and web-based applications.
             </motion.p>
-          </motion.div>
+          </div>
           <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faPython} className='service-logo' />
@@ -185,9 +202,9 @@ const Home = () => {
             </motion.p>
           </div>
 
-        </motion.section>
+        </section>
 
-      </div>
+      </motion.div>
 
       {/* Middle Section */}
       <motion.div
@@ -273,7 +290,7 @@ const Home = () => {
 
       </motion.div>
 
-    </motion.main>
+    </main>
   );
 }
 
