@@ -36,7 +36,8 @@ const Home = () => {
     <motion.main
       className="home-w"
       initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      animate={{ opacity: 1, transition: { duration: .5 } }}
+      
     >
 
       {/* Top Section */}
@@ -45,13 +46,19 @@ const Home = () => {
         ref={topSection}
       >
 
-        <section className="left-section">
+        <motion.section
+          className="left-section"
+          variants={fadeIn}
+          initial="hidden"
+          animate="visible"
+        >
 
           <div className="heading-w">
             <p className='heading-p'> Hey There! I'm </p>
             <Typewriter
               onInit={(typewriter) => {
                 typewriter
+                  .pauseFor(500)
                   .typeString("Oliver")
                   .pauseFor(3000)
                   .deleteAll()
@@ -64,9 +71,10 @@ const Home = () => {
           <Typewriter
             options={{
               strings: ['Web Developer', 'UI/UX Designer', 'Software Engineer'],
+              
               autoStart: true,
               loop: true,
-              delay: 50,
+              delay: 100,
             }} />
 
           <motion.div
@@ -116,9 +124,10 @@ const Home = () => {
 
           </motion.div>
 
-        </section>
+        </motion.section>
 
-        <motion.section className="right-section"
+        <motion.section
+          className="right-section"
           variants={fadeIn}
           initial="hidden"
           animate="visible"

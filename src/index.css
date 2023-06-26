@@ -24,6 +24,7 @@ body,
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    scroll-behavior: smooth;
     overflow-x: hidden;
     height: 100%;
 }
