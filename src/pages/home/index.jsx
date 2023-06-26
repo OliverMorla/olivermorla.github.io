@@ -131,16 +131,16 @@ const Home = () => {
             animate="visible2"
           >
 
-            <a href={'https://github.com/OliverMorla'} target='_blank'>
+            <a href={'https://github.com/OliverMorla'} aria-label="GitHub" target='_blank'>
               <FontAwesomeIcon icon={faGithub} className='socials-btn' />
             </a>
-            <a href={'https://twitter.com/Oliver1129'} target='_blank'>
+            <a href={'https://twitter.com/Oliver1129'} aria-label="Twitter" target='_blank'>
               <FontAwesomeIcon icon={faTwitter} className='socials-btn' />
             </a>
-            <a href={'https://www.instagram.com/oliverm11_/'} target='_blank'>
+            <a href={'https://www.instagram.com/oliverm11_/'} aria-label="Instagram" target='_blank'>
               <FontAwesomeIcon icon={faInstagram} className='socials-btn' />
             </a>
-            <a href={'https://www.linkedin.com/in/oliver-morla/'} target='_blank'>
+            <a href={'https://www.linkedin.com/in/oliver-morla/'} aria-label="LinkedIn" target='_blank'>
               <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
             </a>
 
