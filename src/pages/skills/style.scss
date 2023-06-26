@@ -84,21 +84,31 @@
         display: flex;
         flex-direction: row;
         background-color: #dfd2d2;
-        width: 100%;
+        width: fit-content;
         padding: 20px;
         overflow: hidden;
 
         .skill-scroller {
             display: flex;
             justify-content: center;
-            width: 100%;
+            width: fit-content;
             gap: 40px;
+            // animation: marquee 16s linear infinite;
+
+            @keyframes marquee {
+                0% {
+                    transform: translateX(100%)
+                }
+
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
 
             .skill-icon {
                 font-size: 48px;
             }
         }
-
     }
 
     .skill-cards {

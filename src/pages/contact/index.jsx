@@ -10,24 +10,26 @@ const Contact = () => {
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState(null)
 
-    const [isDisabled, setDisabled] = useState(false)
-
     async function sendForm(e) {
         e.preventDefault();
 
         try {
-            setError(false)
             setLoading(true)
-            const res = await emailjs.sendForm(import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID, import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATE_ID, formRef.current, import.meta.env.VITE_REACT_APP_EMAILJS_PUBLIC_KEY)
+            const res = await emailjs.sendForm(
+                import.meta.env.VITE_REACT_APP_EMAILJS_SERVICE_ID,
+                import.meta.env.VITE_REACT_APP_EMAILJS_TEMPLATE_ID,
+                formRef.current,
+                import.meta.env.VITE_REACT_APP_EMAILJS_PUBLIC_KEY
+            )
             setData(res)
             setLoading(false)
-            setDisabled(true)
             alert('Your email was sent!')
         } catch (err) {
-            setDisabled(false)
             setLoading(false)
             setError(true)
             alert(JSON.stringify(err))
+        } finally {
+            setLoading(false)
         }
     }
     return (
@@ -37,10 +39,10 @@ const Contact = () => {
             animate={{ opacity: 1 }}
 
         >
+            
             <div className="details-section">
                 <h3 className="heading mb-4">Let's talk about everything!</h3>
                 <p>Let's connect and explore how we can build the future together.</p>
-                <img src="/assets/" alt="" className='contact-img' />
             </div>
             <div className="form-section">
 
@@ -67,11 +69,13 @@ const Contact = () => {
                     </div>
                     <div className="row">
                         <div className="wrapper">
-                            <input type="submit" value="Send Message" className="" disabled={isDisabled} />
+                            <input type="submit" value="Send Message" className="submit-btn" />
                         </div>
                     </div>
                 </form>
+
             </div>
+
         </motion.main>
     );
 }

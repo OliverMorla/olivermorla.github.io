@@ -7,7 +7,7 @@
     color: white;
     background-color: var(--primary);
 
-    .section-one {
+    .top-section {
         display: flex;
         flex-flow: row wrap;
         justify-content: space-evenly;
@@ -43,8 +43,7 @@
             }
         }
 
-
-        .social-icon-w {
+        .socials-btn-w {
             .heading {
                 padding: 8px;
             }
@@ -61,7 +60,7 @@
                         font-size: 24px;
                         color: white;
                         cursor: pointer;
-                        transition: all .15s ease-in-out;
+                        transition: all 0.15s ease-in-out;
 
                         &:hover {
                             font-weight: bolder;
@@ -86,7 +85,7 @@
                 font-size: 12px;
 
                 fieldset {
-                    transition: all .15s ease-in-out;
+                    transition: all 0.15s ease-in-out;
                     padding: 10px;
                 }
             }
@@ -102,7 +101,7 @@
                 align-items: center;
                 gap: 10px;
 
-                input[type=text] {
+                input[type="text"] {
                     padding: 1rem;
                 }
 
@@ -124,11 +123,11 @@
         }
     }
 
-    .section-two {
+    .bottom-section {
         display: flex;
         padding: 2em;
 
-        .copyright-w {
+        .copyright-text {
             font-size: 14px;
             transition: all 0.1s ease-in-out;
 
