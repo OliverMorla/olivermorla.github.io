@@ -77,7 +77,7 @@ const Skills = () => {
                 </div>
             </div>
             <div className="skill-cards">
-                <Cards />
+                {/* <Cards /> */}
             </div>
         </motion.main>
     );

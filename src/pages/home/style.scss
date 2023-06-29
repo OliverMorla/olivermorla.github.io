@@ -160,6 +160,20 @@
             color: white;
             z-index: 2;
 
+            h2 {
+                writing-mode: vertical-lr;
+                text-orientation: upright;
+                text-transform: uppercase;
+                font-size: 16px;
+                border-left: 1px solid white;
+
+                @include sm-down {
+                    writing-mode: unset;
+                    text-orientation: unset;
+                    border-left: none;
+                }
+            }
+
             .service-card {
                 display: flex;
                 flex-direction: column;
@@ -188,7 +202,8 @@
 
             @include sm-down {
                 width: 350px;
-                align-items: none;
+                gap: 20px;
+                align-items: center;
                 flex-direction: column;
                 justify-content: unset;
             }
@@ -223,13 +238,61 @@
             gap: 8em;
 
             .about-content {
+                display: flex;
+
                 h2 {
-                    font-size: 36px;
+                    font-size: 24px;
+                    height: 30px;
+                    writing-mode: vertical-lr;
+                    text-orientation: upright;
+                    text-transform: uppercase;
                 }
 
                 p {
+                    border-left: solid 1px var(--primary);
+                    padding: 1em;
                     width: 400px;
                     font-weight: bolder;
+                    display: flex;
+                    gap: 15px;
+                    flex-direction: column;
+
+                    button {
+                        position: relative;
+                        cursor: pointer;
+                        color: var(--primary);
+                        appearance: none;
+                        border: none;
+                        padding: 1em 2em;
+                        background-color: transparent;
+                        border: 2px solid var(--octonary);
+                        transition: all .15s ease-in-out;
+
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            left: 0;
+                            top: 0;
+                            height: 100%;
+                            width: 100%;
+                            max-width: 0;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: var(--octonary);
+                            transition: all .15s ease-in-out;
+                        }
+
+                        &:hover {
+
+                            &::before {
+                                align-items: center;
+                                content: "Hire Me";
+                                color: white;
+                                max-width: 364px;
+                            }
+                        }
+                    }
 
                     @include sm-down {
                         width: 300px;
@@ -238,10 +301,25 @@
             }
 
             .about-img-w {
+                display: flex;
+                flex-direction: column;
+                width: 500px;
+
+                section {
+                    display: flex;
+                    align-items: center;
+
+                    h2 {
+                        writing-mode: vertical-lr;
+                        text-orientation: upright;
+                        text-transform: uppercase;
+                    }
+                }
+
                 .about-img {
                     width: 500px;
                     height: 500px;
-                    box-shadow: 0 0 6px black;
+                    // box-shadow: 0 0 6px black;
                     animation: float 3s ease-in-out infinite;
 
                     @keyframes float {
@@ -256,6 +334,13 @@
                         100% {
                             transform: translate(0, -0);
                         }
+                    }
+
+                    @include md-down {
+                        justify-content: center;
+                        align-items: center;
+                        width: 450px;
+                        height: 450px;
                     }
 
                     @include sm-down {
@@ -273,6 +358,7 @@
                     }
 
                     p {
+                        padding: 1em;
                         font-size: 16px;
                         font-weight: bolder;
                     }

@@ -1,8 +1,8 @@
-import React, { useState, useEffect, useRef, lazy, Suspense, useCallback } from 'react';
-// import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef, lazy, Suspense, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-// import Typewriter from "typewriter-effect"
+
+// import Typewriter from "typewriter-effect";
 
 const Typewriter = lazy(() => import('typewriter-effect'));
 
@@ -23,7 +23,7 @@ const Home = () => {
       opacity: 0,
       transition: {
         delay: .6
-      }
+      },
     },
 
     visible: {
@@ -31,7 +31,7 @@ const Home = () => {
       opacity: 1,
       transition: {
         delay: .4
-      }
+      },
     },
 
     visible2: {
@@ -40,7 +40,8 @@ const Home = () => {
       transition: {
         delay: .6
       }
-    }
+    },
+
   }
 
   const topSection = useRef(null)
@@ -80,19 +81,6 @@ const Home = () => {
             <Suspense fallback={<div>Loading...</div>}>
               <Typewriter onInit={typewriterInit} />
             </Suspense>
-
-            {/* <Typewriter
-              onInit={(typewriter) => {
-                typewriter
-                  .pauseFor(500)
-                  .typeString("Oliver")
-                  .pauseFor(3000)
-                  .deleteAll()
-                  .pauseFor(1000)
-                  .typeString("a")
-                  .start()
-              }} /> */}
-
           </div>
 
           <Typewriter
@@ -153,7 +141,6 @@ const Home = () => {
         </section>
 
         <section className="services-section">
-
           <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faHtml5} className='service-logo' />
@@ -201,58 +188,70 @@ const Home = () => {
               <br />intuitive, visually appealing websites.
             </motion.p>
           </div>
+          <motion.h2
+            variants={fadeIn}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ margin: "-100px -100px -100px -100px", once: true }}> Services </motion.h2>
 
         </section>
 
       </motion.div>
 
       {/* Middle Section */}
-      <motion.div
-        ref={middleSection}
-        className="middle-section"
-        variants={fadeIn}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ margin: "-300px -300px -300px -300px", once: true }}
-      >
-
-        <section className="about-section">
+      <div ref={middleSection} className="middle-section">
+        <motion.section
+          className="about-section"
+          variants={fadeIn}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ margin: "-400px -400px -400px -400px", once: true }}
+        >
           <div className="about-content">
-            <h2> Positioning Statement </h2>
+            <h2> Statement </h2>
             <p>
               With a relentless focus on creating simple and intuitive user experiences, my work always puts the consumer at the forefront.
               I firmly believe in the power of technology to simplify lives and make complex processes seamless. This conviction drives me
-              to continually hone my skills, stay abreast of emerging technologies, and create innovative solutions.
-
-              In every role, I bring my dedication to clear communication, problem-solving, and service. Helping others, whether it's my team,
-              stakeholders, or the end users of the products I work on, is always a top priority.
-
-              Ready to bring my skills and passion to new challenges. Let's connect and explore how we can build the future together.
+              to continually hone my skills, stay abreast of emerging technologies, and create innovative solutions. In every role, I bring
+              my dedication to clear communication, problem-solving, and service. Helping others, whether it's my team, stakeholders, or the
+              end users of the products I work on, is always a top priority. Ready to bring my skills and passion to new challenges. Let's
+              connect and explore how we can build the future together.
+              <a href="">
+                <button> Hire Me </button>
+              </a>
             </p>
           </div>
           <div className="about-img-w">
-            <img src="/assets/portrait/portrait3.webp" alt="" className="about-img" />
+            <section>
+              <Suspense fallback={<div> Loading! </div>}>
+                <img src="/assets/portrait/portrait3.webp" alt="" className="about-img" />
+              </Suspense>
+            </section>
             <fieldset>
-              <legend> Oliver Morla </legend>
-              <p> - Full Stack Developer </p>
-              <p> - Bachelors of Technology in Computer Science </p>
-              <p> - 3+ Years of Experience </p>
+              <legend> About me </legend>
+              <p>
+                Hello there! I'm a dedicated Full Stack Web Developer and Software Engineer with a
+                Bachelor of Technology in Computer Information Systems from the City University of
+                New York, New York City College of Technology. Over the past three years, I've
+                gained extensive experience in building, optimizing, and maintaining web applications
+                using cutting-edge technologies.
+              </p>
             </fieldset>
           </div>
-        </section>
+        </motion.section>
 
         <section className="skills-section">
           <h2> Technical Skills </h2>
           <ul>
-            <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT </li>
+            <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT, Git</li>
             <li>Frameworks: Next.js, React-Router, Bootstrap, Tailwind, SCSS</li>
-            <li>Databases & Tools: MongoDB, SQL/MySQL Workbench, Strapi CMS, EJS, Figma</li>
+            <li>Databases & Tools: MongoDB, SQL/MySQL Workbench, Strapi CMS, EJS, Figma, GitHub, WordPress, RESTful API</li>
             <li>Applications & Cloud Platform: NetBeans, Visual Studio Code/Studio, Code::Blocks, Eclipse, Office, Teams, Azure, IBM, Any Desk, TeamViewer</li>
             <li>OS & Virtualizations: Windows 7, 8, 10, 11; Windows Server 2012/2019, Mac OS, IOS, Android, Virtual Box, VMware, Hyper-V</li>
           </ul>
         </section>
 
-      </motion.div>
+      </div>
 
       {/* Bottom Section */}
       <motion.div
@@ -263,7 +262,6 @@ const Home = () => {
         whileInView="visible"
         viewport={{ margin: "-100px -100px -100px -100px", once: true }}
       >
-
         <h2 className="mb-8"> Certifications </h2>
         <div className="cert-content">
           <div className="cert-card">

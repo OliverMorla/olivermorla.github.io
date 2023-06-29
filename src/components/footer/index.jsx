@@ -45,7 +45,7 @@ const Footer = () => {
                 <div className="about-us-w">
                     <h3 className="heading">About Me</h3>
                     <p className="info">
-                        Passionate Full Stack Developer with over 2 years of experience
+                        Passionate Full Stack Developer with over 3 years of experience
                         specializing in Node.js, Express.js, Next.js, React.js, JavaScript,
                         SCSS, HTML, and SQL. Thrives in collaborative environments, bringing
                         a team-oriented mindset and a detail-oriented approach to every

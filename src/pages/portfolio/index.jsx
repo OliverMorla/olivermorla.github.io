@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, prefix } from "@fortawesome/free-brands-svg-icons";
+import { faGithub } from "@fortawesome/free-brands-svg-icons";
 import { faGlobe } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import "./style.scss"
@@ -32,7 +32,7 @@ const Portfolio = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
         >
-            {!loading && <h2 className="ma-8"> Count: {data.length}</h2>}
+            {!loading && <h2 className="ma-8"> Count: {data?.length}</h2>}
             {!loading && data?.map((repo, index) => {
                 return (
                     <a href={repo?.html_url} key={repo?.id} target="_blank">
@@ -44,8 +44,8 @@ const Portfolio = () => {
                                 transition: {
                                     delay: .2,
                                     duration: .2 * index,
-                                    staggerChildren: 0.2,
-                                    delayChildren: 0.4
+                                    staggerChildren: .3,
+                                    delayChildren: .5
                                 }
                             }}
                         >
