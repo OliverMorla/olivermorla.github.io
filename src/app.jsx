@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from './routes/pages/root/index';
+// import Error from './routes/pages/error/index';
+
+import Loading from './components/loading';
 
 import Home from './pages/home/index';
-import About from './pages/about/index';
 import Contact from './pages/contact/index';
-import Skills from './pages/skills/index';
-import Blog from './pages/blog/index';
-import Portfolio from './pages/portfolio/index';
-import Services from './pages/services/index';
-import Error from './routes/pages/error/index';
+
+const About = lazy(() => import('./pages/about/index'))
+const Skills = lazy(() => import('./pages/skills/index'))
+const Portfolio = lazy(() => import('./pages/portfolio/index'))
+const Blog = lazy(() => import('./pages/blog/index'))
+const Services = lazy(() => import('./pages/services/index'))
+const Error = lazy(() => import('./routes/pages/error/index'))
+// import About from './pages/about/index';
+// import Skills from './pages/skills/index';
+// import Blog from './pages/blog/index';
+// import Portfolio from './pages/portfolio/index';
+// import Services from './pages/services/index';
 
 const router = createBrowserRouter([
     {
@@ -26,27 +35,47 @@ const router = createBrowserRouter([
             },
             {
                 path: '/about',
-                element: <About />,
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <About />
+                    </Suspense>
+                ),
                 errorElement: <Error />,
             },
             {
                 path: '/skills',
-                element: <Skills />,
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Skills />
+                    </Suspense>
+                ),
                 errorElement: <Error />,
             },
             {
                 path: '/blog',
-                element: <Blog />,
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Blog />
+                    </Suspense>
+                ),
                 errorElement: <Error />,
             },
             {
                 path: '/portfolio',
-                element: <Portfolio />,
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Portfolio />
+                    </Suspense>
+                ),
                 errorElement: <Error />,
             },
             {
                 path: '/services',
-                element: <Services />,
+                element: (
+                    <Suspense fallback={<Loading />}>
+                        <Services />
+                    </Suspense>
+                ),
                 errorElement: <Error />,
             },
             {

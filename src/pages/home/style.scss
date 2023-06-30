@@ -80,6 +80,7 @@
                 .info-wrapper {
                     h3 {
                         color: white;
+                        display: flex;
                     }
 
                     p {
@@ -369,14 +370,16 @@
                 }
             }
 
-            @include sm-down {
-                gap: 10px;
-                margin-top: 40%;
-                font-size: 14px;
+            @include md-down {
+                gap: 0px;
+                margin-bottom: 20px;
             }
 
             @include sm-down {
                 width: 350px;
+                gap: 10px;
+                margin-top: 40%;
+                font-size: 14px;
             }
         }
 
@@ -456,20 +459,35 @@
             height: auto;
         }
 
-        h2 {
+        @include md-down {
+            height: fit-content;
+            margin-bottom: 20px;
+        }
+
+        .title {
             color: white;
             font-weight: 900;
             font-size: 36px;
             text-align: center;
+
+
+            @include md-down {
+                margin-top: 220px;
+            }
+
+            @include sm-down {
+                margin-top: 20px;
+            }
         }
 
         .cert-content {
             display: flex;
             flex-flow: row wrap;
+            justify-content: center;
             gap: 25px;
 
-            @include sm-down {
-                width: 350px;
+            @include md-down {
+                margin-bottom: 20px;
             }
 
             .cert-card {
@@ -495,6 +513,10 @@
                 img {
                     height: 250px;
                     width: 250px;
+
+                    // @include sm-down {
+                    //     width: 200px;
+                    // }
                 }
 
                 p {
@@ -505,6 +527,10 @@
                     width: 350px;
                     flex-direction: column;
                 }
+
+                // @include sm-down {
+                //     width: 250px;
+                // }
             }
         }
 

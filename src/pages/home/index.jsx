@@ -1,8 +1,8 @@
-import React, { useRef, lazy, Suspense, useCallback } from 'react';
+import React, { useRef, lazy, Suspense, useCallback, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-
-// import Typewriter from "typewriter-effect";
+import { motion, useInView, LazyMotion, domAnimation, m } from 'framer-motion';
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import { Counter } from '../../components/counter';
 
 const Typewriter = lazy(() => import('typewriter-effect'));
 
@@ -13,40 +13,19 @@ import { faPython, faHtml5, faWordpress } from '@fortawesome/free-brands-svg-ico
 import "./style.scss"
 import "@/styles/spacing.scss"
 
-
 const Home = () => {
   window.scrollTo(0, 0);
-
-  const fadeIn = {
-    hidden: {
-      x: -80,
-      opacity: 0,
-      transition: {
-        delay: .6
-      },
-    },
-
-    visible: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        delay: .4
-      },
-    },
-
-    visible2: {
-      x: 0,
-      opacity: 1,
-      transition: {
-        delay: .6
-      }
-    },
-
-  }
 
   const topSection = useRef(null)
   const middleSection = useRef(null)
   const bottomSection = useRef(null)
+
+  const middleObserver = useInView(middleSection, { margin: "-300px 0px -300px 0px", once: true })
+  const bottomObserver = useInView(bottomSection, { margin: "-300px 0px -300px 0px", once: true })
+
+  // useEffect(() => {
+  //   console.log("middle: " + middleObserver + '\nbottom: ' + bottomObserver)
+  // }, [middleObserver, bottomObserver])
 
   const typewriterInit = useCallback(
     (typewriter) => {
@@ -58,9 +37,17 @@ const Home = () => {
         .pauseFor(1000)
         .typeString("a")
         .start();
+    }, []);
+
+  const fade = {
+    hidden: {
+      opacity: 0,
     },
-    []
-  );
+
+    visible: {
+      opacity: 1,
+    },
+  }
 
   return (
     <main className="home-w">
@@ -69,7 +56,7 @@ const Home = () => {
       <motion.div
         className="top-section"
         ref={topSection}
-        variants={fadeIn}
+        variants={fade}
         initial="hidden"
         animate="visible"
       >
@@ -78,19 +65,22 @@ const Home = () => {
 
           <div className="heading-w">
             <p className='heading-p'> Hey There! I'm </p>
-            <Suspense fallback={<div>Loading...</div>}>
+
+            <Suspense fallback={<h2 style={{ color: "#282828" }}>...</h2>}>
               <Typewriter onInit={typewriterInit} />
             </Suspense>
           </div>
 
-          <Typewriter
-            options={{
-              strings: ['Web Developer', 'UI/UX Designer', 'Software Engineer'],
-              autoStart: true,
-              loop: true,
-              delay: 100,
-            }}
-          />
+          <Suspense fallback={<h2 style={{ color: '#282828' }}>...</h2>}>
+            <Typewriter
+              options={{
+                strings: ['Web Developer', 'UI/UX Designer', 'Software Engineer'],
+                autoStart: true,
+                loop: true,
+                delay: 100,
+              }}
+            />
+          </Suspense>
 
           <div className="stats-w" >
 
@@ -98,26 +88,21 @@ const Home = () => {
               <button id="hire-me-btn">Hire me</button>
             </Link>
             <div className="info-wrapper">
-              <h3> 3 Yrs </h3>
+              <h3> <Counter targetCount={3} duration={900} /> <span>+ Yrs</span> </h3>
               <p> Experience </p>
             </div>
             <div className="info-wrapper">
-              <h3> 17 </h3>
+              <h3> <Counter targetCount={17} duration={150} /> <span> + </span> </h3>
               <p> Projects </p>
             </div>
             <div className="info-wrapper">
-              <h3> 22 </h3>
+              <h3> <Counter targetCount={22} duration={150} /> </h3>
               <p> Age </p>
             </div>
 
           </div>
 
-          <motion.div
-            className="socials-btn-w"
-            variants={fadeIn}
-            initial="hidden"
-            animate="visible2"
-          >
+          <div className="socials-btn-w">
 
             <a href={'https://github.com/OliverMorla'} aria-label="GitHub" target='_blank'>
               <FontAwesomeIcon icon={faGithub} className='socials-btn' />
@@ -132,12 +117,15 @@ const Home = () => {
               <FontAwesomeIcon icon={faLinkedin} className='socials-btn' />
             </a>
 
-          </motion.div>
+          </div>
 
         </section>
 
         <section className="right-section">
-          <img src="/assets/portrait/portrait2.webp" alt="" className="section-img" />
+          <LazyLoadImage src={"/assets/portrait/portrait2.webp"}
+            className="section-img"
+            alt="Image Alt"
+          />
         </section>
 
         <section className="services-section">
@@ -146,16 +134,18 @@ const Home = () => {
               <FontAwesomeIcon icon={faHtml5} className='service-logo' />
               <div className="service-title"> Web Development </div>
             </aside>
-            <motion.p
-              variants={fadeIn}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ margin: "-50px -50px -50px -50px", once: true }}
-            >
-              Expert web developer who specializes
-              <br />in building and maintaining high-quality
-              <br />websites and web-based applications.
-            </motion.p>
+            <LazyMotion features={domAnimation}>
+              <m.p
+                variants={fade}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ margin: "-50px -50px -50px -50px", once: true }}
+              >
+                Expert web developer who specializes
+                <br />in building and maintaining high-quality
+                <br />websites and web-based applications.
+              </m.p>
+            </LazyMotion>
           </div>
           <div className="service-card">
             <aside>
@@ -163,7 +153,7 @@ const Home = () => {
               <div className="service-title"> Application Development </div>
             </aside>
             <motion.p
-              variants={fadeIn}
+              variants={fade}
               initial="hidden"
               whileInView="visible"
               viewport={{ margin: "-50px -50px -50px -50px", once: true }}
@@ -179,7 +169,7 @@ const Home = () => {
               <div className="service-title"> UI/UX Web Design </div>
             </aside>
             <motion.p
-              variants={fadeIn}
+              variants={fade}
               initial="hidden"
               whileInView="visible"
               viewport={{ margin: "-50px -50px -50px -50px", once: true }}
@@ -189,7 +179,7 @@ const Home = () => {
             </motion.p>
           </div>
           <motion.h2
-            variants={fadeIn}
+            variants={fade}
             initial="hidden"
             whileInView="visible"
             viewport={{ margin: "-100px -100px -100px -100px", once: true }}> Services </motion.h2>
@@ -202,10 +192,9 @@ const Home = () => {
       <div ref={middleSection} className="middle-section">
         <motion.section
           className="about-section"
-          variants={fadeIn}
+          variants={fade}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ margin: "-400px -400px -400px -400px", once: true }}
+          animate={middleObserver ? "visible" : ""}
         >
           <div className="about-content">
             <h2> Statement </h2>
@@ -216,16 +205,17 @@ const Home = () => {
               my dedication to clear communication, problem-solving, and service. Helping others, whether it's my team, stakeholders, or the
               end users of the products I work on, is always a top priority. Ready to bring my skills and passion to new challenges. Let's
               connect and explore how we can build the future together.
-              <a href="">
+              <Link to={"/contact"}>
                 <button> Hire Me </button>
-              </a>
+              </Link>
             </p>
           </div>
           <div className="about-img-w">
             <section>
-              <Suspense fallback={<div> Loading! </div>}>
-                <img src="/assets/portrait/portrait3.webp" alt="" className="about-img" />
-              </Suspense>
+              <LazyLoadImage src={"/assets/portrait/portrait3.webp"}
+                className="about-img"
+                alt="about-image"
+              />
             </section>
             <fieldset>
               <legend> About me </legend>
@@ -251,44 +241,43 @@ const Home = () => {
           </ul>
         </section>
 
-      </div>
+      </div >
 
       {/* Bottom Section */}
-      <motion.div
+      < motion.div
         className="bottom-section"
         ref={bottomSection}
-        variants={fadeIn}
+        variants={fade}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ margin: "-100px -100px -100px -100px", once: true }}
+        animate={bottomObserver ? "visible" : ""}
       >
-        <h2 className="mb-8"> Certifications </h2>
+        <h2 className="title mb-8"> Certifications </h2>
         <div className="cert-content">
           <div className="cert-card">
             <h2> Coursera </h2>
-            <img src="/assets/brands/coursera-white.svg" alt="" />
+            <img src="/assets/brands/coursera-white.svg" alt="coursera-white.svg" />
             <p> Git and GitHub Essentials </p>
           </div>
           <div className="cert-card">
             <h2> Coursera </h2>
-            <img src="/assets/brands/coursera-white.svg" alt="" />
+            <img src="/assets/brands/coursera-white.svg" alt="coursera-white.svg" />
             <p> Intro To Cloud Computing </p>
           </div>
           <div className="cert-card">
             <h2> Coursera </h2>
-            <img src="/assets/brands/coursera-white.svg" alt="" />
+            <img src="/assets/brands/coursera-white.svg" alt="coursera-white.svg" />
             <p> Web Development with HTML, CSS, Javascript </p>
           </div>
           <div className="cert-card">
             <h2> Coursera </h2>
-            <img src="/assets/brands/coursera-white.svg" alt="" />
+            <img src="/assets/brands/coursera-white.svg" alt="coursera-white.svg" />
             <p> Web Development with React.js </p>
           </div>
         </div>
 
-      </motion.div>
+      </motion.div >
 
-    </main>
+    </main >
   );
 }
 

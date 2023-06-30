@@ -1,23 +1,6 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDatabase, faMemory, faMicrochip, faServer } from '@fortawesome/free-solid-svg-icons';
-import {
-    faPython,
-    faHtml5,
-    faWordpress,
-    faJs,
-    faCss3,
-    faReact,
-    faNodeJs,
-    faSass,
-    faJava,
-    faGit,
-    faGithub,
-    faMicrosoft,
-} from '@fortawesome/free-brands-svg-icons';
-
 import { motion } from "framer-motion";
 
-import Cards from '@/components/skills/cards/index';
+// import Cards from '@/components/skills/cards/index';
 import Icons from '@/components/skills/icons/index';
 
 import "./style.scss"

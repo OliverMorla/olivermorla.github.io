@@ -35,7 +35,7 @@ const Portfolio = () => {
             {!loading && <h2 className="ma-8"> Count: {data?.length}</h2>}
             {!loading && data?.map((repo, index) => {
                 return (
-                    <a href={repo?.html_url} key={repo?.id} target="_blank">
+                    <div key={repo?.id}>
                         <motion.div className="repo-card"
                             initial={{ opacity: 0, x: 40 }}
                             animate={{
@@ -57,14 +57,14 @@ const Portfolio = () => {
                                         <FontAwesomeIcon icon={faGlobe} /> Demo
                                     </button>
                                 </a>
-                                <a href={repo?.html_url}>
+                                <a href={repo?.html_url} target="_target">
                                     <button id="src-code-btn">
                                         <FontAwesomeIcon icon={faGithub} /> Source Code
                                     </button>
                                 </a>
                             </div>
                         </motion.div>
-                    </a>
+                    </div>
                 )
             })}
         </motion.main>
