@@ -23,10 +23,6 @@ const Home = () => {
   const middleObserver = useInView(middleSection, { margin: "-300px 0px -300px 0px", once: true })
   const bottomObserver = useInView(bottomSection, { margin: "-300px 0px -300px 0px", once: true })
 
-  // useEffect(() => {
-  //   console.log("middle: " + middleObserver + '\nbottom: ' + bottomObserver)
-  // }, [middleObserver, bottomObserver])
-
   const typewriterInit = useCallback(
     (typewriter) => {
       typewriter
@@ -64,11 +60,12 @@ const Home = () => {
         <section className="left-section">
 
           <div className="heading-w">
-            <p className='heading-p'> Hey There! I'm </p>
+            <p className='heading-text'> Hey There! I'm </p>
 
             <Suspense fallback={<h2 style={{ color: "#282828" }}>...</h2>}>
               <Typewriter onInit={typewriterInit} />
             </Suspense>
+
           </div>
 
           <Suspense fallback={<h2 style={{ color: '#282828' }}>...</h2>}>
@@ -122,18 +119,22 @@ const Home = () => {
         </section>
 
         <section className="right-section">
+
           <LazyLoadImage src={"/assets/portrait/portrait2.webp"}
             className="section-img"
             alt="Image Alt"
           />
+
         </section>
 
         <section className="services-section">
+
           <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faHtml5} className='service-logo' />
               <div className="service-title"> Web Development </div>
             </aside>
+            
             <LazyMotion features={domAnimation}>
               <m.p
                 variants={fade}
@@ -146,43 +147,55 @@ const Home = () => {
                 <br />websites and web-based applications.
               </m.p>
             </LazyMotion>
+
           </div>
           <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faPython} className='service-logo' />
               <div className="service-title"> Application Development </div>
             </aside>
-            <motion.p
-              variants={fade}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ margin: "-50px -50px -50px -50px", once: true }}
-            >
-              Experienced application developer who
-              <br />specializes in creating custom software
-              <br />solutions for businesses.
-            </motion.p>
+
+            <LazyMotion features={domAnimation}>
+              <m.p
+                variants={fade}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ margin: "-50px -50px -50px -50px", once: true }}
+              >
+                Experienced application developer who
+                <br />specializes in creating custom software
+                <br />solutions for businesses.
+              </m.p>
+            </LazyMotion>
+
           </div>
           <div className="service-card">
             <aside>
               <FontAwesomeIcon icon={faWordpress} className='service-logo' />
               <div className="service-title"> UI/UX Web Design </div>
             </aside>
-            <motion.p
-              variants={fade}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ margin: "-50px -50px -50px -50px", once: true }}
-            >
-              Pro designer who specializes in creating
-              <br />intuitive, visually appealing websites.
-            </motion.p>
+
+            <LazyMotion features={domAnimation}>
+              <m.p
+                variants={fade}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ margin: "-50px -50px -50px -50px", once: true }}
+              >
+                Pro designer who specializes in creating
+                <br />intuitive, visually appealing websites.
+              </m.p>
+            </LazyMotion>
+
           </div>
           <motion.h2
             variants={fade}
             initial="hidden"
             whileInView="visible"
-            viewport={{ margin: "-100px -100px -100px -100px", once: true }}> Services </motion.h2>
+            viewport={{ margin: "-100px -100px -100px -100px", once: true }}
+          >
+            Services
+          </motion.h2>
 
         </section>
 
@@ -196,6 +209,7 @@ const Home = () => {
           initial="hidden"
           animate={middleObserver ? "visible" : ""}
         >
+
           <div className="about-content">
             <h2> Statement </h2>
             <p>
@@ -210,27 +224,34 @@ const Home = () => {
               </Link>
             </p>
           </div>
-          <div className="about-img-w">
+          <div className="about-image-w">
             <section>
               <LazyLoadImage src={"/assets/portrait/portrait3.webp"}
-                className="about-img"
+                className="about-image"
                 alt="about-image"
               />
             </section>
-            <fieldset>
-              <legend> About me </legend>
-              <p>
-                Hello there! I'm a dedicated Full Stack Web Developer and Software Engineer with a
-                Bachelor of Technology in Computer Information Systems from the City University of
-                New York, New York City College of Technology. Over the past three years, I've
-                gained extensive experience in building, optimizing, and maintaining web applications
-                using cutting-edge technologies.
-              </p>
-            </fieldset>
+            <section className='summary-section'>
+              <fieldset>
+                <p>
+                  Hello there! I'm a dedicated Full Stack Web Developer and Software Engineer with a
+                  Bachelor of Technology in Computer Information Systems from the City University of
+                  New York, New York City College of Technology. Over the past three years, I've
+                  gained extensive experience in building, optimizing, and maintaining web applications
+                  using cutting-edge technologies.
+                  <Link to={"/about"}>
+                    <button> View Resume </button>
+                  </Link>
+                </p>
+              </fieldset>
+              <h2> Summary </h2>
+            </section>
           </div>
+
         </motion.section>
 
         <section className="skills-section">
+
           <h2> Technical Skills </h2>
           <ul>
             <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT, Git</li>
@@ -239,6 +260,7 @@ const Home = () => {
             <li>Applications & Cloud Platform: NetBeans, Visual Studio Code/Studio, Code::Blocks, Eclipse, Office, Teams, Azure, IBM, Any Desk, TeamViewer</li>
             <li>OS & Virtualizations: Windows 7, 8, 10, 11; Windows Server 2012/2019, Mac OS, IOS, Android, Virtual Box, VMware, Hyper-V</li>
           </ul>
+
         </section>
 
       </div >
@@ -251,6 +273,7 @@ const Home = () => {
         initial="hidden"
         animate={bottomObserver ? "visible" : ""}
       >
+        
         <h2 className="title mb-8"> Certifications </h2>
         <div className="cert-content">
           <div className="cert-card">

@@ -1,5 +1,12 @@
 @import "@/styles/mixins.scss";
 
+/*
+    w - wrapper
+    s - section
+    c - container
+*/
+
+// Start of Home Page
 .home-w {
     position: relative;
     display: flex;
@@ -8,6 +15,7 @@
     align-items: center;
     background: linear-gradient(-45deg, #1a1a1a, #282828);
 
+    // Start of Top Section
     .top-section {
         position: relative;
         display: flex;
@@ -28,7 +36,10 @@
                 align-items: center;
                 gap: 8px;
 
-                .heading-p {}
+                .heading-text {
+                    color: white;
+                    font-size: 18px;
+                }
 
                 .Typewriter__wrapper,
                 .Typewriter__cursor {
@@ -47,15 +58,6 @@
                 @include sm-down {
                     font-size: 36px;
                 }
-            }
-
-            p {
-                color: white;
-                font-size: 18px;
-            }
-
-            .summary-p {
-                font-size: 20px;
             }
 
             .stats-w {
@@ -107,7 +109,6 @@
                 }
             }
 
-            // Home Left Side Responsiveness
             @include sm-down {
                 width: 350px;
                 flex-direction: column;
@@ -122,6 +123,17 @@
                 box-shadow: 0 2px 8px var(--octonary);
                 animation: float 3s ease-in-out infinite;
 
+                @include md-down {
+                    width: 350px;
+                    height: 350px;
+                }
+
+                @include sm-down {
+                    height: 250px;
+                    width: 250px;
+                    margin-bottom: 200px
+                }
+
                 @keyframes float {
                     0% {
                         transform: translate(0, 0);
@@ -135,15 +147,6 @@
                         transform: translate(0, -0);
                     }
                 }
-
-                @include md-down {
-                    width: 350px;
-                    height: 350px;
-                }
-            }
-
-            @include sm-down {
-                width: 350px;
             }
         }
 
@@ -198,7 +201,9 @@
             @include md-down {
                 height: auto;
                 font-size: 14px;
+                width: 90%;
                 padding: 1em;
+
             }
 
             @include sm-down {
@@ -210,16 +215,19 @@
             }
         }
 
-        // Top Section Media Queries 
+        // Top Section Media Queries
         @include sm-down {
             width: 350px;
-            gap: 120px;
-            align-items: unset;
+            gap: 0px;
+            align-items: center;
             flex-direction: column;
             justify-content: unset;
+            height: fit-content;
         }
     }
+    // End of Top Section
 
+    // Start of Middle Section
     .middle-section {
         position: relative;
         display: flex;
@@ -231,6 +239,18 @@
         width: 100%;
         height: 100vh;
 
+        // Middle Section Media Queries
+        @include md-down {
+            height: fit-content;
+            gap: 0px;
+        }
+
+        @include sm-down {
+            height: fit-content;
+            font-size: 14px;
+            gap: 10px;
+        }
+
         .about-section {
             display: flex;
             flex-flow: row wrap;
@@ -238,8 +258,27 @@
             align-items: center;
             gap: 8em;
 
+            @include md-down {
+                margin-top: 80px;
+                gap: 0px;
+            }
+
+            @include sm-down {
+                margin-top: 200px;
+                margin-bottom: 20px;
+                width: 350px;
+            }
+
             .about-content {
                 display: flex;
+
+                @include md-down {
+                    margin-bottom: 80px;
+                }
+
+                @include sm-down {
+                    margin-bottom: 0px;
+                }
 
                 h2 {
                     font-size: 24px;
@@ -257,6 +296,10 @@
                     display: flex;
                     gap: 15px;
                     flex-direction: column;
+
+                    @include sm-down {
+                        width: 300px;
+                    }
 
                     button {
                         position: relative;
@@ -294,14 +337,10 @@
                             }
                         }
                     }
-
-                    @include sm-down {
-                        width: 300px;
-                    }
                 }
             }
 
-            .about-img-w {
+            .about-image-w {
                 display: flex;
                 flex-direction: column;
                 width: 500px;
@@ -310,76 +349,99 @@
                     display: flex;
                     align-items: center;
 
+                    .about-image {
+                        width: 500px;
+                        height: 500px;
+                        animation: float 3s ease-in-out infinite;
+
+                        @keyframes float {
+                            0% {
+                                transform: translate(0, 0);
+                            }
+
+                            50% {
+                                transform: translate(0, 10px);
+                            }
+
+                            100% {
+                                transform: translate(0, -0);
+                            }
+                        }
+
+                        @include md-down {
+                            width: 450px;
+                            height: 450px;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                        @include sm-down {
+                            width: 350px;
+                            height: 350px;
+                        }
+                    }
+                }
+
+                .summary-section {
+
+                    fieldset {
+                        margin-top: 1em;
+                        border: none;
+
+                        p {
+                            padding: 1em;
+                            font-size: 16px;
+                            font-weight: bolder;
+                            display: flex;
+                            gap: 15px;
+                            flex-direction: column;
+                            border-right: solid 1px var(--primary);
+
+                            button {
+                                position: relative;
+                                cursor: pointer;
+                                color: var(--primary);
+                                appearance: none;
+                                border: none;
+                                padding: 1em 2em;
+                                background-color: transparent;
+                                border: 2px solid var(--octonary);
+                                transition: all .15s ease-in-out;
+
+                                &::before {
+                                    content: "";
+                                    position: absolute;
+                                    left: 0;
+                                    top: 0;
+                                    height: 100%;
+                                    width: 100%;
+                                    max-width: 0;
+                                    display: flex;
+                                    align-items: center;
+                                    justify-content: center;
+                                    background-color: var(--octonary);
+                                    transition: all .15s ease-in-out;
+                                }
+
+                                &:hover {
+
+                                    &::before {
+                                        align-items: center;
+                                        content: "View Resume";
+                                        color: white;
+                                        max-width: 364px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
                     h2 {
                         writing-mode: vertical-lr;
                         text-orientation: upright;
                         text-transform: uppercase;
                     }
                 }
-
-                .about-img {
-                    width: 500px;
-                    height: 500px;
-                    // box-shadow: 0 0 6px black;
-                    animation: float 3s ease-in-out infinite;
-
-                    @keyframes float {
-                        0% {
-                            transform: translate(0, 0);
-                        }
-
-                        50% {
-                            transform: translate(0, 10px);
-                        }
-
-                        100% {
-                            transform: translate(0, -0);
-                        }
-                    }
-
-                    @include md-down {
-                        justify-content: center;
-                        align-items: center;
-                        width: 450px;
-                        height: 450px;
-                    }
-
-                    @include sm-down {
-                        width: 350px;
-                        height: 350px;
-                    }
-                }
-
-                fieldset {
-                    margin-top: 1em;
-
-                    legend {
-                        font-size: 24px;
-                        font-weight: bolder;
-                    }
-
-                    p {
-                        padding: 1em;
-                        font-size: 16px;
-                        font-weight: bolder;
-                    }
-                }
-
-                @include md-down {
-                    gap: 10px;
-                }
-            }
-
-            @include md-down {
-                gap: 0px;
-                margin-bottom: 20px;
-            }
-
-            @include sm-down {
-                width: 350px;
-                gap: 10px;
-                margin-top: 40%;
-                font-size: 14px;
             }
         }
 
@@ -401,17 +463,32 @@
             font-size: 14px;
             z-index: 2;
 
-            @include sm-down {
-                transform: translate(0%, 0%);
-                position: relative;
+            @include md-down {
+                padding: 0px;
                 font-size: 12px;
+                height: 300px;
+                width: 400px;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            @include sm-down {
+                position: relative;
+                height: fit-content;
                 width: 350px;
-                height: auto;
-                padding: 1em;
+                transform: translate(0%, 0%);
+                margin-bottom: 20px;
+                margin-left: 0px;
+                font-size: 12px;
             }
 
             h2 {
                 font-size: 36px;
+
+                @include md-down {
+                    padding: 0px;
+                    margin: 0;
+                }
             }
 
             ul {
@@ -419,6 +496,10 @@
                 flex-direction: column;
                 width: 400px;
                 gap: 10px;
+
+                @include md-down {
+                    width: 350px;
+                }
 
                 @include sm-down {
                     font-size: 12px;
@@ -429,20 +510,11 @@
 
                 li {}
             }
-
-            @include sm-down {
-                width: 350px;
-                margin-left: 0;
-                margin-bottom: 10px;
-            }
-        }
-
-        @include sm-down {
-            height: auto;
-            gap: 10px;
         }
     }
+    // End of Middle Section
 
+    // Start of Bottom Section
     .bottom-section {
         display: flex;
         justify-content: center;
@@ -454,14 +526,12 @@
         gap: 10px;
         z-index: 0;
 
-        @include sm-down {
-            padding: 1em;
-            height: auto;
-        }
-
         @include md-down {
             height: fit-content;
-            margin-bottom: 20px;
+        }
+
+        @include sm-down {
+            height: fit-content;
         }
 
         .title {
@@ -472,7 +542,7 @@
 
 
             @include md-down {
-                margin-top: 220px;
+                margin-top: 200px;
             }
 
             @include sm-down {
@@ -503,6 +573,11 @@
                 transition: all .15s ease-in-out;
                 gap: 20px;
 
+                @include sm-down {
+                    width: 350px;
+                    flex-direction: column;
+                }
+
                 &:hover {
                     transform: translateY(-10px);
                     background-color: var(--octonary);
@@ -513,24 +588,11 @@
                 img {
                     height: 250px;
                     width: 250px;
-
-                    // @include sm-down {
-                    //     width: 200px;
-                    // }
                 }
 
                 p {
                     font-size: 12px;
                 }
-
-                @include sm-down {
-                    width: 350px;
-                    flex-direction: column;
-                }
-
-                // @include sm-down {
-                //     width: 250px;
-                // }
             }
         }
 
@@ -547,4 +609,6 @@
             width: 75%;
         }
     }
+    // End of Bottom Section
 }
+// End of Home Page
