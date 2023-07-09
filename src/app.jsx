@@ -7,7 +7,7 @@ import Root from './routes/pages/root/index';
 
 import Loading from './components/loading';
 
-import Home from './pages/home/index';
+const Home = lazy(() => import('./pages/home/index'))
 import Contact from './pages/contact/index';
 
 const About = lazy(() => import('./pages/about/index'))
@@ -16,11 +16,6 @@ const Portfolio = lazy(() => import('./pages/portfolio/index'))
 const Blog = lazy(() => import('./pages/blog/index'))
 const Services = lazy(() => import('./pages/services/index'))
 const Error = lazy(() => import('./routes/pages/error/index'))
-// import About from './pages/about/index';
-// import Skills from './pages/skills/index';
-// import Blog from './pages/blog/index';
-// import Portfolio from './pages/portfolio/index';
-// import Services from './pages/services/index';
 
 const router = createBrowserRouter([
     {

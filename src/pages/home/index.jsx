@@ -1,4 +1,4 @@
-import React, { useRef, lazy, Suspense, useCallback, useEffect } from 'react';
+import React, { useRef, lazy, Suspense, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView, LazyMotion, domAnimation, m } from 'framer-motion';
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -37,10 +37,12 @@ const Home = () => {
 
   const fade = {
     hidden: {
+      x: -40,
       opacity: 0,
     },
 
     visible: {
+      x: 0,
       opacity: 1,
     },
   }
@@ -55,6 +57,7 @@ const Home = () => {
         variants={fade}
         initial="hidden"
         animate="visible"
+        transition={{ delay: 0.8, duration: 0.5 }}
       >
 
         <section className="left-section">
