@@ -14,13 +14,6 @@ import "./style.scss"
 import "@/styles/spacing.scss"
 
 const Home = () => {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   window.scrollTo(0, 0);
 
   const topSection = useRef(null)
