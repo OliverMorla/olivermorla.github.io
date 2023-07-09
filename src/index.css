@@ -18,6 +18,9 @@
     font-family: 'Roboto', sans-serif;
 }
 
+html{
+}
+
 html,
 body,
 #root {
@@ -27,6 +30,8 @@ body,
     scroll-behavior: smooth;
     overflow-x: hidden;
     height: 100%;
+    scroll-snap-type: y proximity;
+
 }
 
 a {

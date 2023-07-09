@@ -1,6 +1,6 @@
 import React, { useRef, lazy, Suspense, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView, LazyMotion, domAnimation, m } from 'framer-motion';
+import { motion, useInView, LazyMotion, domAnimation, m, useScroll, useSpring, useTransform } from 'framer-motion';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Counter } from '../../components/counter';
 
@@ -14,6 +14,13 @@ import "./style.scss"
 import "@/styles/spacing.scss"
 
 const Home = () => {
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
   window.scrollTo(0, 0);
 
   const topSection = useRef(null)

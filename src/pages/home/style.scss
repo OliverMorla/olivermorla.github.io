@@ -13,7 +13,6 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(-45deg, #1a1a1a, #282828);
 
     // Start of Top Section
     .top-section {
@@ -24,6 +23,8 @@
         justify-content: space-evenly;
         width: 100%;
         height: 100vh;
+        scroll-snap-align: start;
+        background-color: #171718;
 
         .left-section {
             display: flex;
@@ -225,6 +226,7 @@
             height: fit-content;
         }
     }
+
     // End of Top Section
 
     // Start of Middle Section
@@ -238,6 +240,7 @@
         color: var(--primary);
         width: 100%;
         height: 100vh;
+        scroll-snap-align: start;
 
         // Middle Section Media Queries
         @include md-down {
@@ -512,6 +515,7 @@
             }
         }
     }
+
     // End of Middle Section
 
     // Start of Bottom Section
@@ -609,6 +613,8 @@
             width: 75%;
         }
     }
+
     // End of Bottom Section
 }
+
 // End of Home Page
