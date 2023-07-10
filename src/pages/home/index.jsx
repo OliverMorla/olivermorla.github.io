@@ -1,6 +1,6 @@
 import React, { useRef, lazy, Suspense, useCallback } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useInView, LazyMotion, domAnimation, m, useScroll, useSpring, useTransform } from 'framer-motion';
+import { motion, useInView, LazyMotion, domAnimation, m } from 'framer-motion';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Counter } from '../../components/counter';
 
@@ -302,7 +302,7 @@ const Home = () => {
         </div>
 
       </motion.div >
-            
+
     </main >
   );
 }
