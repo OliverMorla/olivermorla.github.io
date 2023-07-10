@@ -81,33 +81,21 @@
 
     .skill-icon-w {
         margin-top: 40px;
+        margin-bottom: 40px;
         display: flex;
         flex-direction: row;
         background-color: #dfd2d2;
-        width: fit-content;
+        width: 100%;
         padding: 20px;
-        overflow: hidden;
 
-        .skill-scroller {
+
+        .skill-icon {
+            font-size: 48px;
+        }
+
+        .child {
             display: flex;
-            justify-content: center;
-            width: fit-content;
-            gap: 40px;
-            // animation: marquee 16s linear infinite;
-
-            @keyframes marquee {
-                0% {
-                    transform: translateX(100%)
-                }
-
-                100% {
-                    transform: translateX(-100%);
-                }
-            }
-
-            .skill-icon {
-                font-size: 48px;
-            }
+            gap: 15px;
         }
     }
 

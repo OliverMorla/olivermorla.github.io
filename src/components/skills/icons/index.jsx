@@ -27,6 +27,9 @@ import {
   faGoogle,
   faFigma,
   faElementor,
+  faApple,
+  faBootstrap,
+  faAws,
 } from "@fortawesome/free-brands-svg-icons";
 
 const Icons = () => {
@@ -48,6 +51,7 @@ const Icons = () => {
       <FontAwesomeIcon icon={faMemory} className="skill-icon" />
       <FontAwesomeIcon icon={faWordpress} className="skill-icon" />
       <FontAwesomeIcon icon={faGoogle} className="skill-icon" />
+      <FontAwesomeIcon icon={faApple} className="skill-icon" />
       <FontAwesomeIcon icon={faCodeBranch} className="skill-icon" />
       <FontAwesomeIcon icon={faServer} className="skill-icon" />
       <FontAwesomeIcon icon={faTerminal} className="skill-icon" />
@@ -55,6 +59,8 @@ const Icons = () => {
       <FontAwesomeIcon icon={faCodePullRequest} className="skill-icon" />
       <FontAwesomeIcon icon={faFigma} className="skill-icon" />
       <FontAwesomeIcon icon={faElementor} className="skill-icon" />
+      <FontAwesomeIcon icon={faBootstrap} className="skill-icon" />
+      <FontAwesomeIcon icon={faAws} className="skill-icon" />
     </>
   );
 };

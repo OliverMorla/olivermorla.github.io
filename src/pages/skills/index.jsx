@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
 
-// import Cards from '@/components/skills/cards/index';
 import Icons from '@/components/skills/icons/index';
 
 import "./style.scss"
+import Marquee from "react-fast-marquee";
 
 const Skills = () => {
     return (
@@ -53,15 +53,17 @@ const Skills = () => {
                 <div className="skill-bar">
                     <div className="skill-progress" data-per="80%" style={{ maxWidth: '80%' }}></div>
                 </div>
-            </div>
-            <div className="skill-icon-w">
-                <div className="skill-scroller">
-                    <Icons />
+                <div className="skill-title">Typescript</div>
+                <div className="skill-bar">
+                    <div className="skill-progress" data-per="55%" style={{ maxWidth: '55%' }}></div>
                 </div>
             </div>
-            <div className="skill-cards">
-                {/* <Cards /> */}
-            </div>
+            <Marquee
+                className="skill-icon-w"
+                pauseOnHover={true}
+            >
+                <Icons />
+            </Marquee>
         </motion.main>
     );
 }

@@ -137,7 +137,7 @@ const Home = () => {
               <FontAwesomeIcon icon={faHtml5} className='service-logo' />
               <div className="service-title"> Web Development </div>
             </aside>
-            
+
             <LazyMotion features={domAnimation}>
               <m.p
                 variants={fade}
@@ -276,7 +276,7 @@ const Home = () => {
         initial="hidden"
         animate={bottomObserver ? "visible" : ""}
       >
-        
+
         <h2 className="title mb-8"> Certifications </h2>
         <div className="cert-content">
           <div className="cert-card">
