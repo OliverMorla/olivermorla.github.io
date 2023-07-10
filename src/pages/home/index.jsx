@@ -257,7 +257,7 @@ const Home = () => {
 
           <h2> Technical Skills </h2>
           <ul>
-            <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT, Git</li>
+            <li>Languages & Libraries: C/C++, C#, Java, Python, HTML, CSS, JavaScript, Express.js, Mongoose.js, Node.js, React.js, Redux.js, JWT, Git, TypeScript</li>
             <li>Frameworks: Next.js, React-Router, Bootstrap, Tailwind, SCSS</li>
             <li>Databases & Tools: MongoDB, SQL/MySQL Workbench, Strapi CMS, EJS, Figma, GitHub, WordPress, RESTful API</li>
             <li>Applications & Cloud Platform: NetBeans, Visual Studio Code/Studio, Code::Blocks, Eclipse, Office, Teams, Azure, IBM, Any Desk, TeamViewer</li>
