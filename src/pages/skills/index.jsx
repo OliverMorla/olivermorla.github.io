@@ -1,9 +1,7 @@
 import { motion } from "framer-motion";
-
-import Icons from '@/components/skills/icons/index';
-
-import "./style.scss"
 import Marquee from "react-fast-marquee";
+import Icons from '@/components/skills/icons/index';
+import "./style.scss"
 
 const Skills = () => {
     return (
