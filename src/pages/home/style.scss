@@ -130,9 +130,11 @@
                 }
 
                 @include sm-down {
-                    height: 250px;
-                    width: 250px;
-                    margin-bottom: 200px
+                    height: 325px;
+                    width: 325px;
+                    box-shadow: none;
+                    border-radius: unset;
+                    margin-top: 50px;
                 }
 
                 @keyframes float {
@@ -219,10 +221,11 @@
         @include sm-down {
             width: 350px;
             gap: 0px;
+            margin-top: 20px;
             align-items: center;
             flex-direction: column;
             justify-content: unset;
-            height: fit-content;
+            height: 100vh;
         }
     }
 
@@ -523,13 +526,14 @@
         .cert-content {
             display: flex;
             flex-flow: row wrap;
+            align-items: center;
             justify-content: center;
             gap: 25px;
 
             @include md-down {
                 margin-bottom: 20px;
             }
-
+ 
             .cert-card {
                 cursor: pointer;
                 color: white;
@@ -539,6 +543,7 @@
                 align-items: center;
                 box-shadow: 0 0 10px #29292e;
                 width: 300px;
+                height: 400px;
                 padding: 1em 2em;
                 transition: all .15s ease-in-out;
                 gap: 20px;

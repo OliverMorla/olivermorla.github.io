@@ -14,7 +14,7 @@ const Services = () => {
   };
 
   return (
-    <main className="services-wrapper">
+    <main className="services-w">
       <ServiceOne />
       <ServiceTwo />
       <ServiceThree />
