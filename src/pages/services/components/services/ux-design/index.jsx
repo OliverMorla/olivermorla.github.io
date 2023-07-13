@@ -9,7 +9,7 @@ const ServiceTwo = () => {
     visible: {
       opacity: 1,
       transform: "translateY(0px)",
-      transition: { delay: 0.4 },
+      transition: { delay: 0.2 },
     },
   };
 

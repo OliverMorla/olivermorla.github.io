@@ -24,6 +24,7 @@
         justify-content: space-evenly;
         width: 100%;
         height: 100vh;
+        z-index: 2;
 
         .left-section {
             display: flex;
@@ -162,7 +163,7 @@
             justify-content: space-evenly;
             align-items: center;
             color: white;
-            z-index: 2;
+            z-index: 4;
 
             h2 {
                 writing-mode: vertical-lr;
@@ -203,7 +204,6 @@
                 font-size: 14px;
                 width: 90%;
                 padding: 1em;
-
             }
 
             @include sm-down {
@@ -306,36 +306,18 @@
                         position: relative;
                         cursor: pointer;
                         color: var(--primary);
+                        font-weight: bold;
                         appearance: none;
                         border: none;
                         padding: 1em 2em;
                         background-color: transparent;
-                        border: 2px solid var(--octonary);
-                        transition: all .15s ease-in-out;
-
-                        &::before {
-                            content: "";
-                            position: absolute;
-                            left: 0;
-                            top: 0;
-                            height: 100%;
-                            width: 100%;
-                            max-width: 0;
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            background-color: var(--octonary);
-                            transition: all .15s ease-in-out;
-                        }
+                        border: 1px solid var(--octonary);
+                        transition: all .25s ease-in-out;
+                        box-shadow: inset 0 0 0 0 var(--octonary);
 
                         &:hover {
-
-                            &::before {
-                                align-items: center;
-                                content: "Hire Me";
-                                color: white;
-                                max-width: 364px;
-                            }
+                            box-shadow: inset 134px 0 0 0 var(--octonary);
+                            color: white;
                         }
                     }
                 }
@@ -385,6 +367,10 @@
 
                 .summary-section {
 
+                    @include md-down {
+                        margin-bottom: 20px;
+                    }
+
                     fieldset {
                         margin-top: 1em;
                         border: none;
@@ -402,36 +388,18 @@
                                 position: relative;
                                 cursor: pointer;
                                 color: var(--primary);
+                                font-weight: bold;
                                 appearance: none;
                                 border: none;
                                 padding: 1em 2em;
                                 background-color: transparent;
-                                border: 2px solid var(--octonary);
-                                transition: all .15s ease-in-out;
-
-                                &::before {
-                                    content: "";
-                                    position: absolute;
-                                    left: 0;
-                                    top: 0;
-                                    height: 100%;
-                                    width: 100%;
-                                    max-width: 0;
-                                    display: flex;
-                                    align-items: center;
-                                    justify-content: center;
-                                    background-color: var(--octonary);
-                                    transition: all .15s ease-in-out;
-                                }
+                                border: 1px solid var(--octonary);
+                                transition: all .25s ease-in-out;
+                                box-shadow: inset 0 0 0 0 var(--octonary);
 
                                 &:hover {
-
-                                    &::before {
-                                        align-items: center;
-                                        content: "View Resume";
-                                        color: white;
-                                        max-width: 364px;
-                                    }
+                                    box-shadow: inset 134px 0 0 0 var(--octonary);
+                                    color: white;
                                 }
                             }
                         }

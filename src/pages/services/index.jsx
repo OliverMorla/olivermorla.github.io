@@ -5,7 +5,7 @@ import ServiceTwo from "./components/services/web-development";
 import ServiceThree from "./components/services/ux-design";
 
 import { Link } from "react-router-dom";
-import "./styles.scss";
+import "./style.scss";
 
 const Services = () => {
   const fadeEffect = {

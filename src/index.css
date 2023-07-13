@@ -25,11 +25,11 @@ body,
   flex-direction: column;
   justify-content: space-between;
   scroll-behavior: smooth;
-  overflow-x: hidden;
   height: 100%;
 }
 
 #root {
+  overflow-x: hidden;
   scroll-snap-type: y proximity;
 }
 
@@ -40,4 +40,20 @@ a {
 
 .active {
   font-weight: bolder;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--secondary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--tertiary);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }

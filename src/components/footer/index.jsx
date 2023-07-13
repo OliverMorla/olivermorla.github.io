@@ -1,5 +1,6 @@
 import { useState, useRef } from "react"
 import emailjs from '@emailjs/browser';
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faInstagram,
@@ -7,6 +8,7 @@ import {
     faLinkedin,
     faGithub,
 } from "@fortawesome/free-brands-svg-icons";
+
 import "./style.scss";
 
 const Footer = () => {

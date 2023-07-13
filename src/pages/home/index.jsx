@@ -2,17 +2,19 @@ import React, { useRef, lazy, Suspense, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, LazyMotion, domAnimation, m } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import { Counter } from "../../components/counter";
+import { Counter } from "@/components/counter";
 
 const Typewriter = lazy(() => import("typewriter-effect"));
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
   faInstagram,
   faTwitter,
   faGithub,
   faLinkedin,
 } from "@fortawesome/free-brands-svg-icons";
+
 import {
   faPython,
   faHtml5,
@@ -21,7 +23,6 @@ import {
 
 import "./style.scss";
 import "@/styles/spacing.scss";
-import Marquee from "react-fast-marquee";
 
 const Home = () => {
   window.scrollTo(0, 0);
@@ -50,7 +51,7 @@ const Home = () => {
       .start();
   }, []);
 
-  const fade = {
+  const fadeIn = {
     hidden: {
       x: -40,
       opacity: 0,
@@ -68,7 +69,7 @@ const Home = () => {
       <motion.div
         className="top-section"
         ref={topSection}
-        variants={fade}
+        variants={fadeIn}
         initial="hidden"
         animate="visible"
         transition={{ delay: 0.8, duration: 0.5 }}
@@ -103,22 +104,19 @@ const Home = () => {
             </Link>
             <div className="info-wrapper">
               <h3>
-                {" "}
-                <Counter targetCount={3} duration={900} /> <span>+ Yrs</span>{" "}
+                <Counter targetCount={3} duration={900} /> <span>+ Yrs</span>
               </h3>
               <p> Experience </p>
             </div>
             <div className="info-wrapper">
               <h3>
-                {" "}
-                <Counter targetCount={17} duration={150} /> <span> + </span>{" "}
+                <Counter targetCount={17} duration={150} /> <span> + </span>
               </h3>
               <p> Projects </p>
             </div>
             <div className="info-wrapper">
               <h3>
-                {" "}
-                <Counter targetCount={22} duration={150} />{" "}
+                <Counter targetCount={22} duration={150} />
               </h3>
               <p> Age </p>
             </div>
@@ -173,7 +171,7 @@ const Home = () => {
 
             <LazyMotion features={domAnimation}>
               <m.p
-                variants={fade}
+                variants={fadeIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ margin: "-50px -50px -50px -50px", once: true }}
@@ -194,7 +192,7 @@ const Home = () => {
 
             <LazyMotion features={domAnimation}>
               <m.p
-                variants={fade}
+                variants={fadeIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ margin: "-50px -50px -50px -50px", once: true }}
@@ -215,7 +213,7 @@ const Home = () => {
 
             <LazyMotion features={domAnimation}>
               <m.p
-                variants={fade}
+                variants={fadeIn}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ margin: "-50px -50px -50px -50px", once: true }}
@@ -227,7 +225,7 @@ const Home = () => {
             </LazyMotion>
           </div>
           <motion.h2
-            variants={fade}
+            variants={fadeIn}
             initial="hidden"
             whileInView="visible"
             viewport={{ margin: "-100px -100px -100px -100px", once: true }}
@@ -241,7 +239,7 @@ const Home = () => {
       <div ref={middleSection} className="middle-section">
         <motion.section
           className="about-section"
-          variants={fade}
+          variants={fadeIn}
           initial="hidden"
           animate={middleObserver ? "visible" : ""}
         >
@@ -323,52 +321,62 @@ const Home = () => {
       <motion.div
         className="bottom-section"
         ref={bottomSection}
-        variants={fade}
+        variants={fadeIn}
         initial="hidden"
         animate={bottomObserver ? "visible" : ""}
       >
         <h2 className="title mb-8"> Certifications </h2>
         <div className="cert-content">
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img
-              src="/assets/brands/coursera-white.svg"
-              alt="coursera-white.svg"
-            />
-            <p> Git and GitHub Essentials </p>
-          </div>
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img
-              src="/assets/brands/coursera-white.svg"
-              alt="coursera-white.svg"
-            />
-            <p> Intro To Cloud Computing </p>
-          </div>
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img
-              src="/assets/brands/coursera-white.svg"
-              alt="coursera-white.svg"
-            />
-            <p> Web Development with HTML, CSS, Javascript </p>
-          </div>
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img
-              src="/assets/brands/coursera-white.svg"
-              alt="coursera-white.svg"
-            />
-            <p> Web Development with React.js </p>
-          </div>
-          <div className="cert-card">
-            <h2> Coursera </h2>
-            <img
-              src="/assets/brands/coursera-white.svg"
-              alt="coursera-white.svg"
-            />
-            <p> Developing Back-End Apps with Node.js and Express </p>
-          </div>
+          <a href="https://www.credly.com/badges/904b74a9-c129-4492-83a7-9da77cb44929/public_url" target="_blank">
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img
+                src="/assets/brands/coursera-white.svg"
+                alt="coursera-white.svg"
+              />
+              <p> Git and GitHub Essentials </p>
+            </div>
+          </a>
+          <a href="https://www.credly.com/badges/06653767-b374-4220-afb3-99ea69694adc/public_url" target="_blank">
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img
+                src="/assets/brands/coursera-white.svg"
+                alt="coursera-white.svg"
+              />
+              <p> Intro To Cloud Computing </p>
+            </div>
+          </a>
+          <a href="https://www.credly.com/badges/9ad0dec1-032e-4556-a824-c2accfbc5110/public_url" target="_blank">
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img
+                src="/assets/brands/coursera-white.svg"
+                alt="coursera-white.svg"
+              />
+              <p> Web Development with HTML, CSS, Javascript </p>
+            </div>
+          </a>
+          <a href="https://www.credly.com/badges/3bf278d9-31da-4206-ba46-76fa8a8f0453/public_url" target="_blank">
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img
+                src="/assets/brands/coursera-white.svg"
+                alt="coursera-white.svg"
+              />
+              <p> Web Development with React.js </p>
+            </div>
+          </a>
+          <a href="https://www.credly.com/badges/11d81d17-031f-4336-b3a8-9688169ecc76/public_url" target="_blank">
+            <div className="cert-card">
+              <h2> Coursera </h2>
+              <img
+                src="/assets/brands/coursera-white.svg"
+                alt="coursera-white.svg"
+              />
+              <p> Developing Back-End Apps with Node.js and Express </p>
+            </div>
+          </a>
         </div>
       </motion.div>
     </main>
