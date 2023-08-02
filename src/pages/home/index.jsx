@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, useInView, LazyMotion, domAnimation, m } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import { Counter } from "@/components/counter";
+import Carousel from "../../components/carousel";
 
 const Typewriter = lazy(() => import("typewriter-effect"));
 
@@ -30,12 +31,17 @@ const Home = () => {
   const topSection = useRef(null);
   const middleSection = useRef(null);
   const bottomSection = useRef(null);
+  const projectSection = useRef(null);
 
   const middleObserver = useInView(middleSection, {
     margin: "-300px 0px -300px 0px",
     once: true,
   });
   const bottomObserver = useInView(bottomSection, {
+    margin: "-300px 0px -300px 0px",
+    once: true,
+  });
+  const projectObserver = useInView(projectSection, {
     margin: "-300px 0px -300px 0px",
     once: true,
   });
@@ -379,8 +385,22 @@ const Home = () => {
           </a>
         </div>
       </motion.div>
+      <motion.div
+        className="projects-section"
+        ref={projectSection}
+        variants={fadeIn}
+        initial="hidden"
+        animate={projectObserver ? "visible" : ""}
+        transition={{ delay: 0.4, duration: 0.2 }}>
+        <h2 className="title"> Projects </h2>
+        <p> Please checkout the portfolio for demos & source code!</p>
+        <div className="carousel-wrapper">
+          <Carousel />
+        </div>
+      </motion.div>
     </main>
   );
 };
+
 
 export default Home;

@@ -4,6 +4,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Root from "./routes/pages/root/index";
 import Loading from "./components/loading";
+import Debugging from "./pages/debugging";
 
 const Home = lazy(() => import("./pages/home/index"));
 const Contact = lazy(() => import("./pages/contact/index"));
@@ -91,6 +92,11 @@ const router = createBrowserRouter([
             <Contact />
           </Suspense>
         ),
+        errorElement: <Error />,
+      },
+      {
+        path: "/debugging",
+        element: <Debugging />,
         errorElement: <Error />,
       },
     ],
