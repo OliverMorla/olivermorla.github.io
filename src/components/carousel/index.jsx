@@ -22,6 +22,10 @@ const images = [
         original: "/assets/portfolio/portfolio.webp",
         thumbnail: "/assets/portfolio/portfolio.webp",
     },
+    {
+        original: "/assets/portfolio/pes.webp",
+        thumbnail: "/assets/portfolio/pes.webp",
+    },
 ];
 
 const Carousel = () => {

@@ -354,9 +354,17 @@
                             }
                         }
 
-                        @include md-down {
+                        @include lg-down {
+                            padding-top: 20px;
                             width: 450px;
                             height: 450px;
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                        @include md-down {
+                            width: 400px;
+                            height: 400px;
                             justify-content: center;
                             align-items: center;
                         }
@@ -498,6 +506,11 @@
         height: 100vh;
         gap: 10px;
         z-index: 0;
+
+        @include lg-down {
+            padding: 140px 0px;
+            height: auto;
+        }
 
         @include md-down {
             height: fit-content;

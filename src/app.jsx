@@ -53,7 +53,8 @@ const router = createBrowserRouter([
         path: "/blog",
         element: (
           <Suspense fallback={<Loading />}>
-            <Blog />
+            {/* <Blog /> */}
+            <Error />
           </Suspense>
         ),
         errorElement: <Error />,
@@ -62,7 +63,8 @@ const router = createBrowserRouter([
         path: "/blog/:id",
         element: (
           <Suspense fallback={<Loading />}>
-            <Article />
+            {/* <Article /> */}
+            <Error />
           </Suspense>
         ),
         errorElement: <Error />,
