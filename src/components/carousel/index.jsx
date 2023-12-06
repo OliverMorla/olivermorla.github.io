@@ -7,16 +7,16 @@ const images = [
         thumbnail: "/assets/portfolio/airbnb-clone-2.webp",
     },
     {
-        original: "/assets/portfolio/urban-outfitters-clone.webp",
-        thumbnail: "/assets/portfolio/urban-outfitters-clone.webp",
+        original: "/assets/portfolio/hollister-clone.webp",
+        thumbnail: "/assets/portfolio/hollister-clone.webp",
     },
     {
         original: "/assets/portfolio/nygeneralrenovation.webp",
         thumbnail: "/assets/portfolio/nygeneralrenovation.webp",
     },
     {
-        original: "/assets/portfolio/blog-app.webp",
-        thumbnail: "/assets/portfolio/blog-app.webp",
+        original: "/assets/portfolio/threads-clone.webp",
+        thumbnail: "/assets/portfolio/threads-clone.webp",
     },
     {
         original: "/assets/portfolio/portfolio.webp",

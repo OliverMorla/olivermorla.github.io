@@ -1,4 +1,4 @@
-import React, { useRef, lazy, Suspense, useCallback } from "react";
+import { useRef, lazy, Suspense, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion, useInView, LazyMotion, domAnimation, m } from "framer-motion";
 import { LazyLoadImage } from "react-lazy-load-image-component";
