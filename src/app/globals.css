@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-dark-gray: #171717;
+  /* Primary - Dark gray for backgrounds or text */
+  --color-charcoal: #282828;
+  /* Secondary - Charcoal for secondary elements or text */
+  --color-gunmetal: #3a3a3c;
+  /* Tertiary - Gunmetal for borders or tertiary elements */
+  --color-slate-gray: #4a4a4d;
+  /* Quaternary - Slate gray for disabled states or shadows */
+  --color-deep-indigo: #0c0032;
+  /* Quinary - Deep indigo for accents or highlights */
+  --color-dark-purple: #190061;
+  /* Senary - Dark purple for interactive elements */
+  --color-royal-purple: #240090;
+  /* Septenary - Royal purple for vibrant UI elements */
+  --color-electric-purple: #3500d3;
+  /* Octonary - Electric purple for call-to-action buttons */
+  --color-eerie-black: #1a1a1d;
+  /* Nonary - Eerie black for text or overlay backgrounds */
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  display: flex;
+  flex-direction: column;
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-dark-gray);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-gunmetal);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Parallax Text / Scroll Velocity */
+.parallax {
+  overflow: hidden;
+  letter-spacing: -2px;
+  line-height: 0.8;
+  margin: 0;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax .scroller {
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 72px;
+  display: flex;
+  white-space: nowrap;
+  display: flex;
+  flex-wrap: nowrap;
+}
+
+.parallax span {
+  display: block;
+  margin-right: 30px;
+  transition: all 0.5s ease-in-out;
+}
+
+.parallax:hover {
+  color: var(--color-electric-purple);
+  transition: all 0.5s ease-in-out;
+}
