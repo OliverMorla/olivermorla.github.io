@@ -8,7 +8,7 @@ const CertificationsSection = () => {
       className="h-auto bg-[--color-dark-gray] text-white flex justify-center items-center flex-wrap"
       id="certifications"
       style={{
-        paddingTop: "250px"
+        paddingTop: "250px",
       }}
     >
       <SectionTitle

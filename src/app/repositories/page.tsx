@@ -2,7 +2,7 @@ import RepositoriesSection from "@/components/containers/Repositories";
 
 const Repositories = () => {
   return (
-    <main className="h-screen bg-[--color-dark-gray] pt-[88px] text-white">
+    <main className="h-auto bg-[--color-dark-gray] pt-[115px] pb-10 text-white px-10">
       <RepositoriesSection />
     </main>
   );
