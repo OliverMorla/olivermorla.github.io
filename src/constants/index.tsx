@@ -288,12 +288,12 @@ const skillsIcons = [
   {
     title: "Node.js",
     progress: "95%",
-    fontAwesomeIconUrl: faNodeJs
+    fontAwesomeIconUrl: faNodeJs,
   },
   {
     title: "AWS Lambda & API Gateway",
     progress: "95%",
-    fontAwesomeIconUrl: faAws
+    fontAwesomeIconUrl: faAws,
   },
   {
     title: "Figma",
@@ -307,6 +307,7 @@ const portfolioImages = [
     imageUrl: "/assets/portfolio/portfolio.webp",
     title: "Portfolio",
     description: "",
+    projectType: "Portfolio",
     projectUrl: "",
   },
   {
@@ -314,11 +315,13 @@ const portfolioImages = [
     title: "Hollister Clone",
     description: "",
     projectUrl: "",
+    projectType: "E-commerce",
   },
   {
     imageUrl: "/assets/portfolio/threads-clone-login.webp",
     title: "Threads Clone",
     description: "",
+    projectType: "Social Media",
     projectUrl: "",
   },
 ];

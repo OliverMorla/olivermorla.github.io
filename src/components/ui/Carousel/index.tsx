@@ -30,15 +30,18 @@ const Carousel = ({ images }: { images: any[] }) => {
       modules={[Autoplay, Pagination, Navigation]}
     >
       {images.map((image, index) => (
-        <SwiperSlide key={index}>
-          <Image
-            src={image.imageUrl}
-            width={1280}
-            height={720}
-            alt="photo"
-            className="w-full h-full"
-          />
-        </SwiperSlide>
+        <React.Fragment key={index}>
+          <SwiperSlide key={index}>
+            <Image
+              src={image.imageUrl}
+              width={1280}
+              height={720}
+              alt="photo"
+              className="w-full h-full"
+            />
+            <h2 className="font-bold">Category: {image.projectType}</h2>
+          </SwiperSlide>
+        </React.Fragment>
       ))}
     </Swiper>
   );

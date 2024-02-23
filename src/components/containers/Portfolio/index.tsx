@@ -5,7 +5,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 const PortfolioSection = () => {
   return (
     <section
-      className="h-screen bg-[--color-dark-gray] text-white flex flex-col justify-center items-center"
+      className="h-screen bg-[--color-dark-gray] text-white flex flex-col justify-center items-center p-10"
       id="portfolio"
     >
       <SectionTitle
@@ -14,7 +14,7 @@ const PortfolioSection = () => {
           "Showcasing a range of projects that highlight my full-stack development expertise, from innovative designs to complex problem-solving."
         }
       />
-      <div className="w-full h-full">
+      <div className="w-[90%] h-full">
         <Carousel images={portfolioImages} />
       </div>
     </section>
