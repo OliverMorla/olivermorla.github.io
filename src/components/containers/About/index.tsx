@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 
+import Link from "next/link";
 import Image from "next/image";
 import Button from "@/components/ui/Button";
 
@@ -90,7 +91,9 @@ const AboutSection = () => {
             ready to bring your vision to life with the same dedication and
             precision that have marked my career to date.
           </p>
-          <Button title={"Contact me"} />
+          <Link href="#contact">
+            <Button title={"Contact me"} />
+          </Link>
         </div>
       </div>
     </section>

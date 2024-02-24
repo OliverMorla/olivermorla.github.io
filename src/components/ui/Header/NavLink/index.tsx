@@ -15,6 +15,14 @@ const NavLink = ({ title, pathUrl, transitionDelay }: NavLinkProps) => {
         y: 0,
         transition: { delay: transitionDelay * 0.2 },
       }}
+      whileTap={{
+        scale: 0.9,
+        fontWeight: "bold",
+      }}
+      whileHover={{
+        scale: 1.1,
+        fontWeight: "bold",
+      }}
     >
       <Link href={pathUrl}>{title}</Link>
     </motion.li>

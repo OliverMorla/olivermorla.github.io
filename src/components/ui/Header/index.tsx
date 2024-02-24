@@ -8,7 +8,7 @@ import MobileHeader from "@/components/ui/MobileHeader";
 import NavLinkWithMenu from "@/components/ui/Header/NavLinkWithMenu";
 import { motion } from "framer-motion";
 
-const Header = () => {
+const Header = () => {  
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {

@@ -1,10 +1,31 @@
-import Link from "next/link";
+"use client";
 
-const NavLink = ({ title, pathUrl }: NavLinkProps) => {
+import Link from "next/link";
+import { motion } from "framer-motion";
+
+const NavLink = ({ title, pathUrl, transitionDelay }: NavLinkProps) => {
   return (
-    <li>
+    <motion.li
+      initial={{
+        opacity: 0,
+        y: -100,
+      }}
+      animate={{
+        opacity: 1,
+        y: 0,
+        transition: { delay: transitionDelay * 0.2 },
+      }}
+      whileTap={{
+        scale: 0.9,
+        fontWeight: "bold",
+      }}
+      whileHover={{
+        scale: 1.1,
+        fontWeight: "bold",
+      }}
+    >
       <Link href={pathUrl}>{title}</Link>
-    </li>
+    </motion.li>
   );
 };
 

@@ -18,6 +18,10 @@ const SocialMediaButton = ({
         y: 0,
         transition: { delay: transitionDelay * 0.4 },
       }}
+      whileHover={{
+        scale: 1.1,
+        color: "var( --color-royal-purple)"
+      }}
     >
       <Link href={pathUrl}>
         <FontAwesomeIcon icon={iconUrl} />

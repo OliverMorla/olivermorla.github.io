@@ -24,15 +24,17 @@ const Footer = () => {
             from you.
           </p>
           <div className="flex">
-            {socialLinks.map((item, index) => (
-              <SocialMediaButton
-                key={index}
-                title={item.title}
-                pathUrl={item.pathUrl}
-                iconUrl={item.iconUrl}
-                transitionDelay={index * 0.1 + 0.3}
-              />
-            ))}
+            <ul className="list-none flex gap-10">
+              {socialLinks.map((item, index) => (
+                <SocialMediaButton
+                  key={index}
+                  title={item.title}
+                  pathUrl={item.pathUrl}
+                  iconUrl={item.iconUrl}
+                  transitionDelay={index * 0.1 + 0.3}
+                />
+              ))}
+            </ul>
           </div>
         </div>
 

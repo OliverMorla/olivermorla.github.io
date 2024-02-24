@@ -1,15 +1,19 @@
-// Types
+// Type Definitions
 import type { Metadata } from "next";
 
-// Fonts
+// Google Font Imports
 import { Roboto } from "next/font/google";
 
-// Components
+// Component Imports
 import Header from "@/components/ui/Header";
 import Footer from "@/components/ui/Footer";
 
-// Styles
+// Third-Party Utilities
+import { GoogleAnalytics } from "@next/third-parties/google";
+
+// Global Stylesheet Import
 import "./globals.css";
+import { ThemeProvider } from "@/providers/theme-provider";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -46,13 +50,20 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (!process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) return null;
+
+  const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+
   return (
     <html lang="en">
-      <body className={roboto.className}>
-        <Header />
-        {children}
-        <Footer />
-      </body>
+      <ThemeProvider>
+        <body className={roboto.className}>
+          <Header />
+          {children}
+          <Footer />
+          <GoogleAnalytics gaId={measurementId} />
+        </body>
+      </ThemeProvider>
     </html>
   );
 }

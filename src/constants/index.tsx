@@ -308,21 +308,26 @@ const portfolioImages = [
     title: "Portfolio",
     description: "",
     projectType: "Portfolio",
-    projectUrl: "",
+    sourceCodeUrl: "https://github.com/OliverMorla/olivermorla.github.io",
+    demoUrl: "https://www.olivermorla.com/",
   },
   {
     imageUrl: "/assets/portfolio/hollister-clone.webp",
     title: "Hollister Clone",
-    description: "",
-    projectUrl: "",
+    description:
+      "Devised a high-caliber, responsive e-commerce platform mirroring Hollister, utilizing ReactJS, NextJS, TypeScript, and Framer-Motion, delivering an exceptional UI/UX.",
     projectType: "E-commerce",
+    sourceCodeUrl: "https://github.com/OliverMorla/hollister-clone",
+    demoUrl: "https://hollister-clone.vercel.app/",
   },
   {
     imageUrl: "/assets/portfolio/threads-clone-login.webp",
     title: "Threads Clone",
-    description: "",
+    description:
+      'Developed a dynamic social media platform, "Threads-Clone," using a MERN stack, incorporating MongoDB, NextJS 14 with server actions, React, and Tailwind CSS, showcasing state-of-the-art web development practices.',
     projectType: "Social Media",
-    projectUrl: "",
+    sourceCodeUrl: "https://github.com/OliverMorla/threads-clone",
+    demoUrl: "https://threads-clone-two-amber.vercel.app/",
   },
 ];
 
