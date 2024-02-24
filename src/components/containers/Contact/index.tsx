@@ -32,7 +32,7 @@ const ContactSection = () => {
                 title={item.title}
                 iconUrl={item.iconUrl}
                 pathUrl={item.pathUrl}
-                transitionDelay={index * 0.1 + 0.3}
+                transitionDelay={index}
               />
             ))}
           </ul>

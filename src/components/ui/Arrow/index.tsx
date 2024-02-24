@@ -1,6 +1,6 @@
 "use client";
-
 import { motion } from "framer-motion";
+
 const Arrow = ({ children }: { children: React.ReactNode }) => {
   return (
     <motion.div

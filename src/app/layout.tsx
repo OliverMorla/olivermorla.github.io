@@ -11,9 +11,11 @@ import Footer from "@/components/ui/Footer";
 // Third-Party Utilities
 import { GoogleAnalytics } from "@next/third-parties/google";
 
+// Provider Imports
+import { ThemeProvider } from "@/providers/theme-provider";
+
 // Global Stylesheet Import
 import "./globals.css";
-import { ThemeProvider } from "@/providers/theme-provider";
 
 const roboto = Roboto({
   subsets: ["latin"],

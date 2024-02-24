@@ -1,5 +1,5 @@
 import { certifications } from "@/constants";
-import CertificationCard from "@/components/ui/Certifications/Card";
+import CertificationCard from "@/components/ui/Cards/Certification";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 const CertificationsSection = () => {

@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom Properties */
 :root {
   --color-dark-gray: #171717;
   /* Primary - Dark gray for backgrounds or text */
@@ -23,6 +24,7 @@
   /* Nonary - Eerie black for text or overlay backgrounds */
 }
 
+/* Global Styles */
 *,
 *::before,
 *::after {
@@ -44,6 +46,7 @@ body {
   flex-grow: 1;
 }
 
+/* Scrollbar Styles */
 ::-webkit-scrollbar {
   width: 5px;
   height: 5px;

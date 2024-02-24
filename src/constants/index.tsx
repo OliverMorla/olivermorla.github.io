@@ -15,6 +15,7 @@ import {
 } from "@fortawesome/free-brands-svg-icons";
 
 import { faArrowAltCircleDown } from "@fortawesome/free-regular-svg-icons";
+import { faSchool } from "@fortawesome/free-solid-svg-icons";
 
 const navPrimaryLinks = [
   {
@@ -246,6 +247,7 @@ const education = [
     institution: "New York City College of Technology (NYCCT)",
     degree: "Bachelor of Technology in Computer Systems Technology",
     graduationYear: "Already Graduated",
+    fontAwesomeIconUrl: faSchool,
   },
 ];
 

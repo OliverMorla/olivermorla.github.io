@@ -1,6 +1,9 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+// Import React
+import React from "react";
+import Image from "next/image";
+
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
@@ -11,8 +14,6 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
-import Image from "next/image";
 
 const Carousel = ({ images }: { images: any[] }) => {
   return (

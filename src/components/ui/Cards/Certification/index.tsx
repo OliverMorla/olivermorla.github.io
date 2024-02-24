@@ -1,3 +1,5 @@
+"use client";
+
 import { faCertificate } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

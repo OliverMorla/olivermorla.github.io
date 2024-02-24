@@ -1,7 +1,4 @@
 import { education, experienceHistory, achievements } from "@/constants";
-
-import { faSchool } from "@fortawesome/free-solid-svg-icons";
-
 import ExperienceCard from "@/components/ui/Cards/Experience";
 import EducationCard from "@/components/ui/Cards/Education";
 import SectionTitle from "@/components/ui/SectionTitle";
@@ -56,7 +53,7 @@ const ExperiencesSection = () => {
                 key={index}
                 educationInstitution={education.institution}
                 educationDegree={education.degree}
-                fontAwesomeIconUrl={faSchool}
+                fontAwesomeIconUrl={education.fontAwesomeIconUrl}
               />
             ))}
           </div>

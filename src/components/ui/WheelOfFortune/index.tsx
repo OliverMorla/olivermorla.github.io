@@ -1,8 +1,8 @@
 "use client";
 
+import { skillsIcons } from "@/constants";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { skillsIcons } from "@/constants";
 import ProgresBar from "../ProgressBar";
 
 const WheelOfFortune = ({ children }: { children: React.ReactNode }) => {
