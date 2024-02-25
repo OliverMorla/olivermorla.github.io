@@ -31,7 +31,7 @@ const ServiceCard = ({
         boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.5)",
       }}
     >
-      <h1 className="text-6xl font-bold text-center tracking-tighter text-[--tertiary]">
+      <h1 className="text-6xl font-bold text-center tracking-tighter max-sm:text-4xl">
         {title}
       </h1>
       <p className="opacity-80 text-base">{description}</p>

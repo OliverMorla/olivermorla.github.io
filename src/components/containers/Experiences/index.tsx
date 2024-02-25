@@ -59,7 +59,7 @@ const ExperiencesSection = () => {
           </div>
         </div>
 
-        <div className="max-w-[600px]">
+        <div className="max-w-[600px] w-full">
           <SectionTitle
             title={"Achievements"}
             desc={

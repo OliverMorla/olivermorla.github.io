@@ -19,7 +19,7 @@ const AchievementCard = ({
         transition: { duration: 0.5, delay: 0.3 },
       }}
     >
-      <h2 className="font-bold text-xl">{description}</h2>
+      <h2 className="font-bold text-xl text-center">{description}</h2>
       <p className="opacity-60">{impact}</p>
     </motion.div>
   );
