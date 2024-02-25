@@ -11,9 +11,9 @@ const CertificationCard = ({ title, institution }: CertificationCardProps) => {
         boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.4)",
       }}
     >
-      <h4 className="font-bold text-4xl tracking-tighter text-center">
+      <h1 className="font-bold text-4xl tracking-tighter text-center">
         {title}
-      </h4>
+      </h1>
       <FontAwesomeIcon
         icon={faCertificate}
         width={400}

@@ -23,6 +23,7 @@ const Button = ({ title, iconUrl, fontAwesomeIconUrl }: ButtonProps) => {
             ease: "easeOut",
           },
         }}
+        aria-label={title}
       >
         <span>{title}</span>
         {fontAwesomeIconUrl && (

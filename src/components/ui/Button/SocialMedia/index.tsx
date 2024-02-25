@@ -20,10 +20,10 @@ const SocialMediaButton = ({
       }}
       whileHover={{
         scale: 1.1,
-        color: "var( --color-royal-purple)"
+        color: "var( --color-royal-purple)",
       }}
     >
-      <Link href={pathUrl}>
+      <Link href={pathUrl} aria-label={title}>
         <FontAwesomeIcon icon={iconUrl} />
       </Link>
     </motion.li>

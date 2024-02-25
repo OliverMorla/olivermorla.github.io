@@ -10,7 +10,10 @@ const QuestionForm = () => {
         className="bg-transparent border-b-[1px] border-b-[--color-electric-purple]"
         placeholder="Enter your email"
       />
-      <button className="bg-[--color-electric-purple] border-b-[1px] border-b-[--color-electric-purple]">
+      <button
+        className="bg-[--color-electric-purple] border-b-[1px] border-b-[--color-electric-purple]"
+        aria-label="Send email"
+      >
         <FontAwesomeIcon icon={faPaperPlane} width={25} height={25} />
       </button>
     </form>

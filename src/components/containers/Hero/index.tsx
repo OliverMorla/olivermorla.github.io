@@ -120,21 +120,21 @@ const HeroSection = () => {
             <Button title={"Hire me"} fontAwesomeIconUrl={faPaperPlane} />
           </Link>
           <div className="flex flex-col items-center">
-            <h3 className="text-xl font-bold flex max-sm:text-base">
+            <h1 className="text-xl font-bold flex max-sm:text-base">
               <Counter targetCount={4} duration={900} /> <span>+ Yrs</span>
-            </h3>
+            </h1>
             <p className="opacity-60 font-light max-sm:text-xs">Experience</p>
           </div>
           <div className="flex flex-col items-center">
-            <h3 className="text-xl font-bold flex max-sm:text-base">
+            <h1 className="text-xl font-bold flex max-sm:text-base">
               <Counter targetCount={18} duration={150} /> <span> + </span>
-            </h3>
+            </h1>
             <p className="opacity-60 font-light max-sm:text-xs">Projects</p>
           </div>
           <div className="flex flex-col items-center">
-            <h3 className="text-xl font-bold flex max-sm:text-base">
+            <h1 className="text-xl font-bold flex max-sm:text-base">
               <Counter targetCount={23} duration={150} />
-            </h3>
+            </h1>
             <p className="opacity-60 font-light max-sm:text-xs">Age</p>
           </div>
         </motion.div>
