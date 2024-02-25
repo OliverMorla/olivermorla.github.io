@@ -1,4 +1,4 @@
-import ResumeFrame from "@/components/ui/Resume/Frame";
+import ResumeFrame from "@/components/ui/Frames/Resume";
 
 const Resume = () => {
   return (

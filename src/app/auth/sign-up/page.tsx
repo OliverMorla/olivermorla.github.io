@@ -1,7 +1,7 @@
 import { faTools } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Blog = () => {
+const SignUp = () => {
   return (
     <main className="h-screen bg-[--color-dark-gray] pt-[115px] pb-10 text-white px-10 flex justify-center items-center flex-col">
       <h1 className="font-bold text-4xl">This page is under construction</h1>
@@ -13,4 +13,4 @@ const Blog = () => {
   );
 };
 
-export default Blog;
+export default SignUp;
