@@ -22,6 +22,9 @@
   /* Octonary - Electric purple for call-to-action buttons */
   --color-eerie-black: #1a1a1d;
   /* Nonary - Eerie black for text or overlay backgrounds */
+  --color-light-gray: #E1E1E8;
+  /* Denary - Light gray for light mode backgrounds */
+  --text-color: #FFFFFF;
 }
 
 /* Global Styles */

@@ -7,8 +7,9 @@ import NavLink from "@/components/ui/Header/NavLink";
 import MobileHeader from "@/components/ui/MobileHeader";
 import NavLinkWithMenu from "@/components/ui/Header/NavLinkWithMenu";
 import { motion } from "framer-motion";
+import ThemeToggler from "./ThemeToggler";
 
-const Header = () => {  
+const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   useEffect(() => {
@@ -36,7 +37,7 @@ const Header = () => {
         onHoverStart={() => setShowMenu(false)}
       >
         <h1 className="text-white font-bold md:hidden">Oliver Morla</h1>
-        <ul className="flex gap-10 max-lg:flex-wrap items-center text-white max-md:hidden">
+        <ul className="flex gap-10 max-lg:flex-wrap items-center text-white max-md:hidden w-full justify-center">
           {navPrimaryLinks.map((item, index) => {
             if (item.title !== "About") {
               return (
@@ -61,6 +62,7 @@ const Header = () => {
               );
             }
           })}
+        <ThemeToggler />
         </ul>
         <MobileHeader />
       </motion.nav>

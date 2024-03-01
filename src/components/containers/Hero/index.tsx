@@ -16,8 +16,10 @@ import { Counter } from "@/components/helpers/Counter";
 
 import TypewriterComponent from "typewriter-effect";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import { useTheme } from "@/providers/theme-provider";
 
 const HeroSection = () => {
+  const { currentTheme } = useTheme();
   const typewriterInit = useCallback((typewriter: any) => {
     typewriter
       .pauseFor(700)
@@ -30,7 +32,7 @@ const HeroSection = () => {
   }, []);
   return (
     <section
-      className="relative h-screen bg-[--color-dark-gray] text-white flex items-center justify-evenly flex-wrap max-sm:p-10 max-lg:pt-[88px]"
+      className={`relative h-screen bg-[--color-dark-gray] text-[--text-color] flex items-center justify-evenly flex-wrap max-sm:p-10 max-lg:pt-[88px] transition-all`}
       id="home"
     >
       <div className="max-w-[500px] w-full flex flex-col gap-4">
@@ -116,7 +118,7 @@ const HeroSection = () => {
             },
           }}
         >
-          <Link href={"#contact"}>
+          <Link href={"#contact"} className="text-[--color-dark-gray]">
             <Button title={"Hire me"} fontAwesomeIconUrl={faPaperPlane} />
           </Link>
           <div className="flex flex-col items-center">
@@ -181,7 +183,7 @@ const HeroSection = () => {
       </motion.div>
 
       <motion.div
-        className="w-full bottom-0 translate-y-[50%] z-30 absolute bg-[var(--color-eerie-black)] py-6 cursor-pointer"
+        className={`w-full bottom-0 translate-y-[50%] z-30 absolute bg-[--color-eerie-black] py-6 cursor-pointer transition-all text-white`}
         initial={{
           opacity: 0,
         }}

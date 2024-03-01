@@ -16,7 +16,6 @@ import BackgroundLines from "@/components/ui/BackgroundLines";
 const Home = () => {
   return (
     <main className="h-full">
-      
       {/* Home Page Sections */}
       <HeroSection />
       <AboutSection />

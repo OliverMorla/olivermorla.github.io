@@ -11,7 +11,7 @@ const AchievementCard = ({
 }) => {
   return (
     <motion.div
-      className="flex flex-col items-center"
+      className="flex flex-col items-center text-[--text-color]"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{
         opacity: 1,

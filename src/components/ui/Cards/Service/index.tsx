@@ -10,7 +10,7 @@ const ServiceCard = ({
 }: ServiceCardProps) => {
   return (
     <motion.div
-      className="flex flex-col w-[525px] max-sm:w-full items-center cursor-pointer p-[20px] rounded-[10px] gap-2"
+      className="flex flex-col w-[525px] max-sm:w-full items-center cursor-pointer p-[20px] rounded-[10px] gap-2 text-[--text-color]"
       style={{
         boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
       }}

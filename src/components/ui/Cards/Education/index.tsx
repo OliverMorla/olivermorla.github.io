@@ -10,7 +10,7 @@ const EducationCard = ({
 }: EducationCardProps) => {
   return (
     <motion.div
-      className="flex flex-col"
+      className="flex flex-col text-[--text-color]"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{
         opacity: 1,

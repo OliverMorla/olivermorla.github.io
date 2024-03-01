@@ -5,7 +5,7 @@ import ServiceCard from "@/components/ui/Cards/Service";
 const ServicesSection = () => {
   return (
     <section
-      className="h-auto bg-[--color-dark-gray] text-white flex flex-col p-10"
+      className="h-auto bg-[--color-dark-gray] text-[--text-color] flex flex-col p-10"
       id="services"
     >
       <SectionTitle

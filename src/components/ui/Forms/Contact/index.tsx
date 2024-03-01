@@ -32,7 +32,7 @@ const ContactForm = () => {
 
   return (
     <motion.form
-      className="flex flex-col w-full "
+      className="flex flex-col w-full"
       style={{
         boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.1)",
         padding: "20px",
@@ -74,7 +74,7 @@ const ContactForm = () => {
           className="p-4 border-b-gray bg-transparent border-b-[1px]"
         />
         <button
-          className="bg-[--tertiary] px-6 py-4 font-bold rounded-2xl flex gap-2 mr-2 hover:bg-[--tertiary-hover] transition-all w-fit text-white"
+          className="bg-[--color-dark-gray] px-6 py-4 font-bold rounded-2xl flex gap-2 mr-2 hover:bg-[--tertiary-hover] transition-all w-fit text-[--text-color]"
           onClick={handleFormSubmit}
         >
           Send Message

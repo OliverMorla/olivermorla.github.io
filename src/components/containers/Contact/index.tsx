@@ -6,7 +6,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 const ContactSection = () => {
   return (
     <section
-      className="w-full bg-[--color-dark-gray] flex justify-between items-center flex-col p-40 max-sm:p-10 max-sm:justify-center max-sm:items-center max-md:gap-4 max-sm:h-auto max-sm:pt-20 gap-4 text-white"
+      className="w-full bg-[--color-dark-gray] flex justify-between items-center flex-col p-40 max-sm:p-10 max-sm:justify-center max-sm:items-center max-md:gap-4 max-sm:h-auto max-sm:pt-20 gap-4 text-[--text-color]"
       id="contact"
     >
       <SectionTitle

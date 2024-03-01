@@ -55,7 +55,6 @@ export default function RootLayout({
   if (!process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID) return null;
 
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
-
   return (
     <html lang="en">
       <ThemeProvider>

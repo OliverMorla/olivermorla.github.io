@@ -7,19 +7,19 @@ import Button from "@/components/ui/Button";
 const AboutSection = () => {
   return (
     <section
-      className="h-auto bg-[--color-dark-gray] text-white flex justify-evenly py-[88px] px-10 flex-wrap max-sm:items-center max-sm:flex-col max-lg:gap-10"
+      className="h-auto bg-[--color-dark-gray] text-[--text-color] flex justify-evenly py-[88px] px-10 flex-wrap max-sm:items-center max-sm:flex-col max-lg:gap-10"
       id="about"
     >
       <div className="flex max-sm:flex-col max-sm:items-center">
         <h1
-          className="uppercase font-bold text-7xl text-white rotate-180 w-fit text-end max-sm:hidden bg-[--color-eerie-black] px-2"
+          className="uppercase font-bold text-7xl text-white rotate-180 w-fit text-end max-sm:hidden bg-[--color-eerie-black] p-2"
           style={{
             writingMode: "vertical-rl",
           }}
         >
           About
         </h1>
-        <h1 className="uppercase font-bold text-7xl text-white sm:hidden text-center">
+        <h1 className="uppercase font-bold text-7xl text-[--text-color] sm:hidden text-center">
           About
         </h1>
         <div className="bg-white h-28 w-[1px] max-sm:hidden"></div>
@@ -33,7 +33,7 @@ const AboutSection = () => {
             alt="self-portrait-2"
           />
           <p
-            className="border-[--color-slate-gray] border-[1px] p-4 relative before:content-['Summary'] before:uppercase before:block before:absolute before:top-0 before:left-0 before:translate-y-[-50%] before:translate-x-[5%] before:px-4 before:bg-[--color-eerie-black] before:text-5xl before:font-bold pt-8 before:border-[--color-slate-gray] before:border-[1px]"
+            className="border-[--color-slate-gray] border-[1px] p-4 relative before:content-['Summary'] before:uppercase before:block before:absolute before:top-0 before:left-0 before:translate-y-[-50%] before:translate-x-[5%] before:px-4 before:bg-[--color-eerie-black] before:text-5xl before:text-white before:font-bold pt-8 before:border-[--color-slate-gray] before:border-[1px]"
             style={{
               boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.4)",
             }}
@@ -51,7 +51,7 @@ const AboutSection = () => {
 
       <div className="flex flex-col justify-between">
         <div className="max-w-[450px] flex flex-col gap-1">
-          <h1 className="uppercase font-bold text-5xl text-white tracking-tight max-sm:text-2xl">
+          <h1 className="uppercase font-bold text-5xl text-[--text-color] tracking-tight max-sm:text-2xl">
             Professional Experience
           </h1>
           <div className="bg-white h-[1px] w-28"></div>
@@ -67,7 +67,7 @@ const AboutSection = () => {
         </div>
 
         <div className="max-w-[450px] flex flex-col gap-1">
-          <h1 className="uppercase font-bold text-5xl text-white tracking-tight max-sm:text-2xl">
+          <h1 className="uppercase font-bold text-5xl text-[--text-color] tracking-tight max-sm:text-2xl">
             Technical Toolkit
           </h1>
           <div className="bg-white h-[1px] w-28"></div>
@@ -81,7 +81,7 @@ const AboutSection = () => {
         </div>
 
         <div className="max-w-[450px] flex flex-col items-start gap-1">
-          <h1 className="uppercase font-bold text-5xl text-white tracking-tight max-sm:text-2xl">
+          <h1 className="uppercase font-bold text-5xl text-[--text-color] tracking-tight max-sm:text-2xl">
             Let's Connect
           </h1>
           <div className="bg-white h-[1px] w-28"></div>

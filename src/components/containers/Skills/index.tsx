@@ -4,7 +4,7 @@ import WheelOfFortune from "@/components/ui/WheelOfFortune";
 const SkillsSection = () => {
   return (
     <section
-      className="h-screen bg-[--color-dark-gray] text-white flex justify-center items-center flex-col p-10 overflow-hidden"
+      className="h-screen bg-[--color-dark-gray] text-[--text-color] flex justify-center items-center flex-col p-10 overflow-hidden"
       id="skills"
     >
       <WheelOfFortune>

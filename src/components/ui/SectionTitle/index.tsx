@@ -16,7 +16,7 @@ const SectionTitle = ({ title, desc }: SectionTitleProps) => {
       <h1 className="font-bold text-white text-7xl max-sm:text-5xl tracking-tighter bg-[--color-eerie-black] p-2 uppercase">
         {title}
       </h1>
-      <p className="opacity-60 max-sm:text-sm text-white">{desc}</p>
+      <p className="opacity-60 max-sm:text-sm text-[--text-color]">{desc}</p>
     </motion.div>
   );
 };
