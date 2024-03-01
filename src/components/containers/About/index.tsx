@@ -91,7 +91,7 @@ const AboutSection = () => {
             ready to bring your vision to life with the same dedication and
             precision that have marked my career to date.
           </p>
-          <Link href="#contact">
+          <Link href="#contact" className="text-white">
             <Button title={"Contact me"} />
           </Link>
         </div>

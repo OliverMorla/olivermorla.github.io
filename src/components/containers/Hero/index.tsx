@@ -16,10 +16,8 @@ import { Counter } from "@/components/helpers/Counter";
 
 import TypewriterComponent from "typewriter-effect";
 import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
-import { useTheme } from "@/providers/theme-provider";
 
 const HeroSection = () => {
-  const { currentTheme } = useTheme();
   const typewriterInit = useCallback((typewriter: any) => {
     typewriter
       .pauseFor(700)
@@ -118,7 +116,7 @@ const HeroSection = () => {
             },
           }}
         >
-          <Link href={"#contact"} className="text-[--color-dark-gray]">
+          <Link href={"#contact"} className="text-white">
             <Button title={"Hire me"} fontAwesomeIconUrl={faPaperPlane} />
           </Link>
           <div className="flex flex-col items-center">

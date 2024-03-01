@@ -5,7 +5,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 const CertificationsSection = () => {
   return (
     <section
-      className="h-auto bg-[--color-dark-gray] text-white flex justify-center items-center flex-wrap p-10"
+      className="h-auto bg-[--color-dark-gray] text-[--text-color] flex justify-center items-center flex-wrap p-10"
       id="certifications"
       style={{
         paddingTop: "250px",

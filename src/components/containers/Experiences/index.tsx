@@ -8,7 +8,7 @@ import Arrow from "@/components/ui/Arrow";
 const ExperiencesSection = () => {
   return (
     <section
-      className="relative h-auto bg-[--color-dark-gray] text-white w-full flex items-center flex-col p-10 gap-10"
+      className="relative h-auto bg-[--color-dark-gray] text-[--text-color] w-full flex items-center flex-col p-10 gap-10"
       id="experiences"
     >
       <SectionTitle

@@ -50,7 +50,7 @@ const ContactForm = () => {
     >
       <div>
         <h1 className="text-2xl font-bold tracking-tighter">Get In Touch</h1>
-        <div className="block w-20 h-[1px] bg-[--tertiary]"></div>
+        <div className="block w-20 h-[1px] bg-[--color-royal-purple]"></div>
       </div>
       <div className="flex flex-col gap-4 mt-4">
         <input
@@ -74,7 +74,7 @@ const ContactForm = () => {
           className="p-4 border-b-gray bg-transparent border-b-[1px]"
         />
         <button
-          className="bg-[--color-dark-gray] px-6 py-4 font-bold rounded-2xl flex gap-2 mr-2 hover:bg-[--tertiary-hover] transition-all w-fit text-[--text-color]"
+          className="bg-[--color-eerie-black] px-6 py-4 font-bold rounded-2xl flex gap-2 mr-2 hover:bg-[--tertiary-hover] transition-all w-fit text-white"
           onClick={handleFormSubmit}
         >
           Send Message

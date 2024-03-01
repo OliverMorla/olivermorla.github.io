@@ -11,7 +11,7 @@ const ExperienceCard = ({
 }: ExperienceCardProps) => {
   return (
     <motion.div
-      className="flex justify-center max-sm:flex-col text-[--text-color]"
+      className="flex justify-center max-sm:flex-col"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{
         opacity: 1,
@@ -20,7 +20,7 @@ const ExperienceCard = ({
       }}
     >
       <div className="flex flex-col items-center min-w-[250px]">
-        <h2 className="font-bold text-xl text-[--text-color]">{companyName}</h2>
+        <h2 className="font-bold text-xl">{companyName}</h2>
         {companyName !== "SR Tech" && (
           <div className="h-full w-[1px] bg-[--color-electric-purple]"></div>
         )}

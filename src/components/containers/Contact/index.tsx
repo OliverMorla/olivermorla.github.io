@@ -25,7 +25,7 @@ const ContactSection = () => {
             professional inquiries, collaboration proposals, or if you just want
             to chat about the latest in data engineering.
           </p>
-          <ul className="text-[--tertiary] flex text-2xl justify-between mt-4">
+          <ul className="flex text-2xl justify-between mt-4">
             {socialLinks.map((item, index) => (
               <SocialMediaButton
                 key={index}

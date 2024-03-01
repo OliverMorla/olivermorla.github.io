@@ -10,7 +10,7 @@ const EducationCard = ({
 }: EducationCardProps) => {
   return (
     <motion.div
-      className="flex flex-col text-[--text-color]"
+      className="flex flex-col"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{
         opacity: 1,
@@ -23,7 +23,7 @@ const EducationCard = ({
           <motion.span className="flex bg-gradient-to-r from-indigo-500 to to-blue-500 p-4 rounded-2xl font-semibold text-white items-center gap-2">
             <FontAwesomeIcon
               icon={fontAwesomeIconUrl}
-              className="text-4xl text-[--tertiary]"
+              className="text-4xl"
             />
 
             {educationInstitution}

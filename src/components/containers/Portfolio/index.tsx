@@ -5,7 +5,7 @@ import SectionTitle from "@/components/ui/SectionTitle";
 const PortfolioSection = () => {
   return (
     <section
-      className="h-screen bg-[--color-dark-gray] text-white flex flex-col justify-center items-center p-10 max-sm:h-auto"
+      className="h-screen bg-[--color-dark-gray] text-[--text-color] flex flex-col justify-center items-center p-10 max-sm:h-auto"
       id="portfolio"
     >
       <SectionTitle
