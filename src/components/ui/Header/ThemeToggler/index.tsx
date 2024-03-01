@@ -52,6 +52,7 @@ const ThemeToggler = () => {
               y: 0,
               opacity: 1,
             }}
+            aria-label="light-mode"
           >
             <FontAwesomeIcon icon={faSun} width={25} height={25} />
           </motion.button>
@@ -70,6 +71,7 @@ const ThemeToggler = () => {
               y: 0,
               opacity: 1,
             }}
+            aria-label="dark-mode"
           >
             <FontAwesomeIcon icon={faMoon} width={25} height={25} />
           </motion.button>
