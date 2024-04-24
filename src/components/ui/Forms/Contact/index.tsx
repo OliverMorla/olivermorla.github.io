@@ -17,7 +17,7 @@ const ContactForm = () => {
     });
   };
 
-  const handleFormSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleFormSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
     if (!formInput.email.includes("@") || !formInput.email.includes("."))
@@ -27,7 +27,22 @@ const ContactForm = () => {
 
     if (!formInput.message) return alert("Please fill in the message field");
 
-    alert("Form submitted (not really)!");
+    const res = await fetch("/api/contact/email", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formInput),
+    });
+
+    const data = await res.json();
+
+    if (!data.ok) {
+      alert(data.message);
+      return;
+    }
+
+    alert(data.message);
   };
 
   return (
