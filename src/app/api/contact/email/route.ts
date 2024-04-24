@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
     })
     .request(emailData);
 
+  //  If the email failed to send, return an error response
   if (sendMail.response.statusText !== "OK") {
     return NextResponse.json({
       ok: false,
@@ -35,6 +36,7 @@ export async function POST(req: NextRequest) {
     });
   }
 
+   // If the email was sent successfully, return a success response
   return NextResponse.json({
     ok: true,
     message: "Email sent successfully.",
