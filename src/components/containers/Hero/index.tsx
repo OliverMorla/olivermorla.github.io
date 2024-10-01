@@ -1,124 +1,84 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useCallback } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 
 import Image from "next/image";
-import Link from "next/link";
 
-import { socialLinks } from "@/constants";
+import { socialMediaLinks } from "@/constants";
 
-import Button from "@/components/ui/Button";
-import SocialMediaButton from "@/components/ui/Button/SocialMedia";
 import ParallaxText from "@/components/ui/ParallelText";
 import { Counter } from "@/components/helpers/Counter";
 
-import TypewriterComponent from "typewriter-effect";
-import { faPaperPlane } from "@fortawesome/free-regular-svg-icons";
+import Typewriter from "typewriter-effect";
+import ButtonLink from "@/components/shared/ui/ButtonLink";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AnimatedText from "@/components/helpers/AnimatedText";
+import AnimatedHeading from "@/components/helpers/AnimatedHeading";
+import Link from "next/link";
+import AnimatedDiv from "@/components/helpers/AnimatedDiv";
+import AnimatedUl from "@/components/helpers/AnimatedUl";
 
 const HeroSection = () => {
-  const typewriterInit = useCallback((typewriter: any) => {
-    typewriter
-      .pauseFor(700)
-      .typeString("Oliver")
-      .pauseFor(4000)
-      .deleteAll()
-      .pauseFor(2000)
-      .typeString("a")
-      .start();
-  }, []);
   return (
     <section
-      className={`relative h-screen bg-[--color-dark-gray] text-[--text-color] flex items-center justify-evenly flex-wrap max-sm:p-10 max-lg:pt-[88px] transition-all`}
       id="home"
+      className={`relative min-h-screen dark:bg-[var(--color-tertiary-darker)] dark:text-[var(--color-text-primary)] text-[var(--color-tertiary)] flex items-center justify-evenly gap-6 max-lg:flex-col p-8 max-sm:p-4 max-lg:gap-10 max-lg:justify-center`}
     >
-      <div className="max-w-[500px] w-full flex flex-col gap-4">
-        <div className="flex flex-col">
+      <div className="w-full flex flex-col gap-4 max-w-xl">
+        <div className="flex flex-col gap-2">
+          <AnimatedText y={-40} className="text-sm bg-blue-100 dark:bg-blue-900 rounded-lg px-3 py-1 w-fit font-medium">
+            Ready to start your next project? Let's make it happen together.
+          </AnimatedText>
           <div className="flex items-center gap-2">
-            <motion.p
-              className="font-light"
-              initial={{
-                x: -100,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 1,
-                  delay: 0.5,
-                },
-              }}
-            >
+            <AnimatedText className="font-light" x={-40} delay={0.4}>
               Here There! I'm
-            </motion.p>
-            <motion.h1
-              className="text-5xl max-sm:text-4xl"
-              initial={{
-                x: 100,
-                opacity: 0,
-              }}
-              animate={{
-                x: 0,
-                opacity: 1,
-                transition: {
-                  duration: 1,
-                  delay: 0.5,
-                },
-              }}
+            </AnimatedText>
+            <AnimatedHeading
+              className="font-bold text-6xl max-sm:text-4xl"
+              x={40}
+              delay={0.6}
             >
-              <TypewriterComponent onInit={typewriterInit} />
-            </motion.h1>
+              <Typewriter
+                onInit={(typewriter) => {
+                  typewriter.pauseFor(1200).typeString("Oliver").start();
+                }}
+              />
+            </AnimatedHeading>
+            <AnimatedText className="font-light" x={-40} delay={2}>
+              And I'm a
+            </AnimatedText>
           </div>
-          <motion.h1
+          <AnimatedHeading
             className="text-5xl max-sm:text-4xl"
-            initial={{
-              x: 100,
-              opacity: 0,
-            }}
-            animate={{
-              x: 0,
-              opacity: 1,
-              transition: {
-                duration: 1,
-                delay: 0.7,
-              },
-            }}
+            x={40}
+            delay={2.4}
           >
-            <TypewriterComponent
+            <Typewriter
+              onInit={(typewriter) => {
+                typewriter
+                  .pauseFor(2200)
+                  .typeString("Web Developer")
+                  .pauseFor(300)
+                  .deleteAll()
+                  .typeString("UI/UX Designer")
+                  .pauseFor(300)
+                  .deleteAll()
+                  .typeString("Software Engineer")
+                  .start();
+              }}
               options={{
-                strings: [
-                  "Web Developer",
-                  "UI/UX Designer",
-                  "Software Engineer",
-                ],
-                autoStart: true,
                 loop: true,
-                delay: 200,
               }}
             />
-          </motion.h1>
+          </AnimatedHeading>
         </div>
 
-        <motion.div
-          className="flex justify-between"
-          initial={{
-            x: 100,
-            opacity: 0,
-          }}
-          animate={{
-            x: 0,
-            opacity: 1,
-            transition: {
-              duration: 1,
-              delay: 0.9,
-            },
-          }}
-        >
-          <Link href={"#contact"} className="text-white">
-            <Button title={"Hire me"} fontAwesomeIconUrl={faPaperPlane} />
-          </Link>
+        <AnimatedDiv x={40} className="flex justify-between" delay={0.8}>
+          <ButtonLink href="#contact" faPresetIcon="paperPlane">
+            Hire me
+          </ButtonLink>
           <div className="flex flex-col items-center">
             <h1 className="text-xl font-bold flex max-sm:text-base">
               <Counter targetCount={4} duration={900} /> <span>+ Yrs</span>
@@ -137,21 +97,14 @@ const HeroSection = () => {
             </h1>
             <p className="opacity-60 font-light max-sm:text-xs">Age</p>
           </div>
-        </motion.div>
-
-        <div className="text-4xl">
-          <ul className="flex justify-between">
-            {socialLinks.map((item, index) => (
-              <SocialMediaButton
-                key={index}
-                title={item.title}
-                pathUrl={item.pathUrl}
-                iconUrl={item.iconUrl}
-                transitionDelay={index}
-              />
-            ))}
-          </ul>
-        </div>
+        </AnimatedDiv>
+        <AnimatedUl y={40} delay={1} className="flex justify-between text-4xl">
+          {socialMediaLinks.map((item, index) => (
+            <Link key={index} href={item.href}>
+              <FontAwesomeIcon icon={item.iconUrl} />
+            </Link>
+          ))}
+        </AnimatedUl>
       </div>
 
       <motion.div
@@ -181,7 +134,7 @@ const HeroSection = () => {
       </motion.div>
 
       <motion.div
-        className={`w-full bottom-0 translate-y-[50%] z-30 absolute bg-[--color-eerie-black] py-6 cursor-pointer transition-all text-white`}
+        className={`w-full bottom-0 z-30 absolute bg-neutral-900 py-6 cursor-pointer transition-all text-white`}
         initial={{
           opacity: 0,
         }}
@@ -194,7 +147,7 @@ const HeroSection = () => {
         }}
       >
         <ParallaxText baseVelocity={-2}>
-          Web Development, App Development, UI/UX Web Design
+          Web Development. Mobile Development. UI/UX Web Design.
         </ParallaxText>
       </motion.div>
     </section>

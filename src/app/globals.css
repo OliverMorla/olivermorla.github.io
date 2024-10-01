@@ -2,39 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Custom Properties */
 :root {
-  --color-dark-gray: #171717;
-  /* Primary - Dark gray for backgrounds or text */
-  --color-charcoal: #282828;
-  /* Secondary - Charcoal for secondary elements or text */
-  --color-gunmetal: #3a3a3c;
-  /* Tertiary - Gunmetal for borders or tertiary elements */
-  --color-slate-gray: #4a4a4d;
-  /* Quaternary - Slate gray for disabled states or shadows */
-  --color-deep-indigo: #0c0032;
-  /* Quinary - Deep indigo for accents or highlights */
-  --color-dark-purple: #190061;
-  /* Senary - Dark purple for interactive elements */
-  --color-royal-purple: #240090;
-  /* Septenary - Royal purple for vibrant UI elements */
-  --color-electric-purple: #3500d3;
-  /* Octonary - Electric purple for call-to-action buttons */
-  --color-eerie-black: #1a1a1d;
-  /* Nonary - Eerie black for text or overlay backgrounds */
-  --color-light-gray: #E1E1E8;
-  /* Denary - Light gray for light mode backgrounds */
-  --text-color: #FFFFFF;
-  /* Text color for light mode */
+  /* Primary Colors */
+  --color-primary: #3500d3;
+  --color-primary-light: #5a00ff;
+  --color-primary-dark: #240090;
+
+  /* Secondary Colors */
+  --color-secondary: #190061;
+  --color-secondary-light: #240090;
+  --color-secondary-dark: #0c0032;
+
+  /* Tertiary Colors */
+  --color-tertiary: #171717;
+  --color-tertiary-light: #282828;
+  --color-tertiary-dark: #0c0032;
+  --color-tertiary-darker: #121212;
+
+  /* Neutral Colors */
+  --color-background: #171717;
+  --color-surface: #282828;
+  --color-border: #3a3a3c;
+  --color-disabled: #4a4a4d;
+  --color-overlay: rgba(26, 26, 29, 0.8); /* Using rgba for overlays */
+  /* Create a utility classs to change the opacity of a current variable */
+  .opacity-50 {
+    opacity: 0.5;
+  }
+
+  .opacity-75 {
+    opacity: 0.75;
+  }
+
+  .opacity-100 {
+    opacity: 1;
+  }
+
+  /* Text Colors */
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #E1E1E8;
+
+  /* Semantic Colors */
+  --color-success: #28a745;
+  --color-error: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
 }
 
 /* Global Styles */
 *,
 *::before,
 *::after {
-  box-sizing: border-box;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html {
@@ -57,15 +78,15 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-dark-gray);
+  background: var(--color-tertiary-light);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--color-gunmetal);
+  background: var(--color-primary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: var(--color-primary-dark);
 }
 
 @layer utilities {

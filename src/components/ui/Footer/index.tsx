@@ -1,10 +1,11 @@
 /* eslint-disable react/no-unescaped-entities */
 
-import { footerPrimaryLinks, socialLinks } from "@/constants";
+import { footerPrimaryLinks, socialMediaLinks } from "@/constants";
 
-import SocialMediaButton from "@/components/ui/Button/SocialMedia";
+// import SocialMediaButton from "@/components/ui/Button/SocialMedia";
 import NavLink from "@/components/ui/Footer/NavLink";
 import QuestionForm from "@/components/ui/Footer/QuestionForm";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Footer = () => {
   return (
@@ -25,14 +26,8 @@ const Footer = () => {
           </p>
           <div className="flex">
             <ul className="list-none flex gap-10">
-              {socialLinks.map((item, index) => (
-                <SocialMediaButton
-                  key={index}
-                  title={item.title}
-                  pathUrl={item.pathUrl}
-                  iconUrl={item.iconUrl}
-                  transitionDelay={index * 0.1 + 0.3}
-                />
+              {socialMediaLinks.map((item, index) => (
+                <FontAwesomeIcon key={index} icon={item.iconUrl} />
               ))}
             </ul>
           </div>
@@ -42,14 +37,14 @@ const Footer = () => {
           <h1 className="font-bold text-xl">Quick Links</h1>
           <div className="font-light opacity-80">
             <ul className="flex flex-col">
-              {footerPrimaryLinks.map((item, index) => (
+              {/* {footerPrimaryLinks.map((item, index) => (
                 <NavLink
                   key={index}
                   title={item.title}
                   pathUrl={item.pathUrl}
                   transitionDelay={index * 0.1 + 0.3}
                 />
-              ))}
+              ))} */}
             </ul>
           </div>
         </div>

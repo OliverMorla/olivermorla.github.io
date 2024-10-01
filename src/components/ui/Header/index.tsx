@@ -1,71 +1,44 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useEffect, useState } from "react";
-import { navPrimaryLinks } from "@/constants";
-import NavLink from "@/components/ui/Header/NavLink";
-import MobileHeader from "@/components/ui/MobileHeader";
-import NavLinkWithMenu from "@/components/ui/Header/NavLinkWithMenu";
-import { motion } from "framer-motion";
-import ThemeToggler from "./ThemeToggler";
-
+import React from "react";
+import Link from "next/link";
+import { headerPrimaryLinks } from "@/constants";
+import { scroll } from "framer-motion";
+import AnimatedLi from "@/components/helpers/AnimatedLi";
+import ThemeSwitcher from "@/components/helpers/ThemeSwitcher";
+import MobileNav from "../MobileNav";
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [showMenu, setShowMenu] = useState(false);
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-
-    // Attach the event listener
-    window.addEventListener("scroll", handleScroll);
-
-    // Clean up the event listener
-    return () => window.removeEventListener("scroll", handleScroll);
+  React.useEffect(() => {
+    const nav = document.querySelector("#desktop-nav");
+    scroll((progress: any) =>
+      progress > 0.04
+        ? nav?.classList.add("-translate-y-[100%]")
+        : nav?.classList.remove("-translate-y-[100%]")
+    );
   }, []);
 
   return (
-    <header className="relative">
-      <motion.nav
-        className={`fixed bg-[--color-eerie-black] flex items-center justify-center w-full z-20 transition-all p-8 max-md:justify-between duration-500 ${
-          isScrolled ? "-translate-y-full" : "translate-y-0"
-        }`}
-        onHoverStart={() => setShowMenu(false)}
+    <header className="relative z-50">
+      <nav
+        id="desktop-nav"
+        className="fixed flex items-center justify-center w-full p-8 dark:bg-neutral-900 bg-neutral-200 dark:text-neutral-100 text-neutral-800 transition-all duration-300 max-lg:hidden"
       >
-        <h1 className="text-white font-bold md:hidden">Oliver Morla</h1>
-        <ul className="flex gap-10 max-lg:flex-wrap items-center text-white max-md:hidden w-full justify-center">
-          {navPrimaryLinks.map((item, index) => {
-            if (item.title !== "About") {
-              return (
-                <NavLink
-                  key={index}
-                  title={item.title}
-                  pathUrl={item.pathUrl}
-                  transitionDelay={index}
-                />
-              );
-            } else {
-              return (
-                <NavLinkWithMenu
-                  key={index}
-                  title={item.title}
-                  pathUrl={item.pathUrl}
-                  fontAwesomeIconUrl={item.fontAwesomeIconUrl}
-                  showMenu={showMenu}
-                  setShowMenu={setShowMenu}
-                  transitionDelay={index}
-                />
-              );
-            }
-          })}
-        <ThemeToggler />
+        <ul className="flex gap-6 items-center justify-center w-full">
+          {headerPrimaryLinks.map((item, index) => (
+            <AnimatedLi key={index} y={-40} delay={index * 0.1}>
+              <Link
+                href={item.href}
+                className="px-2 py-1 dark:hover:bg-neutral-800 dark:active:bg-neutral-700 hover:bg-neutral-300 active:bg-neutral-400 transition-all ease-in-out duration-300 rounded-md"
+              >
+                {item.title}
+              </Link>
+            </AnimatedLi>
+          ))}
         </ul>
-        <MobileHeader />
-      </motion.nav>
+        <ThemeSwitcher className="absolute right-8" />
+      </nav>
+
+      <MobileNav disableScroll className="fixed top-4 right-4 lg:hidden" />
     </header>
   );
 };

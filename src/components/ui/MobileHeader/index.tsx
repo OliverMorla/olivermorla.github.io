@@ -2,8 +2,8 @@
 
 import { useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { navPrimaryLinks } from "@/constants";
-import MenuButton from "@/components/ui/MobileHeader/Menu";
+// import { navPrimaryLinks } from "@/constants";
+import MenuButton from "@/components/ui/MenuButton";
 import MobileNavLink from "@/components/ui/MobileHeader/MobileNavLink";
 
 const MobileHeader = () => {
@@ -25,7 +25,7 @@ const MobileHeader = () => {
         }`}
         ref={navListRef}
       >
-        {navPrimaryLinks.map((item, index) => (
+        {/* {navPrimaryLinks.map((item, index) => (
           <MobileNavLink
             key={index}
             title={item.title}
@@ -33,7 +33,7 @@ const MobileHeader = () => {
             transitionDelay={index * 0.1}
             isMenuOpen={isMenuOpen}
           />
-        ))}
+        ))} */}
       </ul>
     </div>
   );

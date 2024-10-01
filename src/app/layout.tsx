@@ -12,10 +12,11 @@ import Footer from "@/components/ui/Footer";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 // Provider Imports
-import { ThemeProvider } from "@/providers/theme-provider";
+import { ThemeProvider } from "next-themes";
 
 // Global Stylesheet Import
 import "./globals.css";
+import { cn } from "@/lib/utils";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -57,14 +58,14 @@ export default function RootLayout({
   const measurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
   return (
     <html lang="en">
-      <ThemeProvider>
-        <body className={roboto.className}>
+      <bodyasdasd className={cn(roboto.className, "dark:bg-neutral-900 dark:text-neutral-100 bg-neutral-100 text-neutral-900")}>
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <Header />
           {children}
           <Footer />
-          <GoogleAnalytics gaId={measurementId} />
-        </body>
-      </ThemeProvider>
+          {/* <GoogleAnalytics gaId={measurementId} /> */}
+        </ThemeProvider>
+      </bodyasdasd>
     </html>
   );
 }

@@ -1,7 +1,7 @@
-import { socialLinks } from "@/constants";
-import SocialMediaButton from "@/components/ui/Button/SocialMedia";
+import { socialMediaLinks } from "@/constants";
 import ContactForm from "@/components/ui/Forms/Contact";
 import SectionTitle from "@/components/ui/SectionTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ContactSection = () => {
   return (
@@ -26,14 +26,8 @@ const ContactSection = () => {
             to chat about the latest in data engineering.
           </p>
           <ul className="flex text-2xl justify-between mt-4">
-            {socialLinks.map((item, index) => (
-              <SocialMediaButton
-                key={index}
-                title={item.title}
-                iconUrl={item.iconUrl}
-                pathUrl={item.pathUrl}
-                transitionDelay={index}
-              />
+            {socialMediaLinks.map((item, index) => (
+              <FontAwesomeIcon key={index} icon={item.iconUrl} />
             ))}
           </ul>
         </div>
