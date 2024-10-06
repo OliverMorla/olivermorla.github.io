@@ -8,11 +8,12 @@ import {
 } from "framer-motion";
 import { ComponentPropsWithoutRef, forwardRef, memo } from "react";
 
-export interface AnimatedSectionProps extends ComponentPropsWithoutRef<"section"> {
+export interface AnimatedSectionProps
+  extends ComponentPropsWithoutRef<"section"> {
   delay?: number;
   duration?: number;
-  animateX?: number[] | number |  string | CustomValueType;
-  animateY?: number[] | number |  string | CustomValueType;
+  animateX?: number[] | number | string | CustomValueType;
+  animateY?: number[] | number | string | CustomValueType;
   x?: string | number | CustomValueType;
   y?: string | number | CustomValueType;
 
@@ -39,7 +40,10 @@ const defaultProps: Partial<AnimatedSectionProps & MotionProps> = {
   transition: spring,
 };
 
-const AnimatedSection = forwardRef<HTMLDivElement, AnimatedSectionProps & MotionProps>(
+const AnimatedSection = forwardRef<
+  HTMLDivElement,
+  AnimatedSectionProps & MotionProps
+>(
   (
     {
       delay = defaultProps.delay,
@@ -77,7 +81,6 @@ const AnimatedSection = forwardRef<HTMLDivElement, AnimatedSectionProps & Motion
       opacity: 0,
       x,
       y,
-      transition: mergedTransition,
     };
 
     return (

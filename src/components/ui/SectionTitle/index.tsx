@@ -1,23 +1,12 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 const SectionTitle = ({ title, desc }: SectionTitleProps) => {
   return (
-    <motion.div
-      className="flex flex-col items-center justify-center max-md:w-full"
-      initial={{ y: 100, opacity: 0 }}
-      whileInView={{
-        y: 0,
-        opacity: 1,
-        transition: { duration: 0.5, delay: 0.3 },
-      }}
-    >
-      <h1 className="font-bold text-white text-7xl max-sm:text-5xl tracking-tighter bg-[--color-eerie-black] p-2 uppercase">
-        {title}
+    <div className="text-center flex flex-col items-center">
+      <h1 className="relative uppercase font-bold text-6xl tracking-tight w-fit">
+        <span className="relative z-20">{title}</span>
+        <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
       </h1>
-      <p className="opacity-60 max-sm:text-sm text-[--text-color]">{desc}</p>
-    </motion.div>
+      <p className="opacity-60">{desc}</p>
+    </div>
   );
 };
 

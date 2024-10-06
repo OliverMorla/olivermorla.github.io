@@ -24,7 +24,9 @@
   --color-surface: #282828;
   --color-border: #3a3a3c;
   --color-disabled: #4a4a4d;
-  --color-overlay: rgba(26, 26, 29, 0.8); /* Using rgba for overlays */
+  --color-overlay: rgba(26, 26, 29, 0.8);
+  /* Using rgba for overlays */
+
   /* Create a utility classs to change the opacity of a current variable */
   .opacity-50 {
     opacity: 0.5;
@@ -59,15 +61,17 @@
 }
 
 html {
-  display: flex;
-  flex-direction: column;
-  scroll-behavior: smooth;
   height: 100%;
+  scroll-behavior: smooth;
 }
 
+html,
 body {
   display: flex;
   flex-direction: column;
+  font-size: 12px;
+  height: 100%;
+  /* Default font size */
   flex-grow: 1;
 }
 
@@ -78,7 +82,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-tertiary-light);
+  background: var(--color-tertiary);
 }
 
 ::-webkit-scrollbar-thumb {

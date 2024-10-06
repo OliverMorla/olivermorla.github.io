@@ -14,8 +14,8 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-
-const Carousel = ({ images }: { images: any[] }) => {
+import { projects } from "@/constants";
+const Carousel = () => {
   return (
     <Swiper
       spaceBetween={30}
@@ -30,17 +30,21 @@ const Carousel = ({ images }: { images: any[] }) => {
       navigation={true}
       modules={[Autoplay, Pagination, Navigation]}
     >
-      {images.map((image, index) => (
+      {projects.map((project, index) => (
         <React.Fragment key={index}>
           <SwiperSlide key={index}>
+            <div className="text-center">
+              <h1 className="text-2xl font-light">{project.title}</h1>
+              <p className="text-sm opacity-60">{project.description}</p>
+            </div>
             <Image
-              src={image.imageUrl}
+              src={project.imageUrl ?? "/assets/images/placeholder.jpg"}
               width={1280}
               height={720}
               alt="photo"
-              className="w-full h-full"
+              className="w-full"
             />
-            <h2 className="font-bold">Category: {image.projectType}</h2>
+            <h2 className="font-bold">Category: {project.category}</h2>
           </SwiperSlide>
         </React.Fragment>
       ))}

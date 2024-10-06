@@ -39,10 +39,7 @@ const defaultProps: Partial<AnimatedNavProps & MotionProps> = {
   transition: spring,
 };
 
-const AnimatedNav = forwardRef<
-  HTMLDivElement,
-  AnimatedNavProps & MotionProps
->(
+const AnimatedNav = forwardRef<HTMLDivElement, AnimatedNavProps & MotionProps>(
   (
     {
       delay = defaultProps.delay,

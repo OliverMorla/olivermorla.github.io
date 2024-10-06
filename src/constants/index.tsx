@@ -24,10 +24,10 @@ import {
   faPython,
   faNodeJs,
   faAws,
+  faXTwitter,
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
-  faArrowAltCircleDown,
   faAddressCard,
   faArrowRight,
   faBars,
@@ -160,6 +160,7 @@ import {
   faBriefcase,
   faSchool,
   faChevronRight,
+  faArrowAltCircleDown,
 } from "@fortawesome/free-solid-svg-icons";
 
 // Organize and categorize FontAwesome icons for easy reference
@@ -317,6 +318,10 @@ const faPresetIcons = {
   header: faHeader,
   flag: faFlag,
   bone: faBone,
+  arrowAltCircleDown: faArrowAltCircleDown,
+  dashboard: faDashboard,
+  box: faBox,
+  campground: faCampground,
 };
 
 // Define types for the preset icons for better type checking
@@ -428,7 +433,6 @@ const footerPrimaryLinks = [
     links: [
       { title: "Privacy Policy", href: "/privacy-policy" },
       { title: "Terms of Service", href: "/terms-of-service" },
-      { title: "Cookie Policy", href: "/cookie-policy" },
     ],
   },
   {
@@ -439,8 +443,8 @@ const footerPrimaryLinks = [
         href: "https://www.linkedin.com/in/oliver-morla/",
       },
       { title: "GitHub", href: "https://github.com/OliverMorla" },
-      { title: "Twitter", href: "https://twitter.com/OliverMorla" },
-      { title: "Email", href: "mailto:your.email@example.com" },
+      { title: "Twitter", href: "https://twitter.com/OliverMorlaX" },
+      { title: "Email", href: "mailto:olivermorla3@gmail.com" },
     ],
   },
 ];
@@ -458,8 +462,8 @@ const socialMediaLinks = [
   },
   {
     title: "Twitter",
-    href: "https://twitter.com/OliverMorla",
-    iconUrl: faTwitter,
+    href: "https://twitter.com/OliverMorlaX",
+    iconUrl: faXTwitter,
   },
   {
     title: "Email",
@@ -472,22 +476,100 @@ const socialMediaLinks = [
 const listOfServices = [
   {
     title: "Web Development",
-    fontAwesomeIconUrl: faReact,
+    faIconUrl: faReact,
+    price: "$300 - $1800",
     description:
       "Expert web developer who specializes in building and maintaining high-quality websites and web-based applications.",
+    libraries: [
+      "React.js",
+      "Next.js",
+      "Tailwind CSS",
+      "TypeScript",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "PostgreSQL",
+      "AWS",
+      "Docker",
+    ],
+    features: [
+      "Custom website design and development",
+      "Responsive design for all devices",
+      "Integration of third-party services",
+      "Database management and optimization",
+      "Security enhancements",
+      "Performance optimization",
+      "Regular updates and maintenance",
+    ],
   },
   {
-    title: "App Development",
-    fontAwesomeIconUrl: faJs,
+    title: "Mobile Development",
+    faIconUrl: faJs,
+    price: "$600 - $2500",
     description:
       "Experienced application developer who specializes in creating custom software solutions for businesses.",
+    libraries: [
+      "React Native",
+      "Expo",
+      "Node.js",
+      "Express",
+      "MongoDB",
+      "PostgreSQL",
+      "AWS",
+      "Docker",
+    ],
+    features: [
+      "Custom mobile app development",
+      "API integration",
+      "Database management",
+      "Security enhancements",
+      "Performance optimization",
+      "Regular updates and maintenance",
+    ],
   },
   {
-    title: "UI/UX Design",
-    fontAwesomeIconUrl: faFigma,
+    title: "Software Development",
+    faIconUrl: faCode,
+    price: "$600 - $2500",
+    libraries: [
+      "Electron.js",
+      "Python",
+      "Django",
+      "SQL",
+      "Tableau",
+      "AWS",
+      "Docker",
+    ],
     description:
-      "Creative UI/UX designer who specializes in creating unique and engaging user experiences for digital products.",
+      "Custom tailored software solutions for businesses and organizations.",
+    features: [
+      "Custom software development",
+      "API integration",
+      "Database management",
+      "Security enhancements",
+      "Performance optimization",
+      "Regular updates and maintenance",
+    ],
   },
+  // {
+  //   title: "UI/UX Design",
+  //   faIconUrl: faFigma,
+  //   price: "$1000",
+  //   libraries: [
+  //     "Figma",
+  //   ],
+  //   description:
+  //     "Creative UI/UX designer who specializes in creating unique and engaging user experiences for digital products.",
+  //   features: [
+  //     "Custom website design and development",
+  //     "Responsive design for all devices",
+  //     "Integration of third-party services",
+  //     "Database management and optimization",
+  //     "Security enhancements",
+  //     "Performance optimization",
+  //     "Regular updates and maintenance",
+  //   ],
+  // },
 ];
 
 const experienceHistory = [
@@ -499,27 +581,28 @@ const experienceHistory = [
     endDate: "Current",
     responsibilities: [
       "Pioneered the use of TypeScript in web application development, achieving a 30% reduction in code maintenance efforts.",
-      "Revolutionized user interface creation with React, boosting user retention by 25% across platforms.",
-      "Optimized data management using MongoDB and Mongoose, improving database performance by 25%.",
+      "Revolutionized user interface creation with custom React UI Components, boosting user retention by 25% across platforms.",
+      "Optimized data management using MongoDB and Prisma, improving database performance by 25%.",
       "Boosted application performance and scalability by 50% and 30%, respectively, via strategic integration of AWS cloud services.",
       "Cut operational expenses by 20% by implementing AWS Lambda and API Gateway for serverless architecture.",
       "Employed Redux for state management in React apps, streamlining state handling and reducing debugging time by 30%.",
-      "Applied Docker for containerization of React/Node.js applications, ensuring consistency across development, testing, and production environments and reducing deployment issues by 25%.",
-      "Collaborated with design teams to create React-based interfaces, improving customer satisfaction by 20% and compliance with accessibility standards by 30%.",
+      "Decreased deployment issues by 25% using Docker for consistent environments across development, testing, and production.",
+      "Increased customer satisfaction by 20% and accessibility compliance by 30% through collaboration on React-based interfaces.",
+      "Integrated AI models, leveraging LLM expertise to enhance application capabilities by 35%, improving user interaction.",
     ],
   },
   {
-    companyName: "SR Tech",
+    companyName: "New Yorkers International",
     location: "Queens, NY",
     position: "Full Stack Engineer",
     startDate: "May 2020",
     endDate: "Jan 2023",
     responsibilities: [
-      "Developed high-impact web applications using React, TypeScript, and Next.js, which improved user engagement by 40% due to superior UI/UX designs.",
-      "Drove the transition to a microservices architecture, halving server response times, enhancing reliability by 30%, and significantly boosting system scalability and maintainability.",
+      "Increased user engagement by 40% through React, TypeScript, and Next.js, enhancing UI/UX and overall performance.",
+      "Reduced server response times by 50% and improved reliability by 30% with a microservices architecture transition.",
       "Managed backend services using Node.js/Express and Django, achieving a 50% increase in application processing speed.",
       "Constructed robust testing frameworks with Jest and Selenium, reducing software anomalies by 35% post-launch.",
-      "Delivered over 10 significant product enhancements, collaborating effectively with diverse teams.",
+      "Delivered over 10 significant product enhancements, collaborating with diverse teams.",
       "Automated complex workflows using Python, saving the team 20 hours monthly in manual tasks.",
       "Orchestrated AWS RDS instances for PostgreSQL, ensuring 99.99% uptime and robust data replication and backup solutions.",
       "Advocated for code quality and team growth through mentorship and regular code reviews.",
@@ -527,9 +610,9 @@ const experienceHistory = [
     ],
   },
   {
-    companyName: "SR Tech",
+    companyName: "New Yorkers International",
     location: "Queens, NY",
-    position: "Software Engineering Intern",
+    position: "SW Engineering Intern",
     startDate: "Oct 2019",
     endDate: "Apr 2020",
     responsibilities: [
@@ -553,52 +636,56 @@ const certifications = [
       "Getting Started with Git and GitHub",
       "Developing Front-End Apps with React",
       "Developing Back-End Apps with Node.js and Express",
+      "Developing AI Applications with Python and Flask",
+      "Application Development Using Microservices and Serverless",
       "Python for Data Science, AI, & Development",
       "Django Application Development with SQL and Databases",
+      "Generative AI: Introduction",
     ],
     institution: "IBM",
   },
   {
     title: "AWS Certified Developer – Associate",
+    institution: "AWS",
     status: "In Progress",
   },
 ];
 
 const achievements = [
   {
-    description: "Optimized Application Performance",
+    description: "Application Performance Optimization",
     impact:
-      "Increased existing application performance by refactoring critical code sections, resulting in a 25% increase in concurrent user capacity.",
+      "Improved application performance by 25%, increasing user capacity through critical code refactoring and optimization.",
   },
   {
-    description: "Led Cross-Functional Teams",
+    description: "Team Leadership and Project Delivery",
     impact:
-      "Led a team of 8 developers and collaborated with UX/UI designers and product managers to deliver over 15 feature-rich releases on schedule, maintaining a 95% satisfaction rating from stakeholders.",
+      "Led a team of 8 developers, delivering 15 feature-rich releases on time, achieving 95% stakeholder satisfaction.",
   },
   {
-    description: "Cloud Infrastructure Optimization",
+    description: "Cloud Infrastructure Migration",
     impact:
-      "Successfully migrated legacy systems to AWS, achieving a 20% reduction in operational costs and significant improvements in scalability and reliability.",
+      "Reduced operational costs by 20% and enhanced scalability by migrating legacy systems to AWS cloud infrastructure.",
   },
   {
-    description: "Crafted Full-Stack Features",
+    description: "Full-Stack Feature Development",
     impact:
-      "Played a key role in designing and implementing full-stack features using React, Node.js, and MongoDB, contributing to a 30% increase in annual revenue for a flagship product.",
+      "Boosted annual revenue by 30% by designing full-stack features with React, Node.js, and MongoDB.",
   },
   {
-    description: "Mentored and Trained Junior Developers",
+    description: "Team Productivity Enhancement",
     impact:
-      "Heightened team productivity by 35% and significantly reduced onboarding time for new team members by mentoring and training junior developers.",
+      "Enhanced team productivity by 35% and shortened onboarding time through mentoring and training junior developers.",
   },
   {
-    description: "Innovative Problem-Solving",
+    description: "Scalability Solution Implementation",
     impact:
-      "Solved a critical scalability issue by implementing a microservices architecture, improving system resilience, and facilitating a 40% increase in traffic handling capacity.",
+      "Solved a scalability issue, improving system resilience and increasing traffic handling capacity by 40% with microservices.",
   },
   {
     description: "Data-Driven Decision Making",
     impact:
-      "Developed a custom analytics dashboard with real-time data visualization, enabling data-driven decision-making and contributing to a 20% increase in marketing ROI.",
+      "Developed a custom analytics dashboard, increasing marketing ROI by 20% with real-time data visualization insights.",
   },
 ];
 
@@ -606,8 +693,8 @@ const education = [
   {
     institution: "New York City College of Technology (NYCCT)",
     degree: "Bachelor of Technology in Computer Systems Technology",
-    graduationYear: "Already Graduated",
-    fontAwesomeIconUrl: faSchool,
+    graduationYear: 2023,
+    faIconUrl: faSchool,
   },
 ];
 
@@ -664,32 +751,179 @@ const skillsIcons = [
   },
 ];
 
-const portfolioImages = [
+const projects = [
   {
-    imageUrl: "/assets/portfolio/portfolio.webp",
     title: "Portfolio",
-    description: "",
-    projectType: "Portfolio",
-    sourceCodeUrl: "https://github.com/OliverMorla/olivermorla.github.io",
+    category: "Portfolio",
     demoUrl: "https://www.olivermorla.com/",
+    // imageUrl: "/assets/portfolio/portfolio.webp",
+    imageUrl: null,
+    sourceCodeUrl: "https://github.com/OliverMorla/olivermorla.github.io",
+    description:
+      "My personal portfolio website built with Next.js, Tailwind CSS, and TypeScript.",
   },
   {
-    imageUrl: "/assets/portfolio/hollister-clone.webp",
+    title: "Mind Body Shift",
+    category: "Health & Wellness",
+    demoUrl: "https://www.mindbodyshift.net/",
+    // imageUrl: "/assets/portfolio/mind-body-shift.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Johnny Luna",
+    category: "Portfolio",
+    demoUrl: "https://www.johnnyluna.com/",
+    imageUrl: "/assets/images/portfolio/johnny-luna.webp",
+    sourceCodeUrl: null,
+    description: "Portfolio website for Johnny Luna built with Next.js, Tailwind CSS, and TypeScript.",
+  },
+  {
+    title: "Gambit Dev",
+    category: "Gaming & eSports",
+    demoUrl: "https://www.gambit.dev/",
+    // imageUrl: "/assets/portfolio/gambit-dev.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Elemental Roofing Solutions",
+    category: "Business & Finance",
+    demoUrl: "https://www.elementalroofsolutions.com/",
+    imageUrl: "/assets/images/portfolio/elemental-roofing-solutions.webp",
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Around Your Way Fitness",
+    category: "Health & Wellness",
+    demoUrl: "https://www.aroundyourwayfitness.com/",
+    // imageUrl: "/assets/portfolio/around-your-way-fitness.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Crunch Fitness - CMS",
+    category: "Business & Finance",
+    demoUrl: "https://www.crunchfitness.app/",
+    // imageUrl: "/assets/portfolio/crunch-fitness.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Bed.gg",
+    category: "Gaming & eSports",
+    demoUrl: "https://www.bed.gg/",
+    // imageUrl: "/assets/portfolio/bed-gg.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Quip.gg",
+    category: "Gaming & eSports",
+    demoUrl: "https://www.quip.gg/",
+    // imageUrl: "/assets/portfolio/quip-gg.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Rohan Hossain",
+    category: "Portfolio",
+    demoUrl: "https://www.rohanhossain.com/",
+    // imageUrl: "/assets/portfolio/rohan-hossain.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Tasmiah Chowdhury",
+    category: "Portfolio",
+    demoUrl: "https://tasmiahch.com/",
+    // imageUrl: "/assets/portfolio/tasmiah-chowdhury.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "New Yorkers International",
+    category: "Business & Finance",
+    demoUrl: "https://www.newyorkersinternational.com/",
+    // imageUrl: "/assets/portfolio/new-yorkers-international.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "MyFitnessClient",
+    category: "Health & Wellness",
+    demoUrl: "https://myfitnessclient.com/",
+    // imageUrl: "/assets/portfolio/my-fitness-client.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+  {
+    title: "Consensus.fund",
+    category: "Business & Finance",
+    demoUrl: "https://www.consensus.fund/",
+    // imageUrl: "/assets/portfolio/consensus-fund.webp",
+    imageUrl: null,
+    sourceCodeUrl: null,
+    description: "",
+  },
+];
+
+const personalProjects = [
+  {
     title: "Hollister Clone",
     description:
       "Devised a high-caliber, responsive e-commerce platform mirroring Hollister, utilizing ReactJS, NextJS, TypeScript, and Framer-Motion, delivering an exceptional UI/UX.",
-    projectType: "E-commerce",
-    sourceCodeUrl: "https://github.com/OliverMorla/hollister-clone",
+    imageUrl: "/assets/portfolio/hollister-clone.webp",
+    category: "E-commerce",
     demoUrl: "https://hollister-clone.vercel.app/",
+    sourceCodeUrl: "https://github.com/OliverMorla/hollister-clone",
   },
   {
-    imageUrl: "/assets/portfolio/threads-clone-login.webp",
     title: "Threads Clone",
+    imageUrl: "/assets/portfolio/threads-clone-login.webp",
     description:
       'Developed a dynamic social media platform, "Threads-Clone," using a MERN stack, incorporating MongoDB, NextJS 14 with server actions, React, and Tailwind CSS, showcasing state-of-the-art web development practices.',
-    projectType: "Social Media",
+    category: "Social Media",
     sourceCodeUrl: "https://github.com/OliverMorla/threads-clone",
     demoUrl: "https://threads-clone-two-amber.vercel.app/",
+  },
+  {
+    title: "NextBlogs",
+    description:
+      "A blog website built with Next.js, Tailwind CSS, and TypeScript.",
+    imageUrl: "/assets/portfolio/nextblogs.webp",
+    category: "Blog",
+    demoUrl: "https://nextblogs-olivermorla.vercel.app/",
+    sourceCodeUrl: "https://github.com/OliverMorla/nextblogs",
+  },
+  {
+    title: "PyNotes",
+    description:
+      "A note-taking application built with Python, Django, and SQLite.",
+    imageUrl: "/assets/portfolio/pynotes.webp",
+    category: "Blog",
+    demoUrl: "https://github.com/OliverMorla/pynotes",
+    sourceCodeUrl: "https://github.com/OliverMorla/pynotes",
+  },
+  {
+    title: "Job Finder",
+    description:
+      "A job finding application built with React native and Firebase.",
+    imageUrl: "/assets/portfolio/job-finder.webp",
+    category: "Job Finder",
+    demoUrl: "https://github.com/OliverMorla/job-finder",
+    sourceCodeUrl: "https://github.com/OliverMorla/job-finder",
   },
 ];
 
@@ -706,7 +940,8 @@ export {
   certifications,
   education,
   skillsIcons,
-  portfolioImages,
+  projects,
+  personalProjects,
 };
 
 export type { FaPresetIconsTypes };

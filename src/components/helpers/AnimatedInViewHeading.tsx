@@ -89,7 +89,6 @@ const AnimatedInViewHeading = forwardRef<
       opacity: 0,
       x,
       y,
-      transition: mergedTransition,
     };
 
     return (

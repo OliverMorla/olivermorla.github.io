@@ -34,7 +34,7 @@ const WheelOfFortune = ({ children }: { children: React.ReactNode }) => {
         {skillsIcons.map((skill, index) => (
           <div
             key={index}
-            className="block max-w-2xl w-full h-[20px] relative rounded-full bg-[--color-eerie-black] text-white"
+            className="block max-w-2xl w-full h-[20px] relative rounded-full bg-neutral-800 dark:bg-neutral-200 text-white"
           >
             <ProgresBar progress={skill.progress} transitionDelay={index} />
             <h2 className="ml-2 font-bold absolute text-sm top-0">

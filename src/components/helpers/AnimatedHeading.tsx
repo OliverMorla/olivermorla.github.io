@@ -80,7 +80,6 @@ const AnimatedHeading = forwardRef<
       opacity: 0,
       x,
       y,
-      transition: mergedTransition,
     };
 
     return (

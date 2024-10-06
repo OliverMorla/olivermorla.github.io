@@ -8,37 +8,36 @@ import ButtonLink from "@/components/shared/ui/ButtonLink";
 const AboutSection = () => {
   return (
     <section
-      className="h-auto bg-[--color-dark-gray] text-[--text-color] flex justify-evenly py-[88px] px-10 flex-wrap max-sm:items-center max-sm:flex-col max-lg:gap-10"
+      className="h-auto flex justify-evenly max-lg:items-center py-24 px-8 max-sm:px-4 max-lg:flex-col max-lg:gap-12"
       id="about"
     >
-      <div className="flex max-sm:flex-col max-sm:items-center">
+      <div className="flex max-lg:flex-col max-lg:items-center lg:gap-6">
         <h1
-          className="uppercase font-bold text-7xl text-white rotate-180 w-fit text-end max-sm:hidden bg-[--color-eerie-black] p-2"
+          className="uppercase font-bold text-6xl rotate-180 w-fit text-end max-lg:hidden bg-neutral-200 dark:bg-[var(--color-overlay)] p-4 max-sm:p-2"
           style={{
             writingMode: "vertical-rl",
           }}
         >
           About
         </h1>
-        <h1 className="uppercase font-bold text-7xl text-[--text-color] sm:hidden text-center">
-          About
+        <h1 className="relative uppercase font-bold text-6xl tracking-tight w-fit lg:hidden">
+          <span className="relative z-20 lg:hidden">About</span>
+          <span className="lg:hidden absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
         </h1>
-        <div className="bg-white h-28 w-[1px] max-sm:hidden"></div>
-        <div className="bg-white h-[1px] w-28 sm:hidden"></div>
-        <div className="max-w-xl flex flex-col gap-10">
+        <div className="max-w-xl w-full flex flex-col gap-6">
           <Image
             src={"/assets/images/portrait/2.webp"}
-            width={450}
-            height={450}
-            className="w-[450px] h-[450px] max-sm:object-cover"
+            width={600}
+            height={600}
+            className="w-full"
             alt="self-portrait-2"
           />
 
-          <div className="max-w-xl flex flex-col gap-1">
-            <h1 className="uppercase font-bold text-5xl text-[--text-color] tracking-tight max-sm:text-2xl">
-              Summary
+          <div className="flex flex-col gap-1">
+            <h1 className="relative uppercase font-bold text-6xl tracking-tight w-fit">
+              <span className="relative z-20">Summary</span>
+              <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
             </h1>
-            <div className="bg-white h-[1px] w-28"></div>
             <p>
               Hello! I'm Oliver M. Morla Maldonado, a passionate Full Stack
               Developer based in Long Island City, NY. Welcome to my portfolio,
@@ -53,11 +52,11 @@ const AboutSection = () => {
       </div>
 
       <div className="flex flex-col gap-6 justify-between">
-        <div className="max-w-xl flex flex-col gap-1">
-          <h1 className="uppercase font-bold text-5xl text-[--text-color] tracking-tight max-sm:text-2xl">
-            Work Experience
+        <div className="max-w-xl flex flex-col gap-2">
+          <h1 className="relative uppercase font-bold text-6xl tracking-tight w-fit">
+            <span className="relative z-20">Experience</span>
+            <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
           </h1>
-          <div className="bg-white h-[1px] w-28"></div>
           <p>
             Throughout my career at dynamic companies like Gambit Dev LLC and
             New Yorkers International, I've played key roles in driving
@@ -69,11 +68,11 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="max-w-xl flex flex-col gap-1">
-          <h1 className="uppercase font-bold text-5xl text-[--text-color] tracking-tight max-sm:text-2xl">
-            Technical Toolkit
+        <div className="max-w-xl flex flex-col gap-2">
+          <h1 className="relative uppercase font-bold text-6xl tracking-tight w-fit">
+            <span className="relative z-20">Proficiency</span>
+            <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
           </h1>
-          <div className="bg-white h-[1px] w-28"></div>
           <p>
             My technical proficiency encompasses a wide range of languages,
             libraries, frameworks, and tools. With expertise in C/C++, C#, Java,
@@ -83,18 +82,22 @@ const AboutSection = () => {
           </p>
         </div>
 
-        <div className="max-w-xl flex flex-col items-start gap-1">
-          <h1 className="uppercase font-bold text-5xl text-[--text-color] tracking-tight max-sm:text-2xl">
-            Let's Connect
+        <div className="max-w-xl flex flex-col items-start gap-2">
+          <h1 className="relative uppercase font-bold text-6xl tracking-tight w-fit">
+            <span className="relative z-20">Let's Connect</span>
+            <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
           </h1>
-          <div className="bg-white h-[1px] w-28"></div>
           <p>
             I'm excited to explore how we can collaborate on your next project.
             With a passion for technology and a track record of success, I'm
             ready to bring your vision to life with the same dedication and
             precision that have marked my career to date.
           </p>
-          <ButtonLink href={"#contact"} faPresetIcon="paperPlane">
+          <ButtonLink
+            href={"mailto:olivermorla3@gmail.com"}
+            faPresetIcon="paperPlane"
+            className="mt-2"
+          >
             Contact me
           </ButtonLink>
         </div>

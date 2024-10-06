@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 const CertificationCard = ({ title, institution }: CertificationCardProps) => {
   return (
     <div
-      className="flex flex-col max-h-[400px] h-full justify-between p-2 items-center"
+      className="flex flex-col flex-grow h-full justify-between p-2 items-center max-h-[450px] min-h-[450px] max-sm:max-w-[300px]"
       style={{
         boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.4)",
       }}

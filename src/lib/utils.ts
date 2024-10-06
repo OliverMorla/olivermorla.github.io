@@ -2,6 +2,7 @@ import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { v4 as uuidv4 } from "uuid";
 import type { Variants } from "framer-motion";
+// import type { User } from "next-auth";
 
 // Default spring animation configuration for framer-motion
 const spring = {
@@ -41,7 +42,9 @@ function absoluteUrl(path: string): string {
  * @returns {void}
  */
 function overflowHandler(condition: boolean): void {
-  document.body.style.overflow = condition ? "hidden" : "";
+  if (typeof document !== "undefined") {
+    document.body.style.overflow = condition ? "hidden" : "auto";
+  }
 }
 
 /**
@@ -52,6 +55,9 @@ function overflowHandler(condition: boolean): void {
  * @returns {number} The equivalent measurement in centimeters.
  */
 const convertFtAndInToCm = (feet: number, inches: number): number => {
+  if (feet < 0 || inches < 0) {
+    throw new Error("Feet and inches must be non-negative numbers");
+  }
   return feet * 30.48 + inches * 2.54;
 };
 
@@ -62,8 +68,9 @@ const convertFtAndInToCm = (feet: number, inches: number): number => {
  * @returns {{feet: number, inches: number}} - The equivalent measurement in feet and inches
  */
 const convertCmToFtAndIn = (cm: number): { feet: number; inches: number } => {
-  const feet = Math.floor(cm / 30.48);
-  const inches = (cm % 30.48) / 2.54;
+  const totalInches = cm / 2.54;
+  const feet = Math.floor(totalInches / 12);
+  const inches = totalInches % 12;
   return { feet, inches };
 };
 
@@ -116,21 +123,32 @@ const convertKgToLb = (kg: number): number => kg / 0.453592;
 /**
  * Utility function to convert weight between kg and lb.
  *
- * @param {number} weight - Weight in either kg or lb
- * @param {"kg" | "lb"} unit - Unit to convert to ("kg" or "lb")
+ * @param {number} weight - Weight in kg or lb
+ * @param {"kg" | "lb"} fromUnit - Current unit of the weight
+ * @param {"kg" | "lb"} toUnit - Unit to convert to ("kg" or "lb")
  * @returns {number} - Converted weight
  */
-const convertWeight = (weight: number, unit: "kg" | "lb"): number =>
-  unit === "kg" ? convertLbToKg(weight) : convertKgToLb(weight);
+const convertWeight = (
+  weight: number,
+  fromUnit: "kg" | "lb",
+  toUnit: "kg" | "lb"
+): number => {
+  if (fromUnit === toUnit) return weight;
+  return fromUnit === "kg" ? convertKgToLb(weight) : convertLbToKg(weight);
+};
 
 /**
  * Checks if the given date of birth (dob) is today's date.
  *
  * @param {Date | string} dob - The date of birth to check. Can be a Date object or a string.
  * @returns {boolean} - Returns true if the dob is today's date, otherwise false.
+ * @throws {Error} - If dob is an invalid date
  */
 const isBirthday = (dob: Date | string): boolean => {
   const dobDate = new Date(dob);
+  if (isNaN(dobDate.getTime())) {
+    throw new Error("Invalid date of birth");
+  }
   const today = new Date();
   return (
     dobDate.getMonth() === today.getMonth() &&
@@ -143,15 +161,23 @@ const isBirthday = (dob: Date | string): boolean => {
  *
  * @param {Date | string} dob - The date of birth as a Date object or a string.
  * @returns {number} - The calculated age.
+ * @throws {Error} - If dob is an invalid date
  */
 const getAge = (dob: Date | string): number => {
-  const today = new Date();
   const birthDate = new Date(dob);
+  if (isNaN(birthDate.getTime())) {
+    throw new Error("Invalid date of birth");
+  }
+  const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
 
-  // Adjust age if birthday hasn't occurred yet this year
-  const birthdayHasPassed = birthDate.getMonth() < today.getMonth();
-  if (birthdayHasPassed) age += 1;
+  const monthDiff = today.getMonth() - birthDate.getMonth();
+  const dayDiff = today.getDate() - birthDate.getDate();
+
+  if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+    age--;
+  }
+
   return age;
 };
 
@@ -192,7 +218,7 @@ const prismaConversions = (str: string): string => {
     PHYSIQUE_AIM: "Physique Aim",
     PHYSIQUE_GOAL: "Physique Goal",
   };
-  return enumValues[str];
+  return enumValues[str] || str;
 };
 
 /**
@@ -200,24 +226,24 @@ const prismaConversions = (str: string): string => {
  *
  * @param {number} heightIn - Height in inches
  * @param {"male" | "female"} gender - Gender
- * @returns {number} - The ideal weight
+ * @returns {number} - The ideal weight in kilograms
  */
 const getIdealWeight = (heightIn: number, gender: "male" | "female") => {
   const standard = {
-    male: "50",
-    female: "45.5",
+    male: 50,
+    female: 45.5,
   };
 
-  return parseFloat(standard[gender]) + 2.3 * (heightIn - 60);
+  return standard[gender] + 2.3 * (heightIn - 60);
 };
 
 /**
  * Gets the first letter of a string.
  *
  * @param {string} str - The input string
- * @returns {string} - The first letter of the string
+ * @returns {string} - The first letter of the string or an empty string
  */
-const getFirstLetter = (str: string): string => str.charAt(0);
+const getFirstLetter = (str: string): string => str.charAt(0) || "";
 
 /**
  * Capitalizes the first letter of a string.
@@ -226,7 +252,7 @@ const getFirstLetter = (str: string): string => str.charAt(0);
  * @returns {string} - The capitalized string
  */
 const capitalize = (str: string): string =>
-  str?.charAt(0)?.toUpperCase() + str?.slice(1);
+  str.charAt(0).toUpperCase() + str.slice(1);
 
 /**
  * Converts data to a specified type.
@@ -247,9 +273,8 @@ const dataConverter = (
     case "null":
       return null;
     default:
-      if (type === "number" && typeof data === "string") return parseInt(data);
-      if (type === "boolean" && typeof data === "string")
-        return data === "true";
+      if (type === "number" && typeof data === "string") return parseFloat(data);
+      if (type === "boolean" && typeof data === "string") return data === "true";
       if (type === "date" && typeof data === "string") return new Date(data);
       return data;
   }
@@ -261,25 +286,29 @@ const dataConverter = (
  * @param {Date} date - The date to convert
  * @param {"date" | "all" | "time"} [type="date"] - The format type
  * @returns {string} - The formatted date
+ * @throws {Error} - If date is invalid
  */
 const convertDate = (
   date: Date,
   type: "date" | "all" | "time" = "date"
 ): string => {
+  if (isNaN(date.getTime())) {
+    throw new Error("Invalid date");
+  }
   switch (type) {
     case "date":
-      return new Date(date).toLocaleDateString("en-US", {
+      return date.toLocaleDateString("en-US", {
         year: "numeric",
         month: "short",
         day: "numeric",
       });
     case "time":
-      return new Date(date).toLocaleTimeString("en-US", {
+      return date.toLocaleTimeString("en-US", {
         hour: "2-digit",
         minute: "2-digit",
       });
     default:
-      return new Date(date).toLocaleString("en-US", {
+      return date.toLocaleString("en-US", {
         year: "numeric",
         month: "short",
         day: "numeric",
@@ -296,7 +325,7 @@ const convertDate = (
  * @returns {boolean} - True if the value is infinity, otherwise false
  */
 function isInfinity(value: number): boolean {
-  return !isFinite(value) && !isNaN(value);
+  return value === Infinity || value === -Infinity;
 }
 
 /**
@@ -306,7 +335,7 @@ function isInfinity(value: number): boolean {
  * @returns {boolean} - True if the value is numeric, otherwise false
  */
 function isNumeric(value: any): boolean {
-  return !isNaN(value);
+  return typeof value === "number" && !isNaN(value);
 }
 
 /**
@@ -316,7 +345,7 @@ function isNumeric(value: any): boolean {
  * @returns {boolean} - True if the value is numeric and positive, otherwise false
  */
 function isNumericAndPositive(value: any): boolean {
-  return !isNaN(value) && value > 0;
+  return typeof value === "number" && !isNaN(value) && value > 0;
 }
 
 /**
@@ -326,7 +355,7 @@ function isNumericAndPositive(value: any): boolean {
  * @returns {boolean} - True if the number is valid, otherwise false
  */
 function isValidNum(value: any): boolean {
-  return !isNaN(value) && value !== Infinity && value !== -Infinity;
+  return typeof value === "number" && isFinite(value);
 }
 
 /**
@@ -345,6 +374,7 @@ function isValidNum(value: any): boolean {
  * @param {string} height - The height value
  * @param {string} unit - The unit of the height value
  * @returns {{heightCm?: number, heightIn?: number, heightFt?: number}} - The converted height
+ * @throws {Error} - If the height format is invalid
  */
 const heightConverter = (height: string, unit: string) => {
   switch (unit) {
@@ -353,7 +383,12 @@ const heightConverter = (height: string, unit: string) => {
     case "IN":
       return { heightIn: parseFloat(height) };
     case "FT_IN":
-      const [heightFt, heightIn] = height.split("'").map(Number);
+      const [heightFtStr, heightInStr] = height.split("'");
+      const heightFt = parseInt(heightFtStr);
+      const heightIn = parseInt(heightInStr);
+      if (isNaN(heightFt) || isNaN(heightIn)) {
+        throw new Error("Invalid height format for FT_IN");
+      }
       return { heightFt, heightIn };
     default:
       return { heightCm: 0 };
@@ -363,56 +398,49 @@ const heightConverter = (height: string, unit: string) => {
 /**
  * Creates a debounced function that delays invoking the provided function until after the specified wait time.
  *
- * @param {Function} func - The function to debounce
+ * @param {(...args: any[]) => void} func - The function to debounce
  * @param {number} wait - The number of milliseconds to delay
- * @returns {Function} - The debounced function
+ * @returns {(...args: any[]) => void} - The debounced function
  */
-const debounce = (func: Function, wait: number): Function => {
+const debounce = (
+  func: (...args: any[]) => void,
+  wait: number
+): ((...args: any[]) => void) => {
   let timeout: NodeJS.Timeout;
-  return function (...args: any[]) {
+  return function (this: any, ...args: any[]) {
     clearTimeout(timeout);
-    timeout = setTimeout(() => func.apply(args), wait);
+    timeout = setTimeout(() => func.apply(this, args), wait);
   };
 };
 
 /**
  * Creates a debounced function that delays invoking the provided function until after the specified wait time.
  *
- * @param {Function} func - The function to debounce
+ * @param {(...args: any[]) => void} func - The function to debounce
  * @param {number} wait - The number of milliseconds to delay
  * @param {boolean} [immediate=false] - If true, trigger the function on the leading edge, instead of the trailing.
- * @returns {Function} - The debounced function
+ * @returns {(...args: any[]) => void} - The debounced function
  */
 const debounceAdvanced = (
-  func: Function,
+  func: (...args: any[]) => void,
   wait: number,
   immediate: boolean = false
-): Function => {
-  // Declare a variable to hold the timeout ID
+): ((...args: any[]) => void) => {
   let timeout: NodeJS.Timeout | null;
 
-  // Return a new function that will be debounced
   return function (this: any, ...args: any[]) {
-    // Preserve the context of 'this' for use inside the later function
     const context = this;
 
-    // Define a function to be executed later
     const later = () => {
-      // Clear the timeout variable
       timeout = null;
-      // If not immediate, call the original function with the correct context and arguments
       if (!immediate) func.apply(context, args);
     };
 
-    // Determine if the function should be called immediately
     const callNow = immediate && !timeout;
 
-    // Clear any existing timeout to reset the debounce period
-    clearTimeout(timeout!);
-    // Set a new timeout to call the later function after the specified wait time
+    if (timeout) clearTimeout(timeout);
     timeout = setTimeout(later, wait);
 
-    // If callNow is true, call the original function immediately with the correct context and arguments
     if (callNow) func.apply(context, args);
   };
 };
@@ -436,18 +464,32 @@ const sortMap: { [key: string]: { [key: string]: string } } = {
  *
  * @param {number} age - The age of the person
  * @returns {number} - The maximum heart rate
+ * @throws {Error} - If age is invalid
  */
-const getMaxHeartRate = (age: number) => 220 - age;
+const getMaxHeartRate = (age: number): number => {
+  if (age <= 0 || age > 120) {
+    throw new Error("Invalid age");
+  }
+  return 220 - age;
+};
 
 /**
  * Calculates the target heart rate based on maximum heart rate and intensity.
  *
  * @param {number} maxHeartRate - The maximum heart rate
- * @param {number} intensity - The intensity level
+ * @param {number} intensity - The intensity level (between 0 and 1)
  * @returns {number} - The target heart rate
+ * @throws {Error} - If intensity is out of range
  */
-const getTargetHeartRate = (maxHeartRate: number, intensity: number) =>
-  maxHeartRate * intensity;
+const getTargetHeartRate = (
+  maxHeartRate: number,
+  intensity: number
+): number => {
+  if (intensity < 0 || intensity > 1) {
+    throw new Error("Intensity must be between 0 and 1");
+  }
+  return maxHeartRate * intensity;
+};
 
 /**
  * Converts an all-uppercase enum value to a human-readable string.
@@ -474,14 +516,19 @@ const capitalizeEachWord = (str: string): string => {
  *
  * @param {string} url - The URL to get query parameters from
  * @returns {{ [key: string]: string }} - The query parameters as an object
+ * @throws {Error} - If the URL is invalid
  */
 const getQueryParams = (url: string): { [key: string]: string } => {
-  const params = new URLSearchParams(new URL(url).search);
-  const result: { [key: string]: string } = {};
-  params.forEach((value, key) => {
-    result[key] = value;
-  });
-  return result;
+  try {
+    const params = new URLSearchParams(new URL(url).search);
+    const result: { [key: string]: string } = {};
+    params.forEach((value, key) => {
+      result[key] = value;
+    });
+    return result;
+  } catch (error) {
+    throw new Error("Invalid URL");
+  }
 };
 
 /**
@@ -493,39 +540,6 @@ const generateUUID = (): string => {
   return uuidv4();
 };
 
-/**
- * Checks if a string contains a number.
- *
- * @param {string} str - The string to check
- * @returns {boolean} - True if the string contains a number, otherwise false
- */
-const containsNumber = (str: string): boolean => {
-  return /\d/.test(str);
-};
-
-/**
- * Adds spaces between words in a camelCase or PascalCase string and capitalizes each word.
- * If the string contains a number, it will not add a space before the number.
- *
- * @param {string} str - The input string
- * @returns {string} - The string with spaces between words and capitalized
- */
-const wordSpacer = (str: string): string => {
-  // Split the string into words, considering camelCase and PascalCase
-  const words = str.split(/(?=[A-Z])|\d+/).filter(Boolean);
-  
-  // Capitalize each word
-  const capitalizedWords = words.map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase());
-  
-  // Join the words with spaces, keeping numbers attached to the previous word
-  return capitalizedWords.reduce((result, word, index) => {
-    if (index > 0 && /^\d+$/.test(word)) {
-      return result + word;
-    }
-    return result + (index > 0 ? ' ' : '') + word;
-  }, '');
-};
-
 export {
   spring,
   cn,
@@ -535,11 +549,6 @@ export {
   convertCmToFtAndIn,
   convertCmToIn,
   createFadeInDelay,
-  wordSpacer,
-  capitalizeEachWord,
-  getQueryParams,
-  generateUUID,
-  containsNumber,
   convertLbToKg,
   convertKgToLb,
   convertWeight,
@@ -563,4 +572,6 @@ export {
   enumConverter,
   debounce,
   debounceAdvanced,
+  generateUUID,
+  getQueryParams,
 };

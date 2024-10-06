@@ -7,6 +7,7 @@ import { scroll } from "framer-motion";
 import AnimatedLi from "@/components/helpers/AnimatedLi";
 import ThemeSwitcher from "@/components/helpers/ThemeSwitcher";
 import MobileNav from "../MobileNav";
+
 const Header = () => {
   React.useEffect(() => {
     const nav = document.querySelector("#desktop-nav");
@@ -18,10 +19,10 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="relative z-50">
+    <header className="relative">
       <nav
         id="desktop-nav"
-        className="fixed flex items-center justify-center w-full p-8 dark:bg-neutral-900 bg-neutral-200 dark:text-neutral-100 text-neutral-800 transition-all duration-300 max-lg:hidden"
+        className="fixed flex items-center justify-center w-full p-8 dark:bg-neutral-900 bg-neutral-200 dark:text-neutral-100 text-neutral-800 transition-all duration-300 max-lg:hidden z-50"
       >
         <ul className="flex gap-6 items-center justify-center w-full">
           {headerPrimaryLinks.map((item, index) => (

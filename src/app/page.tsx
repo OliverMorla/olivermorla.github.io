@@ -15,7 +15,7 @@ import BackgroundLines from "@/components/ui/BackgroundLines";
 
 const Home = () => {
   return (
-    <main className="h-full dark:bg-neutral-900 dark:text-neutral-100 bg-neutral-100 text-neutral-900">
+    <main className="w-full dark:bg-neutral-900 dark:text-neutral-100 bg-neutral-100 text-neutral-800 flex flex-col">
       {/* Home Page Sections */}
       <HeroSection />
       <AboutSection />
@@ -24,7 +24,7 @@ const Home = () => {
       <SkillsSection />
       <PortfolioSection />
       <CertificationsSection />
-      <ContactSection />
+      {/* <ContactSection /> */}
 
       {/* UI Components - Background Lines */}
       <BackgroundLines />

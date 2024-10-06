@@ -1,21 +1,19 @@
-import { portfolioImages } from "@/constants";
+import { projects } from "@/constants";
 import Carousel from "@/components/ui/Carousel";
 import SectionTitle from "@/components/ui/SectionTitle";
 
 const PortfolioSection = () => {
   return (
     <section
-      className="h-screen bg-[--color-dark-gray] text-[--text-color] flex flex-col justify-center items-center p-10 max-sm:h-auto"
+      className="min-h-screen h-auto flex flex-col gap-6 justify-center items-center p-8 max-sm:p-4"
       id="portfolio"
     >
       <SectionTitle
         title={"Portfolio"}
-        desc={
-          "Showcasing a range of projects that highlight my full-stack development expertise, from innovative designs to complex problem-solving."
-        }
+        desc={ "Showcasing a range of projects that highlight my full-stack development expertise, from innovative designs to complex problem-solving."}
       />
       <div className="w-[90%] h-auto">
-        <Carousel images={portfolioImages} />
+        <Carousel />
       </div>
     </section>
   );

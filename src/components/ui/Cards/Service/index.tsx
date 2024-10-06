@@ -1,43 +1,68 @@
 "use client";
-import { motion } from "framer-motion";
+import React from "react";
+import AnimatedDiv from "@/components/helpers/AnimatedDiv";
+import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import TextWithIcon from "@/components/helpers/TextWithIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cn } from "@/lib/utils";
+import AnimatedInViewDiv, { AnimatedInViewDivProps } from "@/components/helpers/AnimatedInViewDiv";
+import {  MotionProps } from "framer-motion";
 
-const ServiceCard = ({
-  title,
-  description,
-  fontAwesomeIconUrl,
-  transitionDelay,
-}: ServiceCardProps) => {
-  return (
-    <motion.div
-      className="flex flex-col w-[525px] max-sm:w-full items-center cursor-pointer p-[20px] rounded-[10px] gap-2"
-      style={{
-        boxShadow: "0px 0px 10px 0px rgba(0,0,0,0.2)",
-      }}
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        transition: {
-          duration: 0.5,
-          delay: transitionDelay,
-        },
-      }}
-      whileHover={{
-        scale: 1.05,
-        transition: {
-          duration: 0.25,
-        },
-        boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.5)",
-      }}
-    >
-      <h1 className="text-6xl font-bold text-center tracking-tighter max-sm:text-4xl">
-        {title}
-      </h1>
-      <p className="opacity-80 text-base">{description}</p>
-      <FontAwesomeIcon icon={fontAwesomeIconUrl} className="text-9xl" />
-    </motion.div>
-  );
-};
+interface ServiceCardProps extends AnimatedInViewDivProps{
+  index: number;
+  totalServices: number;
+  title: string;
+  description: string;
+  libraries: string[];
+  features: string[];
+  price: string;  
+  faIconUrl: IconDefinition;
+}
+
+const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps & MotionProps>(
+  ({ index, totalServices, title, description, libraries, features, price, faIconUrl, ...props }, ref) => {
+    return (
+      <AnimatedInViewDiv
+        ref={ref}
+        className={cn("relative transform flex flex-col gap-6 max-w-xl max-sm:max-w-full w-full items-start cursor-pointer shadow-sm dark:shadow-[var(--color-primary-dark)] p-8 max-sm:p-4 border-[1px] border-neutral-200 dark:border-neutral-800 rounded-md flex-grow max-h-[435px] hover:shadow-md hover:dark:shadow-[var(--color-primary-dark)] transition-all duration-300 hover:border-[var(--color-primary-light)]", index === 1 ? "xl:-top-16" : "top-0")}
+        {...props}
+      >
+        <div className="flex flex-col gap-2">
+          <div className="flex justify-between items-center gap-2">
+            <h1 className="text-4xl font-bold tracking-tighter max-sm:text-4xl">
+              {title}
+            </h1>
+            <FontAwesomeIcon icon={faIconUrl} className="text-4xl" />
+          </div>
+          <p className="opacity-60">{description}</p>
+        </div>
+        <p className="opacity-60 text-xl font-bold">{price}</p>
+        <div className="flex flex-wrap gap-2">
+          {libraries.map((library, index) => (
+            <p
+              key={index}
+              className="bg-neutral-200 dark:bg-neutral-800 p-2 rounded-md"
+            >
+              {library}
+            </p>
+          ))}
+        </div>
+        <ul className="mt-auto">
+          {features.map((feature, index) => (
+            <li key={index}>
+              <TextWithIcon
+                text={feature}
+                faIcon="check"
+                className="text-base"
+              />
+            </li>
+          ))}
+        </ul>
+      </AnimatedInViewDiv>
+    );
+  }
+);
+
+ServiceCard.displayName = "ServiceCard";
 
 export default ServiceCard;

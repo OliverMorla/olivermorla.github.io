@@ -11,8 +11,8 @@ import { ComponentPropsWithoutRef, forwardRef, memo } from "react";
 export interface AnimatedTableCellProps extends ComponentPropsWithoutRef<"td"> {
   delay?: number;
   duration?: number;
-  animateX?: number[] | number |  string | CustomValueType;
-  animateY?: number[] | number |  string | CustomValueType;
+  animateX?: number[] | number | string | CustomValueType;
+  animateY?: number[] | number | string | CustomValueType;
   x?: string | number | CustomValueType;
   y?: string | number | CustomValueType;
 
@@ -39,7 +39,10 @@ const defaultProps: Partial<AnimatedTableCellProps & MotionProps> = {
   transition: spring,
 };
 
-const AnimatedTableCell = forwardRef<HTMLTableCellElement, AnimatedTableCellProps & MotionProps>(
+const AnimatedTableCell = forwardRef<
+  HTMLTableCellElement,
+  AnimatedTableCellProps & MotionProps
+>(
   (
     {
       delay = defaultProps.delay,
@@ -77,7 +80,6 @@ const AnimatedTableCell = forwardRef<HTMLTableCellElement, AnimatedTableCellProp
       opacity: 0,
       x,
       y,
-      transition: mergedTransition,
     };
 
     return (

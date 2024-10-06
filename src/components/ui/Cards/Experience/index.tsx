@@ -1,48 +1,80 @@
 "use client";
-import { motion } from "framer-motion";
+import React from "react";
+import AnimatedInViewDiv, {
+  AnimatedInViewDivProps,
+} from "@/components/helpers/AnimatedInViewDiv";
+import { cn } from "@/lib/utils";
+import { MotionProps } from "framer-motion";
 
-const ExperienceCard = ({
-  companyName,
-  jobPosition,
-  jobLocation,
-  jobStartDate,
-  jobEndDate,
-  jobResponsibilities,
-}: ExperienceCardProps) => {
-  return (
-    <motion.div
-      className="flex justify-center max-sm:flex-col"
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, delay: 0.3 },
-      }}
-    >
-      <div className="flex flex-col items-center min-w-[250px]">
-        <h2 className="font-bold text-xl">{companyName}</h2>
-        {companyName !== "SR Tech" && (
-          <div className="h-full w-[1px] bg-[--color-electric-purple]"></div>
-        )}
-      </div>
-      <div className="flex flex-col">
-        <h3 className="italic font-bold">
-          <span>{jobPosition} / </span>
-          <span className="text-xs font-normal"> {jobLocation}</span>
-        </h3>
-        <p className="opacity-40 text-xs">
-          {jobStartDate} - {jobEndDate}
-        </p>
-        <ul className="opacity-80 list-disc w-[800px] max-lg:w-full">
-          {jobResponsibilities.map((desc: string, index: number) => (
-            <li className="ml-10" key={index}>
-              {desc}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </motion.div>
-  );
-};
+interface ExperienceCardProps extends AnimatedInViewDivProps {
+  companyName: string;
+  position: string;
+  location: string;
+  startDate: string;
+  endDate: string;
+  index: number;
+  totalNumberOfCards: number;
+  responsibilities: string[];
+}
+
+const ExperienceCard = React.forwardRef<
+  HTMLDivElement,
+  ExperienceCardProps & MotionProps
+>(
+  (
+    {
+      key,
+      companyName,
+      position,
+      location,
+      startDate,
+      endDate,
+      responsibilities,
+      index,
+      totalNumberOfCards,
+      className,
+      ...props
+    },
+    ref
+  ) => {
+    return (
+      <AnimatedInViewDiv
+        ref={ref}
+        className={cn("flex justify-start max-sm:flex-col", className)}
+        {...props}
+      >
+        <div className="flex flex-col items-center min-w-[250px]">
+          <h2 className="font-bold text-xl">{companyName}</h2>
+          {index !== totalNumberOfCards - 1 && (
+            <div className="h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500 max-sm:hidden"></div>
+          )}
+        </div>
+        <div className="flex flex-col">
+          <h3 className="italic font-bold">
+            <span> {position} / </span>
+            <span className="text-xs font-normal"> {location}</span>
+          </h3>
+          <p className="opacity-60 text-xs">
+            {startDate} - {endDate}
+          </p>
+          <div className="flex items-start gap-2">
+            {index !== totalNumberOfCards - 1 && (
+              <div className="h-full w-1 bg-gradient-to-b from-blue-500 to-purple-500 m-3 sm:hidden"></div>
+            )}
+            <ul className="opacity-80 list-disc">
+              {responsibilities.map((desc: string, index: number) => (
+                <li className="ml-10" key={index}>
+                  {desc}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </AnimatedInViewDiv>
+    );
+  }
+);
+
+ExperienceCard.displayName = "ExperienceCard";
 
 export default ExperienceCard;

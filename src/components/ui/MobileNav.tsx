@@ -43,36 +43,37 @@ const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
       }
     }, [isLargeScreen]);
 
-    // If true, disable scroll on body else allow
-    if (disableScroll) {
-      overflowHandler(isOpen);
-    }
+    React.useEffect(() => {
+      if (disableScroll) {
+        overflowHandler(isOpen);
+      }
+    }, [disableScroll, isOpen]);
 
     return (
-      <div>
+      <>
         <div
           ref={ref}
-          {...props}
           onClick={handleClick}
           className={cn(
             `flex flex-col ${
               isOpen ? "justify-center" : "justify-between"
-            } h-[30px] w-[35px] cursor-pointer hover:opacity-80 active:opacity-60 active:scale-95 transition-all duration-300`,
+            } h-[30px] w-[35px] cursor-pointer hover:opacity-80 active:opacity-60 active:scale-95 transition-all duration-300 z-[100]`,
             className
           )}
+          {...props}
         >
           <AnimatePresence>
             {isOpen ? (
               <React.Fragment>
                 <AnimatedDiv
-                  className="absolute dark:bg-white bg-neutral-900 w-full min-h-[3px]"
+                  className="absolute dark:bg-white bg-neutral-900 border-orange-400 border-[1px] w-full min-h-[3px]"
                   animate={{
                     rotate: 45,
                     opacity: 1,
                   }}
                 ></AnimatedDiv>
                 <AnimatedDiv
-                  className="absolute dark:bg-white bg-neutral-900 w-full min-h-[3px]"
+                  className="absolute dark:bg-white bg-neutral-900 border-orange-400 border-[1px] w-full min-h-[3px]"
                   animate={{
                     rotate: -45,
                     opacity: 1,
@@ -81,9 +82,9 @@ const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
               </React.Fragment>
             ) : (
               <React.Fragment>
-                <AnimatedDiv className="dark:bg-white bg-neutral-900 w-full min-h-[3px]"></AnimatedDiv>
-                <AnimatedDiv className="dark:bg-white bg-neutral-900 w-full min-h-[3px]"></AnimatedDiv>
-                <AnimatedDiv className="dark:bg-white bg-neutral-900 w-full min-h-[3px]"></AnimatedDiv>
+                <AnimatedDiv className="dark:bg-white bg-neutral-900 border-orange-400 border-[1px] w-full min-h-[3px] mb-1"></AnimatedDiv>
+                <AnimatedDiv className="dark:bg-white bg-neutral-900 border-orange-400 border-[1px] w-full min-h-[3px] my-1"></AnimatedDiv>
+                <AnimatedDiv className="dark:bg-white bg-neutral-900 border-orange-400 border-[1px] w-full min-h-[3px] mt-1"></AnimatedDiv>
               </React.Fragment>
             )}
           </AnimatePresence>
@@ -95,11 +96,11 @@ const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
               id="mobile-nav"
               transition={{ type: "tween" }}
               className={cn(
-                "lg:hidden fixed dark:bg-neutral-900 bg-neutral-100 left-0 top-0 w-full h-full flex flex-col justify-center z-40",
+                "lg:hidden fixed dark:bg-neutral-900 bg-neutral-100 left-0 top-0 w-full h-full max-h-screen flex flex-col gap-6 z-50 pt-[60px] pb-8 max-sm:pb-4 px-8 max-sm:px-4 overflow-y-auto",
                 containerClassName
               )}
             >
-              <ul className="pt-8 mt-8 flex flex-col gap-6 items-center justify-center w-full h-full p-8 max-sm:p-4 overflow-y-auto flex-grow">
+              <ul className="flex flex-col gap-6 items-center w-full">
                 <AnimatedLi className="text-4xl text-start w-full py-2 border-b-[1px] dark:border-b-neutral-800 border-b-neutral-200">
                   Oliver Morla
                 </AnimatedLi>
@@ -187,14 +188,14 @@ const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
                   )
                 )}
                 <AnimatedLi
-                  className="absolute top-4 left-4"
+                  className="absolute top-2 left-4"
                   y={-40}
                   delay={headerPrimaryLinks.length * 0.1}
                 >
                   <ThemeSwitcher />
                 </AnimatedLi>
               </ul>
-              <ul className="mt-auto flex items-center justify-evenly mb-8">
+              <ul className="mt-auto flex items-center justify-evenly gap-2 flex-wrap border-t-[1px] dark:border-t-neutral-800 border-t-neutral-200 pt-6">
                 {socialMediaLinks.map((item, index) => (
                   <AnimatedLi key={index}>
                     <Link
@@ -209,7 +210,7 @@ const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
             </AnimatedNav>
           )}
         </Portal>
-      </div>
+      </>
     );
   }
 );

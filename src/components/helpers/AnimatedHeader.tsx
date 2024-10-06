@@ -8,7 +8,8 @@ import {
 } from "framer-motion";
 import { ComponentPropsWithoutRef, forwardRef, memo } from "react";
 
-export interface AnimatedHeaderProps extends ComponentPropsWithoutRef<"header"> {
+export interface AnimatedHeaderProps
+  extends ComponentPropsWithoutRef<"header"> {
   delay?: number;
   duration?: number;
   animateX?: number[] | number | string | CustomValueType;
@@ -80,7 +81,6 @@ const AnimatedHeader = forwardRef<
       opacity: 0,
       x,
       y,
-      transition: mergedTransition,
     };
 
     return (

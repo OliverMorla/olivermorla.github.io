@@ -9,8 +9,7 @@ import {
   motion,
 } from "framer-motion";
 import { ComponentPropsWithoutRef, forwardRef, memo, RefObject } from "react";
-export interface AnimatedInViewLiProps
-  extends ComponentPropsWithoutRef<"li"> {
+export interface AnimatedInViewLiProps extends ComponentPropsWithoutRef<"li"> {
   delay?: number;
   duration?: number;
   animateX?: number[] | number | string | CustomValueType;
@@ -89,7 +88,6 @@ const AnimatedInViewLi = forwardRef<
       opacity: 0,
       x,
       y,
-      transition: mergedTransition,
     };
 
     return (

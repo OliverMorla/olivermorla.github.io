@@ -11,8 +11,8 @@ import { ComponentPropsWithoutRef, forwardRef, memo } from "react";
 export interface AnimatedUlProps extends ComponentPropsWithoutRef<"ul"> {
   delay?: number;
   duration?: number;
-  animateX?: number[] | number |  string | CustomValueType;
-  animateY?: number[] | number |  string | CustomValueType;
+  animateX?: number[] | number | string | CustomValueType;
+  animateY?: number[] | number | string | CustomValueType;
   x?: string | number | CustomValueType;
   y?: string | number | CustomValueType;
 
@@ -77,7 +77,6 @@ const AnimatedUl = forwardRef<HTMLUListElement, AnimatedUlProps & MotionProps>(
       opacity: 0,
       x,
       y,
-      // transition: mergedTransition,
     };
 
     return (
