@@ -11,7 +11,7 @@ import ServicesSection from "@/components/containers/Services";
 import ContactSection from "@/components/containers/Contact";
 
 // UI Components
-import BackgroundLines from "@/components/ui/BackgroundLines";
+import BackgroundLines from "@/components/shared/ui/BackgroundLines";
 
 const Home = () => {
   return (

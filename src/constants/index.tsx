@@ -477,7 +477,7 @@ const listOfServices = [
   {
     title: "Web Development",
     faIconUrl: faReact,
-    price: "$300 - $1800",
+    price: "$200 - $1800",
     description:
       "Expert web developer who specializes in building and maintaining high-quality websites and web-based applications.",
     libraries: [
@@ -505,7 +505,7 @@ const listOfServices = [
   {
     title: "Mobile Development",
     faIconUrl: faJs,
-    price: "$600 - $2500",
+    price: "$600 - $2400",
     description:
       "Experienced application developer who specializes in creating custom software solutions for businesses.",
     libraries: [
@@ -530,7 +530,7 @@ const listOfServices = [
   {
     title: "Software Development",
     faIconUrl: faCode,
-    price: "$600 - $2500",
+    price: "$400 - $2000",
     libraries: [
       "Electron.js",
       "Python",
