@@ -1,15 +1,12 @@
 import { certifications } from "@/constants";
-import CertificationCard from "@/components/ui/Cards/Certification";
 import SectionTitle from "@/components/ui/SectionTitle";
+import CertificationCard from "@/components/ui/Cards/Certification";
 
 const CertificationsSection = () => {
   return (
     <section
-      className="h-auto flex flex-col justify-center items-center p-8 max-sm:p-4 overflow-hidden"
       id="certifications"
-      style={{
-        paddingTop: "250px",
-      }}
+      className="h-auto flex flex-col justify-center items-center py-24 px-8 max-sm:px-4 overflow-hidden"
     >
       <SectionTitle
         title="Certifications"

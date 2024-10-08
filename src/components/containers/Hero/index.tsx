@@ -136,9 +136,11 @@ const HeroSection = () => {
           width={500}
           height={500}
           className="rounded-full"
-          style={{
-            // boxShadow: "0 2px 8px var(--color-electric-purple)",
-          }}
+          style={
+            {
+              // boxShadow: "0 2px 8px var(--color-electric-purple)",
+            }
+          }
           alt="self-portrait-1"
         />
       </motion.div>

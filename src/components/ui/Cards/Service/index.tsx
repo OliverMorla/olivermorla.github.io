@@ -1,30 +1,50 @@
 "use client";
 import React from "react";
-import AnimatedDiv from "@/components/helpers/AnimatedDiv";
 import { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 import TextWithIcon from "@/components/helpers/TextWithIcon";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cn } from "@/lib/utils";
-import AnimatedInViewDiv, { AnimatedInViewDivProps } from "@/components/helpers/AnimatedInViewDiv";
-import {  MotionProps } from "framer-motion";
+import AnimatedInViewDiv, {
+  AnimatedInViewDivProps,
+} from "@/components/helpers/AnimatedInViewDiv";
+import { MotionProps } from "framer-motion";
 
-interface ServiceCardProps extends AnimatedInViewDivProps{
+interface ServiceCardProps extends AnimatedInViewDivProps {
   index: number;
   totalServices: number;
   title: string;
   description: string;
   libraries: string[];
   features: string[];
-  price: string;  
+  price: string;
   faIconUrl: IconDefinition;
 }
 
-const ServiceCard = React.forwardRef<HTMLDivElement, ServiceCardProps & MotionProps>(
-  ({ index, totalServices, title, description, libraries, features, price, faIconUrl, ...props }, ref) => {
+const ServiceCard = React.forwardRef<
+  HTMLDivElement,
+  ServiceCardProps & MotionProps
+>(
+  (
+    {
+      index,
+      totalServices,
+      title,
+      description,
+      libraries,
+      features,
+      price,
+      faIconUrl,
+      ...props
+    },
+    ref
+  ) => {
     return (
       <AnimatedInViewDiv
         ref={ref}
-        className={cn("relative transform flex flex-col gap-6 max-w-xl max-sm:max-w-full w-full items-start cursor-pointer shadow-sm dark:shadow-[var(--color-primary-dark)] p-8 max-sm:p-4 border-[1px] border-neutral-200 dark:border-neutral-800 rounded-md flex-grow max-h-[435px] hover:shadow-md hover:dark:shadow-[var(--color-primary-dark)] transition-all duration-300 hover:border-[var(--color-primary-light)]", index === 1 ? "xl:-top-16" : "top-0")}
+        className={cn(
+          "relative transform flex flex-col gap-6 max-w-xl max-sm:max-w-full w-full items-start cursor-pointer shadow-sm dark:shadow-[var(--color-primary-dark)] p-8 max-sm:p-4 border-[1px] border-neutral-200 dark:border-neutral-800 rounded-md flex-grow max-h-[435px] hover:shadow-md hover:dark:shadow-[var(--color-primary-dark)] transition-all duration-300 hover:border-[var(--color-primary-light)]",
+          index === 1 ? "xl:-top-16" : "top-0"
+        )}
         {...props}
       >
         <div className="flex flex-col gap-2">

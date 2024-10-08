@@ -1,8 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */
-
-import Link from "next/link";
 import Image from "next/image";
-import Button from "@/components/shared/ui/Button";
 import ButtonLink from "@/components/shared/ui/ButtonLink";
 
 const AboutSection = () => {
@@ -39,7 +35,7 @@ const AboutSection = () => {
               <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
             </h1>
             <p>
-              Hello! I'm Oliver M. Morla Maldonado, a passionate Full Stack
+              Hello! I&#39;m Oliver M. Morla Maldonado, a passionate Full Stack
               Developer based in Long Island City, NY. Welcome to my portfolio,
               where innovation meets precision in the realm of web development.
               Graduating with a Bachelor of Technology in Computer Systems
@@ -59,7 +55,7 @@ const AboutSection = () => {
           </h1>
           <p>
             Throughout my career at dynamic companies like Gambit Dev LLC and
-            New Yorkers International, I've played key roles in driving
+            New Yorkers International, I&#39;ve played key roles in driving
             technology adoption, optimizing application performance, and
             enhancing user engagement through strategic development initiatives.
             My work spans across various aspects of web development, from
@@ -84,14 +80,14 @@ const AboutSection = () => {
 
         <div className="max-w-xl flex flex-col items-start gap-2">
           <h1 className="relative uppercase font-bold text-6xl tracking-tight w-fit">
-            <span className="relative z-20">Let's Connect</span>
+            <span className="relative z-20">Let&#39;s Connect</span>
             <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-blue-500 to-purple-500 -skew-x-12"></span>
           </h1>
           <p>
-            I'm excited to explore how we can collaborate on your next project.
-            With a passion for technology and a track record of success, I'm
-            ready to bring your vision to life with the same dedication and
-            precision that have marked my career to date.
+            I&#39;m excited to explore how we can collaborate on your next
+            project. With a passion for technology and a track record of
+            success, I&#39;m ready to bring your vision to life with the same
+            dedication and precision that have marked my career to date.
           </p>
           <ButtonLink
             href={"mailto:olivermorla3@gmail.com"}

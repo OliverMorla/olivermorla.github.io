@@ -1,5 +1,5 @@
 import SectionTitle from "@/components/ui/SectionTitle";
-import WheelOfFortune from "@/components/ui/WheelOfFortune";
+import WheelOfFortune from "@/components/ui/WheelOfForture";
 
 const SkillsSection = () => {
   return (

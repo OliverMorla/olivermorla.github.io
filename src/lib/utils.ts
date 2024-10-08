@@ -273,8 +273,10 @@ const dataConverter = (
     case "null":
       return null;
     default:
-      if (type === "number" && typeof data === "string") return parseFloat(data);
-      if (type === "boolean" && typeof data === "string") return data === "true";
+      if (type === "number" && typeof data === "string")
+        return parseFloat(data);
+      if (type === "boolean" && typeof data === "string")
+        return data === "true";
       if (type === "date" && typeof data === "string") return new Date(data);
       return data;
   }

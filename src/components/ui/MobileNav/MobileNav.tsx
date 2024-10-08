@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
-import AnimatedDiv from "../helpers/AnimatedDiv";
+import AnimatedDiv from "../../helpers/AnimatedDiv";
 import { cn, overflowHandler } from "@/lib/utils";
 import { AnimatePresence } from "framer-motion";
-import Portal from "../helpers/Portal";
-import AnimatedNav from "../helpers/AnimatedNav";
-import AnimatedLi from "../helpers/AnimatedLi";
+import Portal from "../../helpers/Portal";
+import AnimatedNav from "../../helpers/AnimatedNav";
+import AnimatedLi from "../../helpers/AnimatedLi";
 import { headerPrimaryLinks, socialMediaLinks } from "@/constants";
 import Link from "next/link";
-import ThemeSwitcher from "../helpers/ThemeSwitcher";
-import Icon from "../helpers/Icon";
+import ThemeSwitcher from "../../helpers/ThemeSwitcher";
+import Icon from "../../helpers/Icon";
 import useMediaQuery from "@/hooks/useMediaQuery";
 
 interface MobileNavProps extends React.ComponentPropsWithoutRef<"div"> {

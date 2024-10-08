@@ -68,7 +68,7 @@ const createFadeInDelay = (delay: number): Variants => ({
 const fadeInDelay2 = createFadeInDelay(0.2);
 const fadeInDelay4 = createFadeInDelay(0.4);
 const fadeInDelay6 = createFadeInDelay(0.6);
-const fadeInDelay8 = createFadeInDelay(0.8)
+const fadeInDelay8 = createFadeInDelay(0.8);
 
 /**
  * Custom fade in animation with optional position and transition

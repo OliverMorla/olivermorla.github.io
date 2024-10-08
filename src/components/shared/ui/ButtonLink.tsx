@@ -30,7 +30,7 @@ const buttonLinkVariants = cva(
         solidDark:
           "bg-neutral-800 hover:bg-neutral-900 active:bg-neutral-950 text-neutral-100 shadow-sm rounded-md",
         solidLight:
-          "bg-neutral-100 dark:bg-neutral-800 hover:bg-neutral-200 dark:hover:bg-neutral-900 active:bg-neutral-400 dark:active:bg-neutral-950 text-neutral-900 dark:text-neutral-100 shadow-sm rounded-md !focus-visible:ring-neutral-400 !ring-neutral-400 outline-neutral-400",
+          "bg-neutral-100 dark:bg-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 active:bg-neutral-400 dark:active:bg-neutral-950 text-neutral-900 dark:text-neutral-100 shadow-sm rounded-md !focus-visible:ring-neutral-400 !ring-neutral-400 outline-neutral-400",
         transparentDark:
           "bg-transparent text-neutral-800 dark:text-neutral-100 border-neutral-800 dark:border-neutral-100 border-[1px] hover:text-neutral-200 dark:hover:text-neutral-900 hover:bg-neutral-900 dark:hover:bg-neutral-950 active:bg-neutral-950 dark:active:bg-neutral-950 shadow-sm rounded-md active:text-neutral-100 dark:active:text-neutral-100",
         transparentLight:
@@ -42,7 +42,8 @@ const buttonLinkVariants = cva(
           "bg-yellow-600 text-white hover:bg-yellow-700 active:bg-yellow-800 rounded-md shadow-sm active:shadow-md !outline-[1px] !outline-yellow-800",
         success:
           "bg-green-600 text-white hover:bg-green-700 active:bg-green-800 rounded-md shadow-sm active:shadow-md !outline-[1px] !outline-green-800",
-        info: "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 rounded-md shadow-sm active:shadow-md !outline-[1px] !outline-blue-800",
+        info: 
+          "bg-blue-600 text-white hover:bg-blue-700 active:bg-blue-800 rounded-md shadow-sm active:shadow-md !outline-[1px] !outline-blue-800",
         disabled:
           "bg-gray-400 text-gray-200 cursor-not-allowed select-none pointer-events-none shadow-none hover:shadow-none active:shadow-none active:bg-current hover:bg-current hover:text-current active:text-current rounded-md ",
       },

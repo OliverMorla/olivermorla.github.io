@@ -6,7 +6,7 @@ import { headerPrimaryLinks } from "@/constants";
 import { scroll } from "framer-motion";
 import AnimatedLi from "@/components/helpers/AnimatedLi";
 import ThemeSwitcher from "@/components/helpers/ThemeSwitcher";
-import MobileNav from "../MobileNav";
+import MobileNav from "../MobileNav/MobileNav";
 
 const Header = () => {
   React.useEffect(() => {

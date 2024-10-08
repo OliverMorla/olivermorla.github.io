@@ -9,13 +9,13 @@ export const mailjet = new Mailjet({
 /**
  * The Mailjet client is configured with the API key and secret key provided through environment variables.
  * Ensure that these environment variables (MAILJET_API_KEY and MAILJET_SECRET_KEY) are set in your environment.
- * 
+ *
  * Usage:
  * - This configured Mailjet client can be used to send emails and manage email campaigns.
- * 
+ *
  * Example:
  * import { mailjet } from './path-to-this-file';
- * 
+ *
  * mailjet.post('send', { version: 'v3.1' }).request({
  *   Messages: [
  *     {

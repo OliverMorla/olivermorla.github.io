@@ -77,8 +77,3 @@ interface RepositoryCardProps {
   homepage: string;
   description: string;
 }
-
-interface ThemeContextProps {
-  currentTheme: string;
-  setTheme: React.Dispatch<React.SetStateAction<"dark" | "light">>;
-}
