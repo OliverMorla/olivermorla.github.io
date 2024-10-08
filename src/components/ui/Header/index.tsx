@@ -37,9 +37,15 @@ const Header = () => {
                 </Link>
               </AnimatedLi>
             ) : (
-              <HeaderDropdownLink key={index} href={item.href} dropdownLinks={item.dropdownLinks}>
-                {item.title}
-              </HeaderDropdownLink>
+                <HeaderDropdownLink
+                  key={index}
+                  y={-40}
+                  href={item.href}
+                  delay={index * 0.1}
+                  dropdownLinks={item.dropdownLinks}
+                >
+                  {item.title}
+                </HeaderDropdownLink>
             )
           )}
         </ul>
