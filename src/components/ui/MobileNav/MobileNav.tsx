@@ -162,7 +162,7 @@ const MobileNav = React.forwardRef<HTMLDivElement, MobileNavProps>(
                             <AnimatedDiv
                               key={item.title}
                               transition={{ type: "tween" }}
-                              className="px-2 py-2 dark:bg-neutral-700 dark:active:bg-neutral-600 hover:bg-neutral-400 active:bg-neutral-500 rounded-md"
+                              className="px-2 py-2 bg-neutral-200 dark:bg-neutral-700  rounded-md"
                             >
                               {item.dropdownLinks.map((dropdownLink, index) => (
                                 <Link

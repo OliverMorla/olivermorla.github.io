@@ -2,7 +2,7 @@ import ResumeFrame from "@/components/ui/Frames/Resume";
 
 const Resume = () => {
   return (
-    <main className="h-screen bg-neutral-50 w-full flex justify-center items-center pt-[88px]">
+    <main className="w-full h-full flex justify-center items-center">
       <ResumeFrame />
     </main>
   );

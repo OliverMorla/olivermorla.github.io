@@ -360,7 +360,7 @@ const headerPrimaryLinks = [
       },
       {
         title: "Resume",
-        href: "#resume",
+        href: "/resume",
         description: "Download my full resume",
         faIconUrl: faFile,
       },
@@ -405,6 +405,9 @@ const headerPrimaryLinks = [
     ],
   },
 ];
+
+type HeaderPrimaryLinksTypes = typeof headerPrimaryLinks;
+type HeaderDropdownLinksTypes = (typeof headerPrimaryLinks)[0]["dropdownLinks"];
 
 const footerPrimaryLinks = [
   {
@@ -777,7 +780,8 @@ const projects = [
     demoUrl: "https://www.johnnyluna.com/",
     imageUrl: "/assets/images/portfolio/johnny-luna.webp",
     sourceCodeUrl: null,
-    description: "Portfolio website for Johnny Luna built with Next.js, Tailwind CSS, and TypeScript.",
+    description:
+      "Portfolio website for Johnny Luna built with Next.js, Tailwind CSS, and TypeScript.",
   },
   {
     title: "Gambit Dev",
@@ -944,4 +948,8 @@ export {
   personalProjects,
 };
 
-export type { FaPresetIconsTypes };
+export type {
+  FaPresetIconsTypes,
+  HeaderPrimaryLinksTypes,
+  HeaderDropdownLinksTypes,
+};
