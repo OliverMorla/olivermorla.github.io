@@ -12,7 +12,7 @@ const PortfolioSection = () => {
         title={"Portfolio"}
         desc={ "Showcasing a range of projects that highlight my full-stack development expertise, from innovative designs to complex problem-solving."}
       />
-      <div className="max-w-[1280px]">
+      <div className="max-w-[1280px] w-full">
         <Carousel />
       </div>
     </section>
