@@ -803,15 +803,14 @@ const projects = [
   //   sourceCodeUrl: null,
   //   description: "",
   // },
-  // {
-  //   title: "Crunch Fitness - CMS",
-  //   category: "Business & Finance",
-  //   demoUrl: "https://www.crunchfitness.app/",
-  //   // imageUrl: "/assets/portfolio/crunch-fitness.webp",
-  //   imageUrl: null,
-  //   sourceCodeUrl: null,
-  //   description: "",
-  // },
+  {
+    title: "Crunch Fitness - Utilities",
+    category: "Business & Finance",
+    demoUrl: "https://www.crunchfitness.app/",
+    imageUrl: "/assets/images/portfolio/crunch-utilities.webp",
+    sourceCodeUrl: null,
+    description: "Crunch Fitness Utilities is a suite of tools designed to streamline operations and enhance the customer experience at Crunch Fitness.",
+  },
   {
     title: "Bed.gg",
     category: "Gaming & eSports",
