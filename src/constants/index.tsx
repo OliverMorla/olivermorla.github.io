@@ -795,14 +795,14 @@ const projects = [
     sourceCodeUrl: null,
     description: "Elemental is more than a roofing company. As a family-owned business rooted in integrity and craftsmanship, we bring over two decades of expertise to every project.",
   },
-  // {
-  //   title: "Around Your Way Fitness",
-  //   category: "Health & Wellness",
-  //   demoUrl: "https://www.aroundyourwayfitness.com/",
-  //   imageUrl: "/assets/images/portfolio/around-your-way-fitness.png",
-  //   sourceCodeUrl: null,
-  //   description: "",
-  // },
+  {
+    title: "Around Your Way Fitness",
+    category: "Health & Wellness",
+    demoUrl: "https://www.aroundyourwayfitness.com/",
+    imageUrl: "/assets/images/portfolio/around-your-way-fitness.webp",
+    sourceCodeUrl: null,
+    description: "",
+  },
   {
     title: "Crunch Fitness - Utilities",
     category: "Business & Finance",
