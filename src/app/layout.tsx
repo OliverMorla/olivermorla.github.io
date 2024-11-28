@@ -54,9 +54,9 @@ export const metadata: Metadata = {
     "Oliver Morla",
   ],
   icons: {
-    icon: "/favicon/favicon.ico",
-    apple: "/favicon/apple-touch-icon.png",
-    shortcut: "/favicon/favicon-32x32.png",
+    icon: "/assets/favicon/favicon.ico",
+    apple: "/assets/favicon/apple-touch-icon.png",
+    shortcut: "/assets/favicon/favicon-32x32.png",
   },
   authors: [{ name: "Oliver Morla", url: "https://www.olivermorla.com" }],
   applicationName: "Oliver Morla - Software Engineer & Full Stack Developer",
