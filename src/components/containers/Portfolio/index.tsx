@@ -1,4 +1,3 @@
-import { projects } from "@/constants";
 import Carousel from "@/components/ui/Carousel";
 import SectionTitle from "@/components/ui/SectionTitle";
 
@@ -10,7 +9,9 @@ const PortfolioSection = () => {
     >
       <SectionTitle
         title={"Portfolio"}
-        desc={ "Showcasing a range of projects that highlight my full-stack development expertise, from innovative designs to complex problem-solving."}
+        desc={
+          "Showcasing a range of projects that highlight my full-stack development expertise, from innovative designs to complex problem-solving."
+        }
       />
       <div className="max-w-[1280px] w-full">
         <Carousel />

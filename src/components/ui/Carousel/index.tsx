@@ -48,7 +48,7 @@ const Carousel = () => {
                 width={1280}
                 height={720}
                 alt="photo"
-                className="w-full"
+                className="w-full h-full object-contain"
               />
             </Link>
             <div className="flex items-center justify-between gap-2">

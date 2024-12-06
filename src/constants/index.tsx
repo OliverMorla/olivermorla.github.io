@@ -372,12 +372,12 @@ const headerPrimaryLinks = [
     description: "Technical skills and expertise",
     faIconUrl: faCode,
   },
-  {
-    title: "Blog",
-    href: "/blog",
-    description: "My thoughts and insights on tech",
-    faIconUrl: faBlog,
-  },
+  // {
+  //   title: "Blog",
+  //   href: "/blog",
+  //   description: "My thoughts and insights on tech",
+  //   faIconUrl: faBlog,
+  // },
   {
     title: "Portfolio",
     href: "#portfolio",
@@ -554,25 +554,6 @@ const listOfServices = [
       "Regular updates and maintenance",
     ],
   },
-  // {
-  //   title: "UI/UX Design",
-  //   faIconUrl: faFigma,
-  //   price: "$1000",
-  //   libraries: [
-  //     "Figma",
-  //   ],
-  //   description:
-  //     "Creative UI/UX designer who specializes in creating unique and engaging user experiences for digital products.",
-  //   features: [
-  //     "Custom website design and development",
-  //     "Responsive design for all devices",
-  //     "Integration of third-party services",
-  //     "Database management and optimization",
-  //     "Security enhancements",
-  //     "Performance optimization",
-  //     "Regular updates and maintenance",
-  //   ],
-  // },
 ];
 
 const experienceHistory = [
@@ -759,49 +740,55 @@ const projects = [
     title: "Portfolio",
     category: "Portfolio",
     demoUrl: "https://www.olivermorla.com/",
-    imageUrl: "/assets/images/portfolio/portfolio.webp",
-    sourceCodeUrl: "https://github.com/OliverMorla/olivermorla.github.io",
-    description: "My personal portfolio website built with Next.js, Tailwind CSS, and TypeScript.",
+    imageUrl: "/assets/images/portfolio/olivermorla.webp",
+    sourceCodeUrl: null,
+    description:
+      "My personal portfolio website built with Next.js, Tailwind CSS, and TypeScript.",
   },
   {
     title: "Mind Body Shift",
     category: "Health & Wellness",
     demoUrl: "https://www.mindbodyshift.net/",
-    imageUrl: "/assets/images/portfolio/mind-body-shift.webp",
+    imageUrl: "/assets/images/portfolio/mindbodyshift.webp",
     sourceCodeUrl: null,
-    description: "Transform your lifestyle with Mind Body Shift's personalized coaching, MBS Portal, and courses on nutrition, exercise mastery, and mental health.",
+    description:
+      "Transform your lifestyle with Mind Body Shift's personalized coaching, MBS Portal, and courses on nutrition, exercise mastery, and mental health.",
   },
   {
     title: "Johnny Luna",
     category: "Portfolio",
     demoUrl: "https://www.johnnyluna.com/",
-    imageUrl: "/assets/images/portfolio/johnny-luna.webp",
+    imageUrl: "/assets/images/portfolio/johnnyluna.webp",
     sourceCodeUrl: null,
-    description: "Portfolio website for Johnny Luna built with Next.js, Tailwind CSS, and TypeScript.",
+    description:
+      "Portfolio website for Johnny Luna built with Next.js, Tailwind CSS, and TypeScript.",
   },
   {
     title: "Gambit Dev",
     category: "Gaming & eSports",
     demoUrl: "https://www.gambit.dev/",
-    imageUrl: "/assets/images/portfolio/gambit-dev.webp",
+    imageUrl: "/assets/images/portfolio/gambitdev.webp",
     sourceCodeUrl: null,
-    description: "Here at Gambit Dev, we strive to deliver the best, innovate where others have not, and to create a fun and enjoyable workplace for our employees and clients.",
+    description:
+      "Here at Gambit Dev, we strive to deliver the best, innovate where others have not, and to create a fun and enjoyable workplace for our employees and clients.",
   },
   {
     title: "Elemental Roofing Solutions",
     category: "Business & Finance",
     demoUrl: "https://www.elementalroofsolutions.com/",
-    imageUrl: "/assets/images/portfolio/elemental-roofs-solutions.webp",
+    imageUrl: "/assets/images/portfolio/elementalroofsolutions.webp",
     sourceCodeUrl: null,
-    description: "Elemental is more than a roofing company. As a family-owned business rooted in integrity and craftsmanship, we bring over two decades of expertise to every project.",
+    description:
+      "Elemental is more than a roofing company. As a family-owned business rooted in integrity and craftsmanship, we bring over two decades of expertise to every project.",
   },
   {
     title: "Around Your Way Fitness",
     category: "Health & Wellness",
     demoUrl: "https://www.aroundyourwayfitness.com/",
-    imageUrl: "/assets/images/portfolio/around-your-way-fitness.webp",
+    imageUrl: "/assets/images/portfolio/aroundyourwayfitness.webp",
     sourceCodeUrl: null,
-    description: "",
+    description:
+      "A comprehensive fitness platform tailored for a personal trainer to deliver accessible fitness services.",
   },
   {
     title: "Crunch Fitness - Utilities",
@@ -809,7 +796,8 @@ const projects = [
     demoUrl: "https://www.crunchfitness.app/",
     imageUrl: "/assets/images/portfolio/crunch-utilities.webp",
     sourceCodeUrl: null,
-    description: "Crunch Fitness Utilities is a suite of tools designed to streamline operations and enhance the customer experience at Crunch Fitness.",
+    description:
+      "Crunch Fitness Utilities is a suite of tools designed to streamline operations and enhance the customer experience at Crunch Fitness.",
   },
   {
     title: "Bed.gg",
@@ -823,28 +811,28 @@ const projects = [
     title: "Quip.gg",
     category: "Gaming & eSports",
     demoUrl: "https://quip.gg/",
-    imageUrl: "/assets/images/portfolio/quip-gg.webp",
+    imageUrl: "/assets/images/portfolio/quipgg.webp",
     description: "Crypto e-sports. Real money gaming. Competitive Experience.",
     sourceCodeUrl: null,
   },
-  // {
-  //   title: "Rohan Hossain",
-  //   category: "Portfolio",
-  //   demoUrl: "https://www.rohanhossain.com/",
-  //   // imageUrl: "/assets/portfolio/rohan-hossain.webp",
-  //   imageUrl: null,
-  //   sourceCodeUrl: null,
-  //   description: "",
-  // },
-  // {
-  //   title: "Tasmiah Chowdhury",
-  //   category: "Portfolio",
-  //   demoUrl: "https://tasmiahch.com/",
-  //   // imageUrl: "/assets/portfolio/tasmiah-chowdhury.webp",
-  //   imageUrl: null,
-  //   sourceCodeUrl: null,
-  //   description: "",
-  // },
+  {
+    title: "Rohan Hossain",
+    category: "Portfolio",
+    demoUrl: "https://www.rohanhossain.com/",
+    imageUrl: "/assets/images/portfolio/rohanhossain.webp",
+    sourceCodeUrl: null,
+    description:
+      "A personal portfolio website designed to showcase skills, experiences, and projects of a data engineer and developer.",
+  },
+  {
+    title: "Tasmiah Chowdhury",
+    category: "Portfolio",
+    demoUrl: "https://tasmiahch.com/",
+    imageUrl: "/assets/images/portfolio/tasmiahch.webp",
+    sourceCodeUrl: null,
+    description:
+      "A professional real estate portfolio platform designed to elevate the personal brand and services of a licensed realtor in New York City.",
+  },
   // {
   //   title: "New Yorkers International",
   //   category: "Business & Finance",
@@ -879,7 +867,7 @@ const personalProjects = [
     title: "Hollister Clone",
     description:
       "Devised a high-caliber, responsive e-commerce platform mirroring Hollister, utilizing ReactJS, NextJS, TypeScript, and Framer-Motion, delivering an exceptional UI/UX.",
-    imageUrl: "/assets/portfolio/hollister-clone.webp",
+    imageUrl: "/assets/portfolio/hollisterclone.webp",
     category: "E-commerce",
     demoUrl: "https://hollister-clone.vercel.app/",
     sourceCodeUrl: "https://github.com/OliverMorla/hollister-clone",

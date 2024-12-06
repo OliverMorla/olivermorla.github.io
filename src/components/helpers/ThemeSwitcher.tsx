@@ -29,7 +29,6 @@ const ThemeSwitcher = React.forwardRef<
       )}
       {...props}
     >
-      <option value="system">System</option>
       <option value="dark">Dark</option>
       <option value="light">Light</option>
     </select>
