@@ -803,7 +803,7 @@ const projects = [
     title: "Bed.gg",
     category: "Gaming & eSports",
     demoUrl: "https://bed.gg/",
-    imageUrl: "/assets/images/portfolio/bed-gg.webp",
+    imageUrl: "/assets/images/portfolio/bedgg.webp",
     sourceCodeUrl: null,
     description: "Experience Competitive Minecraft like never before",
   },
