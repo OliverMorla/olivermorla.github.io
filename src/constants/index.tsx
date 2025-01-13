@@ -805,7 +805,7 @@ const projects = [
     demoUrl: "https://bed.gg/",
     imageUrl: "/assets/images/portfolio/bedgg.webp",
     sourceCodeUrl: null,
-    description: "Experience Competitive Minecraft like never before",
+    description: "Experience Competitive Minecraft like never before.",
   },
   {
     title: "Quip.gg",
