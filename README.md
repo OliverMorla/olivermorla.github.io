@@ -1,77 +1,36 @@
-# olivermorla.github.io
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-This repository hosts the code for my personal portfolio, which showcases my skills, experiences, and services. The website is deployed using [Vercel](https://vercel.com). Check out the live portfolio [here](https://www.olivermorla.com).
+## Getting Started
 
-## Technologies Used
-
-- React.js
-- JavaScript
-- HTML
-- SCSS/SASS
-- React Router
-- Framer Motion
-- Typewriter Effect library
-- EmailJS
-
-## Features
-
-1. **Resume**: Comprehensive resume detailing my experiences and education.
-2. **About Me**: A glimpse into my personal background, interests, and hobbies.
-3. **Skills**: An overview of my technical capabilities and proficiencies.
-4. **Portfolio**: A showcase of my work, demonstrating a range of projects and applications.
-5. **Certifications**: Credentials and certifications to substantiate my skills.
-6. **Services**: A list of services I offer, including consulting and project-based work.
-7. **Blog**: Regularly updated blog with thoughts, tips, and industry insights.
-8. **Contact Form**: An easy way to get in touch using EmailJS for form handling.
-9. **Social Media Links**: Connect with me on other platforms.
-
-## Performance Optimization
-
-The portfolio website is optimized using lazy loading technology, suspense and fallbacks. This ensures that the performance is highly optimized and resources are loaded effectively, enhancing the user experience.
-
-## Installation
-
-Clone the repository to your local machine:
+First, run the development server:
 
 ```bash
-git clone https://github.com/<your-github-username>/olivermorla.github.io.git
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Navigate to the project directory:
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-```bash
-cd olivermorla.github.io
-```
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-Install the necessary packages:
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-```bash
-npm install
-```
+## Learn More
 
-To start the development server:
+To learn more about Next.js, take a look at the following resources:
 
-```bash
-npm start
-```
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-## Deployment
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-The portfolio website is deployed using [Vercel](https://vercel.com). 
+## Deploy on Vercel
 
-## Contributing
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-While this is a personal portfolio, any suggestions for improvements are welcome. Feel free to create an issue or make a pull request.
-
-## License
-
-This project is licensed under the MIT License. Please see the `LICENSE.md` file for details.
-
-## Connect with Me
-
-- [Portfolio](https://www.olivermorla.com)
-- [LinkedIn](https://www.linkedin.com/in/oliver-morla)
-- [Email](mailto:olivermorla3@email.com)
-
-Don't forget to leave a ⭐ if you found this useful.
-
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

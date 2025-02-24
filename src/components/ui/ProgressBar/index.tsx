@@ -10,9 +10,8 @@ const ProgresBar = ({
 }) => {
   return (
     <motion.div
-      className="h-full absolute top-0 left-0 z-0 rounded-l-full rounded-r-full text-end"
+      className="h-full absolute top-0 left-0 z-0 rounded-l-full rounded-r-full text-end bg-gradient-to-r from-neutral-500 to-neutral-700"
       initial={{
-        backgroundColor: "var(--color-primary-dark)",
         width: "25%",
       }}
       whileInView={{

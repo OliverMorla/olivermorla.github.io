@@ -1,6 +1,4 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { MotionInViewDiv } from "@/components/helpers/Motion";
 
 const AchievementCard = ({
   description,
@@ -10,18 +8,15 @@ const AchievementCard = ({
   impact: string;
 }) => {
   return (
-    <motion.div
+    <MotionInViewDiv
+      once
+      y={40}
+      delay={0.2}
       className="flex flex-col items-center"
-      initial={{ opacity: 0, y: 100 }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        transition: { duration: 0.5, delay: 0.3 },
-      }}
     >
       <h2 className="font-bold text-xl text-center">{description}</h2>
       <p className="opacity-60">{impact}</p>
-    </motion.div>
+    </MotionInViewDiv>
   );
 };
 

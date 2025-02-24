@@ -1,26 +1,20 @@
 "use client";
-import React from "react";
-import useMount from "@/hooks/useMount";
+
+import useEffectMount from "@/hooks/useEffectMount";
 import { createPortal } from "react-dom";
-import { AnimatePresence } from "framer-motion";
 
-interface PortalProps extends React.ComponentPropsWithoutRef<"div"> {
-  readonly children: React.ReactNode;
-}
+// Portal component is used to render a component in a different DOM node
+const Portal = ({
+  children,
+  portalRoot,
+}: Readonly<{ children: React.ReactNode; portalRoot?: HTMLElement }>) => {
+  const isMounted = useEffectMount();
 
-const Portal = React.forwardRef<HTMLDivElement, PortalProps>(({ children, ...props }, ref) => {
-  const { isMounted } = useMount();
+  if (!isMounted) return null;
 
-  if (isMounted.current) {
-    return createPortal(
-      <AnimatePresence>{children}</AnimatePresence>,
-      document.body
-    );
-  }
+  const root = portalRoot ?? document.body;
 
-  return null;
-});
-
-Portal.displayName = "Portal";
+  return createPortal(children, root);
+};
 
 export default Portal;

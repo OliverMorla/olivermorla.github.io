@@ -2,7 +2,8 @@
 // ComponentPropsWithoutRef is a utility type that allows you to create a type that represents the props of a component without the ref prop.
 import React from "react";
 // cn is a utility function that combines class names
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils";
+
 // FontAwesomeIcon is a component that renders an icon from the FontAwesome library
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // faPresetIcons is an object that contains all the preset icons
@@ -11,15 +12,17 @@ import { faPresetIcons, FaPresetIconsTypes } from "@/constants";
 import { cva, type VariantProps } from "class-variance-authority";
 import { twMerge } from "tailwind-merge";
 
-export type SelectProps = VariantProps<typeof selectVariants> &
-  React.ComponentPropsWithoutRef<"select"> & {
-    readonly label?: string;
-    readonly parentClassName?: string;
-    readonly labelClassName?: string;
-    readonly iconClassName?: string;
-    readonly wrapperClassName?: string;
-    readonly faPresetIcon?: FaPresetIconsTypes;
-  };
+export type SelectProps = Readonly<
+  VariantProps<typeof selectVariants> &
+    React.ComponentPropsWithoutRef<"select"> & {
+      label?: string;
+      parentClassName?: string;
+      labelClassName?: string;
+      iconClassName?: string;
+      wrapperClassName?: string;
+      faPresetIcon?: FaPresetIconsTypes;
+    }
+>;
 
 // Default Class Name
 const defaultClassName =
@@ -29,18 +32,19 @@ const selectVariants = cva(defaultClassName, {
   variants: {
     variant: {
       none: "",
-      solidDark:
-        "bg-neutral-900 text-neutral-100 rounded-md !shadow-sm outline-[1px] border-[1px] !ring-blue-400 border-neutral-300",
-      solidLight:
-        "bg-neutral-100 text-neutral-900 rounded-md !shadow-sm outline-[1px] border-[1px] !ring-blue-400 border-neutral-300",
-      transparentLight:
-        "bg-transparent text-neutral-900 rounded-md !shadow-sm outline-[1px] border-[1px] !ring-blue-400 border-neutral-300",
-      transparentBottom:
-        "bg-transparent text-neutral-900 !shadow-sm outline-[1px] border-b-[1px] !ring-blue-400 border-b-neutral-300",
-
       // Adjust CSS variables to fit your color scheme
       solid:
-        "bg-[var(--color-secondary)] text-[var(--color-primary)] rounded-md !shadow-sm outline-[1px] border-[1px] !ring-[var(--color-tertiary)] border-neutral-300",
+        "bg-[var(--var-name)] hover:bg-[var(--var-name-dark)] active:bg-[var(--var-name-darker)] text-[var(--var-name-text)] ring-[var(--var-name-ring)] shadow-sm hover:shadow-lg rounded-md",
+      // --------------------------------------------- //
+
+      solidDark:
+        "bg-neutral-900 dark:text-neutral-100 text-neutral-100 rounded-md shadow-sm outline-[1px] ring-blue-400 border border-neutral-600",
+      solidLight:
+        "bg-neutral-100 text-neutral-900 rounded-md shadow-sm outline-[1px] border ring-blue-400 border-neutral-300 dark:bg-neutral-900 dark:text-neutral-100 dark:border-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-800 hover:border-blue-400 dark:hover:border-blue-500 dark:focus:ring-blue-400",
+      transparentLight:
+        "bg-transparent dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 rounded-none border-b border-neutral-300 dark:border-neutral-600 hover:border-blue-400 dark:hover:border-blue-500 focus:border-blue-500 dark:focus:border-blue-400",
+      transparentBottom:
+        "bg-transparent text-neutral-900 dark:text-neutral-100 border-b-2 border-neutral-300 dark:border-neutral-600 hover:border-blue-400 dark:hover:border-blue-500 focus:border-blue-500 dark:focus:border-blue-400 shadow-sm",
     },
 
     size: {
@@ -58,9 +62,13 @@ const selectVariants = cva(defaultClassName, {
     width: {
       none: "",
       sm: "w-20",
+      smlong: "w-32",
       md: "w-40",
+      mdlong: "w-48",
       lg: "w-60",
+      lglong: "w-64",
       xl: "w-80",
+      xllong: "w-96",
       fit: "w-fit",
       full: "w-full",
       auto: "w-auto",
@@ -107,13 +115,13 @@ const selectVariants = cva(defaultClassName, {
     },
   },
   defaultVariants: {
-    variant: "solidLight",
     size: "md",
     width: "md",
     shadow: "none",
     fontSize: "md",
     textAlign: "left",
     leftPadding: "md",
+    variant: "solidLight",
   },
 });
 
@@ -160,17 +168,21 @@ const Select = React.memo(
       },
       ref
     ) => {
-      const ariaLabel =
-        props["aria-label"] ||
-        (props.name && `select-${props.name}`) ||
-        (label && `select-${label}`) ||
-        (variant && `select-${variant}`) ||
-        "select";
+      const ariaLabel = React.useMemo(
+        () =>
+          props["aria-label"] ||
+          (props.name && `select-${props.name}`) ||
+          (label && `select-${label}`) ||
+          (variant && `select-${variant}`) ||
+          "select",
+        [props, label, variant]
+      );
+
       return (
         <div className={cn("relative flex flex-col", parentClassName)}>
           {label && (
             <label
-              className={cn("text-base", labelClassName)}
+              className={cn("text-base font-medium", labelClassName)}
               htmlFor={props.name}
             >
               {label}
@@ -184,7 +196,8 @@ const Select = React.memo(
                 width={15}
                 height={15}
                 className={cn(
-                  "z-10 pointer-events-none absolute left-[10px] text-neutral-900",
+                  "z-10 pointer-events-none select-none cursor-not-allowed absolute left-[10px]",
+                  variant === "solidDark" && "text-neutral-100",
                   iconClassName
                 )}
               />
@@ -192,6 +205,7 @@ const Select = React.memo(
 
             <select
               ref={ref}
+              id={props.name}
               aria-label={ariaLabel}
               className={twMerge(
                 selectVariants({
@@ -216,7 +230,7 @@ const Select = React.memo(
               width={15}
               height={15}
               className={cn(
-                `pointer-events-none absolute right-[10px] text-gray-400 transition-all duration-200 ease-in-out`,
+                "pointer-events-none select-none cursor-not-allowed absolute right-[10px] opacity-60",
                 iconClassName
               )}
             />
@@ -229,13 +243,11 @@ const Select = React.memo(
 
 const SelectOption = React.memo(
   React.forwardRef<HTMLOptionElement, React.ComponentPropsWithoutRef<"option">>(
-    ({ children, ...props }, ref) => {
-      return (
-        <option ref={ref} {...props}>
-          {children}
-        </option>
-      );
-    }
+    ({ children, ...props }, ref) => (
+      <option ref={ref} {...props}>
+        {children}
+      </option>
+    )
   )
 );
 

@@ -9,45 +9,37 @@ interface CounterProps {
 export function Counter({ duration, targetCount }: CounterProps) {
   // State to keep track of the current count value
   const [count, setCount] = useState(0);
+  // Ref to store the start time of the animation
+  const startTimeRef = useRef<number>(0);
   // Ref to store the ID of the requested animation frame
   const frameRef = useRef<number | null>(null);
 
   useEffect(() => {
-    // Variable to store the timestamp when the animation starts
-    let startTimestamp: number | null = null;
+    // Set the start time of the animation
+    startTimeRef.current = performance.now();
 
-    // The step function will be called on each animation frame
-    const step = (timestamp: number) => {
-      // Set the start timestamp on the first call
-      if (!startTimestamp) startTimestamp = timestamp;
-      // Calculate how much time has passed since the animation started
-      const progress = timestamp - startTimestamp;
+    const animate = () => {
+      // Calculate the elapsed time since the animation started
+      const elapsed = performance.now() - startTimeRef.current;
+      // Calculate the progress of the animation as a fraction of the total duration
+      const progress = Math.min(elapsed / duration, 1);
 
-      // Calculate the current count based on progress and ensure it doesn't exceed targetCount
-      const currentCount = Math.min(
-        // Scale the progress to the targetCount over the duration
-        Math.floor((progress / duration) * targetCount),
-        targetCount
-      );
-
-      // Update the state with the new count value
+      // Calculate the current count based on the progress and ensure it doesn't exceed targetCount
+      const currentCount = Math.floor(targetCount * progress);
       setCount(currentCount);
 
-      // If the animation hasn't reached the full duration, request the next frame
-      if (progress < duration) {
-        frameRef.current = requestAnimationFrame(step);
-      } else {
-        // Ensure the final count is set to targetCount
-        setCount(targetCount);
+      // If the animation hasn't reached the end, request the next frame
+      if (progress < 1) {
+        frameRef.current = requestAnimationFrame(animate);
       }
     };
 
     // Start the animation by requesting the first animation frame
-    frameRef.current = requestAnimationFrame(step);
+    frameRef.current = requestAnimationFrame(animate);
 
     // Cleanup function to cancel the animation frame when the component unmounts or updates
     return () => {
-      if (frameRef.current !== null) {
+      if (frameRef.current) {
         cancelAnimationFrame(frameRef.current);
       }
     };

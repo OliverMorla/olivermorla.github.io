@@ -1,38 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPresetIcons, FaPresetIconsTypes } from "@/constants";
-import { cn } from "@/lib/utils";
-import { cva, type VariantProps } from "class-variance-authority";
+import React from "react";
+import { cn } from "@/utils";
 import { twMerge } from "tailwind-merge";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { cva, type VariantProps } from "class-variance-authority";
+import { faPresetIcons, FaPresetIconsTypes } from "@/constants";
 
 const defaultClassName =
-  "relative transition-all duration-300 ease-in-out w-full appearance-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50";
+  "relative transition-all duration-300 ease-in-out w-full appearance-none focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:select-none disabled:pointer-events-none disabled:opacity-50";
 
 const inputVariants = cva(defaultClassName, {
   variants: {
     variant: {
       none: "",
-      modern:
-        "bg-white text-gray-800 border-b-2 border-gray-300 focus:border-blue-500 transition-colors duration-300",
-      minimal:
-        "bg-transparent text-gray-800 border-b border-gray-200 focus:border-gray-800 transition-colors duration-300",
-      pill: "bg-gray-100 text-gray-800 rounded-full px-6 focus:bg-white focus:shadow-md transition-all duration-300",
-      outline:
-        "bg-transparent text-gray-800 border border-gray-300 rounded-md focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all duration-300",
-      floating:
-        "bg-white text-gray-800 border border-gray-200 rounded-md shadow-sm hover:shadow-md focus:shadow-lg transition-all duration-300",
-      solidDark:
-        "bg-neutral-900 text-neutral-100 rounded-md !shadow-sm outline-[1px] border-[1px] !ring-blue-400 border-neutral-300",
-      solidLight:
-        "bg-neutral-100 text-neutral-900 rounded-md !shadow-sm outline-[1px] border-[1px] !ring-blue-400 border-neutral-300",
-      transparentLight:
-        "bg-transparent text-neutral-900 rounded-md !shadow-sm outline-[1px] border-[1px] !ring-blue-400 border-neutral-300",
-      transparentBottom:
-        "bg-transparent text-neutral-900 !shadow-sm outline-[1px] border-b-[1px] !ring-blue-400 border-b-neutral-300",
+
+      // Adjust CSS variables to fit your color scheme
       solid:
-        "bg-[var(--color-secondary)] text-[var(--color-primary)] rounded-md !shadow-sm outline-[1px] border-[1px] !ring-[var(--color-tertiary)] border-neutral-300",
+        "bg-[var(--var-name)] hover:bg-[var(--var-name-dark)] active:bg-[var(--var-name-darker)] text-[var(--var-name-text)] ring-[var(--var-name-ring)] shadow-sm hover:shadow-lg rounded-md",
+      // --------------------------------------------- //
+
+      transparent:
+        "bg-transparent border border-neutral-300 text-neutral-900 shadow-sm hover:shadow-lg rounded-md dark:border-neutral-700 dark:text-neutral-100",
+      solidDark:
+        "bg-neutral-900 text-neutral-100 rounded-md shadow-sm outline-[1px] border ring-blue-400 border-neutral-600",
+      solidLight:
+        "bg-neutral-100 text-neutral-900 rounded-md shadow-sm outline-[1px] border ring-blue-400 border-neutral-300 dark:bg-neutral-900 dark:text-neutral-100 dark:border-neutral-700",
     },
     size: {
       none: "",
@@ -44,6 +37,27 @@ const inputVariants = cva(defaultClassName, {
       mdlong: "px-8 py-2",
       lglong: "px-10 py-3",
       xllong: "px-12 py-4",
+    },
+    width: {
+      none: "",
+      sm: "w-20",
+      smlong: "w-32",
+      md: "w-40",
+      mdlong: "w-48",
+      lg: "w-60",
+      lglong: "w-64",
+      xl: "w-80",
+      xllong: "w-96",
+      fit: "w-fit",
+      full: "w-full",
+      auto: "w-auto",
+    },
+    rounded: {
+      none: "",
+      sm: "rounded-sm",
+      md: "rounded-md",
+      lg: "rounded-lg",
+      xl: "rounded-xl",
     },
     fontSize: {
       none: "",
@@ -66,15 +80,17 @@ const inputVariants = cva(defaultClassName, {
     },
   },
   defaultVariants: {
-    variant: "solidLight",
     size: "md",
-    fontSize: "md",
     shadow: "none",
+    fontSize: "md",
+    rounded: "md",
+    width: "auto",
+    variant: "solidLight",
   },
 });
 
 export interface InputProps
-  extends Omit<React.ComponentPropsWithoutRef<"input">, "size">,
+  extends Omit<React.ComponentPropsWithoutRef<"input">, "size" | "width">,
     VariantProps<typeof inputVariants> {
   label?: string;
   placeholder?: string;
@@ -91,7 +107,9 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
       label,
       variant,
       size,
+      width,
       fontSize,
+      rounded,
       shadow,
       placeholder = "Enter text here",
       faPresetIcon,
@@ -105,7 +123,12 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     },
     ref
   ) => {
-    const [viewPassword, setViewPassword] = useState(false);
+    const [viewPassword, setViewPassword] = React.useState(false);
+
+    const toggleViewPassword = React.useCallback(() => {
+      setViewPassword((prev) => !prev);
+    }, []);
+
     const ariaLabel =
       props["aria-label"] ||
       (label && `input-${label}`) ||
@@ -126,14 +149,21 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
           <input
             ref={ref}
             type={viewPassword && type === "password" ? "text" : type}
-            {...props}
             className={twMerge(
-              inputVariants({ variant, size, shadow, fontSize }),
-              faPresetIcon && "pl-8",
-              className
+              inputVariants({
+                variant,
+                size,
+                shadow,
+                fontSize,
+                width,
+                className,
+                rounded,
+              }),
+              faPresetIcon && "pl-8", 
             )}
             aria-label={ariaLabel}
             placeholder={placeholder}
+            {...props}
           />
 
           {faPresetIcon && (
@@ -142,19 +172,22 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
               width={15}
               height={15}
               className={cn(
-                "pointer-events-none absolute left-[10px]",
+                "pointer-events-none cursor-not-allowed select-none absolute left-[10px]",
+                variant === "solidDark" && "text-white",
                 iconClassName
               )}
             />
           )}
+
+          {/* If the input type is password, show the eye icon to toggle view password */}
           {type === "password" && (
             <FontAwesomeIcon
               icon={faPresetIcons.eye}
               width={25}
               height={25}
-              onClick={() => setViewPassword((prev) => !prev)}
+              onClick={toggleViewPassword}
               className={cn(
-                "absolute right-3 cursor-pointer transition-all ease-in-out",
+                "absolute right-[10px] cursor-pointer transition-all ease-in-out",
                 viewPassword ? "opacity-100" : "opacity-40"
               )}
             />

@@ -66,9 +66,9 @@ export default function ParallaxText({
    * dynamically generated number of children.
    */
   return (
-    <div className="parallax">
+    <div className="parallax bg-neutral-200/20 dark:bg-neutral-800/20 backdrop-blur-md">
       <motion.div className="scroller" style={{ x }}>
-        <span>{children}</span>
+        <span className="leading-none">{children}</span>
         <span>{children}</span>
         <span>{children}</span>
         <span>{children}</span>

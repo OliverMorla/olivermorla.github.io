@@ -12,14 +12,21 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
+const getImageUrl = (image: Media | number | undefined) => {
+  if (!image) return "/assets/images/placeholder.jpg";
+
+  if (typeof image !== "object") return "/assets/images/placeholder.jpg";
+
+  return image.url ?? "/assets/images/placeholder.jpg";
+};
+
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { projects } from "@/constants";
+import { Media, Project } from "@/payload-types";
 import Link from "next/link";
-const Carousel = () => {
+const Carousel = ({ projects }: { projects: Project[] }) => {
   return (
     <Swiper
-      spaceBetween={30}
       centeredSlides={true}
       autoplay={{
         delay: 2500,
@@ -28,30 +35,31 @@ const Carousel = () => {
       pagination={{
         clickable: true,
       }}
-      navigation={true}
+      navigation={{
+        enabled: true,
+      }}
       modules={[Autoplay, Pagination, Navigation]}
     >
       {projects.map((project, index) => (
-        <React.Fragment key={index}>
-          <SwiperSlide key={index}>
-            <div className="text-start">
-              <h1 className="text-2xl font-light">{project.title}</h1>
-              <p className="text-sm opacity-60">{project.description}</p>
-            </div>
-            <Link
-              href={project.demoUrl}
-              target="_blank"
-              className="hover:opacity-60 transition-all duration-300 ease-in-out"
-            >
-              <Image
-                src={project.imageUrl ?? "/assets/images/placeholder.jpg"}
-                width={1280}
-                height={720}
-                alt="photo"
-                className="w-full h-full object-contain"
-              />
-            </Link>
-            <div className="flex items-center justify-between gap-2">
+        <SwiperSlide key={index}>
+          <div className="text-start mb-4">
+            <h1 className="text-2xl font-light">{project.title}</h1>
+            <p className="text-sm opacity-60">{project.description}</p>
+          </div>
+          <Link
+            target="_blank"
+            href={project.link ?? "/"}
+            className="hover:opacity-60 transition-all duration-300 ease-in-out"
+          >
+            <Image
+              src={getImageUrl(project.images?.[0])}
+              width={1280}
+              height={720}
+              alt="photo"
+              className="w-full h-full object-contain"
+            />
+          </Link>
+          {/* <div className="flex items-center justify-between gap-2">
               <h2 className="font-bold">Category: {project.category}</h2>
               {project.sourceCodeUrl ? (
                 <span>
@@ -69,9 +77,8 @@ const Carousel = () => {
               ) : (
                 <p className="text-sm opacity-60">Source: Private</p>
               )}
-            </div>
-          </SwiperSlide>
-        </React.Fragment>
+            </div> */}
+        </SwiperSlide>
       ))}
     </Swiper>
   );

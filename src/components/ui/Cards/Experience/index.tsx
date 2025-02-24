@@ -1,12 +1,9 @@
 "use client";
 import React from "react";
-import AnimatedInViewDiv, {
-  AnimatedInViewDivProps,
-} from "@/components/helpers/AnimatedInViewDiv";
-import { cn } from "@/lib/utils";
-import { MotionProps } from "framer-motion";
+import { cn } from "@/utils";
+import { MotionInViewDiv, MotionProps } from "@/components/helpers/Motion";
 
-interface ExperienceCardProps extends AnimatedInViewDivProps {
+interface ExperienceCardProps {
   companyName: string;
   position: string;
   location: string;
@@ -19,11 +16,10 @@ interface ExperienceCardProps extends AnimatedInViewDivProps {
 
 const ExperienceCard = React.forwardRef<
   HTMLDivElement,
-  ExperienceCardProps & MotionProps
+  ExperienceCardProps & MotionProps<"div">
 >(
   (
     {
-      key,
       companyName,
       position,
       location,
@@ -38,9 +34,12 @@ const ExperienceCard = React.forwardRef<
     ref
   ) => {
     return (
-      <AnimatedInViewDiv
-        ref={ref}
-        className={cn("flex justify-start max-sm:flex-col", className)}
+      <MotionInViewDiv
+        once
+        y={40}
+        delay={0.2}
+        type="tween"
+        className={cn("flex justify-start max-sm:flex-col gap-6", className)}
         {...props}
       >
         <div className="flex flex-col items-center min-w-[250px]">
@@ -70,7 +69,7 @@ const ExperienceCard = React.forwardRef<
             </ul>
           </div>
         </div>
-      </AnimatedInViewDiv>
+      </MotionInViewDiv>
     );
   }
 );

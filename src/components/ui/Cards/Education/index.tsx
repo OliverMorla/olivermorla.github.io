@@ -2,12 +2,17 @@
 
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
 const EducationCard = ({
   educationInstitution,
   educationDegree,
   fontAwesomeIconUrl,
-}: EducationCardProps) => {
+}: {
+  educationInstitution: string;
+  educationDegree: string;
+  fontAwesomeIconUrl: IconDefinition;
+}) => {
   return (
     <motion.div
       className="flex flex-col"
