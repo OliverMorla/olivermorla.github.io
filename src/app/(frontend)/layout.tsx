@@ -11,7 +11,7 @@ import { PostHogProvider } from "@/providers/posthog-provider";
 import "@/app/(frontend)/globals.css";
 import Footer from "@/modules/app/components/footer";
 import Header from "@/modules/app/components/header";
-import ThemeScript from "@/components/theme-script";
+// import ThemeScript from "@/components/theme-script";
 
 const inter = Inter({
   variable: "--font-inter",
