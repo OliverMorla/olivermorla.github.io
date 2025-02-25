@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build && npm run generate:types && npm run postbuild",
+    "build": "next build && npm run generate:types",
     "start": "next start",
     "email:dev": "email dev",
     "lint": "next lint",
@@ -13,8 +13,7 @@
     "payload": "payload",
     "reset": "payload migrate:reset",
     "fresh": "payload migrate:fresh",
-    "generate:types": "payload generate:types",
-    "postbuild": "pagefind --site .next/server/app --output-path public/_pagefind"
+    "generate:types": "payload generate:types"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
