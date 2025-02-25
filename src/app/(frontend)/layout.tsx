@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Montserrat } from "next/font/google";
-import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { cn } from "@/utils";
 import { Toaster } from "sonner";
@@ -8,10 +8,11 @@ import { Toaster } from "sonner";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { PostHogProvider } from "@/providers/posthog-provider";
 
-import "@/app/(frontend)/globals.css";
 import Footer from "@/modules/app/components/footer";
 import Header from "@/modules/app/components/header";
-// import ThemeScript from "@/components/theme-script";
+import ThemeScript from "@/components/theme-script";
+
+import "@/app/(frontend)/globals.css";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -94,11 +95,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ colorScheme: "dark" }}>
+    <html lang="en" style={{ colorScheme: "light" }}>
       {/* Might remove this script if it's not needed */}
-      {/* <head>
+      <head>
         <ThemeScript />
-      </head> */}
+      </head>
       <body
         className={cn(
           inter.variable,
@@ -134,6 +135,5 @@ export default function RootLayout({
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 1,
-  maximumScale: 1,
+  viewportFit: "cover",
 };

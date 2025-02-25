@@ -1,6 +1,9 @@
 "use client";
 import React from "react";
-import { faCheckCircle, IconDefinition } from "@fortawesome/free-solid-svg-icons";
+import {
+  faCheckCircle,
+  IconDefinition,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { cn } from "@/utils";
 import { MotionDiv, MotionProps } from "@/components/helpers/Motion";
@@ -38,7 +41,7 @@ const ServiceCard = React.forwardRef<
       <MotionDiv
         ref={ref}
         className={cn(
-          "relative transform flex flex-col gap-6 max-w-xl max-sm:max-w-full w-full items-start cursor-pointer shadow-sm dark:shadow-[var(--color-primary-dark)] p-8 max-sm:p-4 border-[1px] border-neutral-200 dark:border-neutral-800 rounded-md flex-grow sm:max-h-[525px] hover:shadow-md hover:dark:shadow-[var(--color-primary-dark)] transition-all duration-300 hover:border-[var(--color-primary-light)]",
+          "relative transform flex flex-col gap-6 max-w-xl max-sm:max-w-full w-full items-start cursor-pointer shadow-sm dark:shadow-[var(--color-primary-dark)] p-8 max-sm:p-4 border-[1px] border-neutral-200 dark:border-neutral-800 rounded-md flex-grow sm:max-h-[525px] hover:shadow-md hover:dark:shadow-[var(--color-primary-dark)] transition-all duration-300 hover:border-[var(--color-primary-light)]"
           // index === 1 ? "xl:-top-16" : "top-0"
         )}
         {...props}
@@ -50,9 +53,9 @@ const ServiceCard = React.forwardRef<
             </h1>
             <FontAwesomeIcon icon={faIconUrl} className="text-4xl" />
           </div>
-          <p className="opacity-60">{description}</p>
+          <p className="opacity-70">{description}</p>
         </div>
-        <p className="opacity-60 text-xl font-bold">{price}</p>
+        <p className="opacity-70 text-xl font-bold">{price}</p>
         <div className="flex flex-wrap gap-2">
           {libraries.map((library, index) => (
             <p

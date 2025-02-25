@@ -27,28 +27,28 @@ const generateRandomClipPath = () => {
   const variance = 20; // How much each point can vary
 
   const angles = Array.from({ length: points }, (_, i) => (i * 360) / points);
-  const coordinates = angles.map(angle => {
+  const coordinates = angles.map((angle) => {
     const r = radius + (Math.random() - 0.5) * variance;
     const x = 50 + r * Math.cos((angle * Math.PI) / 180);
     const y = 50 + r * Math.sin((angle * Math.PI) / 180);
     return `${x}% ${y}%`;
   });
 
-  return `polygon(${coordinates.join(', ')})`;
+  return `polygon(${coordinates.join(", ")})`;
 };
 
 const Hero = () => {
-  const [morphClass, setMorphClass] = useState('morph-1');
+  const [morphClass, setMorphClass] = useState("morph-1");
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
     const transitionInterval = setInterval(() => {
       setIsTransitioning(true);
-      
+
       // Small delay before changing the morph class to ensure smooth transition
       setTimeout(() => {
-        setMorphClass(prev => prev === 'morph-1' ? 'morph-2' : 'morph-1');
-        
+        setMorphClass((prev) => (prev === "morph-1" ? "morph-2" : "morph-1"));
+
         // Reset transition state after animation completes
         setTimeout(() => {
           setIsTransitioning(false);
@@ -130,12 +130,15 @@ const Hero = () => {
 
           <ul className="flex justify-center md:justify-between text-3xl sm:text-4xl gap-6">
             {socialMediaLinks.map((item, index) => (
-              <MotionLi key={index} y={40} delay={index * 0.2}>
-                <Link href={item.href}>
-                  <FontAwesomeIcon
-                    icon={item.iconUrl}
-                    className="transition-all duration-300 ease-in-out"
-                  />
+              <MotionLi
+                y={40}
+                key={index}
+                delay={index * 0.2}
+                aria-label={item.title}
+                className="hover:text-blue-300 active:text-blue-600 transition-colors ease-in cursor-pointer"
+              >
+                <Link href={item.href} aria-label={item.title}>
+                  <FontAwesomeIcon icon={item.iconUrl} />
                 </Link>
               </MotionLi>
             ))}
@@ -149,7 +152,8 @@ const Hero = () => {
         >
           <Image
             src={media.portrait}
-            fill
+            width={500}
+            height={500}
             className="object-cover"
             alt={Object.keys(media)[0]}
             priority

@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 const Experiences = () => {
   return (
     <section
-      className="relative h-auto w-full flex flex-col justify-center items-center py-24 max-sm:p-4 g-6 bg-gradient-to-b from-neutral-900 via-neutral-950 to-neutral-900"
+      className="relative h-auto w-full flex flex-col justify-center items-center py-24 max-sm:p-4 g-6 bg-gradient-to-b from-neutral-50 via-neutral-100 to-neutral-50 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900"
       id="experiences"
     >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">

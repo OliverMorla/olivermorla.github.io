@@ -21,4 +21,4 @@ const ThemeScript = () => {
   return <script dangerouslySetInnerHTML={{ __html: themeScript }} />;
 };
 
-export default ThemeScript; 
+export default ThemeScript;
