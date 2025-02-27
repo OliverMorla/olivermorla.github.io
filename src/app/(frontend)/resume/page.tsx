@@ -28,7 +28,7 @@ const Resume = async () => {
   const doesContentExist = !!data.docs?.[0]?.content?.root.children.length;
   if (!doesContentExist && !doesDocumentExist) {
     return (
-      <main className="relative flex flex-col items-center justify-center gap-6 min-h-screen h-full w-full text-neutral-900 dark:text-neutral-100 mt-[60px]">
+      <main className="relative flex flex-col items-center justify-center gap-6 min-h-screen h-full w-full text-neutral-900 dark:text-neutral-100 sm:pt-[78px]">
         <div className="container mx-auto p-8 max-sm:p-4 text-center">
           <div className="flex flex-col items-center justify-center gap-4">
             <h1 className="text-4xl font-bold">No content found</h1>
@@ -46,7 +46,7 @@ const Resume = async () => {
   }
 
   return (
-    <main className="relative flex flex-col gap-6 min-h-screen h-full w-full text-neutral-900 dark:text-neutral-100 mt-[60px]">
+    <main className="relative flex flex-col gap-6 min-h-screen h-full w-full text-neutral-900 dark:text-neutral-100 sm:pt-[78px]">
       {doesDocumentExist && (
         <iframe
           src={

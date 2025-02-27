@@ -42,9 +42,9 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         </div>
         <div className="ml-4 flex items-start justify-between w-full">
           <div>
-            <h3 className="text-base font-medium text-neutral-900 dark:text-neutral-100">
+            <h1 className="text-base font-medium text-neutral-900 dark:text-neutral-100">
               {testimonial.name}
-            </h3>
+            </h1>
             <p className="text-sm text-neutral-500 dark:text-neutral-400">
               {testimonial.role}
             </p>

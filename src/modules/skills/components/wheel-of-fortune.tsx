@@ -9,9 +9,6 @@ const WheelOfFortune = () => {
       {skillsIcons.map((icon, index) => (
         <MotionDiv
           key={index}
-          initial={{
-            opacity: 0,
-          }}
           animate={{
             rotate: 360,
             opacity: 1,
@@ -19,11 +16,8 @@ const WheelOfFortune = () => {
               duration: skillsIcons.length,
               delay: index * 1,
               repeat: Infinity,
-              ease: "easeInOut",
+              ease: "linear",
             },
-          }}
-          exit={{
-            opacity: 0,
           }}
         >
           <FontAwesomeIcon icon={icon.fontAwesomeIconUrl} />
