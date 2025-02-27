@@ -1,9 +1,16 @@
-// app/providers.jsx
 "use client";
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import posthog from "posthog-js";
 import { PostHogProvider as PHProvider } from "posthog-js/react";
-import SuspendedPostHogPageView from "@/config/posthog/modules/posthog-pageview";
+
+import dynamic from "next/dynamic";
+
+const SuspendedPostHogPageView = dynamic(
+  () => import("@/config/posthog/modules/posthog-pageview"),
+  {
+    ssr: false,
+  }
+);
 
 export function PostHogProvider({
   children,

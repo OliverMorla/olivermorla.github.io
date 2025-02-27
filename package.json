@@ -10,10 +10,12 @@
     "email:dev": "email dev",
     "lint": "next lint",
     "test": "jest",
+    "analyze": "ANALYZE=true next build",
     "payload": "payload",
     "reset": "payload migrate:reset",
     "fresh": "payload migrate:fresh",
-    "generate:types": "payload generate:types"
+    "generate:types": "payload generate:types",
+    "bundlesize": "bundlesize"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -22,6 +24,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@motionone/utils": "^10.18.0",
+    "@next/bundle-analyzer": "^15.1.7",
     "@next/third-parties": "^15.1.7",
     "@payloadcms/db-postgres": "^3.23.0",
     "@payloadcms/email-resend": "^3.23.0",

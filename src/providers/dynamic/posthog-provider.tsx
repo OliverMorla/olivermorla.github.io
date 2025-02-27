@@ -1,14 +1,27 @@
 "use client";
 
-import { Loader } from "lucide-react";
 import dynamic from "next/dynamic";
+import { Loader } from "lucide-react";
 
-const PostHogProvider = dynamic(
-  () => import("../posthog-provider").then((mod) => mod.PostHogProvider),
+// Move the dynamic import to a client component
+const DynamicPostHogProvider = dynamic(
+  () =>
+    import("@/providers/posthog-provider").then((mod) => mod.PostHogProvider),
   {
     ssr: false,
-    loading: () => <Loader className="animate-spin" />,
+    loading: () => (
+      <div className="min-h-screen flex items-center justify-center bg-neutral-50 dark:bg-neutral-900">
+        <Loader className="animate-spin" />
+      </div>
+    ),
   }
 );
 
-export default PostHogProvider;
+// Create a client wrapper component
+export default function PostHogProvider({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return <DynamicPostHogProvider>{children}</DynamicPostHogProvider>;
+}

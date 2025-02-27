@@ -1,17 +1,13 @@
-import { cache } from "react";
-import { payload } from "@/lib/payload";
-import { TestimonialCard } from "@/modules/home/components/TestimonialCard";
+import { getTestimonials } from "@/lib/server/queries";
 import {
   MotionInViewDiv,
   MotionInViewH2,
   MotionInViewText,
-} from "@/components/helpers/Motion";
-
-const getTestimonials = cache(async () => {
-  return payload.find({ collection: "testimonials", limit: 3 });
-});
+} from "@/components/helpers/dynamic/Motion";
+import { TestimonialCard } from "@/modules/testimonial/components/card";
 
 export default async function Testimonials() {
+  // get the data from the cache
   const testimonials = await getTestimonials();
 
   return (

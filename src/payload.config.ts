@@ -18,6 +18,7 @@ import { Users } from "./collections/Users";
 import { Media } from "./collections/Media";
 import { Pages } from "./collections/Pages";
 import { Images } from "./collections/Images";
+import { Resume } from "./collections/Resume";
 import { Projects } from "./collections/Projects";
 import { Services } from "./collections/Services";
 import { Warranty } from "./collections/Warranty";
@@ -26,7 +27,6 @@ import { Testimonials } from "./collections/Testimonials";
 import { PrivacyPolicy } from "./collections/PrivacyPolicy";
 import { TermsOfService } from "./collections/TermsOfService";
 import { Certifications } from "./collections/Certifications";
-import { Resume } from "./collections/Resume";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);

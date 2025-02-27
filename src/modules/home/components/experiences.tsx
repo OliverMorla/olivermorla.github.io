@@ -1,14 +1,13 @@
 import { experienceHistory, achievements } from "@/constants";
 import ExperienceCard from "@/components/ui/Cards/Experience";
 import AchievementCard from "@/components/ui/Cards/Achievement";
-import SectionTitle from "@/components/ui/SectionTitle";
-import { motion } from "framer-motion";
+import SectionTitle from "@/modules/app/components/section-title";
 
 const Experiences = () => {
   return (
     <section
-      className="relative h-auto w-full flex flex-col justify-center items-center py-24 max-sm:p-4 g-6 bg-gradient-to-b from-neutral-50 via-neutral-100 to-neutral-50 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900"
       id="experiences"
+      className="relative h-auto w-full flex flex-col justify-center items-center py-24 max-sm:p-4 gap-6 bg-gradient-to-b from-neutral-50 via-neutral-100 to-neutral-50 dark:from-neutral-900 dark:via-neutral-950 dark:to-neutral-900"
     >
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none opacity-20">
         <div className="absolute top-1/4 left-10 w-32 h-32 bg-blue-500 rounded-full blur-3xl" />
@@ -17,10 +16,8 @@ const Experiences = () => {
 
       <section className="container mx-auto flex flex-col items-center gap-10 relative">
         <SectionTitle
-          title={"Experiences"}
-          desc={
-            "Charting my professional growth through diverse roles, each enriching my skill set and deepening my industry knowledge."
-          }
+          title="Experiences"
+          description="Charting my professional growth through diverse roles, each enriching my skill set and deepening my industry knowledge."
         />
 
         <div className="mx-auto flex items-start justify-center gap-8 sm:gap-2 flex-col relative">
@@ -78,13 +75,11 @@ const Experiences = () => {
             </p>
           </div> */}
           <SectionTitle
-            title={"Achievements"}
-            desc={
-              "Showcasing key milestones and recognitions that reflect my dedication and success in the realm of full-stack development."
-            }
+            title="Achievements"
+            description="Showcasing key milestones and recognitions that reflect my dedication and success in the realm of full-stack development."
           />
           <div className="flex flex-col items-center gap-6">
-            {achievements.map((achievement, index) => (
+             {achievements.map((achievement, index) => (
               <AchievementCard
                 key={index}
                 impact={achievement.impact}

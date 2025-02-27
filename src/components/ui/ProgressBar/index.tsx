@@ -1,16 +1,10 @@
-"use client";
+import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
 
-import { motion } from "framer-motion";
-const ProgresBar = ({
-  progress,
-  transitionDelay,
-}: {
-  progress: string;
-  transitionDelay: number;
-}) => {
+const ProgresBar = ({ progress }: { progress: string }) => {
   return (
-    <motion.div
-      className="h-full absolute top-0 left-0 z-0 rounded-l-full rounded-r-full text-end bg-gradient-to-r from-neutral-500 to-neutral-700"
+    <MotionInViewDiv
+      className="h-full absolute top-0 left-0 z-0 rounded-l-full rounded-r-full text-end bg-gradient-to-r from-neutral-600 to-neutral-700 pr-2 text-sm"
+      once
       initial={{
         width: "25%",
       }}
@@ -19,14 +13,11 @@ const ProgresBar = ({
         transition: {
           duration: 1,
           ease: "easeInOut",
-          delay: transitionDelay * 0.2,
-          bounce: 0.5,
-          bounceDamping: 10,
         },
       }}
     >
       {progress}
-    </motion.div>
+    </MotionInViewDiv>
   );
 };
 

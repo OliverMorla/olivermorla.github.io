@@ -1,7 +1,10 @@
 import Image from "next/image";
 import { media } from "@/constants";
-import ButtonLink from "@/components/shared/ui/ButtonLink";
-import { MotionInViewDiv, MotionInViewH1 } from "@/components/helpers/Motion";
+import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
+import {
+  MotionInViewDiv,
+  MotionInViewH1,
+} from "@/components/helpers/dynamic/Motion";
 
 const About = () => {
   return (
@@ -42,8 +45,8 @@ const About = () => {
                 src={media.portrait_no_bg}
                 width={600}
                 height={600}
+                alt="portrait-no-bg"
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
-                alt={Object.keys(media)[0]}
                 priority
               />
             </MotionInViewDiv>

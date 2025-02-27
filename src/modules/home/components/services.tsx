@@ -1,7 +1,7 @@
 import { listOfServices } from "@/constants";
-import SectionTitle from "@/components/ui/SectionTitle";
 import ServiceCard from "@/components/ui/Cards/Service";
-import ButtonLink from "@/components/shared/ui/ButtonLink";
+import SectionTitle from "@/modules/app/components/section-title";
+import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
 
 const Services = () => {
   return (
@@ -10,10 +10,8 @@ const Services = () => {
       className="h-auto flex flex-col gap-6 py-24 px-8 max-sm:px-4 xl:gap-24"
     >
       <SectionTitle
-        title={"Services"}
-        desc={
-          "Offering tailored full-stack development services from concept to deployment, focusing on web, app, and system solutions."
-        }
+        title="Services"
+        description="Offering tailored full-stack development services from concept to deployment, focusing on web, app, and system solutions."
       />
       <div className="flex justify-center flex-wrap gap-12 max-sm:h-full">
         {listOfServices.map((service, index) => (

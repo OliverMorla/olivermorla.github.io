@@ -1,17 +1,14 @@
-"use client";
-
 import { skillsIcons } from "@/constants";
-import { motion } from "framer-motion";
+import ProgresBar from "@/components/ui/ProgressBar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ProgresBar from "../ProgressBar";
+import { MotionDiv } from "@/components/helpers/dynamic/Motion";
 
-const WheelOfFortune = ({ children }: { children: React.ReactNode }) => {
+const WheelOfFortune = () => {
   return (
     <div className="relative w-full h-full flex justify-center">
       {skillsIcons.map((icon, index) => (
-        <motion.div
+        <MotionDiv
           key={index}
-          className="text-4xl mb-4"
           initial={{
             opacity: 0,
           }}
@@ -22,22 +19,24 @@ const WheelOfFortune = ({ children }: { children: React.ReactNode }) => {
               duration: skillsIcons.length,
               delay: index * 1,
               repeat: Infinity,
-              ease: "linear",
+              ease: "easeInOut",
             },
+          }}
+          exit={{
+            opacity: 0,
           }}
         >
           <FontAwesomeIcon icon={icon.fontAwesomeIconUrl} />
-        </motion.div>
+        </MotionDiv>
       ))}
-      <div className="absolute self-center flex flex-col justify-center items-center gap-4">
-        {children}
+      <div className="absolute self-center flex flex-col justify-center items-center gap-6 w-full max-w-xl">
         {skillsIcons.map((skill, index) => (
           <div
             key={index}
             className="block max-w-2xl w-full h-[20px] relative rounded-full bg-neutral-800 dark:bg-neutral-200 text-white"
           >
-            <ProgresBar progress={skill.progress} transitionDelay={index} />
-            <h2 className="ml-2 font-bold absolute text-sm top-0">
+            <ProgresBar progress={skill.progress} />
+            <h2 className="ml-2 font-medium absolute text-sm top-0">
               {skill.title}
             </h2>
           </div>

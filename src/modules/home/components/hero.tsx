@@ -1,7 +1,3 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,56 +5,20 @@ import { media, socialMediaLinks } from "@/constants";
 
 import ParallaxText from "@/components/ui/ParallelText";
 import { Counter } from "@/components/helpers/Counter";
+
 import {
   MotionDiv,
   MotionH1,
   MotionH2,
   MotionLi,
   MotionText,
-} from "@/components/helpers/Motion";
-import ButtonLink from "@/components/shared/ui/ButtonLink";
+} from "@/components/helpers/dynamic/Motion";
+import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
 import Particles from "@/modules/app/components/particles";
 import Typewriter from "@/modules/app/components/typewriter";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-const generateRandomClipPath = () => {
-  const points = 6; // Number of points in the shape
-  const radius = 50; // Base radius percentage
-  const variance = 20; // How much each point can vary
-
-  const angles = Array.from({ length: points }, (_, i) => (i * 360) / points);
-  const coordinates = angles.map((angle) => {
-    const r = radius + (Math.random() - 0.5) * variance;
-    const x = 50 + r * Math.cos((angle * Math.PI) / 180);
-    const y = 50 + r * Math.sin((angle * Math.PI) / 180);
-    return `${x}% ${y}%`;
-  });
-
-  return `polygon(${coordinates.join(", ")})`;
-};
+import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
 
 const Hero = () => {
-  const [morphClass, setMorphClass] = useState("morph-1");
-  const [isTransitioning, setIsTransitioning] = useState(false);
-
-  useEffect(() => {
-    const transitionInterval = setInterval(() => {
-      setIsTransitioning(true);
-
-      // Small delay before changing the morph class to ensure smooth transition
-      setTimeout(() => {
-        setMorphClass((prev) => (prev === "morph-1" ? "morph-2" : "morph-1"));
-
-        // Reset transition state after animation completes
-        setTimeout(() => {
-          setIsTransitioning(false);
-        }, 1000);
-      }, 100);
-    }, 8000); // Match this with animation duration
-
-    return () => clearInterval(transitionInterval);
-  }, []);
-
   return (
     <section
       id="home"

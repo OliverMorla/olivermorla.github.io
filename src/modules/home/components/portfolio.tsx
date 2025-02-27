@@ -1,16 +1,11 @@
-import Icon from "@/components/helpers/Icon";
-import { MotionInViewDiv } from "@/components/helpers/Motion";
-import ButtonLink from "@/components/shared/ui/ButtonLink";
-import Carousel from "@/components/ui/Carousel";
-import SectionTitle from "@/components/ui/SectionTitle";
-import { payload } from "@/lib/payload";
-import { formatDate, getImageUrl } from "@/utils";
 import Image from "next/image";
-import { cache } from "react";
-
-const getProjects = cache(async () => {
-  return await payload.find({ collection: "projects", sort: "position:asc" });
-});
+// import Icon from "@/components/helpers/Icon";
+import { formatDate, getImageUrl } from "@/utils";
+import { getProjects } from "@/lib/server/queries";
+import SectionTitle from "@/modules/app/components/section-title";
+import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
+import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
+import Carousel from "@/modules/portfolio/components/dynamic/carousel";
 
 const Portfolio = async () => {
   const projects = await getProjects();
@@ -30,18 +25,13 @@ const Portfolio = async () => {
     >
       <SectionTitle
         title="Portfolio"
-        desc="Transforming ideas into reality through code. Explore my latest projects and technical achievements."
+        description="Transforming ideas into reality through code. Explore my latest projects and technical achievements."
       />
       <MotionInViewDiv once y={40} delay={0.2} className="container mx-auto">
         <Carousel projects={projects.docs} />
       </MotionInViewDiv>
       <div className="container mx-auto flex flex-col gap-6">
-        <MotionInViewDiv
-          once
-          x={-40}
-          delay={0.2}
-          className="flex flex-col"
-        >
+        <MotionInViewDiv once x={-40} delay={0.2} className="flex flex-col">
           <h1 className="text-2xl font-bold">Featured Project</h1>
           <p className="text-neutral-400">
             Here are some of my projects that I&apos;ve worked on.
@@ -101,7 +91,7 @@ const Portfolio = async () => {
                   href={featuredProject?.link ?? ""}
                   className="flex items-center gap-2"
                 >
-                  <Icon faIcon="globe" className="text-lg" />
+                  {/* <Icon faIcon="globe" className="text-lg" /> */}
                   Live Demo
                 </ButtonLink>
                 {/* <ButtonLink
@@ -122,5 +112,3 @@ const Portfolio = async () => {
 };
 
 export default Portfolio;
-
-export const revalidate = 0;

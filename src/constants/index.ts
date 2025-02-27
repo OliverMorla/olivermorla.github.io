@@ -717,7 +717,7 @@ const education = [
   },
 ];
 
-const skillsIcons = [
+const  skillsIcons = [
   {
     title: "React",
     progress: "95%",

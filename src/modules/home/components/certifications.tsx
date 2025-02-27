@@ -1,22 +1,15 @@
-import { cache } from "react";
-import { payload } from "@/lib/payload";
-import SectionTitle from "@/components/ui/SectionTitle";
-import CertificationCard from "@/components/ui/Cards/Certification";
-import { MotionInViewDiv } from "@/components/helpers/LazyMotion";
-import { MotionDiv } from "@/components/helpers/Motion";
-
-const getCertifications = cache(async () => {
-  return await payload.find({
-    collection: "certifications",
-    sort: "position:asc",
-  });
-});
+import { getCertifications } from "@/lib/server/queries";
+import SectionTitle from "@/modules/app/components/section-title";
+import CertificationCard from "@/modules/certifications/components/card";
 
 const Certifications = async () => {
+  // get the data from the cache
   const certifications = await getCertifications();
 
+  // check if the data exists
   const doesCertificationsExist = !!certifications.docs.length;
 
+  // if the data does not exist, don't render the component
   if (!doesCertificationsExist) return null;
 
   return (
@@ -26,7 +19,7 @@ const Certifications = async () => {
     >
       <SectionTitle
         title="Certifications"
-        desc={
+        description={
           "Evidence of my ongoing commitment to professional development, featuring key certifications in technology and development methodologies."
         }
       />

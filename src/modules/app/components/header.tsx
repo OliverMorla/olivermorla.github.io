@@ -3,10 +3,10 @@
 import React from "react";
 import Link from "next/link";
 import { scroll } from "motion";
-import { headerPrimaryLinks } from "@/constants";
 import { MotionLi } from "@/components/helpers/Motion";
+import { headerPrimaryLinks } from "@/constants";
 import ResponsiveNav from "@/modules/app/components/responsive-nav";
-import ThemeSwitcher from "./theme-switcher";
+import ThemeSwitcher from "@/modules/app/components/dynamic/theme-switcher";
 
 const Header = () => {
   React.useEffect(() => {

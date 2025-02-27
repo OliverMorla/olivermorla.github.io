@@ -1,4 +1,4 @@
-import { MotionInViewDiv } from "@/components/helpers/Motion";
+import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
 
 const AchievementCard = ({
   description,

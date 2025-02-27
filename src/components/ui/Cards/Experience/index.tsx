@@ -1,7 +1,7 @@
-"use client";
 import React from "react";
 import { cn } from "@/utils";
-import { MotionInViewDiv, MotionProps } from "@/components/helpers/Motion";
+import { MotionProps } from "@/config/motion/utils";
+import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
 
 interface ExperienceCardProps {
   companyName: string;

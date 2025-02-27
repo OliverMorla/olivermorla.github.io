@@ -6,7 +6,7 @@ import { cn } from "@/utils";
 import { Toaster } from "sonner";
 
 import { ThemeProvider } from "@/providers/theme-provider";
-import { PostHogProvider } from "@/providers/posthog-provider";
+import PostHogProvider from "@/providers/dynamic/posthog-provider";
 
 import Footer from "@/modules/app/components/footer";
 import Header from "@/modules/app/components/header";
@@ -21,12 +21,12 @@ const inter = Inter({
   preload: true,
 });
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"],
-  fallback: ["sans-serif"],
-  preload: true,
-});
+// const montserrat = Montserrat({
+//   variable: "--font-montserrat",
+//   subsets: ["latin"],
+//   fallback: ["sans-serif"],
+//   preload: true,
+// });
 
 export const metadata: Metadata = {
   title: {
@@ -95,7 +95,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" style={{ colorScheme: "light" }}>
+    <html
+      lang="en-US"
+      style={{
+        transitionProperty: "none",
+        marginRight: "0px",
+        colorScheme: "light",
+      }}
+    >
       {/* Might remove this script if it's not needed */}
       <head>
         <ThemeScript />
@@ -103,19 +110,17 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
-          montserrat.variable,
+          // montserrat.variable,
           "antialiased bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100"
         )}
       >
-        <PostHogProvider>
-          <ThemeProvider>
-            <Header />
-            {children}
-            <Footer />
-          </ThemeProvider>
-          {/* Sonner Toaster - Notifications */}
-          <Toaster />
-        </PostHogProvider>
+        <ThemeProvider>
+          <Header />
+          <PostHogProvider>{children}</PostHogProvider>
+          <Footer />
+        </ThemeProvider>
+        {/* Sonner Toaster - Notifications */}
+        <Toaster />
       </body>
 
       {/* Google Tag Manager - Tag Manager */}

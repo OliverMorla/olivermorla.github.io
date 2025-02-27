@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { socialMediaLinks } from "@/constants";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import ThemeSwitcher from "@/modules/app/components/theme-switcher";
+import ThemeSwitcher from "@/modules/app/components/dynamic/theme-switcher";
+import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();

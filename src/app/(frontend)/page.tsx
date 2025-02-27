@@ -2,11 +2,10 @@ import Hero from "@/modules/home/components/hero";
 import About from "@/modules/home/components/about";
 import Skills from "@/modules/home/components/skills";
 import Services from "@/modules/home/components/services";
-import Experiences from "@/modules/home/components/experiences";
-import Certifications from "@/modules/home/components/certifications";
-import Testimonials from "@/modules/home/components/testimonials";
 import Portfolio from "@/modules/home/components/portfolio";
-// import Portfolio from "@/modules/home/components/dynamic/portfolio";
+import Experiences from "@/modules/home/components/experiences";
+import Testimonials from "@/modules/home/components/testimonials";
+import Certifications from "@/modules/home/components/certifications";
 
 const Home = () => {
   return (
@@ -18,7 +17,7 @@ const Home = () => {
       <Services />
       <Testimonials />
       <Skills />
-      <Portfolio />
+      <Portfolio /> 
       <Certifications />
     </main>
   );

@@ -1,12 +1,14 @@
 "use client";
+
 import React from "react";
+import { cn } from "@/utils";
+import { MotionProps } from "@/config/motion/utils";
+import { MotionDiv } from "@/components/helpers/dynamic/Motion";
 import {
   faCheckCircle,
-  IconDefinition,
+  type IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { cn } from "@/utils";
-import { MotionDiv, MotionProps } from "@/components/helpers/Motion";
+import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
 
 interface ServiceCardProps {
   index: number;
