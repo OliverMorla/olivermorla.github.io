@@ -1,7 +1,7 @@
 import { experienceHistory, achievements } from "@/constants";
-import ExperienceCard from "@/components/ui/Cards/Experience";
-import AchievementCard from "@/components/ui/Cards/Achievement";
 import SectionTitle from "@/modules/app/components/section-title";
+import ExperienceCard from "@/modules/experiences/components/card";
+import AchievementCard from "@/modules/achievement/components/card";
 
 const Experiences = () => {
   return (

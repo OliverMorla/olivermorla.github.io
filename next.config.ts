@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
       "@fortawesome/free-solid-svg-icons",
       "@fortawesome/free-brands-svg-icons",
       "@fortawesome/free-regular-svg-icons",
+      "motion",
       "lucide-react",
     ],
   },

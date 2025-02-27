@@ -1,5 +1,5 @@
 import { listOfServices } from "@/constants";
-import ServiceCard from "@/components/ui/Cards/Service";
+import ServiceCard from "@/modules/services/components/card";
 import SectionTitle from "@/modules/app/components/section-title";
 import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
 

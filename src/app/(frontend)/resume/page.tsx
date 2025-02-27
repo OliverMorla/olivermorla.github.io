@@ -13,6 +13,7 @@ const jsxConverters: JSXConvertersFunction = ({ defaultConverters }) => ({
 
 export const metadata: Metadata = {
   title: "Resume",
+  description: "Learn more about my skills and experiences",
 };
 
 const Resume = async () => {

@@ -12,19 +12,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const getImageUrl = (image: Media | number | undefined) => {
-  if (!image) return "/assets/images/placeholder.jpg";
-
-  if (typeof image !== "object") return "/assets/images/placeholder.jpg";
-
-  return image.url ?? "/assets/images/placeholder.jpg";
-};
-
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { Media, Project } from "@/payload-types";
+import { Project } from "@/payload-types";
 import Link from "next/link";
-import { cn } from "@/utils";
+import { cn, getImageUrl } from "@/utils";
 const Carousel = ({ projects }: { projects: Project[] }) => {
   return (
     <Swiper

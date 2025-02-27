@@ -1,5 +1,5 @@
 import { faCertificate } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
 
 const CertificationCard = ({
   title,

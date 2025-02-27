@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 
-const Carousel = dynamic(() => import("@/components/ui/Carousel"), {
+const Carousel = dynamic(() => import("@/modules/portfolio/components/carousel"), {
   ssr: false,
 });
 

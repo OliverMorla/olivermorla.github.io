@@ -44,7 +44,6 @@ const ServiceCard = React.forwardRef<
         ref={ref}
         className={cn(
           "relative transform flex flex-col gap-6 max-w-xl max-sm:max-w-full w-full items-start cursor-pointer shadow-sm dark:shadow-[var(--color-primary-dark)] p-8 max-sm:p-4 border-[1px] border-neutral-200 dark:border-neutral-800 rounded-md flex-grow sm:max-h-[525px] hover:shadow-md hover:dark:shadow-[var(--color-primary-dark)] transition-all duration-300 hover:border-[var(--color-primary-light)]"
-          // index === 1 ? "xl:-top-16" : "top-0"
         )}
         {...props}
       >

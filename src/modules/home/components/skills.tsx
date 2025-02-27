@@ -1,4 +1,4 @@
-import WheelOfFortune from "@/components/ui/WheelOfForture";
+import WheelOfFortune from "@/modules/skills/components/wheel-of-fortune";
 
 const Skills = () => {
   return (

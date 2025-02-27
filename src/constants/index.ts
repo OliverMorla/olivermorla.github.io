@@ -397,6 +397,12 @@ const headerPrimaryLinks = [
     ],
   },
   {
+    title: "Resume",
+    href: "/resume",
+    description: "Download my full resume",
+    faIconUrl: faFile,
+  },
+  {
     title: "Skills",
     href: "#skills",
     description: "Technical skills and expertise",

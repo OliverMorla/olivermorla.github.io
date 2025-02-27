@@ -1,7 +1,7 @@
 import { skillsIcons } from "@/constants";
-import ProgresBar from "@/components/ui/ProgressBar";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { MotionDiv } from "@/components/helpers/dynamic/Motion";
+import ProgresBar from "@/modules/skills/components/progress-bar";
+import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
 
 const WheelOfFortune = () => {
   return (

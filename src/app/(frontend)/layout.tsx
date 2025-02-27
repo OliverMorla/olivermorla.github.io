@@ -10,7 +10,7 @@ import PostHogProvider from "@/providers/dynamic/posthog-provider";
 
 import Footer from "@/modules/app/components/footer";
 import Header from "@/modules/app/components/header";
-import ThemeScript from "@/components/theme-script";
+import ThemeScript from "@/scripts/theme-script";
 
 import "@/app/(frontend)/globals.css";
 
@@ -114,13 +114,6 @@ export default function RootLayout({
         {/* Sonner Toaster - Notifications */}
         <Toaster />
       </body>
-
-      {/* Google Tag Manager - Tag Manager */}
-      {/* <GoogleTagManager
-        gtmId={
-          process.env.NEXT_PUBLIC_GOOGLE_TAG_MANAGER_ID ?? "GTM-K234567890"
-        }
-      /> */}
 
       {/* Google Analytics - Analytics */}
       <GoogleAnalytics

@@ -1,6 +1,6 @@
 import { Media } from "@/payload-types";
-import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { type ClassValue, clsx } from "clsx";
 
 /**
  * Merges an array of class names using clsx and twMerge.
@@ -16,7 +16,12 @@ export function cnNoTwMerge(...inputs: ClassValue[]): string {
   return clsx(inputs);
 }
 
-
+/**
+ * Returns the URL of an image (Payload Media).
+ *
+ * @param {Media | number | undefined} image - The image to get the URL of
+ * @returns {string} - The URL of the image
+ */
 export const getImageUrl = (image: Media | number | undefined) => {
   if (!image) return "/assets/images/placeholder.jpg";
 
@@ -25,6 +30,12 @@ export const getImageUrl = (image: Media | number | undefined) => {
   return image.url ?? "/assets/images/placeholder.jpg";
 };
 
+/**
+ * Formats a date string to a human-readable date string.
+ *
+ * @param {string} date - The date to format
+ * @returns {string} - The formatted date
+ */
 export const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString("en-US", {
     month: "long",

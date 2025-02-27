@@ -3,8 +3,8 @@ import Image from "next/image";
 
 import { media, socialMediaLinks } from "@/constants";
 
-import ParallaxText from "@/components/ui/ParallelText";
 import { Counter } from "@/components/helpers/Counter";
+import ParallaxText from "@/modules/app/components/parallel-text";
 
 import {
   MotionDiv,
@@ -15,7 +15,7 @@ import {
 } from "@/components/helpers/dynamic/Motion";
 import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
 import Particles from "@/modules/app/components/particles";
-import Typewriter from "@/modules/app/components/typewriter";
+import Typewriter from "@/modules/app/components/typewriter"  ;
 import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
 
 const Hero = () => {
