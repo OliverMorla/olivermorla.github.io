@@ -14,8 +14,7 @@
     "payload": "payload",
     "reset": "payload migrate:reset",
     "fresh": "payload migrate:fresh",
-    "generate:types": "payload generate:types",
-    "bundlesize": "bundlesize"
+    "generate:types": "payload generate:types"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",

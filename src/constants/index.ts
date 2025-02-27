@@ -197,7 +197,6 @@ const faPresetIcons = {
   aws: faAws,
   database: faDatabase,
   server: faServer,
-  
 
   // Auth Icons
   signUp: faUsers,
@@ -346,9 +345,11 @@ const faPresetIcons = {
 
 export const media = {
   og: "https://ihcntrkzhwqeiajreqfp.supabase.co/storage/v1/object/public/olivermorlax-bucket/public/media/og.webp",
-  portrait: "https://ihcntrkzhwqeiajreqfp.supabase.co/storage/v1/object/public/olivermorlax-bucket/public/media/portrait.webp",
-  portrait_no_bg: "https://ihcntrkzhwqeiajreqfp.supabase.co/storage/v1/object/public/olivermorlax-bucket/public/media/portrait-nobg.webp"
-}
+  portrait:
+    "https://ihcntrkzhwqeiajreqfp.supabase.co/storage/v1/object/public/olivermorlax-bucket/public/media/portrait.webp",
+  portrait_no_bg:
+    "https://ihcntrkzhwqeiajreqfp.supabase.co/storage/v1/object/public/olivermorlax-bucket/public/media/portrait-nobg.webp",
+};
 
 // Define types for the preset icons for better type checking
 type FaPresetIconsTypes = keyof typeof faPresetIcons;
@@ -401,12 +402,6 @@ const headerPrimaryLinks = [
     description: "Technical skills and expertise",
     faIconUrl: faCode,
   },
-  // {
-  //   title: "Blog",
-  //   href: "/blog",
-  //   description: "My thoughts and insights on tech",
-  //   faIconUrl: faBlog,
-  // },
   {
     title: "Portfolio",
     href: "#portfolio",
@@ -425,20 +420,6 @@ const headerPrimaryLinks = [
     description: "What my clients say about me",
     faIconUrl: faStar,
   },
-  // {
-  //   title: "Contact",
-  //   href: "#contact",
-  //   description: "Get in touch with me",
-  //   faIconUrl: faEnvelope,
-  //   dropdownLinks: [
-  //     {
-  //       title: "Email",
-  //       href: "mailto:olivermorla3@gmail.com",
-  //       description: "Send me an email",
-  //       faIconUrl: faEnvelope,
-  //     },
-  //   ],
-  // },
 ];
 
 type HeaderPrimaryLinksTypes = typeof headerPrimaryLinks;
@@ -717,7 +698,7 @@ const education = [
   },
 ];
 
-const  skillsIcons = [
+const skillsIcons = [
   {
     title: "React",
     progress: "95%",

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 import { cn } from "@/utils";
@@ -20,13 +20,6 @@ const inter = Inter({
   fallback: ["sans-serif"],
   preload: true,
 });
-
-// const montserrat = Montserrat({
-//   variable: "--font-montserrat",
-//   subsets: ["latin"],
-//   fallback: ["sans-serif"],
-//   preload: true,
-// });
 
 export const metadata: Metadata = {
   title: {
@@ -110,7 +103,6 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
-          // montserrat.variable,
           "antialiased bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100"
         )}
       >

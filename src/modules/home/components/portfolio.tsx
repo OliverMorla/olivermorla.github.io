@@ -1,5 +1,4 @@
 import Image from "next/image";
-// import Icon from "@/components/helpers/Icon";
 import { formatDate, getImageUrl } from "@/utils";
 import { getProjects } from "@/lib/server/queries";
 import SectionTitle from "@/modules/app/components/section-title";

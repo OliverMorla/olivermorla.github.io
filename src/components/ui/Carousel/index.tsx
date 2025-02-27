@@ -24,6 +24,7 @@ const getImageUrl = (image: Media | number | undefined) => {
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Media, Project } from "@/payload-types";
 import Link from "next/link";
+import { cn } from "@/utils";
 const Carousel = ({ projects }: { projects: Project[] }) => {
   return (
     <Swiper
@@ -42,9 +43,22 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
     >
       {projects.map((project, index) => (
         <SwiperSlide key={index}>
-          <div className="text-start mb-4">
-            <h1 className="text-2xl font-light">{project.title}</h1>
-            <p className="text-sm opacity-60">{project.description}</p>
+          <div className="flex items-start justify-between">
+            <div className="text-start mb-4">
+              <h1 className="text-xl font-medium">{project.title}</h1>
+              <p className="text-sm opacity-60">{project.description}</p>
+            </div>
+            <div
+              className={cn(
+                "px-4 py-1.5 rounded-full bg-neutral-100/10 border border-neutral-200/20 text-sm",
+                project.status === "Completed" && "bg-green-500/10 text-green-500",
+                project.status === "In Progress" &&"bg-yellow-500/10 text-yellow-500",
+                project.status === "On Hold" && "bg-red-500/10 text-red-500",
+                project.status === "Cancelled" && "bg-red-500/10 text-red-500",
+              )}
+            >
+              {project.status}
+            </div>
           </div>
           <Link
             target="_blank"

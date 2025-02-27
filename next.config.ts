@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   // Your Next.js config here
   experimental: {
     reactCompiler: false,
+    optimizePackageImports: [
+      "@fortawesome/free-solid-svg-icons",
+      "@fortawesome/free-brands-svg-icons",
+      "@fortawesome/free-regular-svg-icons",
+      "lucide-react",
+    ],
   },
 
   // Add your domains here
@@ -15,8 +21,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "ihcntrkzhwqeiajreqfp.supabase.co",
-        pathname:
-          "/storage/v1/object/public/olivermorlax-bucket/public/media/**",
+        pathname: "/storage/v1/object/public/olivermorlax-bucket/public/media/**",
       },
     ],
   },

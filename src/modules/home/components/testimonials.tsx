@@ -1,9 +1,6 @@
 import { getTestimonials } from "@/lib/server/queries";
-import {
-  MotionInViewDiv,
-  MotionInViewH2,
-  MotionInViewText,
-} from "@/components/helpers/dynamic/Motion";
+import SectionTitle from "@/modules/app/components/section-title";
+import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
 import { TestimonialCard } from "@/modules/testimonial/components/card";
 
 export default async function Testimonials() {
@@ -19,22 +16,10 @@ export default async function Testimonials() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-20">
-          <MotionInViewH2
-            once
-            delay={0.2}
-            className="text-4xl font-bold text-neutral-900 dark:text-neutral-100 sm:text-5xl"
-          >
-            What Clients Say
-          </MotionInViewH2>
-          <MotionInViewText
-            once
-            y={40}
-            delay={0.2}
-            className="mt-4 text-lg text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto"
-          >
-            Don&apos;t just take our word for it - hear from some of our
-            satisfied clients
-          </MotionInViewText>
+          <SectionTitle
+            title="Testimonials"
+            description="Don't just take our word for it - hear from some of our satisfied clients"
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
