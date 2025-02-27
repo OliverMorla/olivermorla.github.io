@@ -22,7 +22,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen py-16 sm:py-32 px-4 sm:px-8 flex flex-col justify-center"
+      className="relative w-full min-h-screen py-32 px-4 sm:px-8 flex flex-col justify-center"
     >
       <div className="w-full h-full flex flex-col-reverse md:flex-row items-center justify-evenly gap-8 md:gap-6 z-20">
         <div className="w-full flex flex-col gap-6 md:gap-4 max-w-xl max-lg:max-w-full text-center md:text-left">

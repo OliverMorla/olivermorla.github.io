@@ -35,9 +35,9 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
     >
       {projects.map((project, index) => (
         <SwiperSlide key={index}>
-          <div className="flex items-start justify-between">
+          <div className="flex items-start justify-between max-sm:flex-col">
             <div className="text-start mb-4">
-              <h1 className="text-xl font-medium">{project.title}</h1>
+              <h1 className="text-lg font-medium">{project.title}</h1>
               <p className="text-sm opacity-60">{project.description}</p>
             </div>
             <div
@@ -62,7 +62,7 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
               width={1280}
               height={720}
               alt="photo"
-              className="w-full h-full object-contain"
+              className="w-full h-full object-contain max-sm:mt-6"
             />
           </Link>
           {/* <div className="flex items-center justify-between gap-2">

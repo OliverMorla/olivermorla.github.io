@@ -56,9 +56,9 @@ const Portfolio = async () => {
 
             <div className="flex flex-col justify-between gap-12 p-8">
               <div className="space-y-6">
-                <div className="space-y-2">
+                <div>
                   <div className="flex justify-between items-center flex-wrap gap-4">
-                    <h2 className="text-2xl font-bold">
+                    <h2 className="text-lg font-bold">
                       {featuredProject?.title}
                     </h2>
                     <span className="px-4 py-1.5 rounded-full bg-neutral-100/10 border border-neutral-200/20 text-sm">
