@@ -413,3 +413,85 @@ body {
         --grid-color: theme('colors.neutral.900');
     }
 }
+
+/* Markdown styling */
+.markdown-wrapper {
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.markdown-content {
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.markdown-content p {
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content ol {
+    list-style-type: decimal;
+    margin-left: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content li {
+    margin-bottom: 0.25rem;
+}
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4 {
+    margin-top: 0.75rem;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+}
+
+.markdown-content h1 {
+    font-size: 1.25rem;
+}
+
+.markdown-content h2 {
+    font-size: 1.125rem;
+}
+
+.markdown-content h3 {
+    font-size: 1rem;
+}
+
+.markdown-content code {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 0.25rem;
+    font-family: monospace;
+}
+
+.markdown-content pre {
+    background-color: rgba(0, 0, 0, 0.05);
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    overflow-x: auto;
+    margin-bottom: 0.5rem;
+}
+
+.markdown-content a {
+    color: #3b82f6;
+    text-decoration: underline;
+}
+
+/* Dark mode adjustments */
+.dark .markdown-content code,
+.dark .markdown-content pre {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .markdown-content a {
+    color: #60a5fa;
+}

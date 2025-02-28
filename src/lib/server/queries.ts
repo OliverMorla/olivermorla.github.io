@@ -18,3 +18,8 @@ export const getCertifications = cache(async () => {
 export const getProjects = cache(async () => {
   return await payload.find({ collection: "projects", sort: "position:asc" });
 });
+
+// create a cache function to get the data from the payload
+export const getResume = cache(async () => {
+  return await payload.find({ collection: "resume", sort: "position:asc" });
+});

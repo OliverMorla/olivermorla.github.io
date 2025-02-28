@@ -11,6 +11,14 @@ export const MotionDiv = dynamic(
   }
 );
 
+export const MotionMain = dynamic(
+  () => import("../Motion").then((mod) => mod.MotionMain),
+  {
+    ssr: false,
+    loading: () => <Loader2 className="animate-spin" />,
+  }
+);
+
 export const MotionH1 = dynamic(
   () => import("../Motion").then((mod) => mod.MotionH1),
   {

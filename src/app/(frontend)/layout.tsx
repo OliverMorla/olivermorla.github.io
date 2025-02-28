@@ -13,6 +13,7 @@ import Header from "@/modules/app/components/header";
 import ThemeScript from "@/scripts/theme-script";
 
 import "@/app/(frontend)/globals.css";
+import Chat from "@/modules/chatbot/ui/components/chat";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -110,6 +111,7 @@ export default function RootLayout({
           <Header />
           <PostHogProvider>{children}</PostHogProvider>
           <Footer />
+          <Chat />
         </ThemeProvider>
         {/* Sonner Toaster - Notifications */}
         <Toaster />
