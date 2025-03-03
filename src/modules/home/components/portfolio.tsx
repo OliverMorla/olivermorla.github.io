@@ -19,7 +19,7 @@ const Portfolio = async () => {
 
   return (
     <section
-      className="min-h-screen h-auto flex flex-col gap-12 justify-center items-center p-8 bg-gradient-to-b from-transparent to-neutral-50/5 dark:to-neutral-900"
+      className="min-h-screen h-auto flex flex-col gap-12 justify-center items-center p-8 max-sm:p-4 bg-gradient-to-b from-transparent to-neutral-50/5 dark:to-neutral-900"
       id="portfolio"
     >
       <SectionTitle
@@ -54,14 +54,14 @@ const Portfolio = async () => {
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
-            <div className="flex flex-col justify-between gap-12 p-8">
-              <div className="space-y-6">
-                <div>
-                  <div className="flex justify-between items-center flex-wrap gap-4">
+            <div className="flex flex-col justify-between gap-12 p-8 max-sm:p-4">
+              <div className="flex flex-col gap-6">
+                <div className="space-y-6">
+                  <div className="flex justify-between sm:items-center max-sm:flex-col gap-2">
                     <h2 className="text-lg font-bold">
                       {featuredProject?.title}
                     </h2>
-                    <span className="px-4 py-1.5 rounded-full bg-neutral-100/10 border border-neutral-200/20 text-sm">
+                    <span className="px-4 py-1.5 rounded-md bg-neutral-100/10 border border-neutral-200/20 text-sm w-fit">
                       {formatDate(featuredProject?.createdAt ?? "")}
                     </span>
                   </div>
@@ -76,7 +76,7 @@ const Portfolio = async () => {
                     {featuredProject?.stack?.map((tech) => (
                       <p
                         key={tech}
-                        className="dark:bg-neutral-800/20 bg-neutral-100/20 dark:border-neutral-700/40 border border-neutral-200/20 px-4 py-1.5 rounded-full text-sm"
+                        className="dark:bg-neutral-800/20 bg-neutral-100/20 dark:border-neutral-700/40 border border-neutral-200/20 px-4 py-1.5 rounded-md text-sm"
                       >
                         {tech}
                       </p>
@@ -90,17 +90,8 @@ const Portfolio = async () => {
                   href={featuredProject?.link ?? ""}
                   className="flex items-center gap-2"
                 >
-                  {/* <Icon faIcon="globe" className="text-lg" /> */}
                   Live Demo
                 </ButtonLink>
-                {/* <ButtonLink
-                  href={featuredProject?.link ?? ""}
-                  variant="solidLight"
-                  className="flex items-center gap-2"
-                >
-                  <Icon faIcon="github" className="text-lg" />
-                  Source Code
-                </ButtonLink> */}
               </div>
             </div>
           </div>

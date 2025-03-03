@@ -20,7 +20,7 @@ const WheelOfFortune = () => {
             },
           }}
         >
-          <FontAwesomeIcon icon={icon.fontAwesomeIconUrl} />
+          <FontAwesomeIcon icon={icon.fontAwesomeIconUrl} className="text-2xl" />
         </MotionDiv>
       ))}
       <div className="absolute self-center flex flex-col justify-center items-center gap-6 w-full max-w-xl">

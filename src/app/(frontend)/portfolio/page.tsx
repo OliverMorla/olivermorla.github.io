@@ -4,6 +4,7 @@ import { Project } from "@/payload-types";
 import { getProjects } from "@/lib/server/queries";
 import SectionTitle from "@/modules/app/components/section-title";
 import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
+import { MotionDiv } from "@/components/helpers/dynamic/Motion";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
@@ -43,15 +44,22 @@ const Portfolio = async () => {
         description="Here's a showcase of all my successful projects"
       />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.docs.map((project) => (
-          <ProjectCard key={project.id} project={project} />
+        {projects.docs.map((project, index) => (
+          <MotionDiv key={project.id} delay={index * 0.1}>
+            <ProjectCard project={project} />
+          </MotionDiv>
         ))}
+      </div>
+
+      <div>
+        <h1>
+          You can get 
+        </h1>
       </div>
     </main>
   );
 };
 
 export default Portfolio;
-
 
 export const revalidate = 86400; // 24 hours (24 * 60 * 60 = 86400 seconds)

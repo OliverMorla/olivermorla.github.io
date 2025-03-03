@@ -40,27 +40,18 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
               <h1 className="text-lg font-medium">{project.title}</h1>
               <p className="text-sm opacity-60">{project.description}</p>
             </div>
-            <div className="flex flex-col items-center">
-              <div
-                className={cn(
-                  "px-4 py-1.5 rounded-full bg-neutral-100/10 border border-neutral-200/20 text-sm",
-                  project.status === "Completed" &&
-                    "bg-green-500/10 text-green-500",
-                  project.status === "In Progress" &&
-                    "bg-yellow-500/10 text-yellow-500",
-                  project.status === "On Hold" && "bg-red-500/10 text-red-500",
-                  project.status === "Cancelled" && "bg-red-500/10 text-red-500"
-                )}
-              >
-                {project.status}
-              </div>
-              <div className="text-sm opacity-60">
-                {new Date(
-                  project.startedAt ?? "01/01/2024"
-                ).toLocaleDateString("en-US", {
-                  year: "numeric",
-                })}
-              </div>
+            <div
+              className={cn(
+                "px-4 py-1.5 rounded-md bg-neutral-100/10 border border-neutral-200/20 text-sm",
+                project.status === "Completed" &&
+                  "bg-green-500/10 text-green-500",
+                project.status === "In Progress" &&
+                  "bg-yellow-500/10 text-yellow-500",
+                project.status === "On Hold" && "bg-red-500/10 text-red-500",
+                project.status === "Cancelled" && "bg-red-500/10 text-red-500"
+              )}
+            >
+              {project.status}
             </div>
           </div>
           <Link
@@ -76,8 +67,20 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
               className="w-full h-full object-contain max-sm:mt-6"
             />
           </Link>
+          <div className="flex items-center justify-between gap-2">
+            <h2 className="font-medium text-sm">
+              Category: {project.category}
+            </h2>
+            <div className="text-sm opacity-60 px-4 py-1.5 rounded-md bg-neutral-100/10 border border-neutral-200/20 my-2">
+              {new Date(project.startedAt ?? "01/01/2024").toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                }
+              )}
+            </div>
+          </div>
           {/* <div className="flex items-center justify-between gap-2">
-              <h2 className="font-bold">Category: {project.category}</h2>
               {project.sourceCodeUrl ? (
                 <span>
                   <span className="text-neutral-900 dark:text-neutral-100">
