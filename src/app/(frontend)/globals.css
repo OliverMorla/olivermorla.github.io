@@ -4,6 +4,9 @@
 
 html {
     scroll-behavior: smooth;
+    color-scheme: light;
+    transition-property: none;
+    margin-right: 0px;
 }
 
 body {

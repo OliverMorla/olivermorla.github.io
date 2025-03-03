@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { getImageUrl } from "@/utils";
+import { cn, getImageUrl } from "@/utils";
 import { Project } from "@/payload-types";
-import { getProjects } from "@/lib/server/queries";
+import { getProjects, getProjectStatuses } from "@/lib/server/queries";
 import SectionTitle from "@/modules/app/components/section-title";
 import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
 import { MotionDiv } from "@/components/helpers/dynamic/Motion";
@@ -28,7 +28,7 @@ const ProjectCard = ({ project }: { project: Project }) => {
         </p>
       </div>
       <h3 className="text-lg font-medium">{project.title}</h3>
-      <p className="opacity-60">{project.description}</p>
+      <p className="opacity-60 line-clamp-2">{project.description}</p>
       <ButtonLink href={project.link ?? "/"} className="w-fit">
         View Project
       </ButtonLink>
@@ -36,28 +36,46 @@ const ProjectCard = ({ project }: { project: Project }) => {
   );
 };
 
-const Portfolio = async () => {
-  const projects = await getProjects();
+const Portfolio = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{
+    status?: string;
+  }>;
+}) => {
+  const { status } = await searchParams;
+  const projects = await getProjects(status);
+  const statuses = await getProjectStatuses();
   return (
     <main className="w-full min-h-screen flex flex-col gap-12 items-center justify-center py-32 px-8 max-sm:px-4">
       <SectionTitle
         title="Portfolio"
         description="Here's a showcase of all my successful projects"
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {projects.docs.map((project, index) => (
-          <MotionDiv key={project.id} delay={index * 0.1}>
-            <ProjectCard project={project} />
-          </MotionDiv>
-        ))}
+      <div className="flex flex-col items-center gap-4">
+        <div className="flex flex-wrap gap-4">
+          <ButtonLink href="/portfolio">All</ButtonLink>
+          {statuses.map((status) => (
+            <ButtonLink key={status} href={`/portfolio?status=${status}`}>
+              {status}
+            </ButtonLink>
+          ))}
+        </div>
+        <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4")}>
+          {projects.docs.map((project, index) => (
+            <MotionDiv key={project.id} delay={index * 0.1}>
+              <ProjectCard project={project} />
+            </MotionDiv>
+          ))}
+        </div>
       </div>
 
       <div className="w-full h-full relative">
         <Image
           src="https://ihcntrkzhwqeiajreqfp.supabase.co/storage/v1/object/public/olivermorlax-bucket/public/media/dribble-example-res.webp"
           alt="dribble-example"
-          width={1280}
-          height={720}
+          width={1920}
+          height={1080}
           className="rounded-lg w-full"
         />
 
@@ -77,7 +95,7 @@ const Portfolio = async () => {
           </svg>
 
           {/* CTA Content */}
-          <div className="absolute bottom-0 w-full bg-gradient-to-t from-white dark:from-neutral-800 to-transparent pb-8 pt-24">
+          <div className="absolute bottom-0 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-800 to-transparent pb-8 pt-24">
             <div className="container mx-auto px-8 text-center">
               <h2 className="text-3xl max-sm:text-2xl font-bold mb-4">
                 Ready to Turn Your Design into Reality?
@@ -88,7 +106,7 @@ const Portfolio = async () => {
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <ButtonLink
-                  href="https://www.linkedin.com/in/olivermorla/"
+                  href="https://www.linkedin.com/in/oliver-morla/"
                   className="bg-blue-600 hover:bg-blue-700 text-white"
                 >
                   Connect on LinkedIn
@@ -104,7 +122,7 @@ const Portfolio = async () => {
           </div>
         </div>
       </div>
-      <div className="sm:hidden relative bottom-0 w-full bg-gradient-to-t from-white dark:from-neutral-800 to-transparent pb-8 pt-12">
+      <div className="sm:hidden relative bottom-0 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-800 to-transparent pb-8 pt-12">
         <div className="container mx-auto px-8 text-center">
           <h2 className="text-3xl max-sm:text-2xl font-bold mb-4">
             Ready to Turn Your Design into Reality?

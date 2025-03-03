@@ -89,14 +89,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html
-      lang="en-US"
-      style={{
-        transitionProperty: "none",
-        marginRight: "0px",
-        colorScheme: "light",
-      }}
-    >
+    <html lang="en-US">
       {/* Might remove this script if it's not needed */}
       <head>
         <ThemeScript />
