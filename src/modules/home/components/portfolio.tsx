@@ -40,7 +40,7 @@ const Portfolio = async () => {
           once
           x={-40}
           delay={0.2}
-          className="backdrop-blur-sm bg-white/5 rounded-2xl border border-neutral-200/10 overflow-hidden shadow-2xl"
+          className="backdrop-blur-sm bg-white/5 rounded-lg border border-neutral-200/10 overflow-hidden shadow-lg"
         >
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="relative group overflow-hidden">
@@ -71,12 +71,12 @@ const Portfolio = async () => {
                 </div>
 
                 <div className="space-y-2">
-                  <h3 className="text-lg font-semibold">Tech Stack</h3>
+                  <h3 className="text-lg font-bold">Tech Stack</h3>
                   <div className="flex flex-wrap gap-4 text-3xl text-neutral-300">
                     {featuredProject?.stack?.map((tech) => (
                       <p
                         key={tech}
-                        className="dark:bg-neutral-800/20 dark:border-neutral-700/40 bg-neutral-100/10 border border-neutral-200/20 px-4 py-1.5 rounded-full text-sm"
+                        className="dark:bg-neutral-800/20 bg-neutral-100/20 dark:border-neutral-700/40 border border-neutral-200/20 px-4 py-1.5 rounded-full text-sm"
                       >
                         {tech}
                       </p>

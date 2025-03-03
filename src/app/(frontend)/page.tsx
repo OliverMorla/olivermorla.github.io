@@ -17,10 +17,12 @@ const Home = () => {
       <Services />
       <Testimonials />
       <Skills />
-      <Portfolio /> 
+      <Portfolio />
       <Certifications />
     </main>
   );
 };
 
 export default Home;
+
+export const revalidate = 86400; // 24 hours (24 * 60 * 60 = 86400 seconds)

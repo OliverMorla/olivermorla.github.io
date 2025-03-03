@@ -56,7 +56,7 @@ const ServiceCard = React.forwardRef<
           </div>
           <p className="opacity-70">{description}</p>
         </div>
-        <p className="opacity-70 text-xl font-bold">{price}</p>
+        <p className="opacity-70 text-lg font-medium">{price}</p>
         <div className="flex flex-wrap gap-2">
           {libraries.map((library, index) => (
             <p
