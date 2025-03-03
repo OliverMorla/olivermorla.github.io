@@ -16,5 +16,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       images: [],
       videos: [],
     },
+    {
+      url: "https://www.olivermorla.com/portfolio",
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.5,
+      images: [],
+      videos: [],
+    },
   ];
 }
