@@ -61,7 +61,9 @@ const Portfolio = async ({
             </ButtonLink>
           ))}
         </div>
-        <div className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4")}>
+        <div
+          className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4")}
+        >
           {projects.docs.map((project, index) => (
             <MotionDiv key={project.id} delay={index * 0.1}>
               <ProjectCard project={project} />
@@ -70,7 +72,14 @@ const Portfolio = async ({
         </div>
       </div>
 
-      <div className="w-full h-full relative">
+      <div className="w-full h-full relative flex flex-col gap-4">
+        <div>
+          <h1 className="text-4xl font-bold">Design Inspiration</h1>
+          <p className="text-lg opacity-80">
+            I get my inspiration from a variety of sources, including Dribbble,
+            Behance, and Figma.
+          </p>
+        </div>
         <Image
           src="https://ihcntrkzhwqeiajreqfp.supabase.co/storage/v1/object/public/olivermorlax-bucket/public/media/dribble-example-res.webp"
           alt="dribble-example"
