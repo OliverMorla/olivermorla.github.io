@@ -53,10 +53,14 @@ const Portfolio = async ({
         description="Here's a showcase of all my successful projects"
       />
       <div className="flex flex-col items-center gap-4">
-        <div className="flex flex-wrap gap-4">
-          <ButtonLink href="/portfolio">All</ButtonLink>
+        <div className="flex flex-wrap justify-center gap-4">
+          <ButtonLink href="/portfolio" className="max-sm:text-sm">All</ButtonLink>
           {statuses.map((status) => (
-            <ButtonLink key={status} href={`/portfolio?status=${status}`}>
+            <ButtonLink
+              className="max-sm:text-sm"
+              key={status}
+              href={`/portfolio?status=${status}`}
+            >
               {status}
             </ButtonLink>
           ))}
