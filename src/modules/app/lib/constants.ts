@@ -109,50 +109,50 @@ export const headerPrimaryLinks = [
     description: "Welcome to my portfolio",
     faIconUrl: faHouse,
   },
-  {
-    title: "About",
-    href: "#about",
-    description: "Learn more about me and my background",
-    faIconUrl: faUser,
-    dropdownLinks: [
-      {
-        title: "Experience",
-        href: "#experience",
-        description: "My professional work history",
-        faIconUrl: faBriefcase,
-      },
-      {
-        title: "Education",
-        href: "#education",
-        description: "My academic qualifications",
-        faIconUrl: faSchool,
-      },
-      {
-        title: "Certifications",
-        href: "#certifications",
-        description: "Professional certifications I've earned",
-        faIconUrl: faCertificate,
-      },
-      {
-        title: "Resume",
-        href: "/resume",
-        description: "Download my full resume",
-        faIconUrl: faFile,
-      },
-    ],
-  },
+  // {
+  //   title: "About",
+  //   href: "/about",
+  //   description: "Learn more about me and my background",
+  //   faIconUrl: faUser,
+  //   dropdownLinks: [
+  //     {
+  //       title: "Experience",
+  //       href: "#experience",
+  //       description: "My professional work history",
+  //       faIconUrl: faBriefcase,
+  //     },
+  //     {
+  //       title: "Education",
+  //       href: "#education",
+  //       description: "My academic qualifications",
+  //       faIconUrl: faSchool,
+  //     },
+  //     {
+  //       title: "Certifications",
+  //       href: "#certifications",
+  //       description: "Professional certifications I've earned",
+  //       faIconUrl: faCertificate,
+  //     },
+  //     {
+  //       title: "Resume",
+  //       href: "/resume",
+  //       description: "Download my full resume",
+  //       faIconUrl: faFile,
+  //     },
+  //   ],
+  // },
   {
     title: "Resume",
     href: "/resume",
     description: "Download my full resume",
     faIconUrl: faFile,
   },
-  {
-    title: "Skills",
-    href: "#skills",
-    description: "Technical skills and expertise",
-    faIconUrl: faCode,
-  },
+  // {
+  //   title: "Skills",
+  //   href: "#skills",
+  //   description: "Technical skills and expertise",
+  //   faIconUrl: faCode,
+  // },
   {
     title: "Portfolio",
     href: "#portfolio",
@@ -169,6 +169,12 @@ export const headerPrimaryLinks = [
     title: "Testimonials",
     href: "#testimonials",
     description: "What my clients say about me",
+    faIconUrl: faStar,
+  },
+  {
+    title: "Contact",
+    href: "#contact",
+    description: "Ready to build something great?",
     faIconUrl: faStar,
   },
 ];
