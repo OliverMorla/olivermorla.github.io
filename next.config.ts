@@ -11,7 +11,8 @@ const nextConfig: NextConfig = {
         hostname: "ihcntrkzhwqeiajreqfp.supabase.co",
       }
     ]
-  }
+  },
+  serverExternalPackages: ["sharp"],
 };
 
 export default withPayload(withSentryConfig(nextConfig, {
