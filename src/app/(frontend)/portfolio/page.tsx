@@ -1,22 +1,26 @@
-import Image from "next/image";
-import { cn, getImageUrl } from "@/utils";
-import { Project } from "@/payload-types";
-import { getProjects, getProjectStatuses } from "@/lib/server/queries";
-import SectionTitle from "@/modules/app/components/section-title";
-import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
-import { MotionDiv } from "@/components/helpers/dynamic/Motion";
 import Link from "next/link";
+import Image from "next/image";
+import { cn } from "@/utils/classNames";
+import { Project } from "@/payload-types";
+import ButtonLink from "@/components/ui/button-link";
+import { getImageMediaUrl } from "@/lib/payload/client/utils";
+import SectionTitle from "@/modules/app/components/section-title";
+import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
+import { getProjects, getProjectStatuses } from "@/lib/payload/server/queries";
+import Testimonials from "@/modules/home/components/testimonials";
 
 const ProjectCard = ({ project }: { project: Project }) => {
   return (
     <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-md p-4 flex flex-col gap-4">
-      <Image
-        src={getImageUrl(project.images?.[0])}
-        alt={project.title ?? "project-image"}
-        width={400}
-        height={200}
-        className="rounded-lg w-full"
-      />
+      {project.images?.[0] && (
+        <Image
+          src={getImageMediaUrl(project.images[0])}
+          alt={project.title ?? "project-image"}
+          width={400}
+          height={200}
+          className="rounded-lg w-full"
+        />
+      )}
       <div className="flex justify-between flex-wrap gap-2">
         <p className="text-nowrapinline-block opacity-60 bg-neutral-100/20 border border-neutral-200/30 text-xs px-4 py-1.5 rounded-md">
           {project.status}
@@ -29,7 +33,12 @@ const ProjectCard = ({ project }: { project: Project }) => {
       </div>
       <h3 className="text-lg font-medium">{project.title}</h3>
       <p className="opacity-60 line-clamp-2">{project.description}</p>
-      <ButtonLink href={project.link ?? "/"} className="w-fit">
+      <ButtonLink
+        href={project.link ?? "/"}
+        target="_blank"
+        variant="gradient"
+        className="w-fit"
+      >
         View Project
       </ButtonLink>
     </div>
@@ -54,7 +63,9 @@ const Portfolio = async ({
       />
       <div className="flex flex-col items-center gap-4">
         <div className="flex flex-wrap justify-center gap-4">
-          <ButtonLink href="/portfolio" className="max-sm:text-sm">All</ButtonLink>
+          <ButtonLink href="/portfolio" className="max-sm:text-sm">
+            All
+          </ButtonLink>
           {statuses.map((status) => (
             <ButtonLink
               className="max-sm:text-sm"
@@ -68,8 +79,8 @@ const Portfolio = async ({
         <div
           className={cn("grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4")}
         >
-          {projects.docs.map((project, index) => (
-            <MotionDiv key={project.id} delay={index * 0.1}>
+          {projects.docs.map((project, idx) => (
+            <MotionDiv key={project.id}>
               <ProjectCard project={project} />
             </MotionDiv>
           ))}
@@ -204,4 +215,4 @@ const Portfolio = async ({
 
 export default Portfolio;
 
-export const revalidate = 86400; // 24 hours (24 * 60 * 60 = 86400 seconds)
+export const revalidate = 14400; // 4 hours

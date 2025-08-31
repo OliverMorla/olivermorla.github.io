@@ -1,10 +1,5 @@
 import Image from "next/image";
-import { media } from "@/constants";
-import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
-import {
-  MotionInViewDiv,
-  MotionInViewH1,
-} from "@/components/helpers/dynamic/Motion";
+import ButtonLink from "@/components/ui/button-link";
 
 const About = () => {
   return (
@@ -17,15 +12,12 @@ const About = () => {
         {/* Left Column */}
         <div className="flex flex-col lg:flex-row gap-6 relative max-w-xl w-full">
           {/* Desktop Vertical Title */}
-          <MotionInViewH1
-            once
-            x={100}
-            type="tween"
+          <h1
             className="hidden lg:block uppercase font-bold text-4xl xl:text-6xl rotate-180 w-fit text-end bg-neutral-200 dark:bg-neutral-800 p-4 hover:scale-105"
             style={{ writingMode: "vertical-rl" }}
           >
             About
-          </MotionInViewH1>
+          </h1>
 
           {/* Mobile Title */}
           <h1 className="lg:hidden relative uppercase font-bold text-3xl sm:text-4xl xl:text-5xl tracking-tight w-fit mb-6">
@@ -34,30 +26,18 @@ const About = () => {
           </h1>
 
           <div className="flex flex-col gap-6 w-full">
-            {/* Portrait Image */}
-            <MotionInViewDiv
-              once
-              y={40}
-              delay={0.2}
-              className="overflow-hidden rounded-lg"
-            >
+            <div className="overflow-hidden rounded-lg">
               <Image
-                src={media.portrait_no_bg}
+                src={"/placeholder_3.svg"}
                 width={600}
                 height={600}
                 alt="portrait-no-bg"
                 className="w-full h-auto object-cover hover:scale-105 transition-transform duration-300"
                 priority
               />
-            </MotionInViewDiv>
+            </div>
 
-            {/* Summary Section */}
-            <MotionInViewDiv
-              once
-              y={40}
-              delay={0.2}
-              className="flex flex-col gap-4"
-            >
+            <div className="flex flex-col gap-4">
               <h2 className="relative uppercase font-bold text-3xl sm:text-4xl tracking-tight w-fit">
                 <span className="relative z-20">Summary</span>
                 <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-neutral-300 to-neutral-300 dark:from-neutral-700 dark:to-stone-700 -skew-x-12"></span>
@@ -71,19 +51,14 @@ const About = () => {
                 Technology (NYCCT), my academic journey laid the foundation for
                 my technical expertise and problem-solving skills.
               </p>
-            </MotionInViewDiv>
+            </div>
           </div>
         </div>
 
         {/* Right Column */}
         <div className="flex flex-col gap-6 max-w-xl w-full">
           {/* Experience Section */}
-          <MotionInViewDiv
-            once
-            y={40}
-            delay={0.2}
-            className="flex flex-col gap-4 sm:p-4 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors duration-300"
-          >
+          <div className="flex flex-col gap-4 sm:p-4 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors duration-300">
             <h2 className="relative uppercase font-bold text-3xl sm:text-4xl tracking-tight w-fit">
               <span className="relative z-20">Experience</span>
               <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-neutral-300 to-neutral-300 dark:from-neutral-700 dark:to-stone-700 -skew-x-12"></span>
@@ -97,15 +72,9 @@ const About = () => {
               development, from front-end to back-end, and includes significant
               contributions to database management and cloud services.
             </p>
-          </MotionInViewDiv>
+          </div>
 
-          {/* Proficiency Section */}
-          <MotionInViewDiv
-            once
-            y={40}
-            delay={0.4}
-            className="flex flex-col gap-4 sm:p-4 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors duration-300"
-          >
+          <div className="flex flex-col gap-4 sm:p-4 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors duration-300">
             <h2 className="relative uppercase font-bold text-3xl sm:text-4xl tracking-tight w-fit">
               <span className="relative z-20">Proficiency</span>
               <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-neutral-300 to-neutral-300 dark:from-neutral-700 dark:to-stone-700 -skew-x-12"></span>
@@ -118,15 +87,9 @@ const About = () => {
               equipped to tackle complex development challenges across the full
               stack.
             </p>
-          </MotionInViewDiv>
+          </div>
 
-          {/* Connect Section */}
-          <MotionInViewDiv
-            once
-            y={40}
-            delay={0.6}
-            className="flex flex-col gap-4 sm:p-4 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors duration-300"
-          >
+          <div className="flex flex-col gap-4 sm:p-4 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900 transition-colors duration-300">
             <h2 className="relative uppercase font-bold text-3xl sm:text-4xl tracking-tight w-fit">
               <span className="relative z-20">Let&#39;s Connect</span>
               <span className="absolute left-0 bottom-0 z-0 inline-block w-full h-1/2 bg-gradient-to-r from-neutral-300 to-neutral-300 dark:from-neutral-700 dark:to-stone-700 -skew-x-12"></span>
@@ -139,12 +102,11 @@ const About = () => {
             </p>
             <ButtonLink
               href={"mailto:olivermorla3@gmail.com"}
-              faPresetIcon="paperPlane"
               className="mt-2 w-fit hover:scale-105 hover:-translate-y-1 transition-transform duration-300"
             >
               Contact me
             </ButtonLink>
-          </MotionInViewDiv>
+          </div>
         </div>
       </section>
     </section>

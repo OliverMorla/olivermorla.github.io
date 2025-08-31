@@ -1,26 +1,11 @@
-import type { Metadata, Viewport } from "next";
+import "./global.css";
+import { cn } from "@/utils/classNames";
 import { Inter } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
-
-import { cn } from "@/utils";
-import { Toaster } from "sonner";
-
-import { ThemeProvider } from "@/providers/theme-provider";
-import PostHogProvider from "@/providers/dynamic/posthog-provider";
-
-import Footer from "@/modules/app/components/footer";
+import { Metadata, Viewport } from "next";
 import Header from "@/modules/app/components/header";
-import ThemeScript from "@/scripts/theme-script";
-
-import "@/app/(frontend)/globals.css";
-import Chat from "@/modules/chatbot/ui/components/chat";
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  fallback: ["sans-serif"],
-  preload: true,
-});
+import Footer from "@/modules/app/components/footer";
+import MotionProvider from "@/providers/motion-provider";
+import ThemeProvider from "@/providers/theme-provider";
 
 export const metadata: Metadata = {
   title: {
@@ -76,12 +61,19 @@ export const metadata: Metadata = {
     title: "Oliver Morla | Full Stack Developer",
     description:
       "Experienced full stack developer specializing in building scalable and efficient web applications. Skilled in both front-end and back-end technologies, delivering optimized solutions for modern digital needs.",
-    images: "/assets/media/og.webp",
+    images: "/assets/media/og_2.webp",
     card: "summary_large_image",
     creator: "@OliverMorlaX",
     site: "@OliverMorlaX",
   },
 };
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+  fallback: ["sans-serif"],
+  preload: true,
+});
 
 export default function RootLayout({
   children,
@@ -90,30 +82,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-US">
-      {/* Might remove this script if it's not needed */}
-      <head>
-        <ThemeScript />
-      </head>
-      <body
-        className={cn(
-          inter.variable,
-          "antialiased bg-neutral-50 dark:bg-neutral-900 text-neutral-800 dark:text-neutral-100"
-        )}
-      >
-        <ThemeProvider>
-          <Header />
-          <PostHogProvider>{children}</PostHogProvider>
-          <Footer />
-          <Chat />
-        </ThemeProvider>
-        {/* Sonner Toaster - Notifications */}
-        <Toaster />
+      <body className={cn(inter.variable, "antialiased")}>
+        <MotionProvider>
+          <ThemeProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </MotionProvider>
       </body>
-
-      {/* Google Analytics - Analytics */}
-      <GoogleAnalytics
-        gaId={process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID ?? "GA-1234567890"}
-      />
     </html>
   );
 }

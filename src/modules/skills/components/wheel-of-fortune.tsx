@@ -1,6 +1,6 @@
-import { skillsIcons } from "@/constants";
-import { MotionDiv } from "@/components/helpers/dynamic/Motion";
+import { skillsIcons } from "@/modules/app/lib/constants";
 import ProgresBar from "@/modules/skills/components/progress-bar";
+import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
 import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
 
 const WheelOfFortune = () => {
@@ -20,7 +20,10 @@ const WheelOfFortune = () => {
             },
           }}
         >
-          <FontAwesomeIcon icon={icon.fontAwesomeIconUrl} className="text-2xl" />
+          <FontAwesomeIcon
+            icon={icon.fontAwesomeIconUrl}
+            className="text-2xl"
+          />
         </MotionDiv>
       ))}
       <div className="absolute self-center flex flex-col justify-center items-center gap-6 w-full max-w-xl">

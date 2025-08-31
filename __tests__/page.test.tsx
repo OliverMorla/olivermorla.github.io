@@ -1,13 +1,13 @@
-import "@testing-library/jest-dom";
-import { render, screen } from "@testing-library/react";
+// import "@testing-library/jest-dom";
 import Home from "@/app/(frontend)/page";
+import { render, screen } from "@testing-library/react";
 
-describe("Page", () => {
+describe("Home", () => {
+  // Title of the test
   it("renders a heading", () => {
+    // Render the component
     render(<Home />);
-
-    const heading = screen.getByRole("heading", { level: 1 });
-
-    expect(heading).toBeInTheDocument();
+    // Assert that the heading is in the document
+    expect(screen.getByText("Hello World")).toBeDefined();
   });
 });

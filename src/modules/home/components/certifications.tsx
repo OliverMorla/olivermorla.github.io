@@ -1,4 +1,4 @@
-import { getCertifications } from "@/lib/server/queries";
+import { getCertifications } from "@/lib/payload/server/queries";
 import SectionTitle from "@/modules/app/components/section-title";
 import CertificationCard from "@/modules/certifications/components/card";
 
@@ -21,11 +21,11 @@ const Certifications = async () => {
         title="Certifications"
         description={
           "Evidence of my ongoing commitment to professional development, featuring key certifications in technology and development methodologies."
-        }
+      }
       />
-      <div className="relative flex w-full gap-10 overflow-x-auto p-8 max-sm:p-4">
-        {certifications.docs.map((certification, index) => (
-          <div key={index} className="flex justify-center items-center">
+      <div className="relative flex w-full gap-12 overflow-x-auto p-8 max-sm:py-4">
+        {certifications.docs.map((certification, idx) => (
+          <div key={idx} className="flex justify-center items-center">
             <CertificationCard
               title={certification.title}
               institution={certification.issuer ?? "Certification"}
@@ -38,5 +38,3 @@ const Certifications = async () => {
 };
 
 export default Certifications;
-
-export const revalidate = 24 * 60 * 60 * 1000; // 24 hours

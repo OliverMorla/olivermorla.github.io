@@ -16,7 +16,9 @@ import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 import { Project } from "@/payload-types";
 import Link from "next/link";
-import { cn, getImageUrl } from "@/utils";
+import { cn } from "@/utils/classNames";
+import { getImageMediaUrl } from "@/lib/payload/client/utils";
+import LazyImage from "@/components/helpers/lazy-image";
 const Carousel = ({ projects }: { projects: Project[] }) => {
   return (
     <Swiper
@@ -57,15 +59,18 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
           <Link
             target="_blank"
             href={project.link ?? "/"}
-            className="hover:opacity-60 transition-all duration-300 ease-in-out"
+            className="hover:opacity-60 transition-all duration-300 ease-in-out w-full h-full"
           >
-            <Image
-              src={getImageUrl(project.images?.[0])}
-              width={800}
-              height={600}
-              alt="photo"
-              className="w-full h-full object-contain max-sm:mt-6"
-            />
+            {project.images?.[0] && (
+              <LazyImage
+                src={getImageMediaUrl(project.images[0])}
+                width={1024}
+                height={1024}
+                alt="photo"
+                wrapperClassName="w-full min-h-[calc(100vh-200px)] max-h-screen object-contain"
+                className="w-full h-full object-contain"
+              />
+            )}
           </Link>
           <div className="flex items-center justify-between gap-2">
             <h2 className="font-medium text-sm">

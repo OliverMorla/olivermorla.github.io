@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { getImageUrl } from "@/utils";
 import { Quote, Star } from "lucide-react";
-import { Media, Testimonial } from "@/payload-types";
+import { Testimonial } from "@/payload-types";
+import { getImageMediaUrl } from "@/lib/payload/client/utils";
 
 export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
   return (
@@ -31,13 +31,15 @@ export function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
       <div className="flex items-center pt-6 border-t border-neutral-100 dark:border-neutral-800">
         <div className="relative">
           <div className="w-12 h-12 rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
-            <Image
-              src={getImageUrl(testimonial.image as Media)}
-              alt={testimonial.name}
-              width={256}
-              height={256}
-              className="w-full h-full object-cover filter grayscale contrast-100 rounded-full"
-            />
+            {testimonial.image && (
+              <Image
+                src={getImageMediaUrl(testimonial.image)}
+                alt={testimonial.name}
+                width={256}
+                height={256}
+                className="w-full h-full object-cover filter grayscale contrast-100 rounded-full"
+              />
+            )}
           </div>
         </div>
         <div className="ml-4 flex items-start justify-between w-full">

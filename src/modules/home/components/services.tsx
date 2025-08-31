@@ -1,17 +1,21 @@
-import { listOfServices } from "@/constants";
+import { pages } from "@/modules/app/lib/constants";
+import { listOfServices } from "@/modules/app/lib/constants";
 import ServiceCard from "@/modules/services/components/card";
+import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
-import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
 
 const Services = () => {
   return (
     <section
       id="services"
-      className="h-auto flex flex-col gap-6 py-24 px-8 max-sm:px-4 xl:gap-24"
+      className="py-24 px-8 max-sm:px-4 bg-gradient-none-inverted flex flex-col gap-12"
     >
       <SectionTitle
-        title="Services"
-        description="Offering tailored full-stack development services from concept to deployment, focusing on web, app, and system solutions."
+        className="max-w-2xl mx-auto text-center"
+        title={pages.services.title}
+        description={pages.services.description}
+        subtitle={pages.services.subtitle}
+        tagline={pages.services.tagline}
       />
       <div className="flex justify-center flex-wrap gap-12 max-sm:h-full">
         {listOfServices.map((service, index) => (
@@ -24,19 +28,13 @@ const Services = () => {
             faIconUrl={service.faIconUrl}
             description={service.description}
             features={service.features}
-            delay={index * 0.2}
             totalServices={listOfServices.length}
           />
         ))}
       </div>
       <div className="flex flex-col gap-2 justify-center items-center max-w-lg mx-auto text-center">
-        <ButtonLink
-          faPresetIcon="paperPlane"
-          href="mailto:olivermorla3@gmail.com"
-        >
-          Get Started
-        </ButtonLink>
-        <p className="font-medium">
+        <CTAButtons />
+        <p className="text-muted">
           Prices may vary depending on the complexity of the project. Please
           contact me for more information.
         </p>

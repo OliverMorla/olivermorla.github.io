@@ -1,40 +1,97 @@
 "use client";
-import React, { useState, useEffect } from "react";
-import { cn } from "@/utils";
+
+import { cn } from "@/utils/classNames";
+import { useEffect, useMemo, useRef, useState, CSSProperties } from "react";
 
 interface TypewriterProps extends React.ComponentPropsWithRef<"span"> {
   text: string | string[];
+  typeDurationMs?: number;
+  eraseDurationMs?: number;
+  pauseAfterTypeMs?: number;
+  loop?: boolean;
+  animationDelayMs?: number;
 }
 
-const Typewriter = ({ text, style, className, ...props }: TypewriterProps) => {
-  const [currentText, setCurrentText] = useState(Array.isArray(text) ? text[0] : text);
-  const [currentIndex, setCurrentIndex] = useState(0);
+const Typewriter = ({
+  text,
+  typeDurationMs = 2000,
+  eraseDurationMs = 2000,
+  pauseAfterTypeMs = 2000,
+  animationDelayMs = 0,
+  loop = Array.isArray(text),
+  style,
+  className,
+  ...props
+}: TypewriterProps) => {
+  const texts = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
+  const textsKey = useMemo(() => texts.join("|"), [texts]);
+
+  const [index, setIndex] = useState(0);
   const [key, setKey] = useState(0);
+  const timerRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if (!Array.isArray(text)) return;
+    setIndex(0);
+    setKey((k) => k + 1);
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [textsKey]);
 
-    const interval = setInterval(() => {
-      setKey(prev => prev + 1);
-      setCurrentIndex((prev) => (prev + 1) % text.length);
-      setCurrentText(text[(currentIndex + 1) % text.length]);
-    }, 4000);
+  useEffect(() => {
+    if (texts.length <= 1 && !loop) return;
+    if (!loop && index === texts.length - 1) return;
 
-    return () => clearInterval(interval);
-  }, [text, currentIndex]);
+    const cycleMs = typeDurationMs + pauseAfterTypeMs + eraseDurationMs;
+    const startDelayThisCycle = index === 0 ? animationDelayMs : 0;
+
+    timerRef.current = window.setTimeout(() => {
+      setIndex((prev) => {
+        const next = loop
+          ? (prev + 1) % texts.length
+          : Math.min(prev + 1, texts.length - 1);
+        setKey((k) => k + 1);
+        return next;
+      });
+    }, cycleMs + startDelayThisCycle);
+
+    return () => {
+      if (timerRef.current) {
+        clearTimeout(timerRef.current);
+      }
+    };
+  }, [
+    index,
+    texts,
+    loop,
+    typeDurationMs,
+    eraseDurationMs,
+    pauseAfterTypeMs,
+    animationDelayMs,
+  ]);
+
+  const displayText = texts[index];
 
   return (
-    <div className="typewriter-wrapper">
+    <div className="typewriter-wrapper leading-0">
       <span
         {...props}
         key={key}
-        className={cn("typewriter", className)}
-        style={{
-          ...style,
-          '--characters': currentText.length,
-        } as React.CSSProperties}
+        className={cn("typewriter leading-none", className)}
+        aria-live="off"
+        style={
+          {
+            "--characters": displayText.length,
+            "--type-duration": `${typeDurationMs}ms`,
+            "--erase-duration": `${eraseDurationMs}ms`,
+            "--pause-after-type": `${pauseAfterTypeMs}ms`,
+            "--animation-start-delay": `${index === 0 ? animationDelayMs : 0}ms`,
+          } as CSSProperties
+        }
       >
-        {currentText}
+        {displayText}
       </span>
     </div>
   );

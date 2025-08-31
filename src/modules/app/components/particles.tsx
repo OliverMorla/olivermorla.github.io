@@ -1,6 +1,6 @@
 "use client"; // Marks this as a client-side component in Next.js
 
-import { cn } from "@/utils";
+import { cn } from "@/utils/classNames";
 import { useEffect, useRef } from "react"; // Import necessary React hooks
 
 // Define the structure of a particle object

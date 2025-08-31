@@ -54,6 +54,7 @@ export type SupportedTimezones =
   | 'Asia/Singapore'
   | 'Asia/Tokyo'
   | 'Asia/Seoul'
+  | 'Australia/Brisbane'
   | 'Australia/Sydney'
   | 'Pacific/Guam'
   | 'Pacific/Noumea'
@@ -64,6 +65,7 @@ export interface Config {
   auth: {
     users: UserAuthOperations;
   };
+  blocks: {};
   collections: {
     users: User;
     media: Media;
@@ -143,6 +145,8 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
+  name?: string | null;
+  image?: (number | null) | Media;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -152,6 +156,13 @@ export interface User {
   hash?: string | null;
   loginAttempts?: number | null;
   lockUntil?: string | null;
+  sessions?:
+    | {
+        id: string;
+        createdAt?: string | null;
+        expiresAt: string;
+      }[]
+    | null;
   password?: string | null;
 }
 /**
@@ -390,179 +401,6 @@ export interface Service {
    * This is used to sort the services from least to greatest, for example: Service 1, Service 2, Service 3, etc.
    */
   position?: number | null;
-  /**
-   * This is used to add an icon to the service. The icon is optional and it's located above the title.
-   */
-  icon?:
-    | (
-        | 'yelp'
-        | 'twitter'
-        | 'facebook'
-        | 'youtube'
-        | 'stripe'
-        | 'google'
-        | 'linkedIn'
-        | 'instagram'
-        | 'snapchat'
-        | 'whatsapp'
-        | 'tiktok'
-        | 'discord'
-        | 'github'
-        | 'pinterest'
-        | 'spotify'
-        | 'react'
-        | 'js'
-        | 'figma'
-        | 'html'
-        | 'css'
-        | 'git'
-        | 'python'
-        | 'node'
-        | 'aws'
-        | 'database'
-        | 'server'
-        | 'signUp'
-        | 'signIn'
-        | 'signOut'
-        | 'xMark'
-        | 'xMarkCircle'
-        | 'plus'
-        | 'plusCircle'
-        | 'check'
-        | 'checkCircle'
-        | 'envelope'
-        | 'house'
-        | 'bars'
-        | 'arrowRight'
-        | 'arrowLeft'
-        | 'arrowUp'
-        | 'heart'
-        | 'paperPlane'
-        | 'addressCard'
-        | 'blog'
-        | 'burger'
-        | 'dumbbell'
-        | 'wrench'
-        | 'handFist'
-        | 'handshake'
-        | 'users'
-        | 'userPlus'
-        | 'userMinus'
-        | 'trophy'
-        | 'checkSquare'
-        | 'xMarkSquare'
-        | 'caretDown'
-        | 'caretUp'
-        | 'dollarSign'
-        | 'lock'
-        | 'utensils'
-        | 'clipboard'
-        | 'trash'
-        | 'magnifyingGlass'
-        | 'inbox'
-        | 'message'
-        | 'reply'
-        | 'share'
-        | 'unlock'
-        | 'lockOpen'
-        | 'eye'
-        | 'clock'
-        | 'smile'
-        | 'person'
-        | 'earth'
-        | 'pieChart'
-        | 'user'
-        | 'phone'
-        | 'calendar'
-        | 'minus'
-        | 'minusCircle'
-        | 'medal'
-        | 'userLock'
-        | 'cog'
-        | 'clipboardCheck'
-        | 'userShield'
-        | 'shoppingCart'
-        | 'quoteLeft'
-        | 'quoteRight'
-        | 'questionCircle'
-        | 'cogs'
-        | 'image'
-        | 'images'
-        | 'book'
-        | 'shareAlt'
-        | 'creditCard'
-        | 'hashtag'
-        | 'link'
-        | 'calculator'
-        | 'globe'
-        | 'chevronDown'
-        | 'chevronUp'
-        | 'chevronRight'
-        | 'home'
-        | 'certificate'
-        | 'question'
-        | 'star'
-        | 'video'
-        | 'search'
-        | 'heading'
-        | 'info'
-        | 'puzzlePiece'
-        | 'deleteLeft'
-        | 'anchor'
-        | 'fileText'
-        | 'file'
-        | 'comment'
-        | 'bullhorn'
-        | 'fire'
-        | 'notesMedical'
-        | 'bullseye'
-        | 'exclamationTriangle'
-        | 'chartLine'
-        | 'key'
-        | 'appleAlt'
-        | 'brain'
-        | 'scrollWheel'
-        | 'sort'
-        | 'upload'
-        | 'copy'
-        | 'sync'
-        | 'paragraph'
-        | 'list'
-        | 'scaleBalanced'
-        | 'weight'
-        | 'percent'
-        | 'balanceScale'
-        | 'ruler'
-        | 'bowlFood'
-        | 'cow'
-        | 'edit'
-        | 'stairs'
-        | 'repeat'
-        | 'close'
-        | 'save'
-        | 'lightBulb'
-        | 'powerOff'
-        | 'birthdayCake'
-        | 'title'
-        | 'subtitle'
-        | 'description'
-        | 'features'
-        | 'markdown'
-        | 'content'
-        | 'week'
-        | 'answer'
-        | 'header'
-        | 'flag'
-        | 'bone'
-        | 'arrowAltCircleDown'
-        | 'dashboard'
-        | 'box'
-        | 'campground'
-        | 'moon'
-        | 'sun'
-        | 'spinner'
-      )
-    | null;
   title: string;
   /**
    * This is used to add a subtitle to the service. The subtitle is optional and it's located below the title.
@@ -648,7 +486,6 @@ export interface Image {
  */
 export interface Logo {
   id: number;
-  prefix?: string | null;
   updatedAt: string;
   createdAt: string;
   url?: string | null;
@@ -744,6 +581,8 @@ export interface Certification {
         | 'Other'
       )
     | null;
+  subtitle?: string | null;
+  description?: string | null;
   company?:
     | (
         | 'AWS'
@@ -772,7 +611,7 @@ export interface Certification {
       )
     | null;
   issuedDate?: string | null;
-  expirationDate?: string | null;
+  expiresAt?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -921,6 +760,8 @@ export interface PayloadMigration {
  * via the `definition` "users_select".
  */
 export interface UsersSelect<T extends boolean = true> {
+  name?: T;
+  image?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -930,6 +771,13 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+  sessions?:
+    | T
+    | {
+        id?: T;
+        createdAt?: T;
+        expiresAt?: T;
+      };
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1010,7 +858,6 @@ export interface ProjectsSelect<T extends boolean = true> {
  */
 export interface ServicesSelect<T extends boolean = true> {
   position?: T;
-  icon?: T;
   title?: T;
   subtitle?: T;
   price?: T;
@@ -1053,7 +900,6 @@ export interface ImagesSelect<T extends boolean = true> {
  * via the `definition` "logo_select".
  */
 export interface LogoSelect<T extends boolean = true> {
-  prefix?: T;
   updatedAt?: T;
   createdAt?: T;
   url?: T;
@@ -1112,9 +958,11 @@ export interface FaqSelect<T extends boolean = true> {
 export interface CertificationsSelect<T extends boolean = true> {
   title?: T;
   issuer?: T;
+  subtitle?: T;
+  description?: T;
   company?: T;
   issuedDate?: T;
-  expirationDate?: T;
+  expiresAt?: T;
   updatedAt?: T;
   createdAt?: T;
 }

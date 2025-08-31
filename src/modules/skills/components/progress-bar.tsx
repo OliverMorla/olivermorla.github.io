@@ -1,10 +1,9 @@
-import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
+import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
 
 const ProgresBar = ({ progress }: { progress: string }) => {
   return (
-    <MotionInViewDiv
+    <MotionDiv
       className="h-full absolute top-0 left-0 z-0 rounded-l-full rounded-r-full text-end bg-gradient-to-r from-neutral-600 to-neutral-700 pr-2 text-sm"
-      once
       initial={{
         width: "25%",
       }}
@@ -17,7 +16,7 @@ const ProgresBar = ({ progress }: { progress: string }) => {
       }}
     >
       {progress}
-    </MotionInViewDiv>
+    </MotionDiv>
   );
 };
 

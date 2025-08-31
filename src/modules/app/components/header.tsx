@@ -1,17 +1,17 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
 import { scroll } from "motion";
-import { MotionLi } from "@/components/helpers/Motion";
-import { headerPrimaryLinks } from "@/constants";
+import NavLink from "@/modules/app/components/nav-link";
+import { headerPrimaryLinks } from "@/modules/app/lib/constants";
 import ResponsiveNav from "@/modules/app/components/responsive-nav";
 import ThemeSwitcher from "@/modules/app/components/dynamic/theme-switcher";
+import { MotionDiv, MotionLi } from "@/components/helpers/blur-lazy-motion";
 
 const Header = () => {
   React.useEffect(() => {
     const nav = document.querySelector("#desktop-nav");
-    scroll((progress: any) =>
+    scroll((progress: number) =>
       progress > 0.04
         ? nav?.classList.add("-translate-y-[100%]")
         : nav?.classList.remove("-translate-y-[100%]")
@@ -22,23 +22,25 @@ const Header = () => {
     <header className="relative">
       <nav
         id="desktop-nav"
-        className="fixed flex items-center justify-center w-full px-8 max-sm:px-4 py-6 dark:bg-neutral-950/20 backdrop-blur-md bg-neutral-200/20 dark:text-neutral-100 text-neutral-800 transition-all duration-300 max-lg:hidden z-50"
+        className="fixed flex items-center justify-center w-full px-8 max-sm:px-4 py-6 dark:bg-neutral-950/85 backdrop-blur-md bg-neutral-100/75 transition-all duration-300 max-lg:hidden z-50"
       >
         <ul className="flex gap-6 items-center justify-center w-full">
-          {headerPrimaryLinks.map((item, index) => (
-            <MotionLi key={index} y={-40} delay={index * 0.1}>
-              <Link
+          {headerPrimaryLinks.map((item, idx) => (
+            <MotionLi delay={0.1 * idx} key={idx}>
+              <NavLink
                 href={item.href}
-                className="min-w-[70px] px-2 py-1 dark:hover:bg-neutral-800 dark:active:bg-neutral-700 hover:bg-neutral-300 active:bg-neutral-400 transition-all ease-in-out duration-300 rounded-md"
+                dropdownLinks={item.dropdownLinks}
+                className="px-2 py-1 "
               >
                 {item.title}
-              </Link>
+              </NavLink>
             </MotionLi>
           ))}
         </ul>
-        <ThemeSwitcher />
+        <MotionDiv delay={0.1 * headerPrimaryLinks.length}>
+          <ThemeSwitcher />
+        </MotionDiv>
       </nav>
-      {/* Responsive Nav for mobile devices */}
       <ResponsiveNav />
     </header>
   );

@@ -1,17 +1,12 @@
 // storage-adapter-import-placeholder
-
-import path from "path";
-import sharp from "sharp";
-
-import { fileURLToPath } from "url";
-
-import { buildConfig } from "payload";
-import { s3Storage } from "@payloadcms/storage-s3";
-// import { resendAdapter } from "@payloadcms/email-resend";
 import { postgresAdapter } from "@payloadcms/db-postgres";
-import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
-
+import { lexicalEditor } from "@payloadcms/richtext-lexical";
+import { s3Storage } from "@payloadcms/storage-s3";
+import path from "path";
+import { buildConfig } from "payload";
+import { fileURLToPath } from "url";
+import sharp from "sharp";
 import { FAQ } from "./collections/FAQ";
 import { Logo } from "./collections/Logo";
 import { Users } from "./collections/Users";
@@ -32,15 +27,28 @@ const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
 export default buildConfig({
-  // email: resendAdapter({
-  //   defaultFromAddress: "dev@mydomain.com", // TODO: change to your domain
-  //   defaultFromName: "Payload CMS",
-  //   apiKey: process.env.RESEND_API_KEY || "",
-  // }),
   admin: {
     user: Users.slug,
     importMap: {
       baseDir: path.resolve(dirname),
+    },
+    livePreview: {
+      url: process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000",
+      collections: [
+        FAQ.slug,
+        Certifications.slug,
+        Resume.slug,
+        Projects.slug,
+        Services.slug,
+        Pages.slug,
+        Images.slug,
+        Logo.slug,
+        Warranty.slug,
+        Documents.slug,
+        Testimonials.slug,
+        PrivacyPolicy.slug,
+        TermsOfService.slug,
+      ],
     },
   },
   collections: [
@@ -79,9 +87,9 @@ export default buildConfig({
         media: {
           prefix: "public/media/",
         },
-        logo: {
-          prefix: "public/logo/",
-        },
+        // logo: {
+        //   prefix: "public/logo/",
+        // },
         documents: {
           prefix: "public/documents/",
         },

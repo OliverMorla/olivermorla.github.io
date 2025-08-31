@@ -4,8 +4,7 @@
  */
 
 import type { Config } from "jest";
-
-import nextJest from "next/jest.js";
+import nextJest from "next/jest";
 
 const createJestConfig = nextJest({
   // Provide the path to your Next.js app to load next.config.js and .env files in your test environment
@@ -91,6 +90,8 @@ const config: Config = {
   //   "cjs",
   //   "jsx",
   //   "ts",
+  //   "mts",
+  //   "cts",
   //   "tsx",
   //   "json",
   //   "node"
@@ -99,6 +100,7 @@ const config: Config = {
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
+    "^@/components/(.*)$": "<rootDir>/src/components/$1",
   },
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
@@ -111,7 +113,7 @@ const config: Config = {
   // notifyMode: "failure-change",
 
   // A preset that is used as a base for Jest's configuration
-  // preset: undefined,
+  // preset: "ts-node",
 
   // Run tests from one or more projects
   // projects: undefined,
@@ -165,8 +167,8 @@ const config: Config = {
 
   // The glob patterns Jest uses to detect test files
   // testMatch: [
-  //   "**/__tests__/**/*.[jt]s?(x)",
-  //   "**/?(*.)+(spec|test).[tj]s?(x)"
+  //   "**/__tests__/**/*.?([mc])[jt]s?(x)",
+  //   "**/?(*.)+(spec|test).?([mc])[jt]s?(x)"
   // ],
 
   // An array of regexp pattern strings that are matched against all test paths, matched tests are skipped
@@ -184,7 +186,7 @@ const config: Config = {
   // testRunner: "jest-circus/runner",
 
   // A map from regular expressions to paths to transformers
-  // transform: undefined,
+  // transform: { "^.+\\.(ts|tsx)$": ["ts-jest", { tsconfig: "tsconfig.json" }] },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
   // transformIgnorePatterns: [
@@ -192,6 +194,7 @@ const config: Config = {
   //   "\\.pnp\\.[^\\\\]+$"
   // ],
 
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them
   // unmockedModulePathPatterns: undefined,
 
@@ -204,5 +207,7 @@ const config: Config = {
   // Whether to use watchman for file crawling
   // watchman: true,
 };
+
+// export default config;
 
 export default createJestConfig(config);

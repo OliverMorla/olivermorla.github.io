@@ -1,22 +1,24 @@
-import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
+import { cn } from "@/utils/classNames";
+import { ComponentProps } from "react";
+
+export type AchievementCardProps = ComponentProps<"div"> & {
+  name?: string;
+  impact?: string;
+  description: string;
+};
 
 const AchievementCard = ({
-  description,
+  name,
   impact,
-}: {
-  description: string;
-  impact: string;
-}) => {
+  description,
+  className,
+  ...props
+}: AchievementCardProps) => {
   return (
-    <MotionInViewDiv
-      once
-      y={40}
-      delay={0.2}
-      className="flex flex-col items-center"
-    >
+    <div className={cn("flex flex-col items-center", className)} {...props}>
       <h2 className="font-bold text-xl text-center">{description}</h2>
       <p className="opacity-60">{impact}</p>
-    </MotionInViewDiv>
+    </div>
   );
 };
 

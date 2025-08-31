@@ -1,7 +1,7 @@
-import { experienceHistory, achievements } from "@/constants";
 import SectionTitle from "@/modules/app/components/section-title";
 import ExperienceCard from "@/modules/experiences/components/card";
 import AchievementCard from "@/modules/achievement/components/card";
+import { experienceHistory, achievements } from "@/modules/app/lib/constants";
 
 const Experiences = () => {
   return (
@@ -25,9 +25,7 @@ const Experiences = () => {
           {experienceHistory.map((job, index) => (
             <ExperienceCard
               key={index}
-              y={40}
               index={index}
-              delay={index * 0.2}
               position={job.position}
               endDate={job.endDate}
               location={job.location}
@@ -79,7 +77,7 @@ const Experiences = () => {
             description="Showcasing key milestones and recognitions that reflect my dedication and success in the realm of full-stack development."
           />
           <div className="flex flex-col items-center gap-6">
-             {achievements.map((achievement, index) => (
+            {achievements.map((achievement, index) => (
               <AchievementCard
                 key={index}
                 impact={achievement.impact}

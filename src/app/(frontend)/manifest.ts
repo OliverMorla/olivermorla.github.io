@@ -10,7 +10,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         name: "Home",
         url: "/",
-        icons: [{ src: "/assets/favicon.ico", sizes: "any" }],
+        icons: [{ src: "/assets/favicon.ico", sizes: "any", purpose: "maskable" }],
       },
     ],
     start_url: "/",
@@ -21,6 +21,7 @@ export default function manifest(): MetadataRoute.Manifest {
       {
         src: "/assets/favicon.ico",
         sizes: "any",
+        purpose: "maskable",
         type: "image/x-icon",
       },
     ],

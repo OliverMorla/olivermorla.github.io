@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, useEffect, useRef } from "react";
 
 interface CounterProps {
@@ -6,7 +7,7 @@ interface CounterProps {
   targetCount: number;
 }
 
-export function Counter({ duration, targetCount }: CounterProps) {
+function Counter({ duration, targetCount }: CounterProps) {
   // State to keep track of the current count value
   const [count, setCount] = useState(0);
   // Ref to store the start time of the animation
@@ -46,5 +47,8 @@ export function Counter({ duration, targetCount }: CounterProps) {
   }, [duration, targetCount]); // Re-run the effect if duration or targetCount changes
 
   // Render the current count value inside a div
-  return <div>{count}</div>;
+  return <span>{count}</span>;
 }
+
+
+export default Counter;

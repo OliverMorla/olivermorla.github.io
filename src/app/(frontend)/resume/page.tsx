@@ -71,3 +71,5 @@ const Resume = async () => {
 };
 
 export default Resume;
+
+export const revalidate = 14400; // 2 hours

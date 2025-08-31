@@ -1,10 +1,17 @@
 import Image from "next/image";
-import { formatDate, getImageUrl } from "@/utils";
-import { getProjects } from "@/lib/server/queries";
+import ButtonLink from "@/components/ui/button-link";
+import { pages } from "@/modules/app/lib/constants";
+import { getProjects } from "@/lib/payload/server/queries";
+import { getImageMediaUrl } from "@/lib/payload/client/utils";
 import SectionTitle from "@/modules/app/components/section-title";
-import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
-import { MotionInViewDiv } from "@/components/helpers/dynamic/Motion";
 import Carousel from "@/modules/portfolio/components/dynamic/carousel";
+import LazyImage from "@/components/helpers/lazy-image";
+
+const formatDate = (date: string) => {
+  return new Date(date).toLocaleDateString("en-US", {
+    year: "numeric",
+  });
+};
 
 const Portfolio = async () => {
   const projects = await getProjects();
@@ -19,38 +26,38 @@ const Portfolio = async () => {
 
   return (
     <section
-      className="min-h-screen h-auto flex flex-col gap-12 justify-center items-center p-8 max-sm:p-4 bg-gradient-to-b from-transparent to-neutral-50/5 dark:to-neutral-900"
+      className="min-h-screen flex flex-col gap-12 justify-center items-center p-8 max-sm:p-4 bg-gradient-none"
       id="portfolio"
     >
       <SectionTitle
-        title="Portfolio"
-        description="Transforming ideas into reality through code. Explore my latest projects and technical achievements."
+        title={pages.portfolio.title}
+        tagline={pages.portfolio.tagline}
+        subtitle={pages.portfolio.subtitle}
+        description={pages.portfolio.description}
       />
-      <MotionInViewDiv once y={40} delay={0.2} className="container mx-auto">
+      <div className="container mx-auto">
         <Carousel projects={projects.docs} />
-      </MotionInViewDiv>
+      </div>
       <div className="container mx-auto flex flex-col gap-6">
-        <MotionInViewDiv once x={-40} delay={0.2} className="flex flex-col">
-          <h1 className="text-2xl font-bold">Featured Project</h1>
+        <div className="flex flex-col">
+          <h1 className="text-2xl font-bold">Featured</h1>
           <p className="text-neutral-400">
-            Here are some of my projects that I&apos;ve worked on.
+            Built with React/Next.js/AWS & Node—Hardened for Production and
+            shipped in 6 weeks.
           </p>
-        </MotionInViewDiv>
-        <MotionInViewDiv
-          once
-          x={-40}
-          delay={0.2}
-          className="backdrop-blur-sm bg-white/5 rounded-lg border border-neutral-200/10 overflow-hidden shadow-lg"
-        >
+        </div>
+        <div className="backdrop-blur-sm bg-white/5 rounded-lg border border-neutral-200/10 overflow-hidden shadow-lg">
           <div className="grid lg:grid-cols-2 gap-8">
             <div className="relative group overflow-hidden">
-              <Image
-                src={getImageUrl(featuredProject?.images?.[0])}
-                alt="Project preview"
-                width={1000}
-                height={1000}
-                className="object-cover h-full w-full transition-transform duration-300 group-hover:scale-105"
-              />
+              {featuredProject?.images?.[0] && (
+                <LazyImage
+                  src={getImageMediaUrl(featuredProject.images[0])}
+                  alt="Project preview"
+                  width={1000}
+                  height={1000}
+                  className="object-cover h-full w-full transition-transform duration-300 group-hover:scale-105"
+                />
+              )}
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
 
@@ -95,7 +102,7 @@ const Portfolio = async () => {
               </div>
             </div>
           </div>
-        </MotionInViewDiv>
+        </div>
       </div>
     </section>
   );

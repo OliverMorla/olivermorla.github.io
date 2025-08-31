@@ -2,13 +2,13 @@
   "compilerOptions": {
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
+    "baseUrl": "./",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
     "noEmit": true,
     "esModuleInterop": true,
     "module": "esnext",
-    "baseUrl": "./",
     "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,13 +20,11 @@
       }
     ],
     "paths": {
-      "@payload-config": ["src/payload.config.ts"],
       "@/*": ["./src/*"],
-      "@emails/*": ["./emails/*"],
-      "@frontend/*": ["./src/frontend/*"],
-      "@backend/*": ["./src/backend/*"]
+      "@payload-types": ["./src/payload-types.ts"],
+      "@payload-config": ["./src/payload.config.ts"],
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "__tests__/page.test.tsx", "babel.config.js", "src/app/docs/[[...mdxPath]]/page.jsx", "src/mdx-components.js", "next.config.ts", "coverage/[[...mdxPath]]/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

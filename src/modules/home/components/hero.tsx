@@ -1,44 +1,43 @@
-import Link from "next/link";
 import Image from "next/image";
-
-import { media, socialMediaLinks } from "@/constants";
-
-import { Counter } from "@/components/helpers/Counter";
-import ParallaxText from "@/modules/app/components/parallel-text";
-
+import Particles from "@/modules/app/components/particles";
 import {
   MotionDiv,
-  MotionH1,
   MotionH2,
-  MotionLi,
   MotionText,
-} from "@/components/helpers/dynamic/Motion";
-import ButtonLink from "@/components/shared/ui/dynamic/ButtonLink";
-import Particles from "@/modules/app/components/particles";
-import Typewriter from "@/modules/app/components/typewriter"  ;
-import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
+} from "@/components/helpers/blur-lazy-motion";
+import Counter from "@/components/helpers/counter";
+import { pages } from "@/modules/app/lib/constants";
+import CTAButtons from "@/modules/app/components/cta-buttons";
+import ParallaxText from "@/modules/app/components/parallel-text";
+// import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
+import Typewriter from "@/modules/app/components/typewriter";
 
 const Hero = () => {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen py-32 px-4 sm:px-8 flex flex-col justify-center"
+      className="relative w-full min-h-screen flex flex-col justify-center bg-gradient-none py-24 px-8 max-sm:px-4 overflow-x-hidden"
     >
-      <div className="w-full h-full flex flex-col-reverse md:flex-row items-center justify-evenly gap-8 md:gap-6 z-20">
-        <div className="w-full flex flex-col gap-6 md:gap-4 max-w-xl max-lg:max-w-full text-center md:text-left">
+      <section className="mx-auto container flex flex-col-reverse md:flex-row justify-between items-center gap-12">
+        <div className="w-full flex flex-col gap-6 max-w-2xl">
           <div className="flex flex-col gap-2">
-            <MotionH1
-              delay={0.2}
-              className="flex items-center gap-2 text-xl sm:text-2xl font-light justify-center md:justify-start flex-wrap"
-            >
-              Hey There! I&apos;m <span className="font-bold">Oliver</span>
-              And I&apos;m a
-            </MotionH1>
+            <MotionText delay={0.2} className="flex items-center gap-2">
+              <span className="text-gradient-normal">——</span>
+              {pages.home.tagline}
+            </MotionText>
+            {/* <MotionH1 delay={0.4} className="text-2xl font-light">
+              {pages.home.title}
+            </MotionH1> */}
             <MotionH2
               delay={0.4}
-              className="font-bold text-5xl max-lg:text-4xl max-sm:text-3xl leading-16"
+              className="flex items-center gap-2 text-4xl max-lg:text-2xl max-sm:text-xl"
             >
+              <span className="text-4xl max-lg:text-2xl max-sm:text-xl font-light leading-none">
+                Hi, I&apos;m Oliver ——
+              </span>
               <Typewriter
+                animationDelayMs={2000}
+                className="font-bold text-gradient-normal"
                 text={[
                   "Software Developer",
                   "Web Developer",
@@ -46,82 +45,63 @@ const Hero = () => {
                 ]}
               />
             </MotionH2>
-            <MotionText delay={0.6} className="text-neutral-500">
-              With a passion for building scalable and efficient web
-              applications. I&apos;m also a full stack developer with a passion
-              for building scalable and efficient web applications.
-            </MotionText>
           </div>
+          <MotionText delay={0.6} className="text-muted">
+            {pages.home.description}
+          </MotionText>
 
-          <MotionDiv
-            y={40}
-            className="flex max-sm:flex-col justify-center md:justify-between gap-6"
-          >
-            <ButtonLink
-              href="mailto:olivermorla3@gmail.com"
-              faPresetIcon="paperPlane"
-              className="w-full sm:w-48"
-            >
-              Hire me
-            </ButtonLink>
-            <div className="flex flex-col items-center">
-              <h1 className="text-lg sm:text-xl font-bold flex">
-                <Counter targetCount={4} duration={1000} /> <span>+</span>
-              </h1>
-              <p className="opacity-60 font-light text-xs sm:text-sm">
-                Experience
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <h1 className="text-lg sm:text-xl font-bold flex">
-                <Counter targetCount={18} duration={1000} /> <span> + </span>
-              </h1>
-              <p className="opacity-60 font-light text-xs sm:text-sm">
-                Projects
-              </p>
-            </div>
-            <div className="flex flex-col items-center">
-              <h1 className="text-lg sm:text-xl font-bold flex">
-                <Counter targetCount={24} duration={1000} />
-              </h1>
-              <p className="opacity-60 font-light text-xs sm:text-sm">Age</p>
-            </div>
+          <div className="flex justify-between gap-6">
+            {pages.home.stats.map((stat, idx) => (
+              <MotionDiv
+                key={idx}
+                delay={0.1 * idx}
+                className="flex flex-col items-center"
+              >
+                <h1 className="text-lg sm:text-xl font-bold flex">
+                  <Counter targetCount={stat.value} duration={1000} />
+                  <span>+</span>
+                </h1>
+                <p className="opacity-60 font-light text-xs sm:text-sm">
+                  {stat.title}
+                </p>
+              </MotionDiv>
+            ))}
+          </div>
+          <MotionDiv delay={1}>
+            <CTAButtons />
           </MotionDiv>
 
+          {/* 
           <ul className="flex justify-center md:justify-between text-3xl sm:text-4xl gap-6">
-            {socialMediaLinks.map((item, index) => (
-              <MotionLi
-                y={40}
-                key={index}
-                delay={index * 0.2}
-                aria-label={item.title}
-                className="hover:text-blue-300 active:text-blue-600 transition-colors ease-in cursor-pointer"
+            {socialMediaLinks.map((item, idx) => (
+              <li
+                key={idx}
+                className="hover:text-indigo-300/75 active:text-indigo-600/75 transition-colors ease-in cursor-pointer"
               >
                 <Link href={item.href} aria-label={item.title}>
-                  <FontAwesomeIcon icon={item.iconUrl} />
+                  <Icon icon={item.iconUrl} />
                 </Link>
-              </MotionLi>
+              </li>
             ))}
-          </ul>
+          </ul> */}
         </div>
 
         <MotionDiv
-          x={40}
-          delay={0.4}
-          className="relative w-48 h-48 sm:w-80 sm:h-80 md:w-[500px] md:h-[500px] image-morph"
+          delay={1.2}
+          className="relative w-full max-w-md h-full image-morph"
         >
           <Image
-            src={media.portrait}
-            width={500}
-            height={500}
-            className="object-cover"
-            alt={Object.keys(media)[0]}
+            src={"/assets/media/portrait_1.webp"}
             priority
+            width={1024}
+            height={1024}
+            alt="portrait_1"
+            className="object-cover grayscale"
           />
         </MotionDiv>
-      </div>
+      </section>
 
-      <MotionDiv scale={false} className="absolute bottom-0 left-0 w-full">
+      <MotionDiv className="absolute bottom-0 w-full">
         <ParallaxText baseVelocity={-2}>
           Web Development. Mobile Development. UI/UX Web Design.
         </ParallaxText>

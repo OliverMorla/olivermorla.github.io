@@ -13,7 +13,7 @@ import {
 import { wrap } from "@motionone/utils";
 
 interface ParallaxProps {
-  children: any;
+  children: React.ReactNode;
   baseVelocity: number;
 }
 
@@ -66,9 +66,9 @@ export default function ParallaxText({
    * dynamically generated number of children.
    */
   return (
-    <div className="parallax bg-neutral-200/20 dark:bg-neutral-800/20 backdrop-blur-md">
+    <div className="parallax">
       <motion.div className="scroller" style={{ x }}>
-        <span className="leading-none">{children}</span>
+        <span>{children}</span>
         <span>{children}</span>
         <span>{children}</span>
         <span>{children}</span>

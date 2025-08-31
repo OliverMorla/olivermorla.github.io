@@ -1,4 +1,5 @@
-import { faPresetIconsKeys } from "@/constants";
+// import { faPresetIconsKeys } from "@/constants";
+
 import type { CollectionConfig } from "payload";
 
 export const Services: CollectionConfig = {
@@ -14,15 +15,7 @@ export const Services: CollectionConfig = {
           "This is used to sort the services from least to greatest, for example: Service 1, Service 2, Service 3, etc.",
       },
     },
-    {
-      name: "icon",
-      type: "select",
-      options: faPresetIconsKeys,
-      admin: {
-        description:
-          "This is used to add an icon to the service. The icon is optional and it's located above the title.",
-      },
-    },
+
     {
       name: "title",
       type: "text",

@@ -39,6 +39,17 @@ export const Certifications: CollectionConfig = {
       ],
     },
     {
+      name: "subtitle",
+      type: "text",
+    },
+    {
+      name: "description",
+      type: "textarea",
+      admin: {
+        rows: 5,
+      },
+    },
+    {
       name: "company",
       type: "select",
       options: [
@@ -72,7 +83,7 @@ export const Certifications: CollectionConfig = {
       type: "date",
     },
     {
-      name: "expirationDate",
+      name: "expiresAt",
       type: "date",
     },
   ],
