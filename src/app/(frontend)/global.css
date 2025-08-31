@@ -303,13 +303,15 @@ body {
 }
 
 /* Grid Pattern Base */
+/* Grid Pattern Base */
 .bg-grid-pattern {
   --grid-size: 4rem;
   --grid-line-weight: 1px;
   --grid-color: theme("colors.neutral.300");
-  --grid-mask-opacity-start: 0;
-  --grid-mask-opacity-middle: 1;
-  --grid-mask-opacity-end: 0;
+
+  /* Edge fade thickness and a tiny clear edge so no line touches borders */
+  --grid-fade-edge: calc(var(--grid-size) / 2);
+  --grid-edge-clear: calc(var(--grid-line-weight) + 1px);
 
   background-image:
     linear-gradient(
@@ -323,13 +325,51 @@ body {
       transparent var(--grid-line-weight)
     );
   background-size: var(--grid-size) var(--grid-size);
-  background-position: -1px -1px;
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, var(--grid-mask-opacity-start)),
-    rgba(0, 0, 0, var(--grid-mask-opacity-middle)),
-    rgba(0, 0, 0, var(--grid-mask-opacity-end))
-  );
+  background-position: 0 0;
+
+  /* Fade on all sides (horizontal + vertical), with intersection */
+  -webkit-mask-image:
+    linear-gradient(
+      to right,
+      transparent 0,
+      transparent var(--grid-edge-clear),
+      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
+      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
+      transparent calc(100% - var(--grid-edge-clear)),
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent var(--grid-edge-clear),
+      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
+      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
+      transparent calc(100% - var(--grid-edge-clear)),
+      transparent 100%
+    );
+  mask-image:
+    linear-gradient(
+      to right,
+      transparent 0,
+      transparent var(--grid-edge-clear),
+      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
+      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
+      transparent calc(100% - var(--grid-edge-clear)),
+      transparent 100%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent var(--grid-edge-clear),
+      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
+      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
+      transparent calc(100% - var(--grid-edge-clear)),
+      transparent 100%
+    );
+
+  /* Intersection of both masks */
+  -webkit-mask-composite: source-in;
+  mask-composite: intersect;
 }
 
 /* Grid Sizes */

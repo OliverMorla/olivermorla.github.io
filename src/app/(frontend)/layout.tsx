@@ -1,14 +1,15 @@
-import "./global.css";
-import { cn } from "@/utils/classNames";
-import { Inter } from "next/font/google";
-import { Metadata, Viewport } from "next";
-import Header from "@/modules/app/components/header";
 import Footer from "@/modules/app/components/footer";
-import { Toaster as ToasterProvider } from "sonner";
+import Header from "@/modules/app/components/header";
 import MotionProvider from "@/providers/motion-provider";
-import ThemeProvider from "@/providers/theme-provider";
 import { PHProvider } from "@/providers/posthog-provider";
+import QueryProvider from "@/providers/query-provider";
+import ThemeProvider from "@/providers/theme-provider";
+import { cn } from "@/utils/classNames";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Metadata, Viewport } from "next";
+import { Inter } from "next/font/google";
+import { Toaster as ToasterProvider } from "sonner";
+import "./global.css";
 
 export const metadata: Metadata = {
   title: {
@@ -85,16 +86,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-US">
-      <body className={cn(inter.variable, "antialiased")}>
-        <MotionProvider>
-          <ThemeProvider>
-            <PHProvider>
-              <Header />
-              {children}
-              <Footer />
-            </PHProvider>
-          </ThemeProvider>
-        </MotionProvider>
+      <body className={cn(inter.variable, "antialiased bg-gradient-none")}>
+        <QueryProvider>
+          <MotionProvider>
+            <ThemeProvider>
+              <PHProvider>
+                <Header />
+                {children}
+                <Footer />
+              </PHProvider>
+            </ThemeProvider>
+          </MotionProvider>
+        </QueryProvider>
         <ToasterProvider position="bottom-right" duration={3000} richColors />
       </body>
       <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID!} />

@@ -1,7 +1,10 @@
-import { ComponentProps } from "react";
+import {
+  BlurLazyMotionProps,
+  MotionInViewDiv,
+} from "@/components/helpers/blur-lazy-motion";
 import { cn } from "@/utils/classNames";
 
-export type SectionTitleProps = ComponentProps<"div"> & {
+export type SectionTitleProps = BlurLazyMotionProps<"div"> & {
   title: string;
   tagline?: string;
   subtitle?: string;
@@ -17,10 +20,11 @@ const SectionTitle = ({
   ...props
 }: SectionTitleProps) => {
   return (
-    <div
+    <MotionInViewDiv
+      delay={0.2}
       className={cn(
         "flex flex-col gap-6 items-center max-w-xl text-center",
-        className
+        className,
       )}
       {...props}
     >
@@ -33,7 +37,7 @@ const SectionTitle = ({
         </div>
       </div>
       <p className="text-muted">{description}</p>
-    </div>
+    </MotionInViewDiv>
   );
 };
 

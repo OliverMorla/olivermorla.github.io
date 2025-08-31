@@ -1,10 +1,13 @@
-import { pages } from "@/modules/app/lib/constants";
-import ButtonLink from "@/components/ui/button-link";
 import LazyImage from "@/components/helpers/lazy-image";
-import { getProjects } from "@/lib/payload/server/queries";
+import { MotionInViewSection } from "@/components/helpers/lazy-motion";
+import ButtonLink from "@/components/ui/button-link";
 import { getImageMediaUrl } from "@/lib/payload/client/utils";
+import { getProjects } from "@/lib/payload/server/queries";
+import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
+import { pages } from "@/modules/app/lib/constants";
 import Carousel from "@/modules/portfolio/components/dynamic/carousel";
+import { ArrowRight } from "lucide-react";
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString("en-US", {
@@ -20,33 +23,34 @@ const Portfolio = async () => {
   if (!doesProjectsExist) return null;
 
   const featuredProject = projects.docs.find(
-    (project) => project.featured === true
+    (project) => project.featured === true,
   );
 
   return (
     <section
-      className="min-h-screen flex flex-col gap-12 justify-center items-center p-8 max-sm:p-4 bg-gradient-none"
       id="portfolio"
+      className="relative min-h-screen flex flex-col p-8 max-sm:p-4 bg-gradient-none"
     >
-      <SectionTitle
-        title={pages.portfolio.title}
-        tagline={pages.portfolio.tagline}
-        subtitle={pages.portfolio.subtitle}
-        description={pages.portfolio.description}
-      />
-      <div className="container mx-auto">
-        <Carousel projects={projects.docs} />
-      </div>
-      <div className="container mx-auto flex flex-col gap-6">
-        <div className="flex flex-col">
-          <h1 className="text-2xl font-bold">Featured</h1>
-          <p className="text-neutral-400">
-            Built with React/Next.js/AWS & Node—Hardened for Production and
-            shipped in 6 weeks.
-          </p>
-        </div>
-        <div className="backdrop-blur-sm bg-white/5 rounded-lg border border-neutral-200/10 overflow-hidden shadow-lg">
-          <div className="grid lg:grid-cols-2 gap-8">
+      <section className="relative mx-auto container flex flex-col gap-12">
+        <SectionTitle
+          title={pages.portfolio.title}
+          tagline={pages.portfolio.tagline}
+          subtitle={pages.portfolio.subtitle}
+          description={pages.portfolio.description}
+          className="text-end items-end ml-auto"
+        />
+        <MotionInViewSection>
+          <Carousel projects={projects.docs} />
+        </MotionInViewSection>
+        <div className="container mx-auto flex flex-col gap-6">
+          <div className="flex flex-col">
+            <h1 className="text-2xl font-bold">Featured</h1>
+            <p className="text-neutral-400">
+              Built with React/Next.js/AWS & Node—Hardened for Production and
+              shipped in 6 weeks.
+            </p>
+          </div>
+          <div className="grid lg:grid-cols-2 gap-8 backdrop-blur-sm bg-white/5 rounded-lg border border-neutral-200/10 overflow-hidden shadow-lg">
             <div className="relative group overflow-hidden">
               {featuredProject?.images?.[0] && (
                 <LazyImage
@@ -91,18 +95,22 @@ const Portfolio = async () => {
                 </div>
               </div>
 
-              <div className="flex gap-4">
-                <ButtonLink
-                  href={featuredProject?.link ?? ""}
-                  className="flex items-center gap-2"
-                >
-                  Live Demo
-                </ButtonLink>
+              <div className="flex justify-between max-sm:flex-col gap-4">
+                <CTAButtons />
+                {featuredProject?.link && (
+                  <ButtonLink
+                    href={featuredProject.link}
+                    className="flex items-center gap-2 max-sm:w-full"
+                  >
+                    Live Demo
+                    <ArrowRight className="max-sm:hidden size-4" />
+                  </ButtonLink>
+                )}
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </section>
   );
 };

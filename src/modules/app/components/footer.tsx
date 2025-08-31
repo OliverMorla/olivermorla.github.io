@@ -1,12 +1,12 @@
 import Link from "next/link";
-import ButtonLink from "@/components/ui/button-link";
 import {
   footerPrimaryLinks,
   socialMediaLinks,
   pages,
 } from "@/modules/app/lib/constants";
-import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
+import ButtonLink from "@/components/ui/button-link";
+import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 
 const Footer = async () => {
   const currentYear = new Date().getFullYear();
@@ -46,8 +46,7 @@ const Footer = async () => {
         <div className="relative flex flex-col justify-between gap-8 sm:items-center md:flex-row">
           <div className="max-w-4xl space-y-4">
             <h2 className="text-4xl font-bold md:text-5xl">
-              {/* {pages.contact.title} */}
-              Ready to Build{" "} 
+              Ready to Build{" "}
               <span className="text-gradient-normal">Something</span> Great?
             </h2>
             <p className="text-muted text-lg max-sm:text-base">
@@ -91,20 +90,25 @@ const Footer = async () => {
               {socialMediaLinks.map((social, index) => (
                 <Link
                   key={index}
-                  href={social.href}
                   target="_blank"
+                  href={social.href}
+                  aria-label={social.title}
                   className="text-neutral-600 transition-colors hover:text-neutral-800 active:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-200 dark:active:text-neutral-50"
                 >
-                  <Icon icon={social.iconUrl} className="text-lg" />
+                  <Icon
+                    className="text-lg"
+                    icon={social.iconUrl}
+                    aria-label={social.title}
+                  />
                 </Link>
               ))}
             </div>
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
               Quick Links
-            </h3>
+            </h2>
             <ul className="space-y-4">
               {navLinks.map((item) => (
                 <li key={item.title}>
@@ -120,9 +124,9 @@ const Footer = async () => {
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
               Contact Me
-            </h3>
+            </h2>
             <ul className="space-y-4 text-sm text-neutral-600 dark:text-neutral-400">
               <li className="flex items-center gap-2">
                 olivermorla3@gmail.com
@@ -134,9 +138,9 @@ const Footer = async () => {
           </div>
 
           <div className="space-y-2">
-            <h3 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
+            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
               Service Areas
-            </h3>
+            </h2>
             <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
               Based in New York. Working remotely with clients across the US and
               worldwide.
@@ -152,7 +156,7 @@ const Footer = async () => {
             <p className="text-muted text-center text-xs">
               Website designed and developed by{" "}
               <Link
-                href="/"
+                href="/#contact"
                 className="text-neutral-600 transition-colors hover:text-neutral-800 active:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-200 dark:active:text-neutral-50"
               >
                 Oliver Morla

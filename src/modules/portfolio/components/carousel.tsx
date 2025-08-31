@@ -1,25 +1,29 @@
 "use client";
 
 // Import React
-import React from "react";
-import Image from "next/image";
 
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
-import { Project } from "@/payload-types";
-import Link from "next/link";
-import { cn } from "@/utils/classNames";
-import { getImageMediaUrl } from "@/lib/payload/client/utils";
 import LazyImage from "@/components/helpers/lazy-image";
-const Carousel = ({ projects }: { projects: Project[] }) => {
+import { getImageMediaUrl } from "@/lib/payload/client/utils";
+import { Project } from "@/payload-types";
+import { cn } from "@/utils/classNames";
+import Link from "next/link";
+import { ComponentProps } from "react";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
+
+export type CarouselProps = ComponentProps<typeof Swiper> & {
+  projects: Project[];
+};
+
+const Carousel = ({ projects, className, ...props }: CarouselProps) => {
   return (
     <Swiper
       centeredSlides={true}
@@ -34,32 +38,24 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
         enabled: true,
       }}
       modules={[Autoplay, Pagination, Navigation]}
+      className={cn("w-full h-full", className)}
+      {...props}
     >
       {projects.map((project, index) => (
         <SwiperSlide key={index}>
-          <div className="flex items-start justify-between max-sm:flex-col mb-6">
+          <div className="flex items-start justify-between gap-4 mb-6">
             <div className="text-start flex flex-col gap-2">
               <h1 className="text-lg font-medium">{project.title}</h1>
-              <p className="text-muted">{project.description}</p>
+              <p className="text-muted max-sm:text-xs">{project.description}</p>
             </div>
-            <div
-              className={cn(
-                "px-4 py-1.5 rounded-md bg-neutral-100/10 border border-neutral-200/20 text-sm",
-                project.status === "Completed" &&
-                  "bg-green-500/10 text-green-500",
-                project.status === "In Progress" &&
-                  "bg-yellow-500/10 text-yellow-500",
-                project.status === "On Hold" && "bg-red-500/10 text-red-500",
-                project.status === "Cancelled" && "bg-red-500/10 text-red-500"
-              )}
-            >
+            <div className="bg-neutral-200/25 dark:bg-neutral-800/25 px-3 py-2 rounded-lg text-sm max-sm:text-xs text-nowrap">
               {project.status}
             </div>
           </div>
           <Link
             target="_blank"
             href={project.link ?? "/"}
-            className="hover:opacity-60 transition-all duration-300 ease-in-out w-full h-full"
+            className="hover:opacity-60 transition ease-in-out w-full h-full max-h-[calc(100vh-200px)] overflow-hidden"
           >
             {project.images?.[0] && (
               <LazyImage
@@ -67,8 +63,8 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
                 width={1024}
                 height={1024}
                 alt="photo"
-                className="w-full h-full object-contain rounded-lg"
-                wrapperClassName="w-full sm:min-h-[calc(100vh-200px)] max-h-screen object-contain"
+                className="w-full max-h-[calc(100vh-200px)] object-cover object-top rounded-lg"
+                wrapperClassName="w-full sm:min-h-[calc(100vh-200px)]"
               />
             )}
           </Link>
@@ -81,7 +77,7 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
                 "en-US",
                 {
                   year: "numeric",
-                }
+                },
               )}
             </div>
           </div>

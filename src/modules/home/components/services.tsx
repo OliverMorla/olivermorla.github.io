@@ -1,8 +1,9 @@
-import { pages } from "@/modules/app/lib/constants";
-import { listOfServices } from "@/modules/app/lib/constants";
-import ServiceCard from "@/modules/services/components/card";
+import { MotionInViewDiv } from "@/components/helpers/blur-lazy-motion";
 import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
+import { listOfServices, pages } from "@/modules/app/lib/constants";
+import ServiceCard from "@/modules/services/components/card";
+import { cn } from "@/utils/classNames";
 
 const Services = () => {
   return (
@@ -18,27 +19,27 @@ const Services = () => {
         tagline={pages.services.tagline}
       />
       <div className="flex justify-center flex-wrap gap-12 max-sm:h-full">
-        {listOfServices.map((service, index) => (
-          <ServiceCard
-            key={index}
-            index={index}
-            title={service.title}
-            price={service.price}
-            libraries={service.libraries}
-            faIconUrl={service.faIconUrl}
-            description={service.description}
-            features={service.features}
-            totalServices={listOfServices.length}
-          />
+        {listOfServices.map((service, idx) => (
+          <MotionInViewDiv key={idx} delay={idx * 0.2}>
+            <ServiceCard
+              service={service}
+              className={cn(
+                idx % 2 === 0 ? "sm:translate-y-10" : "sm:translate-y-0",
+              )}
+            />
+          </MotionInViewDiv>
         ))}
       </div>
-      <div className="flex flex-col gap-2 justify-center items-center max-w-lg mx-auto text-center">
+      <MotionInViewDiv
+        delay={0.2}
+        className="flex flex-col gap-2 justify-center items-center max-w-lg mx-auto text-center"
+      >
         <CTAButtons />
         <p className="text-muted">
           Prices may vary depending on the complexity of the project. Please
           contact me for more information.
         </p>
-      </div>
+      </MotionInViewDiv>
     </section>
   );
 };

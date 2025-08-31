@@ -30,6 +30,7 @@ export const pages = {
   home: {
     tagline: "Build once. Ship everywhere.",
     title: "Full-Stack Apps that Launch Fast & Scale Clean",
+    byline: "Hi, I'm Oliver —",
     subtitle:
       "Desktop • Web — delivered by a senior JavaScript engineer with 5+ years and 25+ happy clients",
     description:

@@ -1,15 +1,16 @@
 "use client";
 
-import { memo, useMemo } from "react";
-import * as motion from "motion/react-m";
-import { HTMLMotionProps, MotionProps } from "framer-motion";
 import { blurInViewVariant, blurVariant } from "@/lib/motion/utils";
+import { HTMLMotionProps, MotionProps } from "framer-motion";
+import * as motion from "motion/react-m";
+import { memo, useMemo } from "react";
 
 export type BlurLazyMotionProps<T extends keyof HTMLElementTagNameMap> =
   HTMLMotionProps<T> &
     MotionProps &
     Readonly<{
       delay?: number;
+      once?: boolean;
     }>;
 
 export const MotionDiv = memo(
@@ -20,7 +21,7 @@ export const MotionDiv = memo(
         {children}
       </motion.div>
     );
-  }
+  },
 );
 
 MotionDiv.displayName = "MotionDiv";
@@ -33,7 +34,7 @@ export const MotionAside = memo(
         {children}
       </motion.aside>
     );
-  }
+  },
 );
 
 MotionAside.displayName = "MotionAside";
@@ -46,7 +47,7 @@ export const MotionIframe = memo(
         {children}
       </motion.iframe>
     );
-  }
+  },
 );
 
 MotionIframe.displayName = "MotionIframe";
@@ -59,7 +60,7 @@ export const MotionImg = memo(
         {children}
       </motion.img>
     );
-  }
+  },
 );
 
 MotionImg.displayName = "MotionImg";
@@ -72,23 +73,36 @@ export const MotionLi = memo(
         {children}
       </motion.li>
     );
-  }
+  },
 );
 
 MotionLi.displayName = "MotionLi";
 
 export const MotionInViewImg = memo(
-  ({ delay, children, ...props }: BlurLazyMotionProps<"img">) => {
-    const rest = useMemo(() => blurInViewVariant(delay), [delay]);
+  ({ delay, children, once, ...props }: BlurLazyMotionProps<"img">) => {
+    const rest = useMemo(() => blurInViewVariant(delay, once), [delay, once]);
     return (
       <motion.img {...rest} {...props}>
         {children}
       </motion.img>
     );
-  }
+  },
 );
 
 MotionInViewImg.displayName = "MotionInViewImg";
+
+export const MotionInViewDiv = memo(
+  ({ delay, children, once, ...props }: BlurLazyMotionProps<"div">) => {
+    const rest = useMemo(() => blurInViewVariant(delay, once), [delay, once]);
+    return (
+      <motion.div {...rest} {...props}>
+        {children}
+      </motion.div>
+    );
+  },
+);
+
+MotionInViewDiv.displayName = "MotionInViewDiv";
 
 export const MotionButton = memo(
   ({ delay, children, ...props }: BlurLazyMotionProps<"button">) => {
@@ -98,7 +112,7 @@ export const MotionButton = memo(
         {children}
       </motion.button>
     );
-  }
+  },
 );
 
 MotionButton.displayName = "MotionButton";
@@ -111,7 +125,7 @@ export const MotionHeader = memo(
         {children}
       </motion.header>
     );
-  }
+  },
 );
 
 MotionHeader.displayName = "MotionHeader";
@@ -124,7 +138,7 @@ export const MotionSection = memo(
         {children}
       </motion.section>
     );
-  }
+  },
 );
 
 MotionSection.displayName = "MotionSection";
@@ -137,7 +151,7 @@ export const MotionMain = memo(
         {children}
       </motion.main>
     );
-  }
+  },
 );
 
 MotionMain.displayName = "MotionMain";
@@ -150,7 +164,7 @@ export const MotionNav = memo(
         {children}
       </motion.nav>
     );
-  }
+  },
 );
 
 MotionNav.displayName = "MotionNav";
@@ -163,7 +177,7 @@ export const MotionVideo = memo(
         {children}
       </motion.video>
     );
-  }
+  },
 );
 
 MotionVideo.displayName = "MotionVideo";
@@ -176,7 +190,7 @@ export const MotionH1 = memo(
         {children}
       </motion.h1>
     );
-  }
+  },
 );
 
 MotionH1.displayName = "MotionH1";
@@ -189,7 +203,7 @@ export const MotionH2 = memo(
         {children}
       </motion.h2>
     );
-  }
+  },
 );
 
 MotionH2.displayName = "MotionH2";
@@ -202,7 +216,7 @@ export const MotionH3 = memo(
         {children}
       </motion.h3>
     );
-  }
+  },
 );
 
 MotionH3.displayName = "MotionH3";
@@ -215,7 +229,7 @@ export const MotionH4 = memo(
         {children}
       </motion.h4>
     );
-  }
+  },
 );
 
 MotionH4.displayName = "MotionH4";
@@ -228,7 +242,7 @@ export const MotionText = memo(
         {children}
       </motion.p>
     );
-  }
+  },
 );
 
 MotionText.displayName = "MotionText";
@@ -241,7 +255,7 @@ export const MotionSpan = memo(
         {children}
       </motion.span>
     );
-  }
+  },
 );
 
 MotionSpan.displayName = "MotionSpan";
@@ -254,7 +268,7 @@ export const MotionForm = memo(
         {children}
       </motion.form>
     );
-  }
+  },
 );
 
 MotionForm.displayName = "MotionForm";

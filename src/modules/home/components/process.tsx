@@ -1,7 +1,7 @@
 "use client";
 
-import ButtonLink from "@/components/ui/button-link";
 import CTAButtons from "@/modules/app/components/cta-buttons";
+import SectionTitle from "@/modules/app/components/section-title";
 import { cn } from "@/utils/classNames";
 
 type Step = {
@@ -79,31 +79,16 @@ const Process = () => {
     >
       <section className="relative container mx-auto flex flex-col gap-12">
         <div
-          className="absolute inset-0 bg-grid-pattern bg-grid-pattern-neutral-600 bg-grid-pattern-lg opacity-50"
+          className="absolute inset-0 bg-grid-pattern bg-grid-pattern-lg opacity-5"
           aria-hidden="true"
         />
-        <header className="relative z-10 flex flex-col items-start gap-3">
-          <p className="text-gradient-normal tracking-wider text-sm font-medium">
-            No guesswork
-          </p>
-          <h2
-            id="process-title"
-            className="text-3xl sm:text-4xl xl:text-5xl font-bold tracking-tight"
-          >
-            A Clear, Four-Step Build
-          </h2>
-          <p className="text-neutral-600 dark:text-neutral-300">
-            Plan. Prototype. Build. Launch.
-          </p>
-          <p className="text-muted">Transparency from kickoff to handoff.</p>
-          <p className="max-w-3xl text-neutral-700 dark:text-neutral-300">
-            We start with Discovery to define success and scope. Next, a
-            clickable Prototype aligns UX early and reduces rework. Then Build
-            in iterative sprints with CI/CD, reviews, and tests. Finally, Launch
-            & Support—monitoring, analytics, and a clean handoff or ongoing
-            maintenance.
-          </p>
-        </header>
+        <SectionTitle
+          tagline="No guesswork"
+          title="A Clear, Four-Step Build"
+          subtitle="Plan. Prototype. Build. Launch."
+          description="We start with Discovery to define success and scope. Next, a clickable Prototype aligns UX early and reduces rework. Then Build in iterative sprints with CI/CD, reviews, and tests. Finally, Launch & Support—monitoring, analytics, and a clean handoff or ongoing maintenance."
+          className="text-start items-start mr-auto max-w-3xl"
+        />
 
         <ol className="relative z-10 grid grid-cols-1 lg:grid-cols-3 gap-6">
           {STEPS.map((step) => (
@@ -112,7 +97,7 @@ const Process = () => {
               className={cn(
                 "group relative rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/70 backdrop-blur p-6",
                 step.id === 1 && "lg:col-span-2 col-span-1",
-                step.id === 4 && "lg:col-span-2 col-span-1"
+                step.id === 4 && "lg:col-span-2 col-span-1",
               )}
               aria-label={`Step ${step.id}: ${step.title}`}
             >

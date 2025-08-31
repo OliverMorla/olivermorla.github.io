@@ -1,36 +1,58 @@
 /* eslint-disable @next/next/no-img-element */
-import Image from "next/image";
-import { Quote, Star } from "lucide-react";
 import { Marquee } from "@/components/helpers/marquee";
-import CTAButtons from "@/modules/app/components/cta-buttons";
 import { getImageMediaUrl } from "@/lib/payload/client/utils";
 import { getTestimonials } from "@/lib/payload/server/queries";
+import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
+import { Quote, Star } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-const LOGOS = [
+const Partners = [
   {
     src: "/assets/media/partners/elemental-roof-solutions.webp",
-    alt: "Client 1",
+    alt: "Elemental Roof Solutions",
+    href: "https://www.elementalroofsolutions.com/",
   },
-  { src: "/assets/media/partners/appify-visions.webp", alt: "Client 2" },
-  { src: "/assets/media/partners/zpowa-nutrition.webp", alt: "Client 2" },
-  { src: "/assets/media/partners/mind-body-shift.webp", alt: "Client 2" },
-  { src: "/assets/media/partners/nygeneralrenovation.webp", alt: "Client 2" },
-  { src: "/assets/media/partners/around-your-way-fitness.webp", alt: "Client 2" },
+  {
+    src: "/assets/media/partners/appify-visions.webp",
+    alt: "Appify Visions",
+    href: "https://www.appifyvisions.com/",
+  },
+  {
+    src: "/assets/media/partners/zpowa-nutrition.webp",
+    alt: "Zpowa Nutrition",
+    href: "https://www.zpowa.com/",
+  },
+  {
+    src: "/assets/media/partners/mind-body-shift.webp",
+    alt: "Mind Body Shift",
+    href: "https://www.mindbodyshift.net/",
+  },
+  {
+    src: "/assets/media/partners/nygeneralrenovation.webp",
+    alt: "NY General Renovation",
+    href: "https://www.nygeneralrenovation.com/",
+  },
+  {
+    src: "/assets/media/partners/around-your-way-fitness.webp",
+    alt: "Around Your Way Fitness",
+    href: "https://www.aroundyourwayfitness.com/",
+  },
 ];
 
-const STATS = [
+const Achievements = [
   { label: "Clients", value: "25+" },
   { label: "Years Experience", value: "5+" },
   { label: "Avg Delivery", value: "6–8 weeks" },
   { label: "NPS", value: "72" },
 ];
 
-const WINS = [
-  "Launched MVP in 6 weeks",
-  "Cut onboarding time 43%",
-  "Reduced infra cost 28%",
-  "200ms Core Web Vitals improvement",
+const Wins = [
+  "Launched MVP (Minimum Viable Product) within 6 weeks",
+  "Cut onboarding time by 43%",
+  "Reduced infrastructure cost by 28%",
+  "Improved Core Web Vitals by 200ms",
 ];
 
 const TrustBar = async () => {
@@ -40,11 +62,11 @@ const TrustBar = async () => {
   return (
     <section
       id="trust-bar"
-      className="py-24 max-sm:py-16 px-8 max-sm:px-4 bg-gradient-none-inverted"
+      className="py-24 max-sm:py-16 px-8 max-sm:px-4 bg-gradient-none"
     >
       <section className="relative container mx-auto flex flex-col gap-12">
         <div
-          className="absolute mx-auto inset-0 bg-grid-pattern bg-grid-pattern-neutral-600 bg-grid-pattern-lg opacity-50"
+          className="pointer-events-none absolute left-0 right-0 top-0 bottom-0 bg-grid-pattern bg-grid-pattern-lg opacity-5"
           aria-hidden="true"
         />
 
@@ -57,21 +79,23 @@ const TrustBar = async () => {
         />
 
         <Marquee className="flex">
-          {LOGOS.map((logo, idx) => (
-            <img
-              key={idx}
-              src={logo.src}
-              alt={logo.alt}
-              width={256}
-              height={256}
-              loading="lazy"
-              className="w-24 object-contain mx-8 rounded-xl aspect-square border border-neutral-300/75 dark:border-neutral-700/75"
-            />
+          {Partners.map((partner, idx) => (
+            <Link href={partner.href} key={idx}>
+              <img
+                key={idx}
+                src={partner.src}
+                alt={partner.alt}
+                width={256}
+                height={256}
+                loading="lazy"
+                className="w-24 object-contain mx-8 aspect-square border border-neutral-300/75 dark:border-neutral-700/75 rounded-full"
+              />
+            </Link>
           ))}
         </Marquee>
 
         <div className="flex justify-between max-sm:flex-wrap gap-2">
-          {STATS.map((stat, idx) => (
+          {Achievements.map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center">
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
                 {stat.label}
