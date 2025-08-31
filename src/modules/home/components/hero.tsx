@@ -10,7 +10,7 @@ import { pages } from "@/modules/app/lib/constants";
 import CTAButtons from "@/modules/app/components/cta-buttons";
 import ParallaxText from "@/modules/app/components/parallel-text";
 // import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
-import Typewriter from "@/modules/app/components/typewriter";
+import Typewriter from "@/modules/app/components/typewriter"; 
 
 const Hero = () => {
   return (
