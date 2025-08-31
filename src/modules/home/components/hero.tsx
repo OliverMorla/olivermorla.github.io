@@ -5,7 +5,7 @@ import {
   MotionH2,
   MotionText,
 } from "@/components/helpers/blur-lazy-motion";
-import Counter from "@/components/helpers/counter";
+import Counter from "@/components/ui/counter";
 import { pages } from "@/modules/app/lib/constants";
 import CTAButtons from "@/modules/app/components/cta-buttons";
 import ParallaxText from "@/modules/app/components/parallel-text";
