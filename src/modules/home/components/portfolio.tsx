@@ -1,11 +1,10 @@
-import Image from "next/image";
-import ButtonLink from "@/components/ui/button-link";
 import { pages } from "@/modules/app/lib/constants";
+import ButtonLink from "@/components/ui/button-link";
+import LazyImage from "@/components/helpers/lazy-image";
 import { getProjects } from "@/lib/payload/server/queries";
 import { getImageMediaUrl } from "@/lib/payload/client/utils";
 import SectionTitle from "@/modules/app/components/section-title";
 import Carousel from "@/modules/portfolio/components/dynamic/carousel";
-import LazyImage from "@/components/helpers/lazy-image";
 
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString("en-US", {
@@ -68,22 +67,22 @@ const Portfolio = async () => {
                     <h2 className="text-lg font-bold">
                       {featuredProject?.title}
                     </h2>
-                    <span className="px-4 py-1.5 rounded-md bg-neutral-100/10 border border-neutral-200/20 text-sm w-fit">
+                    <span className="px-4 py-1.5 rounded-md bg-neutral-100/25 border border-neutral-300/75 dark:border-neutral-700/75 text-sm w-fit">
                       {formatDate(featuredProject?.createdAt ?? "")}
                     </span>
                   </div>
-                  <p className="text-neutral-400 leading-relaxed">
+                  <p className="text-muted leading-relaxed">
                     {featuredProject?.description}
                   </p>
                 </div>
 
                 <div className="space-y-2">
                   <h3 className="text-lg font-bold">Tech Stack</h3>
-                  <div className="flex flex-wrap gap-4 text-3xl text-neutral-300">
+                  <div className="flex flex-wrap gap-4 text-3xl text-muted">
                     {featuredProject?.stack?.map((tech) => (
                       <p
                         key={tech}
-                        className="dark:bg-neutral-800/20 bg-neutral-100/20 dark:border-neutral-700/40 border border-neutral-200/20 px-4 py-1.5 rounded-md text-sm"
+                        className="dark:bg-neutral-800/25 bg-neutral-200/25 border border-neutral-300/75 dark:border-neutral-700/75 px-4 py-1.5 rounded-md text-sm"
                       >
                         {tech}
                       </p>

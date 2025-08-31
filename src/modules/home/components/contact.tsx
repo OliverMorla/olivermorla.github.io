@@ -6,7 +6,7 @@ const Contact = () => {
   return (
     <section
       id="contact"
-      className="relative min-h-screen flex flex-col gap-6 p-8 max-sm:p-4 bg-gradient-none-inverted"
+      className="sticky top-0 min-h-screen flex flex-col gap-6 p-8 max-sm:p-4 bg-gradient-none-inverted"
     >
       <div className="relative container mx-auto flex flex-col items-center gap-12">
         <div className="absolute inset-0 bg-grid-pattern bg-grid-pattern-neutral-600 bg-grid-pattern-lg opacity-50" />
