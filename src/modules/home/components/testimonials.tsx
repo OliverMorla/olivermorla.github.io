@@ -19,7 +19,7 @@ export default async function Testimonials({
     <section
       id="testimonials"
       className={cn(
-        "sticky top-0 py-24 px-8 flex flex-col gap-12 max-sm:px-4 bg-gradient-none overflow-hidden",
+        "sm:sticky sm:top-0 py-24 px-8 flex flex-col gap-12 max-sm:px-4 bg-gradient-none overflow-hidden",
         className
       )}
       {...props}
