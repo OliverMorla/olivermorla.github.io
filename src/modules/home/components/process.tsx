@@ -83,7 +83,7 @@ const Process = () => {
           aria-hidden="true"
         />
         <header className="relative z-10 flex flex-col items-start gap-3">
-          <p className="uppercase tracking-wider text-sm font-medium text-neutral-500 dark:text-neutral-400">
+          <p className="text-gradient-normal tracking-wider text-sm font-medium">
             No guesswork
           </p>
           <h2

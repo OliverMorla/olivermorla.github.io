@@ -44,7 +44,7 @@ const TrustBar = async () => {
     >
       <section className="relative container mx-auto flex flex-col gap-12">
         <div
-          className="absolute inset-0 bg-grid-pattern bg-grid-pattern-neutral-600 bg-grid-pattern-lg opacity-50"
+          className="absolute mx-auto inset-0 bg-grid-pattern bg-grid-pattern-neutral-600 bg-grid-pattern-lg opacity-50"
           aria-hidden="true"
         />
 
