@@ -4,8 +4,11 @@ import { Inter } from "next/font/google";
 import { Metadata, Viewport } from "next";
 import Header from "@/modules/app/components/header";
 import Footer from "@/modules/app/components/footer";
+import { Toaster as ToasterProvider } from "sonner";
 import MotionProvider from "@/providers/motion-provider";
 import ThemeProvider from "@/providers/theme-provider";
+import { PHProvider } from "@/providers/posthog-provider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: {
@@ -85,12 +88,16 @@ export default function RootLayout({
       <body className={cn(inter.variable, "antialiased")}>
         <MotionProvider>
           <ThemeProvider>
-            <Header />
-            {children}
-            <Footer />
+            <PHProvider>
+              <Header />
+              {children}
+              <Footer />
+            </PHProvider>
           </ThemeProvider>
         </MotionProvider>
+        <ToasterProvider position="bottom-right" duration={3000} richColors />
       </body>
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID!} />
     </html>
   );
 }

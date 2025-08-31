@@ -70,7 +70,7 @@ const TrustBar = async () => {
           ))}
         </Marquee>
 
-        <div className="flex justify-between gap-2">
+        <div className="flex justify-between max-sm:flex-wrap gap-2">
           {STATS.map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center">
               <p className="text-sm text-neutral-500 dark:text-neutral-400">
