@@ -17,13 +17,11 @@ import {
   faBriefcase,
   faCode,
   faEnvelope,
-  faSchool,
-  faWrench,
-  faStar,
-  faCertificate,
   faFile,
   faHouse,
-  faUser,
+  faSchool,
+  faStar,
+  faWrench,
 } from "@fortawesome/free-solid-svg-icons";
 
 export const pages = {
@@ -109,44 +107,39 @@ export const headerPrimaryLinks = [
     description: "Welcome to my portfolio",
     faIconUrl: faHouse,
   },
-  // {
-  //   title: "About",
-  //   href: "/about",
-  //   description: "Learn more about me and my background",
-  //   faIconUrl: faUser,
-  //   dropdownLinks: [
-  //     {
-  //       title: "Experience",
-  //       href: "#experience",
-  //       description: "My professional work history",
-  //       faIconUrl: faBriefcase,
-  //     },
-  //     {
-  //       title: "Education",
-  //       href: "#education",
-  //       description: "My academic qualifications",
-  //       faIconUrl: faSchool,
-  //     },
-  //     {
-  //       title: "Certifications",
-  //       href: "#certifications",
-  //       description: "Professional certifications I've earned",
-  //       faIconUrl: faCertificate,
-  //     },
-  //     {
-  //       title: "Resume",
-  //       href: "/resume",
-  //       description: "Download my full resume",
-  //       faIconUrl: faFile,
-  //     },
-  //   ],
-  // },
   {
-    title: "Resume",
-    href: "/resume",
-    description: "Download my full resume",
+    title: "About",
+    href: "/about",
+    description: "Learn more about me and my background",
     faIconUrl: faFile,
+    dropdownLinks: [
+      // {
+      //   title: "Experience",
+      //   href: "#experience",
+      //   description: "My professional work history",
+      //   faIconUrl: faBriefcase,
+      // },
+      // {
+      //   title: "Education",
+      //   href: "#education",
+      //   description: "My academic qualifications",
+      //   faIconUrl: faSchool,
+      // },
+      // {
+      //   title: "Certifications",
+      //   href: "#certifications",
+      //   description: "Professional certifications I've earned",
+      //   faIconUrl: faCertificate,
+      // },
+      {
+        title: "Resume",
+        href: "/resume",
+        description: "Download my full resume",
+        faIconUrl: faFile,
+      },
+    ],
   },
+
   // {
   //   title: "Skills",
   //   href: "#skills",
