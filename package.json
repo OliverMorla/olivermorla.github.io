@@ -7,7 +7,7 @@
     "dev": "next dev --turbopack",
     "dev:default": "next dev",
     "dev:turbopack": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "payload": "payload",
