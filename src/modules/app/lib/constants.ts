@@ -56,6 +56,14 @@ export const pages = {
     ],
   },
 
+  about: {
+    tagline: "Get to know me",
+    title: "My Story",
+    subtitle: "A brief introduction to my life and work",
+    description:
+      "I'm a full-stack developer with a passion for building web applications.",
+  },
+
   services: {
     tagline: "Outcomes over outputs",
     title: "Full-Stack Apps that Launch Fast & Scale Clean",
@@ -132,6 +140,12 @@ export const headerPrimaryLinks = [
       //   faIconUrl: faCertificate,
       // },
       {
+        title: "Skills",
+        href: "/about#skills",
+        description: "Technical skills and expertise",
+        faIconUrl: faFile,
+      },
+      {
         title: "Resume",
         href: "/resume",
         description: "Download my full resume",
@@ -148,25 +162,25 @@ export const headerPrimaryLinks = [
   // },
   {
     title: "Portfolio",
-    href: "#portfolio",
+    href: "/#portfolio",
     description: "Showcase of my projects and work",
     faIconUrl: faBriefcase,
   },
   {
     title: "Services",
-    href: "#services",
+    href: "/#services",
     description: "Professional services I offer",
     faIconUrl: faWrench,
   },
   {
     title: "Testimonials",
-    href: "#testimonials",
+    href: "/#testimonials",
     description: "What my clients say about me",
     faIconUrl: faStar,
   },
   {
     title: "Contact",
-    href: "#contact",
+    href: "/#contact",
     description: "Ready to build something great?",
     faIconUrl: faStar,
   },

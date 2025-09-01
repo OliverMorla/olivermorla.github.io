@@ -8,7 +8,7 @@ export type SectionTitleProps = BlurLazyMotionProps<"div"> & {
   title: string;
   tagline?: string;
   subtitle?: string;
-  description: string;
+  description?: string;
 };
 
 const SectionTitle = ({
@@ -36,7 +36,7 @@ const SectionTitle = ({
           {subtitle && <span className="text-lg font-light">{subtitle}</span>}
         </div>
       </div>
-      <p className="text-muted">{description}</p>
+      {description && <p className="text-muted">{description}</p>}
     </MotionInViewDiv>
   );
 };

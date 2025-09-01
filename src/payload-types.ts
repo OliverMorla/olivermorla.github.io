@@ -388,6 +388,10 @@ export interface Project {
    * Optional, if you want to add a description to the project.
    */
   description?: string | null;
+  /**
+   * Optional, if you want to add a publicity to the project.
+   */
+  audience?: ('Client' | 'Personal') | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -849,6 +853,7 @@ export interface ProjectsSelect<T extends boolean = true> {
   stack?: T;
   images?: T;
   description?: T;
+  audience?: T;
   updatedAt?: T;
   createdAt?: T;
 }

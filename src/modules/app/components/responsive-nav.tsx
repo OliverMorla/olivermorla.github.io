@@ -1,17 +1,17 @@
 "use client";
 
-import Link from "next/link";
-import { cn } from "@/utils/classNames";
-import ThemeSwitcher from "./theme-switcher";
-import { ChevronRightIcon } from "lucide-react";
 import Portal from "@/components/ui/portal";
+import { cn } from "@/utils/classNames";
+import { ChevronRightIcon } from "lucide-react";
+import Link from "next/link";
+import ThemeSwitcher from "./theme-switcher";
 
+import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
 import useScrollLock from "@/hooks/useScrollLock";
-import { FC, HTMLAttributes, useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
 import { simpleBlurVariant } from "@/lib/motion/utils";
 import { headerPrimaryLinks } from "@/modules/app/lib/constants";
-import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
+import { AnimatePresence, motion } from "motion/react";
+import { FC, HTMLAttributes, useState } from "react";
 
 const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
   className,
@@ -30,8 +30,8 @@ const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
       <div
         onClick={handleClick}
         className={cn(
-          "lg:hidden fixed top-4 right-4 z-[1000] cursor-pointer w-[45px] h-[45px] p-3 bg-orange-200/75 dark:bg-neutral-800/75 rounded-lg backdrop-blur-sm",
-          className
+          "lg:hidden fixed top-4 right-4 z-[1000] cursor-pointer w-[45px] h-[45px] p-3 bg-indigo-200/75 dark:bg-neutral-800/75 rounded-lg backdrop-blur-sm",
+          className,
         )}
         {...props}
       >
@@ -64,21 +64,14 @@ const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
               >
                 <div className="flex flex-col h-full">
                   <div className="p-6 border-b border-neutral-300/75 dark:border-neutral-700/75 flex items-center justify-between">
-                    {/* <Link
-                      href="/"
-                      className="flex items-center lg:hidden w-fit"
-                    >
-                      <Image />
-                    </Link> */}
                     <div
                       onClick={handleClick}
                       className={cn(
                         "lg:hidden fixed top-4 right-4 z-[1000] cursor-pointer w-[45px] h-[45px] p-3 bg-orange-200/75 dark:bg-neutral-950/75 rounded-lg backdrop-blur-sm",
-                        className
+                        className,
                       )}
                       {...props}
                     >
-                      {/* <AnimatePresence> */}
                       <div className="relative flex flex-col items-center justify-center h-full w-full">
                         <motion.div
                           animate={
@@ -97,7 +90,6 @@ const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
                           className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
                         />
                       </div>
-                      {/* </AnimatePresence> */}
                     </div>
                   </div>
                   <nav className="flex-1 overflow-y-auto p-6">
@@ -113,7 +105,7 @@ const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
                               {link.title}
                               <ChevronRightIcon className="w-4 h-4" />
                             </Link>
-                            <ul className="flex flex-col gap-6 bg-orange-200/75 dark:bg-neutral-900/75 rounded-lg p-4">
+                            <ul className="flex flex-col gap-6 bg-indigo-200/75 dark:bg-neutral-900/75 rounded-lg p-4">
                               {link.dropdownLinks.map((dropdownLink) => (
                                 <li
                                   key={dropdownLink.title}
@@ -150,7 +142,7 @@ const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
                               <ChevronRightIcon className="w-4 h-4" />
                             </Link>
                           </li>
-                        )
+                        ),
                       )}
                     </ul>
                     <ThemeSwitcher wrapperClassName="absolute bottom-4 left-4" />

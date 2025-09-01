@@ -1,5 +1,5 @@
+import CTAButtons from "@/modules/app/components/cta-buttons";
 import Image from "next/image";
-import ButtonLink from "@/components/ui/button-link";
 
 const About = () => {
   return (
@@ -100,12 +100,7 @@ const About = () => {
               success, I&#39;m ready to bring your vision to life with the same
               dedication and precision that have marked my career to date.
             </p>
-            <ButtonLink
-              href={"mailto:olivermorla3@gmail.com"}
-              className="mt-2 w-fit hover:scale-105 hover:-translate-y-1 transition-transform duration-300"
-            >
-              Contact me
-            </ButtonLink>
+            <CTAButtons />
           </div>
         </div>
       </section>

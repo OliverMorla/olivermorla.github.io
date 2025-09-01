@@ -136,5 +136,13 @@ export const Projects: CollectionConfig = {
           "Optional, if you want to add a description to the project.",
       },
     },
+    {
+      name: "audience",
+      type: "select",
+      options: ["Client", "Personal"],
+      admin: {
+        description: "Optional, if you want to add a publicity to the project.",
+      },
+    },
   ],
 };

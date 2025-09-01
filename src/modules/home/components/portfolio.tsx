@@ -1,5 +1,5 @@
+import { MotionInViewDiv } from "@/components/helpers/blur-lazy-motion";
 import LazyImage from "@/components/helpers/lazy-image";
-import { MotionInViewSection } from "@/components/helpers/lazy-motion";
 import ButtonLink from "@/components/ui/button-link";
 import { getImageMediaUrl } from "@/lib/payload/client/utils";
 import { getProjects } from "@/lib/payload/server/queries";
@@ -39,9 +39,9 @@ const Portfolio = async () => {
           description={pages.portfolio.description}
           className="text-end items-end ml-auto"
         />
-        <MotionInViewSection>
+        <MotionInViewDiv>
           <Carousel projects={projects.docs} />
-        </MotionInViewSection>
+        </MotionInViewDiv>
         <div className="container mx-auto flex flex-col gap-6">
           <div className="flex flex-col">
             <h1 className="text-2xl font-bold">Featured</h1>
