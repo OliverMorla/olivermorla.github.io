@@ -172,20 +172,7 @@ const Portfolio = async ({
               With 1+ million designs to choose from, I can bring your vision to
               life.
             </p>
-            <div className="flex flex-wrap gap-4 justify-center">
-              <ButtonLink
-                href="https://www.linkedin.com/in/olivermorla/"
-                className="bg-blue-600 hover:bg-blue-700 text-white"
-              >
-                Connect on LinkedIn
-              </ButtonLink>
-              <ButtonLink
-                href="mailto:olivermorla3@gmail.com"
-                className="bg-neutral-800 dark:bg-white dark:text-neutral-800 hover:bg-neutral-900 dark:hover:bg-neutral-100 text-white"
-              >
-                Email Me
-              </ButtonLink>
-            </div>
+            <CTAButtons />
           </div>
         </div>
         <div className="container mx-auto flex flex-col gap-6 px-8 text-center">
