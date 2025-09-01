@@ -165,6 +165,14 @@ export const headerPrimaryLinks = [
     href: "/#portfolio",
     description: "Showcase of my projects and work",
     faIconUrl: faBriefcase,
+    dropdownLinks: [
+      {
+        title: "All Projects",
+        href: "/portfolio",
+        description: "All my masterpieces in one place",
+        faIconUrl: faFile,
+      },
+    ],
   },
   {
     title: "Services",
