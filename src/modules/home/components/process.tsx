@@ -78,7 +78,7 @@ const Process = () => {
       aria-labelledby="process-title"
     >
       <section className="relative container mx-auto flex flex-col gap-12">
-        <divo
+        <div
           className="absolute inset-0 bg-grid-pattern bg-grid-pattern-lg opacity-5"
           aria-hidden="true"
         />
