@@ -8,8 +8,8 @@ import Services from "@/modules/home/components/services";
 import Testimonials from "@/modules/home/components/testimonials";
 // import Certifications from "@/modules/home/components/certifications";
 import Process from "@/modules/home/components/process";
-import ScrollTrackingContainer from "@/modules/home/components/scroll-tracking-container";
 import TrustBar from "@/modules/home/components/trust-bar";
+import ScrollTrackingContainer from "@/modules/home/components/scroll-tracking-container";
 
 const Home = () => {
   return (

@@ -8,15 +8,15 @@ import { useTransform } from "framer-motion";
 import { useScrollTracking } from "./scroll-tracking-container";
 
 const Contact = () => {
-  const { scrollYProgress } = useScrollTracking();
-  const scale = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [-5, 0]);
+  const { smoothYProgress } = useScrollTracking();
+  const scale = useTransform(smoothYProgress, [0, 1], [0.8, 1]);
+  const rotate = useTransform(smoothYProgress, [0, 1], [-5, 0]);
 
   return (
     <MotionSection
       id="contact"
       className="sm:sticky sm:top-0 min-h-screen flex flex-col gap-6 p-8 max-sm:p-4 bg-gradient-none-inverted"
-      style={{ scale, rotate }}
+      style={{ scale, rotate, willChange: "transform", transformOrigin: "50% 50%" }}
     >
       <div className="relative container mx-auto flex flex-col items-center gap-12">
         <div className="absolute inset-0 bg-grid-pattern bg-grid-pattern-lg opacity-5" />

@@ -27,10 +27,10 @@ export default function Testimonials({
     queryFn: getTestimonials,
   });
 
-  const { scrollYProgress } = useScrollTracking();
+  const { smoothYProgress } = useScrollTracking();
 
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, -10]);
+  const scale = useTransform(smoothYProgress, [0, 1], [1, 0.8]);
+  const rotate = useTransform(smoothYProgress, [0, 1], [0, -10]);
 
   return (
     <MotionSection
@@ -39,7 +39,7 @@ export default function Testimonials({
         "sm:sticky sm:top-0 relative py-24 px-8 flex flex-col gap-12 max-sm:px-4 bg-gradient-none overflow-hidden",
         className,
       )}
-      style={{ scale, rotate }}
+      style={{ scale, rotate, willChange: "transform", transformOrigin: "50% 50%" }}
     >
       <div className="relative container mx-auto flex flex-col items-center gap-12">
         <div className="absolute inset-0 opacity-40">
