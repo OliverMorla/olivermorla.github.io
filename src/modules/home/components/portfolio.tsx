@@ -41,7 +41,7 @@ const Portfolio = async () => {
         />
         <div className="flex justify-end gap-2">
           <ButtonLink href="/portfolio" variant="gradient">View All</ButtonLink>
-          <ButtonLink href="/#contact-h" variant="solidLight">Learn more</ButtonLink>
+          <ButtonLink href="/#contact" variant="solidLight">Learn more</ButtonLink>
         </div>
         <MotionInViewDiv>
           <Carousel projects={projects.docs} />
