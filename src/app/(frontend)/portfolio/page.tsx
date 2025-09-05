@@ -151,7 +151,7 @@ const Portfolio = async ({
 
             <div className="absolute bottom-0 w-full bg-gradient-to-t from-neutral-50 dark:from-neutral-800 to-transparent pb-8 pt-24">
               <div className="container mx-auto flex flex-col gap-4 items-center px-8 text-center">
-                <h2 className="text-3xl max-sm:text-2xl font-bold mb-4">
+                <h2 className="text-3xl max-sm:text-2xl font-bold">
                   Ready to Turn Your Design into Reality?
                 </h2>
                 <p className="text-lg opacity-80 mb-8">

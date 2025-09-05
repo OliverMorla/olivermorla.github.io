@@ -39,6 +39,16 @@ const Partners = [
     alt: "Around Your Way Fitness",
     href: "https://www.aroundyourwayfitness.com/",
   },
+  {
+    src: "/assets/media/partners/mirzas-construction.webp",
+    alt: "Mirzas Construction",
+    href: "https://www.mirzasconstruction.com/",
+  },
+  {
+    src: "/assets/media/partners/crunch-fitness.webp",
+    alt: "Crunch Fitness",  
+    href: "https://www.crunchfitness.com/",
+  },
 ];
 
 const Achievements = [

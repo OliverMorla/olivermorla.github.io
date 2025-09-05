@@ -39,6 +39,10 @@ const Portfolio = async () => {
           description={pages.portfolio.description}
           className="text-end items-end ml-auto"
         />
+        <div className="flex justify-end gap-2">
+          <ButtonLink href="/portfolio" variant="gradient">View All</ButtonLink>
+          <ButtonLink href="/#contact-h" variant="solidLight">Learn more</ButtonLink>
+        </div>
         <MotionInViewDiv>
           <Carousel projects={projects.docs} />
         </MotionInViewDiv>
