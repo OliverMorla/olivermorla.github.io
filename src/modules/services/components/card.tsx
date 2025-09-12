@@ -38,7 +38,7 @@ const ServiceCard = ({ service, className, ...props }: ServiceCardProps) => {
         </div>
         <p className="opacity-70">{service.description}</p>
       </div>
-      <p className="text-lg font-medium opacity-70">{service.price}</p>
+      {/* <p className="text-lg font-medium opacity-70">{service.price}</p> */}
       <div className="flex flex-wrap gap-2">
         {service.libraries.map((library, index) => (
           <p

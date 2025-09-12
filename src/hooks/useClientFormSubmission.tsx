@@ -1,7 +1,7 @@
 "use client";
 
-import { toast } from "sonner";
 import { useCallback, useState } from "react";
+import { toast } from "sonner";
 
 export type Response<T = any> = {
   ok?: boolean;
@@ -95,7 +95,7 @@ const useClientFormSubmission = <T = any,>({
           toast.error(
             submission?.error ||
               submission?.message ||
-              "Form submission failed, please contact support."
+              "Form submission failed, please contact support.",
           );
 
           setState((prev) => ({
@@ -147,14 +147,14 @@ const useClientFormSubmission = <T = any,>({
       fileKey,
       uploadFileRoute,
       isSubmitting,
-    ]
+    ],
   );
 
   // Helper function to cleanup uploaded files
   const cleanupUploadedFile = async (
     uploadRoute: string,
     formData: FormData,
-    fileName: string
+    fileName: string,
   ) => {
     try {
       const deleteFormData = new FormData();
