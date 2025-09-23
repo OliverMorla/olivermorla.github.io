@@ -32,9 +32,9 @@ const Services = () => {
       </div>
       <MotionInViewDiv
         delay={0.2}
-        className="flex flex-col gap-2 justify-center items-center max-w-lg mx-auto text-center"
+        className="flex flex-col gap-2 justify-center items-center max-w-lg max-sm:max-w-72 mx-auto mt-2 text-center"
       >
-        <CTAButtons />
+        <CTAButtons className="max-sm:w-full" />
         <p className="text-muted">
           Prices may vary depending on the complexity of the project. Please
           contact me for more information.

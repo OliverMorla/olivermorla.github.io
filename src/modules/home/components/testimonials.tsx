@@ -6,12 +6,12 @@ import { getTestimonials } from "@/lib/payload/server/actions";
 import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
 import { pages } from "@/modules/app/lib/constants";
+import { TestimonialCard } from "@/modules/testimonial/components/card";
 import { cn } from "@/utils/classNames";
 import { useQuery } from "@tanstack/react-query";
 import { useTransform } from "framer-motion";
 import { ComponentProps } from "react";
 import { useScrollTracking } from "./scroll-tracking-container";
-import { TestimonialCard } from "@/modules/testimonial/components/card";
 
 export type TestimonialsProps = ComponentProps<"section">;
 
@@ -39,7 +39,12 @@ export default function Testimonials({
         "sm:sticky sm:top-0 relative py-24 px-8 flex flex-col gap-12 max-sm:px-4 bg-gradient-none overflow-hidden",
         className,
       )}
-      style={{ scale, rotate, willChange: "transform", transformOrigin: "50% 50%" }}
+      style={{
+        scale,
+        rotate,
+        willChange: "transform",
+        transformOrigin: "50% 50%",
+      }}
     >
       <div className="relative container mx-auto flex flex-col items-center gap-12">
         <div className="absolute inset-0 opacity-40">

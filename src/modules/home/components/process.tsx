@@ -74,7 +74,7 @@ const Process = () => {
   return (
     <section
       id="process"
-      className="py-24 max-sm:py-16 px-8 max-sm:px-4 bg-gradient-none-inverted"
+      className="py-24 px-8 max-sm:px-4 bg-gradient-none-inverted"
       aria-labelledby="process-title"
     >
       <section className="relative container mx-auto flex flex-col gap-12">
@@ -144,7 +144,7 @@ const Process = () => {
           ))}
         </ol>
 
-        <CTAButtons />
+        <CTAButtons className="max-w-lg mx-auto" />
       </section>
     </section>
   );

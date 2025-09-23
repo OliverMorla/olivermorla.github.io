@@ -46,15 +46,15 @@ const Partners = [
   },
   {
     src: "/assets/media/partners/crunch-fitness.webp",
-    alt: "Crunch Fitness",  
-    href: "https://www.crunchfitness.com/",
+    alt: "Crunch Fitness Utilities",
+    href: "https://www.crunchfitness.app/",
   },
 ];
 
 const Achievements = [
   { label: "Clients", value: "25+" },
-  { label: "Years Experience", value: "5+" },
-  { label: "Avg Delivery", value: "6–8 weeks" },
+  { label: "Years", value: "5+" },
+  { label: "Delivery", value: "4–8 weeks" },
   { label: "NPS", value: "72" },
 ];
 
@@ -72,7 +72,7 @@ const TrustBar = async () => {
   return (
     <section
       id="trust-bar"
-      className="py-24 max-sm:py-16 px-8 max-sm:px-4 bg-gradient-none"
+      className="pt-36 pb-16 px-8 max-sm:px-4 bg-gradient-none"
     >
       <section className="relative container mx-auto flex flex-col gap-12">
         <div
@@ -90,7 +90,11 @@ const TrustBar = async () => {
 
         <Marquee className="flex">
           {Partners.map((partner, idx) => (
-            <Link href={partner.href} key={idx}>
+            <Link
+              key={idx}
+              href={partner.href}
+              className="hover:opacity-80 transition-opacity ease-in-out active:opacity-60"
+            >
               <img
                 key={idx}
                 src={partner.src}
@@ -107,19 +111,17 @@ const TrustBar = async () => {
         <div className="flex justify-between max-sm:flex-wrap gap-2">
           {Achievements.map((stat, idx) => (
             <div key={idx} className="flex flex-col items-center">
-              <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                {stat.label}
-              </p>
-              <p className="text-xl font-bold">{stat.value}</p>
+              <p className="text-sm text-muted">{stat.label}</p>
+              <p className="text-xl max-sm:text-lg font-bold">{stat.value}</p>
             </div>
           ))}
         </div>
 
         <div
-          id="testimonials"
-          className="relative z-10 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-white/70 dark:bg-neutral-900/70 backdrop-blur p-6 flex flex-col gap-6"
+          id="trust-bar"
+          className="relative z-10 rounded-xl border border-neutral-300/50 dark:border-neutral-700/50 bg-neutral-200/50 dark:bg-neutral-800/50 backdrop-blur p-4 flex flex-col gap-6"
         >
-          <div className="flex justify-between gap-2">
+          <div className="flex items-center justify-between max-sm:flex-col gap-4">
             <SectionTitle
               title="What clients say"
               description="See what our clients have to say about our services"
@@ -127,14 +129,10 @@ const TrustBar = async () => {
               tagline="All in one place"
               className="text-start mr-auto items-start"
             />
-            <CTAButtons />
+            <CTAButtons className="max-md:flex-col max-md:w-full" />
           </div>
 
           <div className="relative bg-white dark:bg-neutral-900 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-shadow duration-300 border border-neutral-200/50 dark:border-neutral-800/50">
-            <div className="absolute right-8 top-8">
-              <Quote className="w-6 h-6 text-neutral-200 dark:text-neutral-800" />
-            </div>
-
             <div>
               {testimonial.rating && (
                 <div className="flex items-center gap-2">
@@ -147,36 +145,40 @@ const TrustBar = async () => {
                 </div>
               )}
             </div>
-            <blockquote className="mb-8 pt-8">
-              <p className="text-neutral-600 dark:text-neutral-300 leading-relaxed line-clamp-4">
-                {testimonial.message}
-              </p>
-            </blockquote>
+            <Link
+              href="https://linkedin.com/in/oliver-morla"
+              className="hover:opacity-80 transition ease-in-out active:opacity-60"
+            >
+              <blockquote className="space-y-4">
+                <Quote className="size-6 text-muted ml-auto" />
+                <p className="font-light line-clamp-4">{testimonial.message}</p>
+                <Quote className="size-6 text-muted" />
+              </blockquote>
+            </Link>
+            <p className="sm:hidden text-sm text-right text-muted">
+              {testimonial.location}
+            </p>
 
-            <div className="flex items-center pt-6 border-t border-neutral-100 dark:border-neutral-800">
+            <div className="flex items-center pt-6 border-t border-t-neutral-300/25 dark:border-t-neutral-700/25">
               <div className="relative">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-neutral-100 dark:bg-neutral-800">
+                <div className="size-12 rounded-full overflow-hidden">
                   {testimonial.image && (
                     <Image
                       src={getImageMediaUrl(testimonial.image)}
                       alt={testimonial.name}
                       width={256}
                       height={256}
-                      className="w-full h-full object-cover filter grayscale contrast-100 rounded-full"
+                      className="size-full object-cover filter grayscale contrast-100"
                     />
                   )}
                 </div>
               </div>
               <div className="ml-4 flex items-start justify-between w-full">
                 <div>
-                  <h1 className="text-base font-medium text-neutral-900 dark:text-neutral-100">
-                    {testimonial.name}
-                  </h1>
-                  <p className="text-sm text-neutral-500 dark:text-neutral-400">
-                    {testimonial.role}
-                  </p>
+                  <h1 className="text-base font-medium">{testimonial.name}</h1>
+                  <p className="text-sm text-muted">{testimonial.role}</p>
                 </div>
-                <p className="text-sm text-neutral-500 dark:text-neutral-400">
+                <p className="max-sm:hidden text-sm text-muted">
                   {testimonial.location}
                 </p>
               </div>

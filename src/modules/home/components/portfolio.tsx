@@ -40,8 +40,12 @@ const Portfolio = async () => {
           className="text-end items-end ml-auto"
         />
         <div className="flex justify-end gap-2">
-          <ButtonLink href="/portfolio" variant="gradient">View All</ButtonLink>
-          <ButtonLink href="/#contact" variant="solidLight">Learn more</ButtonLink>
+          <ButtonLink href="/portfolio" variant="gradient">
+            View All
+          </ButtonLink>
+          <ButtonLink href="/#contact" variant="solidLight">
+            Learn more
+          </ButtonLink>
         </div>
         <MotionInViewDiv>
           <Carousel projects={projects.docs} />
@@ -65,7 +69,16 @@ const Portfolio = async () => {
                   className="object-cover h-full w-full transition-transform duration-300 group-hover:scale-105"
                 />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity ease-in-out" />
+              {featuredProject?.link && (
+                <ButtonLink
+                  href={featuredProject.link}
+                  className="absolute bottom-8 right-8 max-sm:bottom-4 max-sm:right-4 z-20"
+                >
+                  Live Demo
+                  <ArrowRight className="max-sm:hidden size-4" />
+                </ButtonLink>
+              )}
             </div>
 
             <div className="flex flex-col justify-between gap-12 p-8 max-sm:p-4">
@@ -101,15 +114,6 @@ const Portfolio = async () => {
 
               <div className="flex justify-between max-sm:flex-col gap-4">
                 <CTAButtons />
-                {featuredProject?.link && (
-                  <ButtonLink
-                    href={featuredProject.link}
-                    className="flex items-center gap-2 max-sm:w-full"
-                  >
-                    Live Demo
-                    <ArrowRight className="max-sm:hidden size-4" />
-                  </ButtonLink>
-                )}
               </div>
             </div>
           </div>

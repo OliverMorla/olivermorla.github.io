@@ -12,11 +12,11 @@ const CTAButtons = ({ className, ...props }: CTAButtonsProps) => {
       className={cn("flex items-center gap-6 max-sm:flex-col", className)}
       {...props}
     >
-      <ButtonLink href="/schedule" variant="gradient" className="max-sm:w-full">
+      <ButtonLink href="/schedule" variant="gradient" className="w-full">
         Book a 15-min Call
         <Icon icon={faPaperPlane} width={16} height={16} size="xs" />
       </ButtonLink>
-      <ButtonLink href="/#contact" className="max-sm:w-full">
+      <ButtonLink href="/#contact" className="w-full">
         Get Started
         {/* <Icon icon={faArrowRight} width={16} height={16} size="xs" /> */}
       </ButtonLink>

@@ -55,7 +55,7 @@ const Hero = () => {
               >
                 <h1 className="flex text-lg font-bold sm:text-xl">
                   <Counter targetCount={stat.value} duration={1000} />
-                  <span>+</span>
+                  {stat.title !== "Age" && <span>+</span>}
                 </h1>
                 <p className="text-muted text-xs font-light sm:text-sm">
                   {stat.title}
@@ -64,7 +64,7 @@ const Hero = () => {
             ))}
           </div>
           <MotionDiv delay={1}>
-            <CTAButtons />
+            <CTAButtons className="max-w-sm" />
           </MotionDiv>
         </div>
 

@@ -24,7 +24,7 @@ const ServiceCard = ({ service, className, ...props }: ServiceCardProps) => {
   return (
     <div
       className={cn(
-        "relative flex w-full flex-grow cursor-pointer flex-col items-start gap-6 rounded-md border border-neutral-300/75 p-8 shadow-sm transition ease-in-out hover:border-indigo-400 hover:shadow-md max-sm:p-4 sm:max-w-lg dark:border-neutral-700/75",
+        "relative flex w-full flex-grow flex-col items-start gap-6 rounded-md border border-neutral-300/75 p-8 shadow-sm transition ease-in-out hover:border-indigo-400 hover:shadow-md max-sm:p-4 sm:max-w-lg dark:border-neutral-700/75",
         className,
       )}
       {...props}

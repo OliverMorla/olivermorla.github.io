@@ -1,14 +1,16 @@
 "use server";
 
-import { cache } from "react";
 import { payload } from "@/lib/payload";
+import { cache } from "react";
 
-// create a cache function to get the data from the payload
 export const getTestimonials = cache(async () => {
-  return payload.find({ collection: "testimonials", limit: 3 });
+  return payload.find({
+    collection: "testimonials",
+    sort: "position:asc",
+    limit: 3,
+  });
 });
 
-// create a cache function to get the data from the payload
 export const getCertifications = cache(async () => {
   return await payload.find({
     collection: "certifications",
@@ -16,7 +18,6 @@ export const getCertifications = cache(async () => {
   });
 });
 
-// create a cache function to get the data from the payload
 export const getProjects = cache(async (status?: string) => {
   return await payload.find({
     collection: "projects",
@@ -39,7 +40,6 @@ export const getProjectStatuses = cache(async () => {
   return Array.from(new Set(projects.docs.map((project) => project.status)));
 });
 
-// create a cache function to get the data from the payload
 export const getResume = cache(async () => {
   return await payload.find({ collection: "resume", sort: "position:asc" });
 });

@@ -4,7 +4,7 @@ import { MotionSection } from "@/components/helpers/basic-lazy-motion";
 import SectionTitle from "@/modules/app/components/section-title";
 import { pages } from "@/modules/app/lib/constants";
 import ContactForm from "@/modules/contact/components/form";
-import { useTransform } from "framer-motion";
+import { useTransform } from "motion/react";
 import { useScrollTracking } from "./scroll-tracking-container";
 
 const Contact = () => {
@@ -16,7 +16,12 @@ const Contact = () => {
     <MotionSection
       id="contact"
       className="sm:sticky sm:top-0 min-h-screen flex flex-col gap-6 p-8 max-sm:p-4 bg-gradient-none-inverted"
-      style={{ scale, rotate, willChange: "transform", transformOrigin: "50% 50%" }}
+      style={{
+        scale,
+        rotate,
+        willChange: "transform",
+        transformOrigin: "50% 50%",
+      }}
     >
       <div className="relative container mx-auto flex flex-col items-center gap-12">
         <div className="absolute inset-0 bg-grid-pattern bg-grid-pattern-lg opacity-5" />
@@ -27,7 +32,7 @@ const Contact = () => {
             description={pages.contact.description}
             subtitle={pages.contact.subtitle}
           />
-          <ContactForm />
+          <ContactForm className="max-w-2xl w-full" />
         </div>
       </div>
     </MotionSection>

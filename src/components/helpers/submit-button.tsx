@@ -1,12 +1,13 @@
+import Button, { type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/utils/classNames";
 import { Loader2 } from "lucide-react";
-import { useFormStatus } from "react-dom";
 import { ComponentPropsWithRef, ComponentType, FC } from "react";
-import Button, { type ButtonProps } from "@/components/ui/button";
+import { useFormStatus } from "react-dom";
 
 export type SubmitButtonProps = Omit<ComponentPropsWithRef<"button">, "type"> &
   Readonly<{
     Loader?: ComponentType<{ className?: string }>;
+    loaderText?: string;
     loaderClassName?: string;
   }> &
   ButtonProps;
@@ -16,6 +17,7 @@ export const SubmitButton: FC<SubmitButtonProps> = ({
   className,
   loaderClassName,
   Loader = Loader2,
+  loaderText,
   ...props
 }) => {
   const { pending } = useFormStatus();
@@ -27,12 +29,15 @@ export const SubmitButton: FC<SubmitButtonProps> = ({
       aria-busy={pending}
       className={cn(
         className,
-        "disabled:cursor-not-allowed disabled:select-none disabled:pointer-events-none disabled:opacity-50"
+        "disabled:cursor-not-allowed disabled:select-none disabled:pointer-events-none disabled:opacity-50",
       )}
       {...props}
     >
       {pending ? (
-        <Loader className={cn("animate-spin w-5 h-5", loaderClassName)} />
+        <>
+          {loaderText && <span>{loaderText}</span>}
+          <Loader className={cn("animate-spin w-5 h-5", loaderClassName)} />
+        </>
       ) : (
         children
       )}

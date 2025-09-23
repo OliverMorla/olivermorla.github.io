@@ -1,15 +1,15 @@
 "use client";
 
-import { ComponentProps } from "react";
-import { cn } from "@/utils/classNames";
-import Input from "@/components/ui/input";
-import { ArrowRightIcon } from "lucide-react";
-import Textarea from "@/components/ui/textarea";
-import { blurInViewVariant } from "@/lib/motion/utils";
-import SubmitButton from "@/components/helpers/submit-button";
 import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
-import { submitContactForm } from "@/modules/contact/server/actions";
+import SubmitButton from "@/components/helpers/submit-button";
+import Input from "@/components/ui/input";
+import Textarea from "@/components/ui/textarea";
 import useClientFormSubmission from "@/hooks/useClientFormSubmission";
+import { blurInViewVariant } from "@/lib/motion/utils";
+import { submitContactForm } from "@/modules/contact/server/actions";
+import { cn } from "@/utils/classNames";
+import { ArrowRightIcon } from "lucide-react";
+import { ComponentProps } from "react";
 
 export type ContactFormProps = ComponentProps<"form">;
 const ContactForm = ({ className, ...props }: ContactFormProps) => {
@@ -77,14 +77,14 @@ const ContactForm = ({ className, ...props }: ContactFormProps) => {
         />
       </MotionDiv>
       <MotionDiv {...blurInViewVariant(0.6)}>
-        <div className="flex gap-2 justify-end">
-          <p className="text-sm text-muted">
+        <div className="flex justify-between gap-2">
+          <p className="text-sm text-muted max-w-96">
             By submitting this form, you agree to our privacy policy and terms
             of service.
           </p>
-          <SubmitButton type="submit" className="group">
+          <SubmitButton type="submit" className="group" loaderText="Sending ">
             Send Message
-            <ArrowRightIcon className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRightIcon className="size-4 group-hover:translate-x-1 transition-transform" />
           </SubmitButton>
         </div>
       </MotionDiv>
