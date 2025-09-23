@@ -10,6 +10,7 @@ const ThemeProvider = ({ children, ...props }: ThemeProviderProps) => {
       attribute="class"
       defaultTheme="dark"
       enableSystem={false}
+      disableTransitionOnChange
       {...props}
     >
       {children}

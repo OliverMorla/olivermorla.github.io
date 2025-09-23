@@ -1,15 +1,16 @@
-import Link from "next/link";
+import ButtonLink from "@/components/ui/button-link";
 import {
   footerPrimaryLinks,
-  socialMediaLinks,
   pages,
+  socialMediaLinks,
 } from "@/modules/app/lib/constants";
-import Image from "next/image";
-import ButtonLink from "@/components/ui/button-link";
 import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
+import Image from "next/image";
+import Link from "next/link";
 
 const Footer = async () => {
   const currentYear = new Date().getFullYear();
+
   const navLinks =
     footerPrimaryLinks.find((g) => g.title === "Navigation")?.links ?? [];
   const legalLinks =

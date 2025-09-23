@@ -13,7 +13,7 @@ import "./global.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Oliver Morla | Full Stack Developer",
+    default: "Oliver Morla | Senior Full Stack Developer",
     template: "%s | Oliver Morla",
   },
   abstract:
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   description:
     "Experienced full stack developer specializing in building scalable and efficient web applications. Skilled in both front-end and back-end technologies, delivering optimized solutions for modern digital needs.",
   creator: "OliverMorla",
-  applicationName: "Oliver Morla | Full Stack Developer",
+  applicationName: "Oliver Morla | Senior Full Stack Developer",
   authors: [{ name: "OliverMorla", url: "https://github.com/OliverMorla" }],
   keywords: ["Next.js", "React", "Tailwind CSS"],
   category: "technology",
@@ -30,17 +30,17 @@ export const metadata: Metadata = {
   publisher: "OliverMorla",
   bookmarks: "https://www.olivermorla.com",
   openGraph: {
-    title: "Oliver Morla | Full Stack Developer",
+    title: "Oliver Morla | Senior Full Stack Developer",
     description:
       "Experienced full stack developer specializing in building scalable and efficient web applications. Skilled in both front-end and back-end technologies, delivering optimized solutions for modern digital needs.",
     url: "https://www.olivermorla.com",
-    siteName: "Oliver Morla | Full Stack Developer",
+    siteName: "Oliver Morla | Senior Full Stack Developer",
     images: [
       {
-        url: "/assets/media/og.webp",
+        url: "/assets/media/og_2.webp",
         width: 1200,
         height: 630,
-        alt: "Oliver Morla | Full Stack Developer",
+        alt: "Oliver Morla | Senior Full Stack Developer",
       },
     ],
     type: "website",
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
   },
 
   twitter: {
-    title: "Oliver Morla | Full Stack Developer",
+    title: "Oliver Morla | Senior Full Stack Developer",
     description:
       "Experienced full stack developer specializing in building scalable and efficient web applications. Skilled in both front-end and back-end technologies, delivering optimized solutions for modern digital needs.",
     images: "/assets/media/og_2.webp",
