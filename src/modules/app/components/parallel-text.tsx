@@ -2,14 +2,14 @@
 
 import { useRef } from "react";
 import {
-  motion,
   useScroll,
   useSpring,
   useTransform,
   useMotionValue,
   useVelocity,
   useAnimationFrame,
-} from "framer-motion";
+} from "motion/react";
+import * as m from "motion/react-m";
 import { wrap } from "@motionone/utils";
 
 interface ParallaxProps {
@@ -67,12 +67,12 @@ export default function ParallaxText({
    */
   return (
     <div className="parallax">
-      <motion.div className="scroller" style={{ x }}>
+      <m.div className="scroller" style={{ x }}>
         <span>{children}</span>
         <span>{children}</span>
         <span>{children}</span>
         <span>{children}</span>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

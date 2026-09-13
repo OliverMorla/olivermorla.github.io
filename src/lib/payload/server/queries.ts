@@ -3,7 +3,11 @@ import { payload } from "@/lib/payload";
 
 // create a cache function to get the data from the payload
 export const getTestimonials = cache(async () => {
-  return payload.find({ collection: "testimonials", limit: 3 });
+  return payload.find({
+    collection: "testimonials",
+    sort: "position:asc",
+    limit: 3,
+  });
 });
 
 // create a cache function to get the data from the payload

@@ -1,4 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useSyncExternalStore } from "react";
+
+const subscribe = () => () => {};
+const getSnapshot = () => true;
+const getServerSnapshot = () => false;
 
 /**
  * Hook to handle component mounting state with proper cleanup
@@ -6,22 +10,19 @@ import { useEffect, useState } from "react";
  * @returns boolean indicating if component is mounted
  */
 const useEffectMount = (callback?: () => void | (() => void)) => {
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(
+    subscribe,
+    getSnapshot,
+    getServerSnapshot,
+  );
 
   useEffect(() => {
-    setMounted(true); // Mark component as mounted
+    if (!mounted) {
+      return;
+    }
 
-    const cleanup = callback?.(); // Execute callback and store any returned cleanup function
-
-    return () => {
-      setMounted(false); // Mark component as unmounted
-
-      // Execute cleanup if it exists
-      if (cleanup) {
-        cleanup();
-      }
-    };
-  }, [callback]); // Only re-run if callback changes
+    return callback?.();
+  }, [mounted, callback]);
 
   return mounted;
 };

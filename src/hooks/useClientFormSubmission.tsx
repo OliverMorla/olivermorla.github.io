@@ -32,6 +32,27 @@ const useClientFormSubmission = <T = any,>({
   const [state, setState] = useState<Response<T>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  // Helper function to cleanup uploaded files
+  const cleanupUploadedFile = useCallback(
+    async (uploadRoute: string, formData: FormData, fileName: string) => {
+      try {
+        const deleteFormData = new FormData();
+        const inviteCode = String(formData.get("inviteCode"));
+
+        deleteFormData.set("inviteCode", inviteCode);
+        deleteFormData.set("file", fileName);
+
+        await fetch(uploadRoute, {
+          method: "DELETE",
+          body: deleteFormData,
+        });
+      } catch (err) {
+        console.error("Error cleaning up uploaded file:", err);
+      }
+    },
+    [],
+  );
+
   const handleFormSubmit = useCallback(
     async (e?: React.FormEvent<HTMLFormElement>) => {
       if (isSubmitting) {
@@ -147,30 +168,9 @@ const useClientFormSubmission = <T = any,>({
       fileKey,
       uploadFileRoute,
       isSubmitting,
+      cleanupUploadedFile,
     ],
   );
-
-  // Helper function to cleanup uploaded files
-  const cleanupUploadedFile = async (
-    uploadRoute: string,
-    formData: FormData,
-    fileName: string,
-  ) => {
-    try {
-      const deleteFormData = new FormData();
-      const inviteCode = String(formData.get("inviteCode"));
-
-      deleteFormData.set("inviteCode", inviteCode);
-      deleteFormData.set("file", fileName);
-
-      await fetch(uploadRoute, {
-        method: "DELETE",
-        body: deleteFormData,
-      });
-    } catch (err) {
-      console.error("Error cleaning up uploaded file:", err);
-    }
-  };
 
   return {
     state,

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import * as m from "motion/react-m";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { IconDefinition } from "@fortawesome/free-solid-svg-icons";
 
@@ -14,7 +14,7 @@ const EducationCard = ({
   fontAwesomeIconUrl: IconDefinition;
 }) => {
   return (
-    <motion.div
+    <m.div
       className="flex flex-col"
       initial={{ opacity: 0, y: 100 }}
       whileInView={{
@@ -25,18 +25,18 @@ const EducationCard = ({
     >
       <div className="flex items-center gap-2">
         <div className="flex items-center gap-2">
-          <motion.span className="flex bg-gradient-to-r from-indigo-500 to to-blue-500 p-4 rounded-2xl font-semibold text-white items-center gap-2">
+          <m.span className="flex bg-gradient-to-r from-indigo-500 to to-blue-500 p-4 rounded-2xl font-semibold text-white items-center gap-2">
             <FontAwesomeIcon
               icon={fontAwesomeIconUrl}
               className="text-4xl"
             />
 
             {educationInstitution}
-          </motion.span>
+          </m.span>
           /<span className="opacity-80">{educationDegree}</span>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 

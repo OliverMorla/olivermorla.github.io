@@ -1,6 +1,6 @@
 "use client";
 
-import { useScroll, useSpring, type MotionValue } from "framer-motion";
+import { useScroll, useSpring, type MotionValue } from "motion/react";
 import { ComponentProps, createContext, useContext, useRef } from "react";
 
 export type ScrollTrackingContainerProps = ComponentProps<"div">;

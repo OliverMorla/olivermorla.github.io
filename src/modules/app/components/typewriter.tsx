@@ -28,17 +28,14 @@ const Typewriter = ({
 
   const [index, setIndex] = useState(0);
   const [key, setKey] = useState(0);
+  const [prevTextsKey, setPrevTextsKey] = useState(textsKey);
   const timerRef = useRef<number | null>(null);
 
-  useEffect(() => {
+  if (textsKey !== prevTextsKey) {
+    setPrevTextsKey(textsKey);
     setIndex(0);
     setKey((k) => k + 1);
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
-  }, [textsKey]);
+  }
 
   useEffect(() => {
     if (texts.length <= 1 && !loop) return;

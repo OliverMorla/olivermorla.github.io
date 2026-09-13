@@ -1,7 +1,7 @@
 "use client";
 
 import { blurInViewVariant, blurVariant } from "@/lib/motion/utils";
-import { HTMLMotionProps, MotionProps } from "framer-motion";
+import type { HTMLMotionProps, MotionProps } from "motion/react";
 import * as motion from "motion/react-m";
 import { memo, useMemo } from "react";
 

@@ -10,7 +10,8 @@ import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
 import useScrollLock from "@/hooks/useScrollLock";
 import { simpleBlurVariant } from "@/lib/motion/utils";
 import { headerPrimaryLinks } from "@/modules/app/lib/constants";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence } from "motion/react";
+import * as m from "motion/react-m";
 import { FC, HTMLAttributes, useState } from "react";
 
 const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
@@ -37,15 +38,15 @@ const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
       >
         <AnimatePresence>
           <div className="relative flex flex-col items-center justify-center h-full w-full">
-            <motion.div
+            <m.div
               animate={isOpen ? { rotate: 45 } : { rotate: 0, y: -8 }}
               className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
             />
-            <motion.div
+            <m.div
               animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
               className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md"
             />
-            <motion.div
+            <m.div
               animate={isOpen ? { rotate: -45 } : { rotate: 0, y: 8 }}
               className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
             />
@@ -73,17 +74,17 @@ const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
                       {...props}
                     >
                       <div className="relative flex flex-col items-center justify-center h-full w-full">
-                        <motion.div
+                        <m.div
                           animate={
                             isOpen ? { rotate: 45 } : { rotate: 0, y: -8 }
                           }
                           className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
                         />
-                        <motion.div
+                        <m.div
                           animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
                           className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md"
                         />
-                        <motion.div
+                        <m.div
                           animate={
                             isOpen ? { rotate: -45 } : { rotate: 0, y: 8 }
                           }

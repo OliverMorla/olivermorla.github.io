@@ -1,7 +1,6 @@
 "use client";
 
 import { MotionSection } from "@/components/helpers/basic-lazy-motion";
-// import { getTestimonials } from "@/lib/payload/server/queries";
 import { getTestimonials } from "@/lib/payload/server/actions";
 import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
@@ -9,22 +8,23 @@ import { pages } from "@/modules/app/lib/constants";
 import { TestimonialCard } from "@/modules/testimonial/components/card";
 import { cn } from "@/utils/classNames";
 import { useQuery } from "@tanstack/react-query";
-import { useTransform } from "framer-motion";
+import { useTransform } from "motion/react";
 import { ComponentProps } from "react";
 import { useScrollTracking } from "./scroll-tracking-container";
 
-export type TestimonialsProps = ComponentProps<"section">;
+export type TestimonialsProps = ComponentProps<"section"> & {
+  initialData?: Awaited<ReturnType<typeof getTestimonials>>;
+};
 
 export default function Testimonials({
   className,
+  initialData,
   ...props
 }: TestimonialsProps) {
-  // get the data from the cache
-  // const testimonials = await getTestimonials();
-
   const { data, error } = useQuery({
     queryKey: ["testimonials"],
     queryFn: getTestimonials,
+    initialData,
   });
 
   const { smoothYProgress } = useScrollTracking();

@@ -132,6 +132,7 @@ const TrustBar = async () => {
             <CTAButtons className="max-md:flex-col max-md:w-full" />
           </div>
 
+          {testimonial && (
           <div className="relative bg-white dark:bg-neutral-900 rounded-2xl p-8 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_4px_20px_rgba(0,0,0,0.06)] transition-shadow duration-300 border border-neutral-200/50 dark:border-neutral-800/50">
             <div>
               {testimonial.rating && (
@@ -184,6 +185,7 @@ const TrustBar = async () => {
               </div>
             </div>
           </div>
+          )}
         </div>
       </section>
     </section>
