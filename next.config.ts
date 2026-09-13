@@ -13,7 +13,15 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "ihcntrkzhwqeiajreqfp.supabase.co",
       }
-    ]
+    ],
+    // Payload's S3 storage adapter proxies uploads through /api/<collection>/file/<name>
+    // with a ?prefix=... query string; Next 16 requires local image query strings to be
+    // explicitly allow-listed here.
+    localPatterns: [
+      {
+        pathname: "/api/*/file/**",
+      },
+    ],
   },
   serverExternalPackages: ["sharp"],
   experimental: {
