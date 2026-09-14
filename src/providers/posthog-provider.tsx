@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { usePathname, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 import type { PostHog } from "posthog-js";
 
 // Deferred so the posthog-js client (and posthog-js/react) don't ship in the
@@ -10,6 +11,30 @@ const PostHogReactProvider = dynamic(
   () => import("posthog-js/react").then((mod) => mod.PostHogProvider),
   { ssr: false },
 );
+
+// posthog-js's `capture_pageview: "history_change"` patches
+// window.history.pushState, but Next's App Router calls its own cached
+// reference to the native pushState, so the patch never fires — capture
+// pageviews manually from the router's own pathname/search state instead.
+function PostHogPageView({ client }: { client: PostHog }) {
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    if (!pathname) {
+      return;
+    }
+
+    const search = searchParams.toString();
+    const url = search
+      ? `${window.origin}${pathname}?${search}`
+      : `${window.origin}${pathname}`;
+
+    client.capture("$pageview", { $current_url: url });
+  }, [pathname, searchParams, client]);
+
+  return null;
+}
 
 export function PHProvider({ children }: { children: React.ReactNode }) {
   const [client, setClient] = useState<PostHog | null>(null);
@@ -25,7 +50,7 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
       posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
         api_host: "/ingest",
         ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-        capture_pageview: "history_change", // tracks App Router client-side navigations automatically
+        capture_pageview: false, // captured manually via PostHogPageView below
       });
 
       setClient(posthog);
@@ -41,6 +66,11 @@ export function PHProvider({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <PostHogReactProvider client={client}>{children}</PostHogReactProvider>
+    <PostHogReactProvider client={client}>
+      <Suspense fallback={null}>
+        <PostHogPageView client={client} />
+      </Suspense>
+      {children}
+    </PostHogReactProvider>
   );
 }
