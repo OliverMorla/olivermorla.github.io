@@ -75,8 +75,9 @@ const Hero = () => {
           <Image
             src={"/assets/media/portrait_1.webp"}
             priority
-            width={1024}
-            height={1024}
+            width={1792}
+            height={2304}
+            sizes="(max-width: 768px) 100vw, 448px"
             alt="portrait_1"
             className="object-cover grayscale"
           />

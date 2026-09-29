@@ -16,10 +16,15 @@ const nextConfig: NextConfig = {
     ],
     // Payload's S3 storage adapter proxies uploads through /api/<collection>/file/<name>
     // with a ?prefix=... query string; Next 16 requires local image query strings to be
-    // explicitly allow-listed here.
+    // explicitly allow-listed here. Defining localPatterns also blocks every other local
+    // path, so static files under public/assets must be listed too.
     localPatterns: [
       {
         pathname: "/api/*/file/**",
+      },
+      {
+        pathname: "/assets/**",
+        search: "",
       },
     ],
   },
