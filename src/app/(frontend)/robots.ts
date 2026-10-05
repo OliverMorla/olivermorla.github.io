@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next";
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      allow: "/",
       userAgent: "*",
-      disallow: ["/admin/"],
+      allow: "/",
+      disallow: ["/admin/", "/preview/"],
     },
     sitemap: "https://www.olivermorla.com/sitemap.xml",
   };

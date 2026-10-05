@@ -1,5 +1,9 @@
 @import "tailwindcss";
-@plugin '@tailwindcss/typography';
+/* Automatic source detection doesn't honour .gitignore in this checkout
+   (it lives under ~/.git/), so it reads Turbopack's binary cache in .next
+   and emits garbage classes that fail to parse. Keep it out explicitly. */
+@source not "../../../.next";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -19,24 +23,10 @@
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
+  --ring: oklch(0.585 0.233 277.117);
   --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
 }
 
 .dark {
@@ -54,65 +44,76 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.396 0.141 25.723);
-  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --destructive: oklch(0.637 0.237 25.331);
   --border: oklch(0.269 0 0);
   --input: oklch(0.269 0 0);
-  --ring: oklch(0.439 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(0.269 0 0);
-  --sidebar-ring: oklch(0.439 0 0);
+  --ring: oklch(0.673 0.182 276.935);
 }
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-.scroll-lock {
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  /* No --color-muted: it would generate a `text-muted` utility that clashes
+     with the site's own `text-muted` below. */
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+
+  --animate-marquee: marquee var(--duration) infinite linear;
+
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(calc(-100% - var(--gap)));
+    }
+  }
 }
 
 html {
   scroll-behavior: smooth;
+  /* Keeps in-page anchors clear of the fixed header. */
+  scroll-padding-top: 5rem;
+  color-scheme: light;
 }
 
-html,
-body {
-  flex: 1 1 0;
-  flex-direction: column;
-  touch-action: manipulation;
-  text-rendering: optimizeSpeed;
-  @apply text-neutral-800 dark:text-neutral-100 text-[15px] transition ease-in-out;
+html.dark {
+  color-scheme: dark;
 }
+
+body {
+  @apply bg-white text-[15px] text-neutral-800 dark:bg-black dark:text-neutral-100;
+  touch-action: manipulation;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- Utilities ---------- */
 
 @utility text-muted {
-  @apply text-neutral-500/75 dark:text-neutral-400/75;
+  @apply text-neutral-500 dark:text-neutral-400;
 }
 
 @utility text-gradient-normal {
   @apply bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent;
-}
-
-@utility bg-gradient-normal {
-  @apply bg-gradient-to-b from-white via-indigo-50 to-neutral-50 dark:from-neutral-950 dark:via-indigo-950/5 dark:to-black;
-}
-
-@utility bg-gradient-normal-inverted {
-  @apply bg-gradient-to-b from-neutral-50 via-indigo-50 to-white dark:from-black dark:via-indigo-950/5 dark:to-neutral-950;
 }
 
 @utility bg-gradient-none {
@@ -124,40 +125,60 @@ body {
 }
 
 @utility title {
-  @apply text-shadow-xs text-5xl max-sm:text-3xl tracking-tight font-bold;
+  @apply text-3xl font-bold tracking-tight text-balance sm:text-4xl lg:text-5xl;
 }
 
-/* Parallax Text / Scroll Velocity */
+/* Loading placeholder. Pulses only for people who allow motion. */
+@utility skeleton {
+  @apply rounded-md bg-neutral-200/80 motion-safe:animate-pulse dark:bg-neutral-800/80;
+}
+
+/* ---------- Hero load sequence (CSS-only, runs before hydration) ---------- */
+
+@keyframes load-up {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.load-up {
+  animation: load-up 700ms var(--ease-out-quint) both;
+  animation-delay: var(--d, 0ms);
+}
+
+/* ---------- Parallax text ---------- */
+
 .parallax {
-  overflow: hidden;
-  letter-spacing: -2px;
-  line-height: 0.8;
-  margin: 0;
-  white-space: nowrap;
   display: flex;
   flex-wrap: nowrap;
+  overflow: hidden;
+  margin: 0;
+  line-height: 0.8;
+  letter-spacing: -2px;
+  white-space: nowrap;
 }
 
 .parallax .scroller {
-  font-weight: 900;
-  text-transform: uppercase;
-  font-size: 72px;
-  display: flex;
-  white-space: nowrap;
   display: flex;
   flex-wrap: nowrap;
+  font-size: clamp(2.75rem, 1.5rem + 5vw, 4.5rem);
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .parallax span {
   display: block;
   margin-right: 30px;
-  transition: all 0.5s ease-in-out;
 }
 
-.parallax:hover {
-  color: var(--color-electric-purple);
-  transition: all 0.5s ease-in-out;
-}
+/* ---------- Typewriter ---------- */
 
 .typewriter-wrapper {
   position: relative;
@@ -166,11 +187,10 @@ body {
 
 .typewriter {
   display: inline-block;
-  font-family: monospace;
-  white-space: nowrap;
-  overflow: hidden;
   width: 0;
-  will-change: width;
+  overflow: hidden;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  white-space: nowrap;
   animation-name: typing-in, typing-out;
   animation-duration: var(--type-duration, 2s), var(--erase-duration, 2s);
   animation-timing-function:
@@ -185,14 +205,13 @@ body {
   animation-fill-mode: both, forwards;
 }
 
-/* Cursor */
 .typewriter-wrapper::after {
   content: "";
   position: absolute;
-  right: -4px;
   top: 0;
-  height: 100%;
+  right: -4px;
   width: 3px;
+  height: 100%;
   background-color: currentColor;
   animation: cursor-blink 0.7s steps(2) infinite;
 }
@@ -228,33 +247,17 @@ body {
   }
 }
 
-/* Accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .typewriter {
-    animation: none;
-    width: auto;
-  }
+/* ---------- Hero portrait morph ---------- */
 
-  .typewriter-wrapper::after {
-    animation: none;
-    opacity: 1;
-  }
-}
-
-/* Image Morphing Animation with Rounded Edges */
 .image-morph {
   overflow: hidden;
-  perspective: 1000px;
-  animation: smoothMorph 20s infinite;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  contain: paint;
+  animation: smooth-morph 20s cubic-bezier(0.4, 0, 0.2, 1) infinite;
 }
 
-.image-morph img {
-  transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@keyframes smoothMorph {
-  0% {
+@keyframes smooth-morph {
+  0%,
+  100% {
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     transform: rotate(0deg) scale(1);
   }
@@ -278,40 +281,81 @@ body {
     border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
     transform: rotate(2deg) scale(1.02);
   }
+}
 
-  100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-    transform: rotate(0deg) scale(1);
+@media (hover: hover) {
+  .image-morph:hover {
+    animation-play-state: paused;
   }
 }
 
-.image-morph:hover {
-  animation-play-state: paused;
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
+/* ---------- Testimonials → contact stack ---------- */
+
+/* As the stack scrolls past, testimonials tilt away while contact settles in.
+   Scroll-driven, so it runs on the compositor with no JavaScript; browsers
+   without scroll timelines simply show the static layout. */
+@keyframes stack-out {
+  to {
+    transform: scale(0.8) rotate(-10deg);
+  }
 }
 
-.transition-morph {
-  transition:
-    border-radius 2s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+@keyframes stack-in {
+  from {
+    transform: scale(0.8) rotate(-5deg);
+  }
 }
 
-/* Optional: Add this if you want a smoother image transition */
-.transition-morph img {
-  transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+@media (width >= 40rem) and (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .stack-scroll {
+      view-timeline: --stack block;
+    }
+
+    .stack-out,
+    .stack-in {
+      animation-timing-function: linear;
+      animation-fill-mode: both;
+      animation-timeline: --stack;
+      animation-range: contain 0% contain 100%;
+    }
+
+    .stack-out {
+      animation-name: stack-out;
+    }
+
+    .stack-in {
+      animation-name: stack-in;
+    }
+  }
 }
 
-/* Grid Pattern Base */
-/* Grid Pattern Base */
+/* ---------- Grid pattern ---------- */
+
 .bg-grid-pattern {
   --grid-size: 4rem;
   --grid-line-weight: 1px;
-  --grid-color: theme("colors.neutral.300");
-
-  /* Edge fade thickness and a tiny clear edge so no line touches borders */
+  --grid-color: var(--color-neutral-300);
   --grid-fade-edge: calc(var(--grid-size) / 2);
   --grid-edge-clear: calc(var(--grid-line-weight) + 1px);
+  --grid-fade-x: linear-gradient(
+    to right,
+    transparent 0,
+    transparent var(--grid-edge-clear),
+    black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
+    black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
+    transparent calc(100% - var(--grid-edge-clear)),
+    transparent 100%
+  );
+  --grid-fade-y: linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent var(--grid-edge-clear),
+    black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
+    black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
+    transparent calc(100% - var(--grid-edge-clear)),
+    transparent 100%
+  );
 
   background-image:
     linear-gradient(
@@ -325,131 +369,70 @@ body {
       transparent var(--grid-line-weight)
     );
   background-size: var(--grid-size) var(--grid-size);
-  background-position: 0 0;
-
-  /* Fade on all sides (horizontal + vertical), with intersection */
-  -webkit-mask-image:
-    linear-gradient(
-      to right,
-      transparent 0,
-      transparent var(--grid-edge-clear),
-      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
-      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
-      transparent calc(100% - var(--grid-edge-clear)),
-      transparent 100%
-    ),
-    linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent var(--grid-edge-clear),
-      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
-      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
-      transparent calc(100% - var(--grid-edge-clear)),
-      transparent 100%
-    );
-  mask-image:
-    linear-gradient(
-      to right,
-      transparent 0,
-      transparent var(--grid-edge-clear),
-      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
-      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
-      transparent calc(100% - var(--grid-edge-clear)),
-      transparent 100%
-    ),
-    linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent var(--grid-edge-clear),
-      black calc(var(--grid-edge-clear) + var(--grid-fade-edge)),
-      black calc(100% - var(--grid-fade-edge) - var(--grid-edge-clear)),
-      transparent calc(100% - var(--grid-edge-clear)),
-      transparent 100%
-    );
-
-  /* Intersection of both masks */
-  -webkit-mask-composite: source-in;
+  mask-image: var(--grid-fade-x), var(--grid-fade-y);
   mask-composite: intersect;
-}
-
-/* Grid Sizes */
-.bg-grid-pattern-sm {
-  --grid-size: 2rem;
-}
-
-.bg-grid-pattern-md {
-  --grid-size: 4rem;
 }
 
 .bg-grid-pattern-lg {
   --grid-size: 6rem;
 }
 
-.bg-grid-pattern-xl {
-  --grid-size: 8rem;
+/* ---------- Mobile navigation sheet ---------- */
+
+.nav-sheet {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 200ms var(--ease-out-quint),
+    transform 200ms var(--ease-out-quint),
+    overlay 200ms allow-discrete,
+    display 200ms allow-discrete;
 }
 
-/* Light Mode Colors */
-.bg-grid-pattern-neutral-100 {
-  --grid-color: theme("colors.neutral.100");
+.nav-sheet[open] {
+  opacity: 1;
+  transform: none;
 }
 
-.bg-grid-pattern-neutral-200 {
-  --grid-color: theme("colors.neutral.200");
-}
-
-.bg-grid-pattern-neutral-300 {
-  --grid-color: theme("colors.neutral.300");
-}
-
-.bg-grid-pattern-neutral-400 {
-  --grid-color: theme("colors.neutral.400");
-}
-
-.bg-grid-pattern-neutral-500 {
-  --grid-color: theme("colors.neutral.500");
-}
-
-/* Dark Mode Colors */
-@media (prefers-color-scheme: dark) {
-  .dark .bg-grid-pattern-neutral-600 {
-    --grid-color: theme("colors.neutral.600");
-  }
-
-  .dark .bg-grid-pattern-neutral-700 {
-    --grid-color: theme("colors.neutral.700");
-  }
-
-  .dark .bg-grid-pattern-neutral-800 {
-    --grid-color: theme("colors.neutral.800");
-  }
-
-  .dark .bg-grid-pattern-neutral-900 {
-    --grid-color: theme("colors.neutral.900");
+@starting-style {
+  .nav-sheet[open] {
+    opacity: 0;
+    transform: translateY(-8px);
   }
 }
 
-@theme inline {
-  --animate-marquee: marquee var(--duration) infinite linear;
-  --animate-marquee-vertical: marquee-vertical var(--duration) linear infinite;
+.nav-sheet::backdrop {
+  background: transparent;
+}
 
-  @keyframes marquee {
-    from {
-      transform: translateX(0);
-    }
+/* Lock page scroll while the mobile menu is open. */
+html:has(#mobile-nav[open]) {
+  overflow: hidden;
+}
 
-    to {
-      transform: translateX(calc(-100% - var(--gap)));
-    }
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 
-  @keyframes marquee-vertical {
-    from {
-      transform: translateY(0);
-    }
+  .load-up {
+    animation: none;
+  }
 
-    to {
-      transform: translateY(calc(-100% - var(--gap)));
-    }
+  .typewriter {
+    width: auto;
+    animation: none;
+  }
+
+  .typewriter-wrapper::after,
+  .image-morph,
+  .animate-marquee {
+    animation: none;
+  }
+
+  .nav-sheet {
+    transition: none;
   }
 }

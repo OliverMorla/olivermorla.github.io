@@ -1,184 +1,148 @@
 import ButtonLink from "@/components/ui/button-link";
+import { socialIcons } from "@/components/ui/icons";
 import {
-  footerPrimaryLinks,
+  contactEmail,
+  footerLinks,
   pages,
   socialMediaLinks,
 } from "@/modules/app/lib/constants";
-import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
 import Link from "next/link";
 
-const Footer = async () => {
-  const currentYear = new Date().getFullYear();
+const mutedLink =
+  "text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100";
 
-  const navLinks =
-    footerPrimaryLinks.find((g) => g.title === "Navigation")?.links ?? [];
-  const legalLinks =
-    footerPrimaryLinks.find((g) => g.title === "Legal")?.links ?? [];
+const Footer = () => (
+  <footer className="relative w-full overflow-hidden px-4 py-12 sm:px-8">
+    <svg
+      aria-hidden
+      className="pointer-events-none absolute inset-0 size-full text-neutral-400 opacity-20 dark:opacity-5"
+    >
+      <pattern
+        id="footer-pattern"
+        width="60"
+        height="60"
+        patternUnits="userSpaceOnUse"
+      >
+        <path
+          d="M30 0L60 30L30 60L0 30L30 0Z M15 30L30 15L45 30L30 45L15 30Z"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="0.8"
+        />
+      </pattern>
+      <rect width="100%" height="100%" fill="url(#footer-pattern)" />
+    </svg>
 
-  return (
-    <footer className="relative w-full py-12">
-      <div className="absolute inset-0 h-full w-full">
-        <div className="absolute inset-0 z-10 h-full w-full bg-gradient-none-inverted" />
-        <svg
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full overflow-hidden opacity-20 dark:opacity-5"
-          xmlns="http://www.w3.org/2000/svg"
+    <div className="relative container mx-auto flex flex-col gap-12">
+      <div className="flex flex-col justify-between gap-8 rounded-2xl border border-neutral-200 bg-gradient-to-r from-neutral-100 to-neutral-50 p-6 shadow-lg sm:p-10 md:flex-row md:items-center lg:p-16 dark:border-neutral-800 dark:from-neutral-900 dark:to-neutral-950">
+        <div className="max-w-3xl space-y-4">
+          <h2 className="text-3xl font-bold tracking-tight text-balance sm:text-4xl md:text-5xl">
+            Ready to build something great?
+          </h2>
+          <p className="text-muted text-base sm:text-lg">
+            {pages.contact.description}
+          </p>
+        </div>
+        <ButtonLink
+          href="/schedule"
+          variant="gradient"
+          padding="lg"
+          className="w-full shrink-0 sm:w-fit"
         >
-          <pattern
-            id="footer-pattern"
-            x="0"
-            y="0"
-            width="60"
-            height="60"
-            patternUnits="userSpaceOnUse"
-          >
-            <path
-              d="M30 0L60 30L30 60L0 30L30 0Z M15 30L30 15L45 30L30 45L15 30Z"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="0.8"
+          Book a 15-min call
+        </ButtonLink>
+      </div>
+
+      <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-[minmax(0,1.6fr)_1fr_1fr_1fr] lg:gap-12">
+        <div className="space-y-6 sm:col-span-2 lg:col-span-1">
+          <div className="flex items-start gap-4">
+            <Image
+              width={80}
+              height={80}
+              sizes="80px"
+              alt=""
+              src="/assets/media/portrait_1.webp"
+              className="aspect-square size-20 shrink-0 rounded-xl border border-neutral-300 object-cover object-top dark:border-neutral-700"
             />
-          </pattern>
-          <rect width="100%" height="100%" fill="url(#footer-pattern)" />
-        </svg>
-      </div>
-
-      <div className="relative z-20 container mx-auto rounded-2xl border border-neutral-200 bg-gradient-to-r from-neutral-100 to-neutral-50 px-8 py-16 shadow-lg dark:border-neutral-700 dark:from-neutral-800 dark:to-neutral-900">
-        <div className="relative flex flex-col justify-between gap-8 sm:items-center md:flex-row">
-          <div className="max-w-4xl space-y-4">
-            <h2 className="text-4xl font-bold md:text-5xl">
-              Ready to Build{" "}
-              <span className="text-gradient-normal">Something</span> Great?
-            </h2>
-            <p className="text-muted text-lg max-sm:text-base">
-              {pages.contact.description}
-            </p>
-          </div>
-          <div className="md:ml-8">
-            <ButtonLink href="/schedule" variant="gradient">
-              Book a 15-min Call
-            </ButtonLink>
-          </div>
-        </div>
-      </div>
-      <div className="relative z-20 container mx-auto px-6 pt-12">
-        <div className="grid grid-cols-[400px_1fr_1fr_1fr] gap-12 max-lg:grid-cols-2 max-sm:grid-cols-1">
-          <div className="space-y-6">
-            <div className="flex items-start gap-6">
-              <Image
-                width={64}
-                height={64}
-                alt="profile-photo"
-                src={"/assets/media/portrait_1.webp"}
-                className="w-full max-w-24 object-cover aspect-square object-top border border-neutral-300/75 rounded-xl dark:border-neutral-700/75"
-              />
-              <div>
-                <h1 className="text-xl font-bold text-neutral-900 dark:text-neutral-100">
-                  Oliver Morla
-                </h1>
-                <p className="text-xs leading-relaxed text-neutral-600 dark:text-neutral-400 text-balance">
-                  Full‑stack developer building fast, scalable apps with modern
-                  tooling.
-                </p>
-              </div>
+            <div>
+              <p className="text-xl font-bold">Oliver Morla</p>
+              <p className="text-sm leading-relaxed text-pretty text-neutral-600 dark:text-neutral-400">
+                Full-stack developer building fast, scalable apps with modern
+                tooling.
+              </p>
             </div>
-            <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-              I design, build, and ship production‑ready software—React/Next.js
-              on the front, Node on the back, and clean, maintainable code
-              throughout.
-            </p>
-            <div className="flex items-center gap-12">
-              {socialMediaLinks.map((social, index) => (
-                <Link
-                  key={index}
-                  target="_blank"
-                  href={social.href}
-                  aria-label={social.title}
-                  className="text-neutral-600 transition-colors hover:text-neutral-800 active:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-200 dark:active:text-neutral-50"
-                >
-                  <Icon
-                    className="text-lg"
-                    icon={social.iconUrl}
+          </div>
+          <p className="max-w-md text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+            I design, build, and ship production-ready software—React/Next.js on
+            the front, Node on the back, and clean, maintainable code
+            throughout.
+          </p>
+          <ul className="flex items-center gap-2">
+            {socialMediaLinks.map((social) => {
+              const Icon = socialIcons[social.icon];
+              const isExternal = social.href.startsWith("http");
+              return (
+                <li key={social.href}>
+                  <a
+                    href={social.href}
                     aria-label={social.title}
-                  />
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-              Quick Links
-            </h2>
-            <ul className="space-y-4">
-              {navLinks.map((item) => (
-                <li key={item.title}>
-                  <Link
-                    href={item.href}
-                    className="text-sm text-neutral-600 transition-colors hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-100"
+                    {...(isExternal && {
+                      target: "_blank",
+                      rel: "noopener noreferrer",
+                    })}
+                    className={`grid size-10 place-items-center rounded-full hover:bg-neutral-200 dark:hover:bg-neutral-800 ${mutedLink}`}
                   >
-                    {item.title}
-                  </Link>
+                    <Icon className="size-4" />
+                  </a>
                 </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="space-y-2">
-            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-              Contact Me
-            </h2>
-            <ul className="space-y-4 text-sm text-neutral-600 dark:text-neutral-400">
-              <li className="flex items-center gap-2">
-                olivermorla3@gmail.com
-              </li>
-              <li className="flex items-center gap-2">
-                New York, New York, USA
-              </li>
-            </ul>
-          </div>
-
-          <div className="space-y-2">
-            <h2 className="text-lg font-semibold text-neutral-900 dark:text-neutral-100">
-              Service Areas
-            </h2>
-            <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
-              Based in New York. Working remotely with clients across the US and
-              worldwide.
-            </p>
-          </div>
+              );
+            })}
+          </ul>
         </div>
 
-        <div className="mt-8 flex flex-col items-center justify-between gap-6 border-t border-neutral-300/75 pt-8 text-center sm:flex-row dark:border-neutral-700/75">
-          <div className="flex flex-col gap-2">
-            <p className="text-muted-normal text-sm">
-              © {currentYear} Oliver Morla. All rights reserved.
-            </p>
-            <p className="text-muted text-center text-xs">
-              Website designed and developed by{" "}
-              <Link
-                href="/#contact"
-                className="text-neutral-600 transition-colors hover:text-neutral-800 active:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-200 dark:active:text-neutral-50"
-              >
-                Oliver Morla
-              </Link>
-            </p>
-          </div>
-          <div className="flex gap-6">
-            {legalLinks.map((item) => (
-              <Link
-                key={item.title}
-                href={item.href}
-                className="text-neutral-600 transition-colors hover:text-neutral-800 active:text-neutral-950 dark:text-neutral-400 dark:hover:text-neutral-200 dark:active:text-neutral-50"
-              >
-                {item.title}
-              </Link>
+        <nav aria-label="Footer" className="space-y-3">
+          <h2 className="font-semibold">Quick links</h2>
+          <ul className="space-y-3 text-sm">
+            {footerLinks.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className={mutedLink}>
+                  {item.title}
+                </Link>
+              </li>
             ))}
-          </div>
+          </ul>
+        </nav>
+
+        <div className="space-y-3">
+          <h2 className="font-semibold">Contact</h2>
+          <ul className="space-y-3 text-sm">
+            <li>
+              <a href={`mailto:${contactEmail}`} className={mutedLink}>
+                {contactEmail}
+              </a>
+            </li>
+            <li className="text-neutral-600 dark:text-neutral-400">
+              New York, NY, USA
+            </li>
+          </ul>
+        </div>
+
+        <div className="space-y-3">
+          <h2 className="font-semibold">Service areas</h2>
+          <p className="text-sm leading-relaxed text-neutral-600 dark:text-neutral-400">
+            Based in New York. Working remotely with clients across the US and
+            worldwide.
+          </p>
         </div>
       </div>
-    </footer>
-  );
-};
+
+      <div className="flex flex-col items-center justify-between gap-2 border-t border-neutral-300 pt-8 text-center text-sm text-neutral-600 sm:flex-row sm:text-left dark:border-neutral-800 dark:text-neutral-400">
+        <p>© {new Date().getFullYear()} Oliver Morla. All rights reserved.</p>
+        <p>Designed and developed by Oliver Morla.</p>
+      </div>
+    </div>
+  </footer>
+);
 
 export default Footer;

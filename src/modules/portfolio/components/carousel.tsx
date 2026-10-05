@@ -1,107 +1,97 @@
 "use client";
 
-// Import React
-
-// Import Swiper React components
-import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
-import "swiper/css";
-import "swiper/css/navigation";
-import "swiper/css/pagination";
-
-// import required modules
-import LazyImage from "@/components/helpers/lazy-image";
-import { getImageMediaUrl } from "@/lib/payload/client/utils";
-import { Project } from "@/payload-types";
 import { cn } from "@/utils/classNames";
-import Link from "next/link";
-import { ComponentProps } from "react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
-export type CarouselProps = ComponentProps<typeof Swiper> & {
-  projects: Project[];
+type CarouselProps = {
+  label: string;
+  children: ReactNode;
+  className?: string;
 };
 
-const Carousel = ({ projects, className, ...props }: CarouselProps) => {
+/**
+ * Horizontal scroll-snap rail. The slides are server-rendered children; this
+ * island only adds previous/next buttons on top of native scrolling, which
+ * already handles touch, trackpads and keyboard.
+ */
+const Carousel = ({ label, children, className }: CarouselProps) => {
+  const scrollerRef = useRef<HTMLUListElement>(null);
+  const [edges, setEdges] = useState({ atStart: true, atEnd: false });
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+
+    let frame = 0;
+    const measure = () => {
+      frame = 0;
+      const { scrollLeft, scrollWidth, clientWidth } = scroller;
+      const atStart = scrollLeft <= 4;
+      const atEnd = scrollLeft + clientWidth >= scrollWidth - 4;
+      // Bail out unless an edge flips, so scrolling doesn't re-render.
+      setEdges((prev) =>
+        prev.atStart === atStart && prev.atEnd === atEnd
+          ? prev
+          : { atStart, atEnd },
+      );
+    };
+    const onScroll = () => {
+      frame ||= requestAnimationFrame(measure);
+    };
+
+    const resize = new ResizeObserver(onScroll);
+    resize.observe(scroller);
+    scroller.addEventListener("scroll", onScroll, { passive: true });
+
+    return () => {
+      resize.disconnect();
+      scroller.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  const scrollByPage = (direction: 1 | -1) => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    scroller.scrollBy({ left: direction * scroller.clientWidth * 0.85 });
+  };
+
+  const buttonClassName =
+    "grid size-10 place-items-center rounded-full border border-neutral-300 bg-white text-neutral-900 transition-colors outline-none hover:bg-neutral-100 focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-40 dark:border-neutral-700 dark:bg-neutral-900 dark:text-neutral-100 dark:hover:bg-neutral-800";
+
   return (
-    <Swiper
-      centeredSlides={true}
-      autoplay={{
-        delay: 2500,
-        disableOnInteraction: false,
-      }}
-      pagination={{
-        clickable: true,
-      }}
-      navigation={{
-        enabled: true,
-      }}
-      modules={[Autoplay, Pagination, Navigation]}
-      className={cn("w-full h-full", className)}
-      {...props}
-    >
-      {projects.map((project, index) => (
-        <SwiperSlide key={index}>
-          <div className="flex items-start justify-between gap-4 mb-6">
-            <div className="text-start flex flex-col gap-2">
-              <h1 className="text-lg font-medium">{project.title}</h1>
-              <p className="text-muted max-sm:text-xs">{project.description}</p>
-            </div>
-            <div className="bg-neutral-200/25 dark:bg-neutral-800/25 px-3 py-2 rounded-lg text-sm max-sm:text-xs text-nowrap">
-              {project.status}
-            </div>
-          </div>
-          <Link
-            target="_blank"
-            href={project.link ?? "/"}
-            className="hover:opacity-60 transition ease-in-out w-full h-full max-h-[calc(100vh-200px)] overflow-hidden"
-          >
-            {project.images?.[0] && (
-              <LazyImage
-                src={getImageMediaUrl(project.images[0])}
-                width={1024}
-                height={1024}
-                alt="photo"
-                className="w-full max-h-[calc(100vh-200px)] object-cover object-top rounded-lg"
-                wrapperClassName="w-full sm:min-h-[calc(100vh-200px)]"
-              />
-            )}
-          </Link>
-          <div className="flex items-center justify-between gap-2">
-            <h2 className="font-medium text-sm">
-              Category: {project.category}
-            </h2>
-            <div className="text-sm opacity-60 px-4 py-1.5 rounded-md bg-neutral-100/10 border border-neutral-200/20 my-2">
-              {new Date(project.startedAt ?? "01/01/2024").toLocaleDateString(
-                "en-US",
-                {
-                  year: "numeric",
-                },
-              )}
-            </div>
-          </div>
-          {/* <div className="flex items-center justify-between gap-2">
-              {project.sourceCodeUrl ? (
-                <span>
-                  <span className="text-neutral-900 dark:text-neutral-100">
-                    Source:
-                  </span>
-                  <Link
-                    href={project.sourceCodeUrl}
-                    target="_blank"
-                    className="text-blue-500 hover:underline ml-2"
-                  >
-                    {project.sourceCodeUrl}
-                  </Link>
-                </span>
-              ) : (
-                <p className="text-sm opacity-60">Source: Private</p>
-              )}
-            </div> */}
-        </SwiperSlide>
-      ))}
-    </Swiper>
+    <div className={cn("flex flex-col gap-4", className)}>
+      <ul
+        ref={scrollerRef}
+        aria-label={label}
+        // Focusable so keyboard users can scroll it with the arrow keys.
+        tabIndex={0}
+        className="flex snap-x snap-mandatory scroll-px-4 gap-4 overflow-x-auto overscroll-x-contain scroll-smooth rounded-xl pb-2 outline-none [scrollbar-width:none] focus-visible:ring-[3px] focus-visible:ring-ring/50 sm:gap-6 [&::-webkit-scrollbar]:hidden"
+      >
+        {children}
+      </ul>
+      <div className="flex justify-end gap-2">
+        <button
+          type="button"
+          onClick={() => scrollByPage(-1)}
+          disabled={edges.atStart}
+          aria-label="Previous projects"
+          className={buttonClassName}
+        >
+          <ChevronLeft aria-hidden className="size-5" />
+        </button>
+        <button
+          type="button"
+          onClick={() => scrollByPage(1)}
+          disabled={edges.atEnd}
+          aria-label="Next projects"
+          className={buttonClassName}
+        >
+          <ChevronRight aria-hidden className="size-5" />
+        </button>
+      </div>
+    </div>
   );
 };
 

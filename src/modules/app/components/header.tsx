@@ -1,49 +1,58 @@
-"use client";
-
-import React from "react";
-import { scroll } from "motion";
+import ButtonLink from "@/components/ui/button-link";
+import HeaderShell from "@/modules/app/components/header-shell";
 import NavLink from "@/modules/app/components/nav-link";
-import { headerPrimaryLinks } from "@/modules/app/lib/constants";
 import ResponsiveNav from "@/modules/app/components/responsive-nav";
-import ThemeSwitcher from "@/modules/app/components/dynamic/theme-switcher";
-import { MotionDiv, MotionLi } from "@/components/helpers/blur-lazy-motion";
+import ThemeSwitcher from "@/modules/app/components/theme-switcher";
+import { headerPrimaryLinks } from "@/modules/app/lib/constants";
+import Link from "next/link";
 
-const Header = () => {
-  React.useEffect(() => {
-    const nav = document.querySelector("#desktop-nav");
-    scroll((progress: number) =>
-      progress > 0.04
-        ? nav?.classList.add("-translate-y-[100%]")
-        : nav?.classList.remove("-translate-y-[100%]")
-    );
-  }, []);
+// The wordmark links home, so the desktop bar doesn't repeat "Home".
+const desktopLinks = headerPrimaryLinks.filter((link) => link.href !== "/");
 
-  return (
-    <header className="relative">
-      <nav
-        id="desktop-nav"
-        className="fixed flex items-center justify-center w-full px-8 max-sm:px-4 py-6 dark:bg-neutral-950/85 backdrop-blur-md bg-neutral-100/75 transition-all duration-300 max-lg:hidden z-50"
+/** Server-rendered header; only the interactive pieces are client islands. */
+const Header = () => (
+  <HeaderShell>
+    <a
+      href="#main"
+      className="sr-only focus:not-sr-only focus:absolute focus:top-3 focus:left-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:shadow dark:focus:bg-neutral-900"
+    >
+      Skip to content
+    </a>
+    <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-6 px-4 sm:px-8">
+      <Link
+        href="/"
+        className="shrink-0 text-base font-semibold tracking-tight"
+        aria-label="Oliver Morla, home"
       >
-        <ul className="flex gap-6 items-center justify-center w-full">
-          {headerPrimaryLinks.map((item, idx) => (
-            <MotionLi delay={0.1 * idx} key={idx}>
-              <NavLink
-                href={item.href}
-                dropdownLinks={item.dropdownLinks}
-                className="px-2 py-1 "
-              >
-                {item.title}
-              </NavLink>
-            </MotionLi>
+        Oliver Morla
+      </Link>
+
+      <nav aria-label="Primary" className="max-lg:hidden">
+        <ul className="flex items-center gap-4">
+          {desktopLinks.map((item) => (
+            <li key={item.href}>
+              <NavLink item={item} />
+            </li>
           ))}
         </ul>
-        <MotionDiv delay={0.1 * headerPrimaryLinks.length}>
-          <ThemeSwitcher />
-        </MotionDiv>
       </nav>
-      <ResponsiveNav />
-    </header>
-  );
-};
+
+      <div className="flex items-center gap-2">
+        <ThemeSwitcher className="max-lg:hidden" />
+        <ButtonLink
+          href="/schedule"
+          variant="gradient"
+          fontSize="sm"
+          className="max-lg:hidden"
+        >
+          Book a call
+        </ButtonLink>
+        <div className="lg:hidden">
+          <ResponsiveNav />
+        </div>
+      </div>
+    </div>
+  </HeaderShell>
+);
 
 export default Header;

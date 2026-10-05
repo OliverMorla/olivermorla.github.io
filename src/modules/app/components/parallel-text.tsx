@@ -1,78 +1,97 @@
 "use client";
 
-import { useRef } from "react";
-import {
-  useScroll,
-  useSpring,
-  useTransform,
-  useMotionValue,
-  useVelocity,
-  useAnimationFrame,
-} from "motion/react";
-import * as m from "motion/react-m";
-import { wrap } from "@motionone/utils";
+import { useEffect, useRef, type ReactNode } from "react";
 
-interface ParallaxProps {
-  children: React.ReactNode;
-  baseVelocity: number;
-}
+type ParallaxTextProps = {
+  children: ReactNode;
+  /** Percent of one copy's width travelled per second at rest. */
+  baseVelocity?: number;
+};
 
+// Four copies are rendered, so one copy spans 25% of the track; wrapping the
+// offset across that span makes the loop seamless.
+const COPIES = 4;
+const wrap = (min: number, max: number, value: number) => {
+  const range = max - min;
+  return ((((value - min) % range) + range) % range) + min;
+};
+
+/**
+ * A marquee that speeds up and flips direction with scroll velocity.
+ * Runs a rAF loop only while on screen, writes the transform straight to the
+ * DOM (no React re-renders), and stays still for reduced-motion users.
+ */
 export default function ParallaxText({
   children,
-  baseVelocity = 100,
-}: ParallaxProps) {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400,
-  });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false,
-  });
+  baseVelocity = -2,
+}: ParallaxTextProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
 
-  /**
-   * This is a magic wrapping for the length of the text - you
-   * have to replace for wrapping that works for you or dynamically
-   * calculate
-   */
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
+  useEffect(() => {
+    const container = containerRef.current;
+    const track = trackRef.current;
+    if (!container || !track) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-  const directionFactor = useRef<number>(1);
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
+    let frame = 0;
+    let lastTime = 0;
+    let lastScrollY = window.scrollY;
+    let smoothVelocity = 0;
+    let direction = 1;
+    let offset = 0;
 
-    /**
-     * This is what changes the direction of the scroll once we
-     * switch scrolling directions.
-     */
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
+    const step = (time: number) => {
+      const delta = lastTime ? Math.min(time - lastTime, 64) / 1000 : 0;
+      lastTime = time;
 
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
+      if (delta > 0) {
+        const scrollY = window.scrollY;
+        const velocity = (scrollY - lastScrollY) / delta;
+        lastScrollY = scrollY;
 
-    baseX.set(baseX.get() + moveBy);
-  });
+        // Exponential smoothing stands in for a spring on the raw velocity.
+        smoothVelocity += (velocity - smoothVelocity) * Math.min(1, delta * 10);
+        const factor = smoothVelocity / 200;
+        if (factor < 0) direction = -1;
+        else if (factor > 0) direction = 1;
 
-  /**
-   * The number of times to repeat the child text should be dynamically calculated
-   * based on the size of the text and viewport. Likewise, the x motion value is
-   * currently wrapped between -20 and -45% - this 25% is derived from the fact
-   * we have four children (100% / 4). This would also want deriving from the
-   * dynamically generated number of children.
-   */
+        offset += direction * baseVelocity * delta * (1 + Math.abs(factor));
+        track.style.transform = `translate3d(${wrap(-20, -45, offset)}%, 0, 0)`;
+      }
+
+      frame = requestAnimationFrame(step);
+    };
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !frame) {
+        lastTime = 0;
+        lastScrollY = window.scrollY;
+        frame = requestAnimationFrame(step);
+      } else if (!entry.isIntersecting && frame) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      }
+    });
+    observer.observe(container);
+
+    return () => {
+      observer.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [baseVelocity]);
+
   return (
-    <div className="parallax">
-      <m.div className="scroller" style={{ x }}>
-        <span>{children}</span>
-        <span>{children}</span>
-        <span>{children}</span>
-        <span>{children}</span>
-      </m.div>
+    <div ref={containerRef} className="parallax" aria-hidden>
+      <div
+        ref={trackRef}
+        className="scroller will-change-transform"
+        style={{ transform: "translate3d(-20%, 0, 0)" }}
+      >
+        {Array.from({ length: COPIES }, (_, i) => (
+          <span key={i}>{children}</span>
+        ))}
+      </div>
     </div>
   );
 }

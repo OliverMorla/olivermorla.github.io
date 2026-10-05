@@ -1,15 +1,20 @@
+import "server-only";
+
 import Mailjet from "node-mailjet";
 
-if (!process.env.MAILJET_API_KEY) {
-  throw new Error("Missing ENV: MAILJET_API_KEY");
-}
+let client: Mailjet | undefined;
 
-if (!process.env.MAILJET_SECRET_KEY) {
-  throw new Error("Missing ENV: MAILJET_SECRET_KEY");
-}
+/** Created on first use so a missing key only fails the request that needs it. */
+export const getMailjet = () => {
+  const apiKey = process.env.MAILJET_API_KEY;
+  const apiSecret = process.env.MAILJET_SECRET_KEY;
 
-// Initializing Mailjet client
-export const mailjet = new Mailjet({
-  apiKey: process.env.MAILJET_API_KEY,
-  apiSecret: process.env.MAILJET_SECRET_KEY,
-});
+  if (!apiKey || !apiSecret) {
+    throw new Error(
+      "Missing environment variable: MAILJET_API_KEY or MAILJET_SECRET_KEY",
+    );
+  }
+
+  client ??= new Mailjet({ apiKey, apiSecret });
+  return client;
+};

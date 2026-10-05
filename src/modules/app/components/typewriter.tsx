@@ -1,96 +1,78 @@
 "use client";
 
 import { cn } from "@/utils/classNames";
-import { useEffect, useMemo, useRef, useState, CSSProperties } from "react";
+import { useEffect, useState, type CSSProperties } from "react";
 
-interface TypewriterProps extends React.ComponentPropsWithRef<"span"> {
-  text: string | string[];
+type TypewriterProps = {
+  words: readonly string[];
+  className?: string;
   typeDurationMs?: number;
   eraseDurationMs?: number;
   pauseAfterTypeMs?: number;
-  loop?: boolean;
+  /** Delay before the very first word starts typing. */
   animationDelayMs?: number;
-}
+};
 
+/**
+ * Types and erases each word with CSS steps() animations. JavaScript only
+ * advances the word once per cycle; the first word is in the server HTML.
+ */
 const Typewriter = ({
-  text,
+  words,
+  className,
   typeDurationMs = 2000,
   eraseDurationMs = 2000,
   pauseAfterTypeMs = 2000,
   animationDelayMs = 0,
-  loop = Array.isArray(text),
-  style,
-  className,
-  ...props
 }: TypewriterProps) => {
-  const texts = useMemo(() => (Array.isArray(text) ? text : [text]), [text]);
-  const textsKey = useMemo(() => texts.join("|"), [texts]);
-
   const [index, setIndex] = useState(0);
-  const [key, setKey] = useState(0);
-  const [prevTextsKey, setPrevTextsKey] = useState(textsKey);
-  const timerRef = useRef<number | null>(null);
-
-  if (textsKey !== prevTextsKey) {
-    setPrevTextsKey(textsKey);
-    setIndex(0);
-    setKey((k) => k + 1);
-  }
+  const isFirstCycle = index === 0;
 
   useEffect(() => {
-    if (texts.length <= 1 && !loop) return;
-    if (!loop && index === texts.length - 1) return;
+    if (words.length < 2) return;
 
-    const cycleMs = typeDurationMs + pauseAfterTypeMs + eraseDurationMs;
-    const startDelayThisCycle = index === 0 ? animationDelayMs : 0;
+    const cycleMs =
+      typeDurationMs +
+      pauseAfterTypeMs +
+      eraseDurationMs +
+      (isFirstCycle ? animationDelayMs : 0);
+    const timer = window.setTimeout(
+      () => setIndex((current) => (current + 1) % words.length),
+      cycleMs,
+    );
 
-    timerRef.current = window.setTimeout(() => {
-      setIndex((prev) => {
-        const next = loop
-          ? (prev + 1) % texts.length
-          : Math.min(prev + 1, texts.length - 1);
-        setKey((k) => k + 1);
-        return next;
-      });
-    }, cycleMs + startDelayThisCycle);
-
-    return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
-      }
-    };
+    return () => window.clearTimeout(timer);
   }, [
     index,
-    texts,
-    loop,
+    isFirstCycle,
+    words.length,
     typeDurationMs,
     eraseDurationMs,
     pauseAfterTypeMs,
     animationDelayMs,
   ]);
 
-  const displayText = texts[index];
+  const word = words[index];
 
   return (
-    <div className="typewriter-wrapper leading-0">
+    <span className="typewriter-wrapper leading-none">
       <span
-        {...props}
-        key={key}
+        // A new key restarts the CSS animation for each word.
+        key={index}
         className={cn("typewriter leading-none", className)}
-        aria-live="off"
         style={
           {
-            "--characters": displayText.length,
+            "--characters": word.length,
             "--type-duration": `${typeDurationMs}ms`,
             "--erase-duration": `${eraseDurationMs}ms`,
             "--pause-after-type": `${pauseAfterTypeMs}ms`,
-            "--animation-start-delay": `${index === 0 ? animationDelayMs : 0}ms`,
+            "--animation-start-delay": `${isFirstCycle ? animationDelayMs : 0}ms`,
           } as CSSProperties
         }
       >
-        {displayText}
+        {word}
       </span>
-    </div>
+    </span>
   );
 };
 

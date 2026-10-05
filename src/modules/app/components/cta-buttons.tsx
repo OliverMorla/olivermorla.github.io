@@ -1,27 +1,26 @@
-import { ComponentProps } from "react";
-import { cn } from "@/utils/classNames";
 import ButtonLink from "@/components/ui/button-link";
-import { FontAwesomeIcon as Icon } from "@fortawesome/react-fontawesome";
-import { faArrowRight, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { cn } from "@/utils/classNames";
+import { Send } from "lucide-react";
+import type { ComponentProps } from "react";
 
 export type CTAButtonsProps = ComponentProps<"div">;
 
-const CTAButtons = ({ className, ...props }: CTAButtonsProps) => {
-  return (
-    <div
-      className={cn("flex items-center gap-6 max-sm:flex-col", className)}
-      {...props}
-    >
-      <ButtonLink href="/schedule" variant="gradient" className="w-full">
-        Book a 15-min Call
-        <Icon icon={faPaperPlane} width={16} height={16} size="xs" />
-      </ButtonLink>
-      <ButtonLink href="/#contact" className="w-full">
-        Get Started
-        {/* <Icon icon={faArrowRight} width={16} height={16} size="xs" /> */}
-      </ButtonLink>
-    </div>
-  );
-};
+const CTAButtons = ({ className, ...props }: CTAButtonsProps) => (
+  <div
+    className={cn(
+      "flex w-full flex-col items-stretch gap-3 sm:flex-row sm:items-center",
+      className,
+    )}
+    {...props}
+  >
+    <ButtonLink href="/schedule" variant="gradient" className="w-full">
+      Book a 15-min call
+      <Send aria-hidden className="size-4" />
+    </ButtonLink>
+    <ButtonLink href="/#contact" className="w-full">
+      Get started
+    </ButtonLink>
+  </div>
+);
 
 export default CTAButtons;

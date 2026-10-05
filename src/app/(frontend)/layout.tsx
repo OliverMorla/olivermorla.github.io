@@ -1,111 +1,102 @@
+import { inter } from "@/lib/fonts";
 import Footer from "@/modules/app/components/footer";
 import Header from "@/modules/app/components/header";
-import MotionProvider from "@/providers/motion-provider";
 import { PHProvider } from "@/providers/posthog-provider";
-import QueryProvider from "@/providers/query-provider";
 import ThemeProvider from "@/providers/theme-provider";
-import { cn } from "@/utils/classNames";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import { Toaster as ToasterProvider } from "sonner";
+import type { Metadata, Viewport } from "next";
 import "./global.css";
 
+const siteUrl = "https://www.olivermorla.com";
+const title = "Oliver Morla | Senior Full Stack Developer";
+const description =
+  "Senior full-stack developer in New York building fast, scalable web and mobile apps for startups and small businesses.";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
-    default: "Oliver Morla | Senior Full Stack Developer",
+    default: title,
     template: "%s | Oliver Morla",
   },
-  abstract:
-    "Empowering your business with reliable, scalable digital solutions",
-  description:
-    "Experienced full stack developer specializing in building scalable and efficient web applications. Skilled in both front-end and back-end technologies, delivering optimized solutions for modern digital needs.",
-  creator: "OliverMorla",
-  applicationName: "Oliver Morla | Senior Full Stack Developer",
-  authors: [{ name: "OliverMorla", url: "https://github.com/OliverMorla" }],
-  keywords: ["Next.js", "React", "Tailwind CSS"],
+  description,
+  applicationName: "Oliver Morla",
+  authors: [{ name: "Oliver Morla", url: "https://github.com/OliverMorla" }],
+  creator: "Oliver Morla",
+  publisher: "Oliver Morla",
+  keywords: [
+    "Oliver Morla",
+    "full-stack developer",
+    "Next.js developer",
+    "React developer",
+    "freelance web developer New York",
+  ],
   category: "technology",
-  generator: "Next.js",
-  metadataBase: new URL("https://www.olivermorla.com"),
-  publisher: "OliverMorla",
-  bookmarks: "https://www.olivermorla.com",
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "Oliver Morla | Senior Full Stack Developer",
-    description:
-      "Experienced full stack developer specializing in building scalable and efficient web applications. Skilled in both front-end and back-end technologies, delivering optimized solutions for modern digital needs.",
-    url: "https://www.olivermorla.com",
-    siteName: "Oliver Morla | Senior Full Stack Developer",
+    type: "website",
+    url: siteUrl,
+    siteName: "Oliver Morla",
+    title,
+    description,
+    locale: "en_US",
     images: [
       {
         url: "/assets/media/og_2.webp",
         width: 1200,
         height: 630,
-        alt: "Oliver Morla | Senior Full Stack Developer",
+        alt: title,
       },
     ],
-    type: "website",
-    phoneNumbers: ["+3473020492"],
-    emails: ["no-reply@olivermorla.com"],
-    locale: "en_US",
-    countryName: "United States",
-    faxNumbers: ["+3473020492"],
-    alternateLocale: ["en_ES", "en_US"],
   },
-  icons: {
-    icon: "/assets/favicon.ico",
-    apple: "/assets/apple-icon.png",
-    shortcut: "/assets/shortcut-icon.png",
-    other: {
-      rel: "icon",
-      url: "/assets/favicon.ico",
-    },
-  },
-
   twitter: {
-    title: "Oliver Morla | Senior Full Stack Developer",
-    description:
-      "Experienced full stack developer specializing in building scalable and efficient web applications. Skilled in both front-end and back-end technologies, delivering optimized solutions for modern digital needs.",
-    images: "/assets/media/og_2.webp",
     card: "summary_large_image",
+    title,
+    description,
+    images: "/assets/media/og_2.webp",
     creator: "@OliverMorlaX",
     site: "@OliverMorlaX",
   },
+  icons: {
+    icon: [
+      { url: "/assets/favicon.ico", sizes: "any" },
+      { url: "/assets/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+    ],
+    apple: "/assets/apple-touch-icon.png",
+  },
 };
-
-const inter = Inter({
-  variable: "--font-inter",
-  subsets: ["latin"],
-  fallback: ["sans-serif"],
-  preload: true,
-});
-
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
-  return (
-    <html lang="en-US">
-      <body className={cn(inter.variable, "antialiased bg-gradient-none")}>
-        <QueryProvider>
-          <MotionProvider>
-            <ThemeProvider>
-              <PHProvider>
-                <Header />
-                {children}
-                <Footer />
-              </PHProvider>
-            </ThemeProvider>
-          </MotionProvider>
-        </QueryProvider>
-        <ToasterProvider position="bottom-right" duration={3000} richColors />
-      </body>
-      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID!} />
-    </html>
-  );
-}
 
 export const viewport: Viewport = {
   width: "device-width",
   viewportFit: "cover",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
 };
+
+const gaId = process.env.NEXT_PUBLIC_GOOGLE_MEASUREMENT_ID;
+
+export default function RootLayout({ children }: LayoutProps<"/">) {
+  return (
+    // next-themes sets the theme class on <html> before hydration.
+    <html
+      lang="en-US"
+      className={inter.variable}
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
+      <body className="font-sans antialiased">
+        <ThemeProvider>
+          <PHProvider>
+            <Header />
+            <main id="main" tabIndex={-1} className="outline-none">
+              {children}
+            </main>
+            <Footer />
+          </PHProvider>
+        </ThemeProvider>
+      </body>
+      {gaId && <GoogleAnalytics gaId={gaId} />}
+    </html>
+  );
+}

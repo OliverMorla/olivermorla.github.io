@@ -1,23 +1,44 @@
 import { withPayload } from "@payloadcms/next/withPayload";
-import {withSentryConfig} from "@sentry/nextjs";
+import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 
-const posthogHost = process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
-const posthogAssetHost = posthogHost.replace("us.i.posthog.com", "us-assets.i.posthog.com").replace("eu.i.posthog.com", "eu-assets.i.posthog.com");
+const posthogHost =
+  process.env.NEXT_PUBLIC_POSTHOG_HOST || "https://us.i.posthog.com";
+const posthogAssetHost = posthogHost
+  .replace("us.i.posthog.com", "us-assets.i.posthog.com")
+  .replace("eu.i.posthog.com", "eu-assets.i.posthog.com");
+
+const securityHeaders = [
+  { key: "X-Content-Type-Options", value: "nosniff" },
+  { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+  // SAMEORIGIN keeps Payload's live preview (which frames the site) working.
+  { key: "X-Frame-Options", value: "SAMEORIGIN" },
+  {
+    key: "Permissions-Policy",
+    value: "camera=(), microphone=(), geolocation=(), browsing-topics=()",
+  },
+];
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  reactCompiler: true,
+  poweredByHeader: false,
+  compiler: {
+    // Strips the Sentry SDK's internal debug logging from bundles. Sentry's
+    // own `disableLogger` option only applies to webpack builds.
+    define: { __SENTRY_DEBUG__: false },
+  },
+  experimental: {
+    // Branded 404 for unmatched URLs across the app's multiple root layouts
+    // (see src/app/global-not-found.tsx).
+    globalNotFound: true,
+  },
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "ihcntrkzhwqeiajreqfp.supabase.co",
-      }
+      },
     ],
-    // Payload's S3 storage adapter proxies uploads through /api/<collection>/file/<name>
-    // with a ?prefix=... query string; Next 16 requires local image query strings to be
-    // explicitly allow-listed here. Defining localPatterns also blocks every other local
-    // path, so static files under public/assets must be listed too.
     localPatterns: [
       {
         pathname: "/api/*/file/**",
@@ -28,17 +49,15 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  serverExternalPackages: ["sharp"],
-  experimental: {
-    optimizePackageImports: [
-      "@fortawesome/react-fontawesome",
-      "@fortawesome/free-solid-svg-icons",
-      "@fortawesome/free-brands-svg-icons",
-      "@fortawesome/free-regular-svg-icons",
-    ],
+  async headers() {
+    return [{ source: "/:path*", headers: securityHeaders }];
   },
-  // Reverse-proxy PostHog through /ingest so tracking blockers don't intercept it.
-  // https://posthog.com/docs/advanced/proxy/nextjs
+  // The /preview/orbit redesign became the home page.
+  async redirects() {
+    return [{ source: "/preview/orbit", destination: "/", permanent: true }];
+  },
+  // PostHog reverse proxy (https://posthog.com/docs/advanced/proxy/nextjs).
+  // The asset routes must come before the catch-all: rewrites run in order.
   async rewrites() {
     return [
       {
@@ -46,43 +65,24 @@ const nextConfig: NextConfig = {
         destination: `${posthogAssetHost}/static/:path*`,
       },
       {
+        source: "/ingest/array/:path*",
+        destination: `${posthogAssetHost}/array/:path*`,
+      },
+      {
         source: "/ingest/:path*",
         destination: `${posthogHost}/:path*`,
       },
     ];
   },
+  // Required by the PostHog reverse proxy above.
   skipTrailingSlashRedirect: true,
 };
 
-export default withPayload(withSentryConfig(nextConfig, {
-  // For all available options, see:
-  // https://www.npmjs.com/package/@sentry/webpack-plugin#options
-
-  org: "oliver-morla",
-
-  project: "portfolio-nextjs",
-
-  // Only print logs for uploading source maps in CI
-  silent: !process.env.CI,
-
-  // For all available options, see:
-  // https://docs.sentry.io/platforms/javascript/guides/nextjs/manual-setup/
-
-  // Upload a larger set of source maps for prettier stack traces (increases build time)
-  widenClientFileUpload: true,
-
-  // Uncomment to route browser requests to Sentry through a Next.js rewrite to circumvent ad-blockers.
-  // This can increase your server load as well as your hosting bill.
-  // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
-  // side errors will fail.
-  // tunnelRoute: "/monitoring",
-
-  // Automatically tree-shake Sentry logger statements to reduce bundle size
-  disableLogger: true,
-
-  // Enables automatic instrumentation of Vercel Cron Monitors. (Does not yet work with App Router route handlers.)
-  // See the following for more information:
-  // https://docs.sentry.io/product/crons/
-  // https://vercel.com/docs/cron-jobs
-  automaticVercelMonitors: true
-}));
+export default withPayload(
+  withSentryConfig(nextConfig, {
+    org: "oliver-morla",
+    project: "portfolio-nextjs",
+    silent: !process.env.CI,
+    widenClientFileUpload: true,
+  }),
+);

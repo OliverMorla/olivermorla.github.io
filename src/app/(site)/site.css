@@ -1,0 +1,995 @@
+/* Scoped to this preview: only scan its own folder for utilities. */
+@import "tailwindcss" source(none);
+@source "./";
+
+@theme {
+  /* Midnight is the navy of the blazer in the portrait; ice is the light
+     that catches it. The work screenshots supply every other colour. */
+  --color-night: #0a1630;
+  --color-night-2: #13254a;
+  --color-ice: #c9d8ff;
+  --color-ice-soft: #93a7d3;
+  /* Always white: text and buttons on the midnight panels. */
+  --color-paper: #ffffff;
+  /* The rest flip with the theme (see .dark below). */
+  --color-page: #ffffff;
+  --color-mist: #eef2f8;
+  --color-ink: #0a1630;
+  --color-slate: #5a667d;
+  --color-line: #dfe5ef;
+  --color-ghost: #c3cbd9;
+
+  --font-display: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Class-based dark mode, toggled by next-themes on <html> like the live
+   site. The live hero's dark: classes and custom utilities below come from
+   the live site's global.css. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@utility text-muted {
+  @apply text-neutral-500/75 dark:text-neutral-400/75;
+}
+
+@utility text-gradient-normal {
+  @apply bg-gradient-to-r from-indigo-400 to-violet-400 bg-clip-text text-transparent;
+}
+
+@utility bg-gradient-none-inverted {
+  @apply bg-gradient-to-b from-neutral-50 to-white dark:from-neutral-950 dark:to-black;
+}
+
+/* `container` compiles to literal rem widths, which the scoped values in
+   `.live-hero` can't reach; these are the live site's, at its 15px root.
+   Unlayered so they beat the utility. */
+@media (min-width: 40rem) {
+  .live-hero .container {
+    max-width: 600px;
+  }
+}
+@media (min-width: 48rem) {
+  .live-hero .container {
+    max-width: 720px;
+  }
+}
+@media (min-width: 64rem) {
+  .live-hero .container {
+    max-width: 960px;
+  }
+}
+@media (min-width: 80rem) {
+  .live-hero .container {
+    max-width: 1200px;
+  }
+}
+@media (min-width: 96rem) {
+  .live-hero .container {
+    max-width: 1440px;
+  }
+}
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  /* Shared by the intro overlay and the hero panel so the two line up. */
+  --gutter: 0.75rem;
+  --panel-radius: 1.5rem;
+  /* When the intro sheet starts clearing; the nav and hero arrive then. */
+  --handoff: 1750ms;
+}
+
+@media (min-width: 768px) {
+  html {
+    --gutter: 1rem;
+    --panel-radius: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Dark mode: the page continues the live hero's black, and surfaces pick
+   up a hint of the midnight blue. The midnight panels stay as they are. */
+.dark {
+  color-scheme: dark;
+  --color-page: #000000;
+  --color-mist: #11141b;
+  --color-ink: #eef1f6;
+  --color-slate: #9aa3b2;
+  --color-line: #232935;
+  --color-ghost: #3a4252;
+}
+
+body {
+  background: var(--color-page);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* The longhand, so utilities like truncate keep control of wrapping. */
+p {
+  text-wrap-style: pretty;
+}
+
+::selection {
+  background: var(--color-ice);
+  color: var(--color-night);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+.on-night :focus-visible {
+  outline-color: var(--color-ice);
+}
+
+/* ---------- Type ---------- */
+
+@utility type-display {
+  font-family: var(--font-display);
+  font-weight: 650;
+  /* Height-capped too, so four lines still clear the nav on short laptops. */
+  font-size: clamp(2.625rem, min(1.35rem + 4.3vw, 9.4svh), 5.25rem);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+}
+
+@utility type-h2 {
+  font-family: var(--font-display);
+  font-weight: 650;
+  font-size: clamp(2.125rem, 1.45rem + 2.4vw, 3.5rem);
+  line-height: 1.04;
+  letter-spacing: -0.032em;
+}
+
+@utility type-h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.2;
+  letter-spacing: -0.018em;
+}
+
+@utility type-statement {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(1.875rem, 1.05rem + 2.75vw, 3.375rem);
+  line-height: 1.12;
+  letter-spacing: -0.028em;
+}
+
+@utility type-lede {
+  font-size: 1.1875rem;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 78rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2.5rem);
+}
+
+@utility panel {
+  margin: var(--gutter);
+  border-radius: var(--panel-radius);
+}
+
+/* ---------- Buttons ---------- */
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms ease,
+    color 200ms ease,
+    box-shadow 200ms ease;
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Custom classes sit in the components layer so utilities can override them. */
+@layer components {
+  /* ---------- Liquid glass ----------
+   A translucent fill, a blurred backdrop, and a rim that catches light on
+   two opposite corners the way a curved edge does. Only used for chrome
+   that floats over content: the nav, hero chips and the hero client band. */
+
+  /* Unprefixed only; the build adds -webkit- for Safari. Writing both lets
+     the optimizer collapse them to the prefixed one, which Chrome ignores. */
+  .glass {
+    position: relative;
+    isolation: isolate;
+    backdrop-filter: blur(18px) saturate(170%);
+  }
+
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.55),
+      rgb(255 255 255 / 0.08) 35%,
+      rgb(255 255 255 / 0.04) 65%,
+      rgb(255 255 255 / 0.32)
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+
+  .glass-night {
+    background: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.13),
+      rgb(255 255 255 / 0.05)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.18),
+      0 10px 30px -12px rgb(2 6 20 / 0.6);
+  }
+
+  .glass-day {
+    background: rgb(255 255 255 / 0.74);
+    box-shadow:
+      inset 0 0 0 1px rgb(10 22 48 / 0.07),
+      0 12px 32px -14px rgb(10 22 48 / 0.28);
+  }
+
+  .glass-day::before {
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 1),
+      rgb(255 255 255 / 0.2) 40%,
+      rgb(255 255 255 / 0) 60%,
+      rgb(255 255 255 / 0.7)
+    );
+  }
+
+  .dark .glass-day {
+    background: rgb(17 20 27 / 0.72);
+    box-shadow:
+      inset 0 0 0 1px rgb(255 255 255 / 0.06),
+      0 12px 32px -14px rgb(0 0 0 / 0.6);
+  }
+
+  .dark .glass-day::before {
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.28),
+      rgb(255 255 255 / 0.04) 40%,
+      rgb(255 255 255 / 0) 60%,
+      rgb(255 255 255 / 0.14)
+    );
+  }
+
+  /* ---------- Liquid glass (nav and theme toggle) ----------
+     iOS 26-style: mostly clear, lightly blurred, with a bright specular rim
+     and a soft inner sheen. Where the browser can (see useLiquidLens), the
+     backdrop also bends at the edges like a thick lens. */
+
+  /* Enough blur that text underneath (a screenshot's own menu, say) never
+     competes with the nav's labels. */
+  .liquid {
+    backdrop-filter: blur(16px) saturate(180%) brightness(1.04);
+  }
+
+  .liquid[data-lens] {
+    backdrop-filter: var(--lens) blur(14px) saturate(180%) brightness(1.04);
+  }
+
+  /* Sheen: light pooling along the top edge of the glass. */
+  .liquid::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      120% 90% at 30% -20%,
+      rgb(255 255 255 / 0.22),
+      rgb(255 255 255 / 0) 55%
+    );
+    pointer-events: none;
+  }
+
+  .liquid-night {
+    background: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.1),
+      rgb(255 255 255 / 0.03)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.32),
+      inset 0 -1px 0 rgb(255 255 255 / 0.06),
+      inset 0 0 16px rgb(255 255 255 / 0.05),
+      0 12px 32px -14px rgb(0 0 0 / 0.7);
+  }
+
+  .liquid-day {
+    background: linear-gradient(
+      180deg,
+      rgb(255 255 255 / 0.62),
+      rgb(255 255 255 / 0.42)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.95),
+      inset 0 0 0 1px rgb(10 22 48 / 0.06),
+      inset 0 -10px 18px -14px rgb(10 22 48 / 0.14),
+      0 14px 34px -16px rgb(10 22 48 / 0.32);
+  }
+
+  .liquid-day::before {
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 1),
+      rgb(255 255 255 / 0.25) 35%,
+      rgb(255 255 255 / 0) 60%,
+      rgb(255 255 255 / 0.75)
+    );
+  }
+
+  .dark .liquid-day {
+    background: linear-gradient(
+      180deg,
+      rgb(40 44 54 / 0.52),
+      rgb(16 18 24 / 0.44)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.2),
+      inset 0 0 0 1px rgb(255 255 255 / 0.05),
+      inset 0 0 16px rgb(255 255 255 / 0.04),
+      0 14px 34px -16px rgb(0 0 0 / 0.75);
+  }
+
+  .dark .liquid-day::before {
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.4),
+      rgb(255 255 255 / 0.06) 35%,
+      rgb(255 255 255 / 0) 60%,
+      rgb(255 255 255 / 0.18)
+    );
+  }
+
+  .dark .liquid-day::after,
+  .liquid-night::after {
+    opacity: 0.6;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .glass {
+      backdrop-filter: none;
+    }
+    .glass-night {
+      background: var(--color-night-2);
+    }
+    .glass-day {
+      background: var(--color-page);
+    }
+    .liquid {
+      backdrop-filter: none;
+    }
+    .liquid-night {
+      background: var(--color-night-2);
+    }
+    .liquid-day {
+      background: var(--color-page);
+    }
+  }
+
+  /* ---------- Intro ----------
+   A full-screen sheet in the hero's own background: the portrait, name and
+   slogan arrive one after another, hold, lift away, and the sheet dissolves
+   into the hero. Pure CSS, so it plays before hydration and never blocks
+   input. --handoff (on html) is when the sheet starts clearing; the hero's
+   entrance waits for it (see introHoldMs in live-hero/motion.tsx). */
+
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    display: grid;
+    place-items: center;
+    /* The top of the live hero's gradient: neutral-50, or neutral-950. */
+    background: oklch(0.985 0 0);
+    color: var(--color-ink);
+    pointer-events: none;
+    animation: intro-out 450ms ease var(--handoff) forwards;
+  }
+
+  .dark .intro {
+    background: oklch(0.145 0 0);
+  }
+
+  .intro-portrait,
+  .intro-name,
+  .intro-slogan {
+    display: block;
+    animation:
+      intro-in 900ms var(--ease-out) var(--in) both,
+      intro-leave 420ms var(--ease-in-out) calc(var(--handoff) - var(--lead))
+        forwards;
+  }
+
+  .intro-portrait {
+    --in: 60ms;
+    --lead: 320ms;
+  }
+
+  .intro-name {
+    --in: 260ms;
+    --lead: 280ms;
+  }
+
+  .intro-slogan {
+    --in: 440ms;
+    --lead: 240ms;
+  }
+
+  @keyframes intro-in {
+    from {
+      opacity: 0;
+      transform: translateY(14px) scale(0.98);
+      filter: blur(8px);
+    }
+  }
+
+  @keyframes intro-leave {
+    to {
+      opacity: 0;
+      transform: translateY(-12px);
+      filter: blur(6px);
+    }
+  }
+
+  @keyframes intro-out {
+    to {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  /* ---------- Live hero ----------
+     The live site sets a 15px root font size, so its rem-based utilities
+     render smaller than this page's. These scoped values put every size
+     back to what olivermorla.com shows. The font is Inter like the rest of
+     the page (the live site loads Inter but never applies it). */
+
+  .live-hero {
+    --spacing: 3.75px;
+    --text-xs: 11.25px;
+    --text-sm: 13.125px;
+    --text-base: 15px;
+    --text-lg: 16.875px;
+    --text-xl: 18.75px;
+    --text-2xl: 22.5px;
+    --text-4xl: 33.75px;
+    --container-sm: 360px;
+    --container-md: 420px;
+    --container-2xl: 630px;
+    --radius-md: 5.625px;
+
+    font-family: var(--font-sans);
+    font-size: 15px;
+    line-height: 1.5;
+    /* text-neutral-800 dark:text-neutral-100 */
+    color: oklch(0.269 0 0);
+    text-rendering: optimizeSpeed;
+  }
+
+  .dark .live-hero {
+    color: oklch(0.97 0 0);
+  }
+
+  .parallax {
+    overflow: hidden;
+    letter-spacing: -2px;
+    line-height: 0.8;
+    margin: 0;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .parallax .scroller {
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 72px;
+    display: flex;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+  }
+
+  .parallax span {
+    display: block;
+    margin-right: 30px;
+    transition: all 0.5s ease-in-out;
+  }
+
+  /* Top-aligned so the clipped (overflow: hidden) text shares the line's
+     box, and with it the baseline; a clipped inline-block otherwise sits
+     on its bottom edge and rides high. */
+  .typewriter-wrapper {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .typewriter {
+    display: inline-block;
+    /* A system monospace (SF Mono, Consolas…); bare `monospace` is Courier
+       on a Mac. Even widths keep the 1ch-per-letter typing exact. */
+    font-family:
+      ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+      monospace;
+    letter-spacing: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    will-change: width;
+    /* Types once and stays; re-key the element to type something new. */
+    animation: typing-in var(--type-duration, 1s) steps(var(--characters), end)
+      var(--animation-start-delay, 0s) both;
+  }
+
+  /* Cursor */
+  .typewriter-wrapper::after {
+    content: "";
+    position: absolute;
+    right: -3px;
+    top: calc((1lh - 1.15em) / 2);
+    height: 1.15em;
+    width: 2px;
+    background-color: currentColor;
+    animation: cursor-blink 0.7s steps(2) infinite;
+  }
+
+  @keyframes typing-in {
+    from {
+      width: 0;
+    }
+    to {
+      width: calc(var(--characters) * 1ch);
+    }
+  }
+
+  /* ---------- Mobile menu ----------
+     A full-screen sheet that grows as a circle from the menu button
+     (--mx/--my, radius --mr, set by Nav) and shrinks back into it. Links
+     blur in one after another once it's opening, quickly out on close. */
+
+  .menu-sheet {
+    clip-path: circle(0px at var(--mx) var(--my));
+    visibility: hidden;
+    transition:
+      clip-path 480ms var(--ease-in-out),
+      visibility 0s linear 480ms;
+  }
+
+  .menu-sheet[data-open="true"] {
+    clip-path: circle(var(--mr) at var(--mx) var(--my));
+    visibility: visible;
+    transition:
+      clip-path 650ms var(--ease-out),
+      visibility 0s;
+  }
+
+  .menu-link {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(8px);
+    transition:
+      opacity 200ms ease,
+      transform 200ms ease,
+      filter 200ms ease;
+  }
+
+  .menu-sheet[data-open="true"] .menu-link {
+    opacity: 1;
+    transform: none;
+    filter: blur(0);
+    transition:
+      opacity 600ms var(--ease-out),
+      transform 600ms var(--ease-out),
+      filter 600ms var(--ease-out);
+    transition-delay: calc(160ms + var(--i) * 55ms);
+  }
+
+  /* ---------- Back to top ---------- */
+
+  .back-to-top {
+    opacity: 0;
+    transform: translateY(12px) scale(0.9);
+    transition:
+      opacity 250ms ease,
+      transform 350ms var(--ease-out);
+  }
+
+  .back-to-top[data-shown="true"] {
+    opacity: 1;
+    transform: none;
+  }
+
+  html[data-menu-open] .back-to-top {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* The terminal's result line, once the command has typed. */
+  .terminal-out {
+    animation: terminal-out 500ms var(--ease-out) both;
+  }
+
+  @keyframes terminal-out {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+      filter: blur(6px);
+    }
+  }
+
+  @keyframes cursor-blink {
+    from,
+    to {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .image-morph {
+    overflow: hidden;
+    perspective: 1000px;
+    animation: smooth-morph 20s infinite;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-morph img {
+    transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .image-morph:hover {
+    animation-play-state: paused;
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
+
+  @keyframes smooth-morph {
+    0% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: rotate(0deg) scale(1);
+    }
+    20% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      transform: rotate(-3deg) scale(1.02);
+    }
+    40% {
+      border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
+      transform: rotate(3deg) scale(1.01);
+    }
+    60% {
+      border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+      transform: rotate(-2deg) scale(1.03);
+    }
+    80% {
+      border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+      transform: rotate(2deg) scale(1.02);
+    }
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: rotate(0deg) scale(1);
+    }
+  }
+
+  /* ---------- Hero entrance ----------
+   Starts while the intro is still settling so the two read as one move. */
+
+  /* Backwards fill only: a filling filter (even blur(0)) would make the
+     element a backdrop root and cut the nav's glass off from the page. */
+  .hero-in {
+    animation: hero-in 1000ms var(--ease-out) backwards;
+    animation-delay: calc(var(--handoff) + var(--d, 0ms));
+  }
+
+  .line-mask {
+    display: block;
+    overflow: clip;
+    /* Room for descenders inside the clip. */
+    padding-bottom: 0.08em;
+    margin-bottom: -0.08em;
+  }
+
+  .line-mask > span {
+    display: block;
+    animation: line-up 1000ms var(--ease-out) both;
+    animation-delay: calc(var(--handoff) + var(--d, 0ms));
+  }
+
+  .portrait-in {
+    animation: portrait-in 1400ms var(--ease-out) both;
+    animation-delay: calc(var(--handoff) - 100ms + var(--d, 0ms));
+  }
+
+  .globe-in {
+    animation: globe-in 1800ms var(--ease-out) both;
+    animation-delay: calc(var(--handoff) - 150ms + var(--d, 0ms));
+  }
+
+  /* The cutout's jacket runs to the photo's edges; dissolve those edges into
+   the panel so the shoulders don't end in a hard vertical line. */
+  .portrait-fade {
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 22%,
+      #000 78%,
+      transparent
+    );
+  }
+
+  @media (min-width: 1024px) {
+    .portrait-fade {
+      mask-image: linear-gradient(to right, transparent, #000 26%);
+    }
+  }
+
+  @keyframes hero-in {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(10px);
+    }
+  }
+
+  @keyframes line-up {
+    from {
+      transform: translateY(105%);
+    }
+  }
+
+  @keyframes portrait-in {
+    from {
+      opacity: 0;
+      transform: translateY(5%) scale(1.03);
+    }
+  }
+
+  @keyframes globe-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9) rotate(-6deg);
+    }
+  }
+
+  /* "You are here": a ring that keeps leaving the New York marker. */
+  .nyc-pulse {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0.75rem;
+    height: 0.75rem;
+    translate: -50% -50%;
+    border-radius: 999px;
+    box-shadow: 0 0 0 1px rgb(201 216 255 / 0.8);
+    animation: nyc-pulse 2.6s var(--ease-out) infinite;
+  }
+
+  @keyframes nyc-pulse {
+    from {
+      transform: scale(0.6);
+      opacity: 1;
+    }
+    to {
+      transform: scale(2.6);
+      opacity: 0;
+    }
+  }
+
+  /* ---------- Marquees ---------- */
+
+  .marquee {
+    overflow: clip;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 8%,
+      #000 92%,
+      transparent
+    );
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-x var(--duration, 60s) linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-x {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-y {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  /* ---------- Work wall ----------
+   Columns of screenshots on a plane tipped back in space, drifting in
+   alternate directions. */
+
+  .wall {
+    perspective: 1600px;
+    mask-image:
+      linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent),
+      linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-composite: intersect;
+  }
+
+  .wall-plane {
+    transform: rotateX(38deg) rotateZ(-22deg) scale(1.15);
+    transform-origin: 50% 40%;
+  }
+
+  .wall-col {
+    animation: marquee-y var(--duration, 70s) linear infinite;
+  }
+
+  .wall-col[data-reverse="true"] {
+    animation-direction: reverse;
+  }
+
+  .wall:hover .wall-col {
+    animation-play-state: paused;
+  }
+
+  /* ---------- Testimonials ----------
+   The reel's first card lines up with the page's content edge (the `wrap`
+   utility's padding, past its max width), and so does the last one when
+   the track runs out. */
+
+  .reel {
+    --reel-pad: max(
+      clamp(1.25rem, 4vw, 2.5rem),
+      calc((100% - 78rem) / 2 + clamp(1.25rem, 4vw, 2.5rem))
+    );
+    scroll-padding-inline: var(--reel-pad);
+    scrollbar-width: none;
+  }
+
+  .reel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .reel-track {
+    padding-inline: var(--reel-pad);
+  }
+
+  /* ---------- Process ---------- */
+
+  .track-fill {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1400ms var(--ease-in-out) 150ms;
+  }
+
+  @media (min-width: 768px) {
+    .track-fill {
+      transform: scaleX(0);
+      transform-origin: left;
+    }
+  }
+
+  [data-inview="true"] .track-fill {
+    transform: none;
+  }
+
+  .step-dot {
+    transform: scale(0.4);
+    opacity: 0;
+    transition:
+      transform 500ms var(--ease-out),
+      opacity 300ms ease;
+    transition-delay: calc(250ms + var(--i) * 330ms);
+  }
+
+  [data-inview="true"] .step-dot {
+    transform: none;
+    opacity: 1;
+  }
+
+  /* ---------- Reduced motion ---------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .intro {
+      display: none;
+    }
+
+    .hero-in,
+    .line-mask > span,
+    .portrait-in,
+    .globe-in {
+      animation: none;
+    }
+
+    .marquee-track,
+    .wall-col {
+      animation: none;
+    }
+
+    .track-fill,
+    .step-dot {
+      transition: none;
+    }
+
+    .typewriter {
+      animation: none;
+      width: auto;
+    }
+
+    .typewriter-wrapper::after {
+      animation: none;
+      opacity: 1;
+    }
+
+    .terminal-out {
+      animation: none;
+    }
+
+    .menu-sheet,
+    .menu-sheet[data-open="true"],
+    .menu-link,
+    .menu-sheet[data-open="true"] .menu-link,
+    .back-to-top {
+      transition: none;
+    }
+
+    .menu-link {
+      transform: none;
+      filter: none;
+    }
+
+    /* Motion writes opacity inline; this wins so the sentence reads in full. */
+    .statement-word {
+      opacity: 1 !important;
+    }
+  }
+}

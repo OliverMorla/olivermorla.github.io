@@ -1,76 +1,14 @@
 "use client";
 
-import dynamic from "next/dynamic";
-import { usePathname, useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
-import type { PostHog } from "posthog-js";
+import posthog from "posthog-js";
+import { PostHogProvider } from "posthog-js/react";
 
-// Deferred so the posthog-js client (and posthog-js/react) don't ship in the
-// bundle needed for hydration — they load after the page is interactive.
-const PostHogReactProvider = dynamic(
-  () => import("posthog-js/react").then((mod) => mod.PostHogProvider),
-  { ssr: false },
-);
-
-// posthog-js's `capture_pageview: "history_change"` patches
-// window.history.pushState, but Next's App Router calls its own cached
-// reference to the native pushState, so the patch never fires — capture
-// pageviews manually from the router's own pathname/search state instead.
-function PostHogPageView({ client }: { client: PostHog }) {
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    if (!pathname) {
-      return;
-    }
-
-    const search = searchParams.toString();
-    const url = search
-      ? `${window.origin}${pathname}?${search}`
-      : `${window.origin}${pathname}`;
-
-    client.capture("$pageview", { $current_url: url });
-  }, [pathname, searchParams, client]);
-
-  return null;
-}
-
+/**
+ * Exposes the PostHog client to `usePostHog()` and friends. It's initialized
+ * in src/instrumentation-client.ts (before hydration), which also handles
+ * pageviews, so this only provides context. Without a key PostHog is never
+ * initialized and calls through it do nothing.
+ */
 export function PHProvider({ children }: { children: React.ReactNode }) {
-  const [client, setClient] = useState<PostHog | null>(null);
-
-  useEffect(() => {
-    let cancelled = false;
-
-    import("posthog-js").then(({ default: posthog }) => {
-      if (cancelled) {
-        return;
-      }
-
-      posthog.init(process.env.NEXT_PUBLIC_POSTHOG_KEY!, {
-        api_host: "/ingest",
-        ui_host: process.env.NEXT_PUBLIC_POSTHOG_HOST,
-        capture_pageview: false, // captured manually via PostHogPageView below
-      });
-
-      setClient(posthog);
-    });
-
-    return () => {
-      cancelled = true;
-    };
-  }, []);
-
-  if (!client) {
-    return <>{children}</>;
-  }
-
-  return (
-    <PostHogReactProvider client={client}>
-      <Suspense fallback={null}>
-        <PostHogPageView client={client} />
-      </Suspense>
-      {children}
-    </PostHogReactProvider>
-  );
+  return <PostHogProvider client={posthog}>{children}</PostHogProvider>;
 }

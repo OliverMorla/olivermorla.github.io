@@ -1,160 +1,114 @@
 "use client";
 
-import Portal from "@/components/ui/portal";
-import { cn } from "@/utils/classNames";
-import { ChevronRightIcon } from "lucide-react";
-import Link from "next/link";
-import ThemeSwitcher from "./theme-switcher";
-
-import { MotionDiv } from "@/components/helpers/basic-lazy-motion";
-import useScrollLock from "@/hooks/useScrollLock";
-import { simpleBlurVariant } from "@/lib/motion/utils";
+import ThemeSwitcher from "@/modules/app/components/theme-switcher";
 import { headerPrimaryLinks } from "@/modules/app/lib/constants";
-import { AnimatePresence } from "motion/react";
-import * as m from "motion/react-m";
-import { FC, HTMLAttributes, useState } from "react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import { useRef, useState } from "react";
 
-const ResponsiveNav: FC<HTMLAttributes<HTMLDivElement>> = ({
-  className,
-  ...props
-}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+/**
+ * Mobile menu built on the native <dialog>: showModal() gives focus trapping,
+ * Escape to close, an inert page behind it and focus restoration for free.
+ */
+const ResponsiveNav = () => {
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const handleClick = () => {
-    setIsOpen((prev) => !prev);
+  const open = () => {
+    dialogRef.current?.showModal();
+    setIsOpen(true);
   };
-
-  useScrollLock(isOpen);
+  const close = () => dialogRef.current?.close();
 
   return (
-    <nav className="relative">
-      <div
-        onClick={handleClick}
-        className={cn(
-          "lg:hidden fixed top-4 right-4 z-[1000] cursor-pointer w-[45px] h-[45px] p-3 bg-indigo-200/75 dark:bg-neutral-800/75 rounded-lg backdrop-blur-sm",
-          className,
-        )}
-        {...props}
+    <>
+      <button
+        type="button"
+        onClick={open}
+        aria-label="Open menu"
+        aria-haspopup="dialog"
+        aria-expanded={isOpen}
+        aria-controls="mobile-nav"
+        className="grid size-10 place-items-center rounded-full text-neutral-800 transition-colors hover:bg-neutral-200 dark:text-neutral-100 dark:hover:bg-neutral-800"
       >
-        <AnimatePresence>
-          <div className="relative flex flex-col items-center justify-center h-full w-full">
-            <m.div
-              animate={isOpen ? { rotate: 45 } : { rotate: 0, y: -8 }}
-              className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
-            />
-            <m.div
-              animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-              className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md"
-            />
-            <m.div
-              animate={isOpen ? { rotate: -45 } : { rotate: 0, y: 8 }}
-              className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
-            />
-          </div>
-        </AnimatePresence>
-      </div>
-      <Portal>
-        <AnimatePresence>
-          {isOpen && (
-            <aside className="relative z-[100]">
-              <div onClick={handleClick} />
+        <Menu aria-hidden className="size-5" />
+      </button>
 
-              <MotionDiv
-                {...simpleBlurVariant(0.1)}
-                className="fixed overflow-hidden py-12 top-0 left-0 h-screen w-full max-w-full backdrop-blur-sm bg-gradient-to-b bg-gradient-none z-[100] shadow-xl"
-              >
-                <div className="flex flex-col h-full">
-                  <div className="p-6 border-b border-neutral-300/75 dark:border-neutral-700/75 flex items-center justify-between">
-                    <div
-                      onClick={handleClick}
-                      className={cn(
-                        "lg:hidden fixed top-4 right-4 z-[1000] cursor-pointer w-[45px] h-[45px] p-3 bg-orange-200/75 dark:bg-neutral-950/75 rounded-lg backdrop-blur-sm",
-                        className,
-                      )}
-                      {...props}
-                    >
-                      <div className="relative flex flex-col items-center justify-center h-full w-full">
-                        <m.div
-                          animate={
-                            isOpen ? { rotate: 45 } : { rotate: 0, y: -8 }
-                          }
-                          className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
-                        />
-                        <m.div
-                          animate={isOpen ? { opacity: 0 } : { opacity: 1 }}
-                          className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md"
-                        />
-                        <m.div
-                          animate={
-                            isOpen ? { rotate: -45 } : { rotate: 0, y: 8 }
-                          }
-                          className="absolute h-0.5 w-full bg-neutral-800 dark:bg-neutral-100 rounded-md origin-center"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <nav className="flex-1 overflow-y-auto p-6">
-                    <ul className="flex flex-col gap-6">
-                      {headerPrimaryLinks.map((link) =>
-                        link.dropdownLinks ? (
-                          <li key={link.title} className="flex flex-col gap-4">
-                            <Link
-                              href={link.href}
-                              onClick={handleClick}
-                              className="text-neutral-600 dark:text-neutral-300 hover:text-blue-800 active:text-blue-900 dark:hover:text-blue-400 dark:active:text-blue-500 transition-colors flex items-center justify-between "
-                            >
-                              {link.title}
-                              <ChevronRightIcon className="w-4 h-4" />
-                            </Link>
-                            <ul className="flex flex-col gap-6 bg-indigo-200/75 dark:bg-neutral-900/75 rounded-lg p-4">
-                              {link.dropdownLinks.map((dropdownLink) => (
-                                <li
-                                  key={dropdownLink.title}
-                                  className="flex items-center justify-between"
-                                >
-                                  <Link
-                                    href={dropdownLink.href}
-                                    onClick={handleClick}
-                                    className="flex flex-col gap-1 text-neutral-600 dark:text-neutral-300 hover:text-blue-800 active:text-blue-900 dark:hover:text-blue-400 dark:active:text-blue-500 transition-colors rounded-lg"
-                                  >
-                                    {dropdownLink.title}
-                                    <span className="text-xs text-neutral-500 dark:text-neutral-400">
-                                      {dropdownLink.description}
-                                    </span>
-                                  </Link>
-                                  <ChevronRightIcon className="w-4 h-4" />
-                                </li>
-                              ))}
-                            </ul>
-                          </li>
-                        ) : (
-                          <li key={link.title}>
-                            <Link
-                              href={link.href}
-                              onClick={handleClick}
-                              className="flex items-start justify-between text-neutral-600 dark:text-neutral-300 hover:text-blue-800 active:text-blue-900 dark:hover:text-blue-400 dark:active:text-blue-500 transition-colors"
-                            >
-                              <div className="flex flex-col">
-                                <span>{link.title}</span>
-                                <span className="text-xs opacity-60">
-                                  {link.description}
-                                </span>
-                              </div>
-                              <ChevronRightIcon className="w-4 h-4" />
-                            </Link>
-                          </li>
-                        ),
-                      )}
+      <dialog
+        id="mobile-nav"
+        ref={dialogRef}
+        aria-label="Site menu"
+        onClose={() => setIsOpen(false)}
+        className="nav-sheet m-0 h-dvh max-h-none w-full max-w-none bg-white p-0 text-neutral-900 dark:bg-neutral-950 dark:text-neutral-100"
+      >
+        <div className="flex h-full flex-col">
+          <div className="flex h-16 items-center justify-between px-4">
+            <Link
+              href="/"
+              onClick={close}
+              className="text-base font-semibold tracking-tight"
+            >
+              Oliver Morla
+            </Link>
+            <button
+              type="button"
+              onClick={close}
+              aria-label="Close menu"
+              className="grid size-10 place-items-center rounded-full transition-colors hover:bg-neutral-200 dark:hover:bg-neutral-800"
+            >
+              <X aria-hidden className="size-5" />
+            </button>
+          </div>
+
+          <nav aria-label="Mobile" className="flex-1 overflow-y-auto px-4 pb-6">
+            <ul className="divide-y divide-neutral-200 border-y border-neutral-200 dark:divide-neutral-800 dark:border-neutral-800">
+              {headerPrimaryLinks.map((link) => (
+                <li key={link.href} className="py-1">
+                  <Link
+                    href={link.href}
+                    onClick={close}
+                    className="flex flex-col py-3"
+                  >
+                    <span className="text-lg font-medium">{link.title}</span>
+                    {link.description && (
+                      <span className="text-muted text-sm">
+                        {link.description}
+                      </span>
+                    )}
+                  </Link>
+                  {link.dropdownLinks && (
+                    <ul className="mb-3 ml-3 border-l border-neutral-200 pl-4 dark:border-neutral-800">
+                      {link.dropdownLinks.map((sub) => (
+                        <li key={sub.href}>
+                          <Link
+                            href={sub.href}
+                            onClick={close}
+                            className="text-muted block py-2 text-base hover:text-neutral-900 dark:hover:text-neutral-100"
+                          >
+                            {sub.title}
+                          </Link>
+                        </li>
+                      ))}
                     </ul>
-                    <ThemeSwitcher wrapperClassName="absolute bottom-4 left-4" />
-                  </nav>
-                </div>
-              </MotionDiv>
-            </aside>
-          )}
-        </AnimatePresence>
-      </Portal>
-    </nav>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="flex items-center justify-between gap-4 border-t border-neutral-200 px-4 py-4 pb-[max(1rem,env(safe-area-inset-bottom))] dark:border-neutral-800">
+            <Link
+              href="/schedule"
+              onClick={close}
+              className="flex-1 rounded-md bg-gradient-to-r from-indigo-500 to-violet-500 px-4 py-3 text-center font-medium text-white"
+            >
+              Book a 15-min call
+            </Link>
+            <ThemeSwitcher />
+          </div>
+        </div>
+      </dialog>
+    </>
   );
 };
 

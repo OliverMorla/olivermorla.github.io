@@ -1,14 +1,13 @@
-import {
-  BlurLazyMotionProps,
-  MotionInViewDiv,
-} from "@/components/helpers/blur-lazy-motion";
 import { cn } from "@/utils/classNames";
+import type { ComponentProps } from "react";
 
-export type SectionTitleProps = BlurLazyMotionProps<"div"> & {
+export type SectionTitleProps = ComponentProps<"div"> & {
   title: string;
   tagline?: string;
   subtitle?: string;
   description?: string;
+  /** Heading level; one <h1> per page, sections default to <h2>. */
+  as?: "h1" | "h2";
 };
 
 const SectionTitle = ({
@@ -16,29 +15,24 @@ const SectionTitle = ({
   tagline,
   subtitle,
   description,
+  as: Heading = "h2",
   className,
   ...props
-}: SectionTitleProps) => {
-  return (
-    <MotionInViewDiv
-      delay={0.2}
-      className={cn(
-        "flex flex-col gap-6 items-center max-w-xl text-center",
-        className,
-      )}
-      {...props}
-    >
-      <div className="flex flex-col gap-2">
-        {tagline && <p className="text-gradient-normal">{tagline}</p>}
-
-        <div className="flex flex-col gap-2">
-          <h2 className="title uppercase">{title}</h2>
-          {subtitle && <span className="text-lg font-light">{subtitle}</span>}
-        </div>
-      </div>
-      {description && <p className="text-muted">{description}</p>}
-    </MotionInViewDiv>
-  );
-};
+}: SectionTitleProps) => (
+  <div
+    className={cn(
+      "flex max-w-xl flex-col items-center gap-6 text-center",
+      className,
+    )}
+    {...props}
+  >
+    <div className="flex flex-col gap-2">
+      {tagline && <p className="text-gradient-normal">{tagline}</p>}
+      <Heading className="title uppercase">{title}</Heading>
+      {subtitle && <p className="text-lg font-light">{subtitle}</p>}
+    </div>
+    {description && <p className="text-muted text-pretty">{description}</p>}
+  </div>
+);
 
 export default SectionTitle;

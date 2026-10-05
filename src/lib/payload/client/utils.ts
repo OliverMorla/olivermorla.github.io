@@ -1,28 +1,28 @@
-import { Media } from "@/payload-types";
+import type { Media } from "@/payload-types";
 
-export const getImageMediaUrl = (image: Media | number) => {
-  if (!process.env.NEXT_PUBLIC_BASE_URL) {
-    throw new Error("Missing Environment Variable: NEXT_PUBLIC_BASE_URL");
-  }
+const PLACEHOLDER = { src: "/placeholder.svg", width: 1200, height: 1200 };
 
-  if (typeof image === "number") {
-    return `/placeholder.svg`;
-  }
+export type MediaImage = { src: string; width: number; height: number };
 
-  return image.url ?? "/placeholder.svg";
+/**
+ * Resolves a Payload upload (populated doc or bare ID) to `next/image` props.
+ * Intrinsic dimensions come from the upload so the browser can reserve space
+ * before the image loads (no layout shift).
+ */
+export const getMediaImage = (
+  image: Media | number | null | undefined,
+): MediaImage => {
+  if (!image || typeof image === "number" || !image.url) return PLACEHOLDER;
+
+  return {
+    src: image.url,
+    width: image.width ?? PLACEHOLDER.width,
+    height: image.height ?? PLACEHOLDER.height,
+  };
 };
 
-// export const getVideoMediaUrl = (video: Video | number) => {
-//   if (!process.env.NEXT_PUBLIC_BASE_URL) {
-//     throw new Error("Missing Environment Variable: NEXT_PUBLIC_BASE_URL");
-//   }
-
-//   if (typeof video === "number") {
-//     return `/assets/videos/placeholder.mp4`;
-//   }
-
-//   return `${process.env.NEXT_PUBLIC_BASE_URL}${video.url}`;
-// };
+export const getImageMediaUrl = (image: Media | number | null | undefined) =>
+  getMediaImage(image).src;
 
 export const payloadKeyBuilder = ({
   collection,

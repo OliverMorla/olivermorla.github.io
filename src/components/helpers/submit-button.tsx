@@ -1,42 +1,41 @@
+"use client";
+
 import Button, { type ButtonProps } from "@/components/ui/button";
 import { cn } from "@/utils/classNames";
-import { Loader2 } from "lucide-react";
-import { ComponentPropsWithRef, ComponentType, FC } from "react";
+import { LoaderCircle } from "lucide-react";
 import { useFormStatus } from "react-dom";
 
-export type SubmitButtonProps = Omit<ComponentPropsWithRef<"button">, "type"> &
-  Readonly<{
-    Loader?: ComponentType<{ className?: string }>;
-    loaderText?: string;
-    loaderClassName?: string;
-  }> &
-  ButtonProps;
+export type SubmitButtonProps = Omit<ButtonProps, "type"> & {
+  loaderText?: string;
+  loaderClassName?: string;
+};
 
-export const SubmitButton: FC<SubmitButtonProps> = ({
+/** Submit button that reflects the pending state of its parent <form>. */
+const SubmitButton = ({
   children,
   className,
   loaderClassName,
-  Loader = Loader2,
   loaderText,
+  disabled,
   ...props
-}) => {
+}: SubmitButtonProps) => {
   const { pending } = useFormStatus();
 
   return (
     <Button
       type="submit"
-      disabled={pending}
+      disabled={disabled || pending}
       aria-busy={pending}
-      className={cn(
-        className,
-        "disabled:cursor-not-allowed disabled:select-none disabled:pointer-events-none disabled:opacity-50",
-      )}
+      className={cn("disabled:cursor-not-allowed", className)}
       {...props}
     >
       {pending ? (
         <>
           {loaderText && <span>{loaderText}</span>}
-          <Loader className={cn("animate-spin w-5 h-5", loaderClassName)} />
+          <LoaderCircle
+            aria-hidden
+            className={cn("size-4 motion-safe:animate-spin", loaderClassName)}
+          />
         </>
       ) : (
         children

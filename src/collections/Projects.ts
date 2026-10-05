@@ -1,7 +1,9 @@
 import type { CollectionConfig } from "payload";
+import { revalidatePaths } from "./hooks/revalidate";
 
 export const Projects: CollectionConfig = {
   slug: "projects",
+  hooks: revalidatePaths(["/", "/portfolio"]),
   fields: [
     {
       name: "position",

@@ -1,0 +1,824 @@
+/* Scoped to this preview: only scan its own folder for utilities, plus the
+   live site's typewriter and scroll band, which this page reuses as-is. */
+@import "tailwindcss" source(none);
+@source "./";
+@source "../../../../modules/app/components/typewriter.tsx";
+@source "../../../../modules/app/components/parallel-text.tsx";
+
+@theme {
+  /* The live site's black and its indigo-to-violet accent, stepped into
+     surfaces so sections can stack on top of each other. */
+  --color-void: #050506;
+  --color-carbon: #0b0b0d;
+  --color-graphite: #141418;
+  --color-bone: #f5f5f7;
+  --color-ash: #8f8f9b;
+  --color-paper: #f2f2f4;
+  --color-card: #ffffff;
+  --color-ink: #0b0b0d;
+  --color-slate: #5c5c68;
+  --color-line: #e2e2e8;
+  --color-indigo: #818cf8;
+  --color-violet: #a78bfa;
+  --color-indigo-deep: #4f46e5;
+  --color-violet-deep: #7c3aed;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    var(--font-geist-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+  /* The hero card's inset and radius; sheets use the larger radius. */
+  --gutter: 0.75rem;
+  --panel-radius: 1.75rem;
+  --sheet-radius: 2rem;
+  --sheet-overlap: 2.5rem;
+}
+
+@media (min-width: 768px) {
+  html {
+    --gutter: 1rem;
+    --panel-radius: 2.25rem;
+    --sheet-radius: 3rem;
+    --sheet-overlap: 3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  background: var(--color-void);
+  color: var(--color-bone);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* The longhand, so utilities like truncate keep control of wrapping. */
+p {
+  text-wrap-style: pretty;
+}
+
+::selection {
+  background: var(--color-violet);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-indigo);
+  outline-offset: 3px;
+}
+
+.on-light :focus-visible {
+  outline-color: var(--color-indigo-deep);
+}
+
+.on-light .on-dark :focus-visible {
+  outline-color: var(--color-indigo);
+}
+
+/* ---------- Type ---------- */
+
+/* Both hero lines share one size. It is capped so the longest role,
+   eighteen monospace characters, always fits the text column: the full
+   width when stacked, about half of it beside the portrait. */
+@utility type-hero {
+  font-size: clamp(1.75rem, 7vw, 3.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+
+  @media (min-width: 1024px) {
+    font-size: clamp(1.75rem, 4vw, 3.75rem);
+  }
+}
+
+/* The live site's section titles: heavy, uppercase, tightly tracked. */
+@utility type-title {
+  font-weight: 800;
+  font-size: clamp(2.25rem, 1.3rem + 3.2vw, 4.25rem);
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+@utility type-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.4;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@utility type-lede {
+  font-size: 1.125rem;
+  line-height: 1.55;
+  letter-spacing: -0.011em;
+}
+
+@utility type-h3 {
+  font-weight: 600;
+  font-size: 1.375rem;
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+}
+
+@utility type-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 1.75rem;
+  padding-inline: 0.625rem;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+@utility text-gradient {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-indigo),
+    var(--color-violet)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-deep {
+  background-image: linear-gradient(
+    90deg,
+    var(--color-indigo-deep),
+    var(--color-violet-deep)
+  );
+  background-clip: text;
+  color: transparent;
+}
+
+@utility bg-gradient {
+  background-image: linear-gradient(
+    135deg,
+    var(--color-indigo),
+    var(--color-violet)
+  );
+}
+
+@utility wrap {
+  width: 100%;
+  max-width: 80rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+/* ---------- Buttons ---------- */
+
+@utility btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  transition:
+    transform 160ms var(--ease-out),
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    filter 200ms ease,
+    color 200ms ease;
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Custom classes sit in the components layer so utilities can override them. */
+@layer components {
+  /* The live site's gradient button, deepened so white text passes AA. */
+  .btn-primary {
+    background-image: linear-gradient(135deg, #5b5bf0, #7e45ec);
+    color: #fff;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.28),
+      inset 0 -1px 0 rgb(0 0 0 / 0.15),
+      0 10px 28px -12px rgb(124 58 237 / 0.75);
+  }
+
+  @media (hover: hover) {
+    .btn-primary:hover {
+      filter: brightness(1.1);
+      box-shadow:
+        inset 0 1px 0 rgb(255 255 255 / 0.32),
+        inset 0 -1px 0 rgb(0 0 0 / 0.15),
+        0 14px 34px -12px rgb(124 58 237 / 0.9);
+    }
+  }
+
+  .btn-ghost {
+    background: rgb(255 255 255 / 0.06);
+    color: var(--color-bone);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.12);
+  }
+
+  @media (hover: hover) {
+    .btn-ghost:hover {
+      background: rgb(255 255 255 / 0.1);
+    }
+  }
+
+  /* ---------- Liquid glass ----------
+   A smoked fill, a blurred backdrop, and a rim that catches light on two
+   opposite corners the way a curved edge does. Dark on purpose: it stays
+   legible over both the black and the light sections. */
+
+  .glass {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(
+      180deg,
+      rgb(26 26 31 / 0.8),
+      rgb(12 12 15 / 0.74)
+    );
+    backdrop-filter: blur(18px) saturate(170%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.12),
+      0 12px 32px -14px rgb(0 0 0 / 0.7);
+  }
+
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgb(255 255 255 / 0.32),
+      rgb(255 255 255 / 0.06) 35%,
+      rgb(255 255 255 / 0.03) 65%,
+      rgb(167 139 250 / 0.35)
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+    pointer-events: none;
+  }
+
+  @media (prefers-reduced-transparency: reduce) {
+    .glass {
+      background: var(--color-graphite);
+      backdrop-filter: none;
+    }
+  }
+
+  .menu-sheet {
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top right;
+    transition:
+      opacity 180ms var(--ease-out),
+      transform 180ms var(--ease-out),
+      overlay 180ms allow-discrete,
+      display 180ms allow-discrete;
+  }
+
+  .menu-sheet:popover-open {
+    opacity: 1;
+    transform: none;
+  }
+
+  @starting-style {
+    .menu-sheet:popover-open {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.98);
+    }
+  }
+
+  /* ---------- Hero card ---------- */
+
+  .hero-card {
+    position: relative;
+    isolation: isolate;
+    overflow: clip;
+    margin: var(--gutter);
+    min-height: calc(100svh - 2 * var(--gutter));
+    border-radius: var(--panel-radius);
+    background:
+      radial-gradient(
+        90% 70% at 82% 18%,
+        rgb(129 140 248 / 0.12),
+        transparent 60%
+      ),
+      radial-gradient(
+        70% 60% at 0% 100%,
+        rgb(167 139 250 / 0.07),
+        transparent 60%
+      ),
+      var(--color-carbon);
+    box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.06);
+  }
+
+  /* The live site's grid, faded out from the headline. */
+  .grid-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to bottom, rgb(255 255 255 / 0.045) 1px, transparent 1px),
+      linear-gradient(to right, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+    background-size: 4rem 4rem;
+    mask-image: radial-gradient(
+      ellipse 70% 60% at 30% 45%,
+      #000 10%,
+      transparent 75%
+    );
+  }
+
+  /* The live site's morphing portrait frame, now a lit shape the cutout
+     stands in front of. */
+  .morph {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    animation: morph 20s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  }
+
+  .morph-glow {
+    background: conic-gradient(
+      from 210deg,
+      #6366f1,
+      #a78bfa,
+      #818cf8,
+      #4f46e5,
+      #6366f1
+    );
+    filter: blur(64px);
+    opacity: 0.45;
+  }
+
+  .morph-shape {
+    background: radial-gradient(
+      120% 110% at 30% 15%,
+      #24224a 0%,
+      #15142a 45%,
+      #0d0d14 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.14),
+      inset 0 0 0 1px rgb(167 139 250 / 0.22),
+      inset 0 -40px 80px -20px rgb(0 0 0 / 0.6);
+  }
+
+  @keyframes morph {
+    0%,
+    100% {
+      border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+      transform: rotate(0deg) scale(1);
+    }
+    20% {
+      border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+      transform: rotate(-3deg) scale(1.02);
+    }
+    40% {
+      border-radius: 40% 60% 30% 70% / 60% 30% 70% 40%;
+      transform: rotate(3deg) scale(1.01);
+    }
+    60% {
+      border-radius: 60% 40% 70% 30% / 40% 50% 60% 50%;
+      transform: rotate(-2deg) scale(1.03);
+    }
+    80% {
+      border-radius: 40% 60% 40% 60% / 60% 40% 60% 40%;
+      transform: rotate(2deg) scale(1.02);
+    }
+  }
+
+  /* The cutout's jacket runs to the photo's left edge; dissolve that edge
+     into the card. The right edge is clipped by the card itself. */
+  .portrait-fade {
+    mask-image: linear-gradient(to right, transparent 2%, #000 30%);
+  }
+
+  @media (max-width: 1023px) {
+    .portrait-fade {
+      mask-image: linear-gradient(
+        to right,
+        transparent,
+        #000 24%,
+        #000 76%,
+        transparent
+      );
+    }
+  }
+
+  /* The live site's scroll-velocity band, set large enough to run behind
+     the portrait. */
+  .hero-band .parallax {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 0.82;
+    padding-block: 0.06em;
+  }
+
+  .hero-band .scroller {
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: clamp(3.5rem, 1.5rem + 8vw, 10rem);
+    font-weight: 800;
+    letter-spacing: -0.05em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hero-band .scroller > span {
+    display: block;
+    padding-right: 0.35em;
+    background-image: linear-gradient(
+      180deg,
+      var(--color-bone) 35%,
+      rgb(245 245 247 / 0.35)
+    );
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* ---------- Typewriter ----------
+   The live site's component and timing; only the face and colour change. */
+
+  .typewriter-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .typewriter {
+    display: inline-block;
+    width: 0;
+    overflow: hidden;
+    padding-bottom: 0.08em;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    white-space: nowrap;
+    /* Size the gradient to the whole word so it doesn't squeeze while the
+       box grows. Each mono character is 1ch minus the tracking. */
+    --word: calc(var(--characters) * (1ch - 0.02em));
+    background-size: var(--word) 100%;
+    background-repeat: no-repeat;
+    animation-name: typing-in, typing-out;
+    animation-duration: var(--type-duration, 2s), var(--erase-duration, 2s);
+    animation-timing-function:
+      steps(var(--characters), end), steps(var(--characters), end);
+    animation-delay:
+      var(--animation-start-delay, 0s),
+      calc(
+        var(--animation-start-delay, 0s) + var(--type-duration, 2s) +
+          var(--pause-after-type, 2s)
+      );
+    animation-iteration-count: 1, 1;
+    animation-fill-mode: both, forwards;
+  }
+
+  .typewriter-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0.08em;
+    right: -0.18em;
+    width: 0.09em;
+    height: 0.9em;
+    border-radius: 1px;
+    background: var(--color-violet);
+    animation: cursor-blink 0.7s steps(2) infinite;
+  }
+
+  @keyframes typing-in {
+    from {
+      width: 0;
+    }
+    to {
+      width: var(--word);
+    }
+  }
+
+  @keyframes typing-out {
+    from {
+      width: var(--word);
+    }
+    to {
+      width: 0;
+    }
+  }
+
+  @keyframes cursor-blink {
+    from,
+    to {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  /* ---------- Load sequence ----------
+   CSS-only, so it plays before hydration and never blocks input. Filled
+   backwards only: an animation still holding its end state keeps the
+   element a backdrop root, which would stop the nav's glass from blurring
+   the page behind it. */
+
+  .rise {
+    animation: rise 900ms var(--ease-out) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .portrait-in {
+    animation: portrait-in 1300ms var(--ease-out) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .bloom-in {
+    animation: bloom-in 1800ms var(--ease-out) backwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  .fade-in {
+    animation: fade-in 1400ms ease backwards;
+    animation-delay: var(--d, 0ms);
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(18px);
+      filter: blur(10px);
+    }
+  }
+
+  @keyframes portrait-in {
+    from {
+      opacity: 0;
+      transform: translateY(6%) scale(1.02);
+    }
+  }
+
+  @keyframes bloom-in {
+    from {
+      opacity: 0;
+      transform: scale(0.82);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+  }
+
+  /* ---------- Sheets ----------
+   Each section after the hero slides up over the one before it on a
+   rounded top edge. */
+
+  .sheet {
+    position: relative;
+    border-radius: var(--sheet-radius) var(--sheet-radius) 0 0;
+  }
+
+  .sheet + .sheet {
+    margin-top: calc(var(--sheet-overlap) * -1);
+  }
+
+  .sheet-light {
+    background: var(--color-paper);
+    color: var(--color-ink);
+  }
+
+  .sheet-dark {
+    background: var(--color-carbon);
+    color: var(--color-bone);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.09);
+  }
+
+  /* ---------- Spotlight cards ----------
+   A rim and a wash of light that follow the pointer. */
+
+  .spot {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .spot::before,
+  .spot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+
+  .spot::before {
+    z-index: 1;
+    padding: 1px;
+    background: radial-gradient(
+      22rem circle at var(--x, 50%) var(--y, 0%),
+      rgb(167 139 250 / 0.6),
+      transparent 45%
+    );
+    mask:
+      linear-gradient(#000 0 0) content-box exclude,
+      linear-gradient(#000 0 0);
+  }
+
+  .spot::after {
+    z-index: -1;
+    background: radial-gradient(
+      28rem circle at var(--x, 50%) var(--y, 0%),
+      rgb(129 140 248 / 0.09),
+      transparent 45%
+    );
+  }
+
+  @media (hover: hover) {
+    .spot:hover::before,
+    .spot:hover::after {
+      opacity: 1;
+    }
+  }
+
+  /* ---------- Work browser ---------- */
+
+  .shot {
+    opacity: 0;
+    transform: scale(1.04);
+    filter: blur(8px);
+    transition:
+      opacity 600ms var(--ease-out),
+      transform 900ms var(--ease-out),
+      filter 600ms var(--ease-out);
+  }
+
+  .shot[data-active="true"] {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+
+  /* The address bar types each domain, a nod to the hero typewriter. */
+  .url-type {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    vertical-align: bottom;
+    width: calc(var(--n) * 1ch);
+    animation: url-type 650ms steps(var(--n), end) both;
+  }
+
+  @keyframes url-type {
+    from {
+      width: 0;
+    }
+  }
+
+  /* Fills over one slot; its animationend advances the browser, so a
+     paused bar also pauses the rotation. */
+  .work-progress {
+    transform-origin: left;
+    animation: work-progress var(--slot, 6s) linear both;
+  }
+
+  [data-paused="true"] .work-progress {
+    animation-play-state: paused;
+  }
+
+  @keyframes work-progress {
+    from {
+      transform: scaleX(0);
+    }
+  }
+
+  /* ---------- Marquees ---------- */
+
+  .marquee {
+    overflow: clip;
+    mask-image: linear-gradient(
+      to right,
+      transparent,
+      #000 7%,
+      #000 93%,
+      transparent
+    );
+  }
+
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-x var(--duration, 60s) linear infinite;
+  }
+
+  .marquee-track[data-reverse="true"] {
+    animation-direction: reverse;
+  }
+
+  .marquee:hover .marquee-track,
+  .marquee:focus-within .marquee-track {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-x {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes marquee-y {
+    to {
+      transform: translateY(-50%);
+    }
+  }
+
+  /* ---------- Work wall ----------
+   Columns of screenshots on a plane tipped back in space, drifting in
+   alternate directions. */
+
+  .wall {
+    perspective: 1600px;
+    mask-image:
+      linear-gradient(to bottom, transparent, #000 18%, #000 80%, transparent),
+      linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+    mask-composite: intersect;
+  }
+
+  .wall-plane {
+    transform: rotateX(38deg) rotateZ(-22deg) scale(1.15);
+    transform-origin: 50% 40%;
+  }
+
+  .wall-col {
+    animation: marquee-y var(--duration, 70s) linear infinite;
+  }
+
+  .wall-col[data-reverse="true"] {
+    animation-direction: reverse;
+  }
+
+  .wall:hover .wall-col {
+    animation-play-state: paused;
+  }
+
+  /* ---------- Process ----------
+   Cards pin one after another and stack, each a step lower. */
+
+  @media (min-width: 1024px) {
+    .step-card {
+      position: sticky;
+      top: calc(7rem + var(--i) * 1.5rem);
+    }
+  }
+
+  /* ---------- Reduced motion ---------- */
+
+  @media (prefers-reduced-motion: reduce) {
+    .rise,
+    .portrait-in,
+    .bloom-in,
+    .fade-in,
+    .morph,
+    .marquee-track,
+    .wall-col,
+    .url-type,
+    .typewriter-wrapper::after {
+      animation: none;
+    }
+
+    .typewriter {
+      width: auto;
+      animation: none;
+    }
+
+    .shot {
+      transform: none;
+      filter: none;
+      transition: opacity 200ms ease;
+    }
+
+    .work-progress {
+      display: none;
+    }
+  }
+}

@@ -1,80 +1,99 @@
 "use server";
 
-import z from "zod";
-import { aj } from "@/lib/arcjet";
+import { getArcjet } from "@/lib/arcjet";
+import { getMailjet } from "@/lib/mailjet";
+import { contactEmail } from "@/modules/app/lib/constants";
+import {
+  contactFields,
+  contactFormSchema,
+  type ContactFormData,
+} from "@/modules/contact/lib/schema";
+import type { ContactFormState } from "@/modules/contact/lib/state";
+import { escapeHtml } from "@/utils/escape-html";
 import { request } from "@arcjet/next";
-import { mailjet } from "@/lib/mailjet";
-import { SendEmailV3_1 } from "node-mailjet";
-import { submitContactFormSchema } from "../lib/schema";
+import * as Sentry from "@sentry/nextjs";
+import type { SendEmailV3_1 } from "node-mailjet";
+import { z } from "zod";
 
-export const submitContactForm = async (formData: FormData) => {
-  const req = await request();
+const buildEmail = (data: ContactFormData): SendEmailV3_1.Body => {
+  const name = [data.firstName, data.lastName].filter(Boolean).join(" ");
+  const rows: [string, string][] = [
+    ["Name", name],
+    ["Email", data.email],
+    ["Phone", data.phoneNumber],
+    ["Subject", data.subject],
+    ["Message", data.message],
+  ];
 
-  const decision = await aj.protect(req, { requested: 1 });
-
-  if (!decision.isAllowed()) {
-    return {
-      ok: false,
-      message: "Too many requests! please try again later",
-    };
-  }
-
-  const formFields = Object.fromEntries(formData) as z.infer<
-    typeof submitContactFormSchema
-  >;
-  const validation = submitContactFormSchema.safeParse(formFields);
-
-  if (!validation.success) {
-    return {
-      ok: false,
-      formFields,
-      ...validation.error.flatten(),
-      message: "Invalid form data, please check your inputs",
-    };
-  }
-
-  // Define the email data
-  const emailData: SendEmailV3_1.Body = {
+  return {
     Messages: [
       {
-        To: [
-          {
-            Email: "olivermorla3@gmail.com",
-            Name: "Oliver Morla",
-          },
-        ],
+        To: [{ Email: contactEmail, Name: "Oliver Morla" }],
         From: { Email: "no-reply@olivermorla.com", Name: "Oliver Morla" },
-        Subject: `Oliver Morla - New message from ${validation.data.firstName}`,
-        HTMLPart: `<p>Name: ${validation.data.firstName} ${validation.data.lastName}</p>
-        <p>Email: ${validation.data.email}</p>
-        <p>Phone Number: ${validation.data.phoneNumber}</p>
-        <p>Subject: ${validation.data.subject}</p>
-        <p>Message: ${validation.data.message}</p>`,
+        ReplyTo: { Email: data.email, Name: name },
+        Subject: `New message from ${name}: ${data.subject}`,
+        TextPart: rows.map(([label, value]) => `${label}: ${value}`).join("\n"),
+        // Every value is escaped: this HTML is built from visitor input.
+        HTMLPart: rows
+          .map(
+            ([label, value]) =>
+              `<p><strong>${label}:</strong> ${escapeHtml(value).replaceAll("\n", "<br>")}</p>`,
+          )
+          .join(""),
       },
     ],
   };
+};
 
-  try {
-    // Send an email using the Mailjet client
-    await mailjet
-      .post("send", {
-        version: "v3.1",
-      })
-      .request(emailData);
+export async function submitContactForm(
+  _previous: ContactFormState,
+  formData: FormData,
+): Promise<ContactFormState> {
+  const fields = Object.fromEntries(
+    contactFields.map((key) => [key, String(formData.get(key) ?? "")]),
+  ) as Record<keyof ContactFormData, string>;
 
-    // If the email was sent successfully, return a success response
+  // Validate locally before spending a network round trip on bot checks.
+  const validation = contactFormSchema.safeParse(fields);
+  if (!validation.success) {
     return {
-      ok: true,
-      formFields: {},
-      message: "Email sent successfully",
-    };
-  } catch (err) {
-    console.log("Error sending email", err);
-
-    // If the email failed to send, return an error response
-    return {
-      ok: false,
-      message: "Failed to send email",
+      status: "error",
+      message: "Check the highlighted fields and try again.",
+      fieldErrors: z.flattenError(validation.error).fieldErrors,
+      fields,
     };
   }
-};
+
+  try {
+    const decision = await getArcjet().protect(await request(), {
+      requested: 1,
+    });
+
+    if (decision.isDenied()) {
+      return {
+        status: "error",
+        message: decision.reason.isRateLimit()
+          ? "Too many messages in a short time. Wait a minute and try again."
+          : `This message was blocked. Email me at ${contactEmail} instead.`,
+        fields,
+      };
+    }
+
+    await getMailjet()
+      .post("send", { version: "v3.1" })
+      .request(buildEmail(validation.data));
+
+    return {
+      status: "success",
+      message: `Message sent. I'll reply to ${validation.data.email}.`,
+    };
+  } catch (error) {
+    Sentry.captureException(error);
+
+    return {
+      status: "error",
+      message: `Your message didn't send. Try again, or email me at ${contactEmail}.`,
+      fields,
+    };
+  }
+}

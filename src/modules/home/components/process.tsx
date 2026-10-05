@@ -1,5 +1,3 @@
-"use client";
-
 import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
 import { cn } from "@/utils/classNames";
@@ -74,10 +72,9 @@ const Process = () => {
   return (
     <section
       id="process"
-      className="py-24 px-8 max-sm:px-4 bg-gradient-none-inverted"
-      aria-labelledby="process-title"
+      className="bg-gradient-none-inverted px-4 py-24 sm:px-8"
     >
-      <section className="relative container mx-auto flex flex-col gap-12">
+      <div className="relative container mx-auto flex flex-col gap-12">
         <div
           className="absolute inset-0 bg-grid-pattern bg-grid-pattern-lg opacity-5"
           aria-hidden="true"
@@ -99,15 +96,20 @@ const Process = () => {
                 step.id === 1 && "lg:col-span-2 col-span-1",
                 step.id === 4 && "lg:col-span-2 col-span-1",
               )}
-              aria-label={`Step ${step.id}: ${step.title}`}
             >
               <div className="flex items-start gap-4">
-                <div className="flex-shrink-0 h-10 w-10 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 grid place-items-center font-bold">
+                <div
+                  aria-hidden
+                  className="flex-shrink-0 h-10 w-10 rounded-full bg-neutral-900 text-white dark:bg-neutral-100 dark:text-neutral-900 grid place-items-center font-bold"
+                >
                   {step.id}
                 </div>
                 <div className="flex-1">
-                  <div className="flex items-center justify-between gap-3">
-                    <h3 className="text-xl font-semibold">{step.title}</h3>
+                  <div className="flex flex-wrap items-center justify-between gap-3">
+                    <h3 className="text-xl font-semibold">
+                      <span className="sr-only">Step {step.id}: </span>
+                      {step.title}
+                    </h3>
                     <span className="text-xs px-2 py-1 rounded-full bg-neutral-100 dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-neutral-600 dark:text-neutral-300">
                       {step.duration}
                     </span>
@@ -122,7 +124,10 @@ const Process = () => {
                         key={b}
                         className="text-sm text-neutral-700 dark:text-neutral-300 flex items-start gap-2"
                       >
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500" />
+                        <span
+                          aria-hidden
+                          className="mt-1 h-1.5 w-1.5 rounded-full bg-neutral-400 dark:bg-neutral-500"
+                        />
                         <span>{b}</span>
                       </li>
                     ))}
@@ -144,8 +149,8 @@ const Process = () => {
           ))}
         </ol>
 
-        <CTAButtons className="max-w-lg mx-auto" />
-      </section>
+        <CTAButtons className="mx-auto max-w-lg" />
+      </div>
     </section>
   );
 };

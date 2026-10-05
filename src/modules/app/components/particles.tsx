@@ -1,108 +1,112 @@
-"use client"; // Marks this as a client-side component in Next.js
+"use client";
 
 import { cn } from "@/utils/classNames";
-import { useEffect, useRef } from "react"; // Import necessary React hooks
+import { useEffect, useRef } from "react";
 
-// Define the structure of a particle object
-interface Particle {
-  x: number; // X position on canvas
-  y: number; // Y position on canvas
-  size: number; // Size of the particle
-  speedX: number; // Horizontal speed
-  speedY: number; // Vertical speed
-  opacity: number; // Transparency level
-}
+type Particle = {
+  x: number;
+  y: number;
+  size: number;
+  vx: number;
+  vy: number;
+  opacity: number;
+};
 
-export default function Particles({ className }: { className?: string }) {
-  // Create a reference to the canvas element that persists between renders
+/**
+ * Drifting dots behind the hero. Sized to its own box (crisp on high-DPI
+ * screens), animates only while visible, cleans up its frame loop on unmount
+ * and does nothing for reduced-motion users.
+ */
+export default function Particles({
+  className,
+  count = 50,
+}: {
+  className?: string;
+  count?: number;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // useEffect hook runs after component mounts
   useEffect(() => {
-    // Get the canvas element from the ref
     const canvas = canvasRef.current;
-    if (!canvas) return; // Exit if canvas isn't available
+    const ctx = canvas?.getContext("2d");
+    if (!canvas || !ctx) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    // Get the 2D rendering context for drawing
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return; // Exit if context isn't available
+    let width = 0;
+    let height = 0;
+    let frame = 0;
 
-    // Function to make canvas fullscreen and responsive
-    const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+    const resize = () => {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+      canvas.width = Math.round(width * dpr);
+      canvas.height = Math.round(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     };
-    resizeCanvas(); // Initial resize
-    window.addEventListener("resize", resizeCanvas); // Listen for window resize
 
-    // Create array to store particles
-    const particles: Particle[] = [];
-    const particleCount = 50; // Number of particles to create
+    const spawn = (opacity: number): Particle => ({
+      x: Math.random() * width,
+      y: Math.random() * height,
+      size: Math.random() * 2 + 1,
+      vx: (Math.random() - 0.5) * 0.5,
+      vy: (Math.random() - 0.5) * 0.5,
+      opacity,
+    });
 
-    // Initialize particles with random properties
-    for (let i = 0; i < particleCount; i++) {
-      particles.push({
-        x: Math.random() * canvas.width, // Random X position
-        y: Math.random() * canvas.height, // Random Y position
-        size: Math.random() * 2 + 1, // Random size between 1-3
-        speedX: (Math.random() - 0.5) * 0.5, // Random X speed (-0.25 to 0.25)
-        speedY: (Math.random() - 0.5) * 0.5, // Random Y speed (-0.25 to 0.25)
-        opacity: Math.random(), // Random initial opacity
-      });
-    }
+    resize();
+    const particles = Array.from({ length: count }, () => spawn(Math.random()));
 
-    // Animation loop function
-    function animate() {
-      if (!ctx || !canvas) return;
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height);
+      ctx.fillStyle = "rgb(100, 100, 100)";
 
-      // Clear the entire canvas
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particles.length; i++) {
+        let particle = particles[i];
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.opacity -= 0.005;
 
-      // Update and draw each particle
-      particles.forEach((particle, index) => {
-        // Update particle position
-        particle.x += particle.speedX;
-        particle.y += particle.speedY;
-        particle.opacity -= 0.005; // Gradually decrease opacity
-
-        // Reset particle when it becomes invisible
         if (particle.opacity <= 0) {
-          particles[index] = {
-            x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height,
-            size: Math.random() * 2 + 1,
-            speedX: (Math.random() - 0.5) * 0.5,
-            speedY: (Math.random() - 0.5) * 0.5,
-            opacity: 1, // Start fully visible
-          };
+          particle = particles[i] = spawn(1);
         }
 
-        // Draw the particle
-        ctx.beginPath(); // Start drawing
-        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2); // Draw circle
-        ctx.fillStyle = `rgba(100, 100, 100, ${particle.opacity})`; // Set color and opacity
-        ctx.fill(); // Fill the circle
-      });
+        ctx.globalAlpha = particle.opacity;
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
 
-      // Schedule the next frame
-      requestAnimationFrame(animate);
-    }
-
-    // Start the animation
-    animate();
-
-    // Cleanup function runs when component unmounts
-    return () => {
-      window.removeEventListener("resize", resizeCanvas);
+      frame = requestAnimationFrame(draw);
     };
-  }, []); // Empty dependency array means this runs once on mount
 
-  // Render the canvas element
+    const visibility = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && !frame) {
+        frame = requestAnimationFrame(draw);
+      } else if (!entry.isIntersecting && frame) {
+        cancelAnimationFrame(frame);
+        frame = 0;
+      }
+    });
+    const sizing = new ResizeObserver(resize);
+    visibility.observe(canvas);
+    sizing.observe(canvas);
+
+    return () => {
+      visibility.disconnect();
+      sizing.disconnect();
+      cancelAnimationFrame(frame);
+    };
+  }, [count]);
+
   return (
     <canvas
-      ref={canvasRef} // Attach the ref
-      className={cn("absolute inset-0 pointer-events-none", className)} // Position fixed, ignore mouse events
-      // style={{ zIndex: -1 }} // Place behind other content
+      ref={canvasRef}
+      aria-hidden
+      className={cn(
+        "pointer-events-none absolute inset-0 size-full",
+        className,
+      )}
     />
   );
 }

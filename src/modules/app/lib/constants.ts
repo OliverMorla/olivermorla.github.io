@@ -1,28 +1,4 @@
-import {
-  faAws,
-  faCss3,
-  faFigma,
-  faGit,
-  faGithub,
-  faHtml5,
-  faJs,
-  faLinkedin,
-  faNodeJs,
-  faPython,
-  faReact,
-  faXTwitter,
-} from "@fortawesome/free-brands-svg-icons";
-
-import {
-  faBriefcase,
-  faCode,
-  faEnvelope,
-  faFile,
-  faHouse,
-  faSchool,
-  faStar,
-  faWrench,
-} from "@fortawesome/free-solid-svg-icons";
+export const contactEmail = "olivermorla3@gmail.com";
 
 export const pages = {
   home: {
@@ -108,69 +84,45 @@ export const pages = {
   },
 };
 
-export const headerPrimaryLinks = [
+export type NavItem = {
+  title: string;
+  href: string;
+  description?: string;
+  dropdownLinks?: NavItem[];
+};
+
+export const headerPrimaryLinks: NavItem[] = [
   {
     title: "Home",
     href: "/",
     description: "Welcome to my portfolio",
-    faIconUrl: faHouse,
   },
   {
     title: "About",
     href: "/about",
     description: "Learn more about me and my background",
-    faIconUrl: faFile,
     dropdownLinks: [
-      // {
-      //   title: "Experience",
-      //   href: "#experience",
-      //   description: "My professional work history",
-      //   faIconUrl: faBriefcase,
-      // },
-      // {
-      //   title: "Education",
-      //   href: "#education",
-      //   description: "My academic qualifications",
-      //   faIconUrl: faSchool,
-      // },
-      // {
-      //   title: "Certifications",
-      //   href: "#certifications",
-      //   description: "Professional certifications I've earned",
-      //   faIconUrl: faCertificate,
-      // },
       {
         title: "Skills",
         href: "/about#skills",
         description: "Technical skills and expertise",
-        faIconUrl: faFile,
       },
       {
         title: "Resume",
         href: "/resume",
         description: "Download my full resume",
-        faIconUrl: faFile,
       },
     ],
   },
-
-  // {
-  //   title: "Skills",
-  //   href: "#skills",
-  //   description: "Technical skills and expertise",
-  //   faIconUrl: faCode,
-  // },
   {
     title: "Portfolio",
-    href: "/#portfolio",
+    href: "/portfolio",
     description: "Showcase of my projects and work",
-    faIconUrl: faBriefcase,
     dropdownLinks: [
       {
         title: "All Projects",
         href: "/portfolio",
         description: "All my masterpieces in one place",
-        faIconUrl: faFile,
       },
     ],
   },
@@ -178,93 +130,72 @@ export const headerPrimaryLinks = [
     title: "Services",
     href: "/#services",
     description: "Professional services I offer",
-    faIconUrl: faWrench,
   },
   {
     title: "Testimonials",
     href: "/#testimonials",
     description: "What my clients say about me",
-    faIconUrl: faStar,
   },
   {
     title: "Contact",
     href: "/#contact",
     description: "Ready to build something great?",
-    faIconUrl: faStar,
   },
 ];
 
-export const footerPrimaryLinks = [
-  {
-    title: "Navigation",
-    links: [
-      { title: "Home", href: "/" },
-      { title: "About", href: "#about" },
-      { title: "Skills", href: "#skills" },
-      { title: "Portfolio", href: "#portfolio" },
-      { title: "Services", href: "#services" },
-      // { title: "Blog", href: "/blog" },
-      { title: "Contact", href: "#contact" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { title: "Resume", href: "#resume" },
-      { title: "Certifications", href: "#certifications" },
-      { title: "Case Studies", href: "/case-studies" },
-      { title: "Testimonials", href: "#testimonials" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      // { title: "Privacy Policy", href: "/privacy-policy" },
-      // { title: "Terms of Service", href: "/terms-of-service" },
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      {
-        title: "LinkedIn",
-        href: "https://www.linkedin.com/in/oliver-morla/",
-      },
-      { title: "GitHub", href: "https://github.com/OliverMorla" },
-      { title: "Twitter", href: "https://twitter.com/OliverMorlaX" },
-      { title: "Email", href: "mailto:olivermorla3@gmail.com" },
-    ],
-  },
+// Absolute paths so they work from every page, not just the home page.
+export const footerLinks: NavItem[] = [
+  { title: "Home", href: "/" },
+  { title: "About", href: "/about" },
+  { title: "Portfolio", href: "/portfolio" },
+  { title: "Services", href: "/#services" },
+  { title: "Resume", href: "/resume" },
+  { title: "Contact", href: "/#contact" },
 ];
 
-export const socialMediaLinks = [
+export type SocialIcon = "github" | "linkedin" | "x" | "email";
+
+export const socialMediaLinks: {
+  title: string;
+  href: string;
+  icon: SocialIcon;
+}[] = [
   {
     title: "GitHub",
     href: "https://github.com/OliverMorla",
-    iconUrl: faGithub,
+    icon: "github",
   },
   {
     title: "LinkedIn",
     href: "https://www.linkedin.com/in/oliver-morla/",
-    iconUrl: faLinkedin,
+    icon: "linkedin",
   },
   {
-    title: "Twitter",
+    title: "X (Twitter)",
     href: "https://twitter.com/OliverMorlaX",
-    iconUrl: faXTwitter,
+    icon: "x",
   },
   {
     title: "Email",
-    href: "mailto:olivermorla3@gmail.com",
-    iconUrl: faEnvelope,
+    href: `mailto:${contactEmail}`,
+    icon: "email",
   },
 ];
 
+export type ServiceIcon = "web" | "mobile" | "software";
+
 // Page content
-export const listOfServices = [
+export const listOfServices: {
+  title: string;
+  icon: ServiceIcon;
+  price: string;
+  description: string;
+  libraries: string[];
+  features: string[];
+}[] = [
   {
     title: "Web Development",
-    faIconUrl: faReact,
+    icon: "web",
     price: "$200 - $1800",
     description:
       "Expert web developer who specializes in building and maintaining high-quality websites and web-based applications.",
@@ -292,7 +223,7 @@ export const listOfServices = [
   },
   {
     title: "Mobile Development",
-    faIconUrl: faJs,
+    icon: "mobile",
     price: "$600 - $2400",
     description:
       "Experienced application developer who specializes in creating custom software solutions for businesses.",
@@ -317,7 +248,7 @@ export const listOfServices = [
   },
   {
     title: "Software Development",
-    faIconUrl: faCode,
+    icon: "software",
     price: "$400 - $2000",
     libraries: [
       "Electron.js",
@@ -348,6 +279,12 @@ export const experienceHistory = [
     position: "Full Stack Developer",
     startDate: "Feb 2023",
     endDate: "Current",
+    // A short pick from `responsibilities`, shown on the About page.
+    highlights: [
+      "Pioneered the use of TypeScript in web application development, achieving a 30% reduction in code maintenance efforts.",
+      "Cut operational expenses by 20% by implementing AWS Lambda and API Gateway for serverless architecture.",
+      "Integrated AI models, leveraging LLM expertise to enhance application capabilities by 35%, improving user interaction.",
+    ],
     responsibilities: [
       "Pioneered the use of TypeScript in web application development, achieving a 30% reduction in code maintenance efforts.",
       "Revolutionized user interface creation with custom React UI Components, boosting user retention by 25% across platforms.",
@@ -366,6 +303,11 @@ export const experienceHistory = [
     position: "Full Stack Engineer",
     startDate: "May 2020",
     endDate: "Jan 2023",
+    highlights: [
+      "Increased user engagement by 40% through React, TypeScript, and Next.js, enhancing UI/UX and overall performance.",
+      "Reduced server response times by 50% and improved reliability by 30% with a microservices architecture transition.",
+      "Built cross-platform mobile apps with React Native, contributing to a 25% increase in mobile user engagement.",
+    ],
     responsibilities: [
       "Increased user engagement by 40% through React, TypeScript, and Next.js, enhancing UI/UX and overall performance.",
       "Reduced server response times by 50% and improved reliability by 30% with a microservices architecture transition.",
@@ -384,6 +326,10 @@ export const experienceHistory = [
     position: "SW Engineering Intern",
     startDate: "Oct 2019",
     endDate: "Apr 2020",
+    highlights: [
+      "Refined SQL queries in collaboration with database specialists, achieving a 30% increase in database throughput.",
+      "Formulated innovative data processing algorithms, improving the accuracy and speed of Tableau report generation.",
+    ],
     responsibilities: [
       "Boosted system efficiency by 25% through comprehensive software testing and optimization.",
       "Refined SQL queries in collaboration with database specialists, achieving a 30% increase in database throughput.",
@@ -392,6 +338,26 @@ export const experienceHistory = [
       "Recommended and executed system enhancements, contributing to three significant software updates.",
       "Streamlined operational processes, assisting in the development of system improvements.",
     ],
+  },
+];
+
+// Grouped by where each tool sits in the stack (About page, #skills).
+export const toolkit = [
+  {
+    area: "Frontend",
+    tools: ["React", "Next.js", "TypeScript", "Tailwind CSS", "HTML & CSS"],
+  },
+  {
+    area: "Backend",
+    tools: ["Node.js", "Express", "Python", "Django", "PostgreSQL", "MongoDB"],
+  },
+  {
+    area: "Mobile",
+    tools: ["React Native", "Expo"],
+  },
+  {
+    area: "Cloud & tooling",
+    tools: ["AWS", "Docker", "Git & GitHub", "Figma"],
   },
 ];
 
@@ -463,61 +429,20 @@ export const education = [
     institution: "New York City College of Technology (NYCCT)",
     degree: "Bachelor of Technology in Computer Systems Technology",
     graduationYear: 2023,
-    faIconUrl: faSchool,
   },
 ];
 
 export const skillsIcons = [
-  {
-    title: "React",
-    progress: "95%",
-    fontAwesomeIconUrl: faReact,
-  },
-  {
-    title: "JavaScript",
-    progress: "95%",
-    fontAwesomeIconUrl: faJs,
-  },
-  {
-    title: "HTML5",
-    progress: "95%",
-    fontAwesomeIconUrl: faHtml5,
-  },
-  {
-    title: "CSS3",
-    progress: "95%",
-    fontAwesomeIconUrl: faCss3,
-  },
-  {
-    title: "Github",
-    progress: "95%",
-    fontAwesomeIconUrl: faGithub,
-  },
-  {
-    title: "Git",
-    progress: "95%",
-    fontAwesomeIconUrl: faGit,
-  },
-  {
-    title: "Python",
-    progress: "95%",
-    fontAwesomeIconUrl: faPython,
-  },
-  {
-    title: "Node.js",
-    progress: "95%",
-    fontAwesomeIconUrl: faNodeJs,
-  },
-  {
-    title: "AWS Lambda & API Gateway",
-    progress: "95%",
-    fontAwesomeIconUrl: faAws,
-  },
-  {
-    title: "Figma",
-    progress: "95%",
-    fontAwesomeIconUrl: faFigma,
-  },
+  { title: "React", progress: "95%" },
+  { title: "JavaScript", progress: "95%" },
+  { title: "HTML5", progress: "95%" },
+  { title: "CSS3", progress: "95%" },
+  { title: "Github", progress: "95%" },
+  { title: "Git", progress: "95%" },
+  { title: "Python", progress: "95%" },
+  { title: "Node.js", progress: "95%" },
+  { title: "AWS Lambda & API Gateway", progress: "95%" },
+  { title: "Figma", progress: "95%" },
 ];
 
 export const projects = [
@@ -618,33 +543,6 @@ export const projects = [
     description:
       "A professional real estate portfolio platform designed to elevate the personal brand and services of a licensed realtor in New York City.",
   },
-  // {
-  //   title: "New Yorkers International",
-  //   category: "Business & Finance",
-  //   demoUrl: "https://www.newyorkersinternational.com/",
-  //   // imageUrl: "/assets/portfolio/new-yorkers-international.webp",
-  //   imageUrl: null,
-  //   sourceCodeUrl: null,
-  //   description: "",
-  // },
-  // {
-  //   title: "MyFitnessClient",
-  //   category: "Health & Wellness",
-  //   demoUrl: "https://myfitnessclient.com/",
-  //   // imageUrl: "/assets/portfolio/my-fitness-client.webp",
-  //   imageUrl: null,
-  //   sourceCodeUrl: null,
-  //   description: "",
-  // },
-  // {
-  //   title: "Consensus.fund",
-  //   category: "Business & Finance",
-  //   demoUrl: "https://www.consensus.fund/",
-  //   // imageUrl: "/assets/portfolio/consensus-fund.webp",
-  //   imageUrl: null,
-  //   sourceCodeUrl: null,
-  //   description: "",
-  // },
 ];
 
 export const personalProjects = [

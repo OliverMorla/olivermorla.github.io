@@ -1,4 +1,4 @@
-import { AccessArgs } from "payload";
+import type { AccessArgs } from "payload";
 
 const isAdmin = ({ req }: AccessArgs) => {
   if (!process.env.PAYLOAD_ADMIN_EMAIL_LIST) {

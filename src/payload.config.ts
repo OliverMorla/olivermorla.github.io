@@ -77,6 +77,10 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
     },
+    // Better Auth keeps its tables in this database too, all prefixed
+    // `auth_` (see src/lib/auth.ts). Without this, the dev schema push would
+    // treat them as stale and offer to drop them.
+    tablesFilter: ["!auth_*"],
   }),
   sharp,
   plugins: [

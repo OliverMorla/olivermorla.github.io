@@ -1,76 +1,46 @@
-"use client";
-
-import { MotionSection } from "@/components/helpers/basic-lazy-motion";
-import { getTestimonials } from "@/lib/payload/server/actions";
+import { getTestimonials } from "@/lib/payload/server/queries";
 import CTAButtons from "@/modules/app/components/cta-buttons";
 import SectionTitle from "@/modules/app/components/section-title";
 import { pages } from "@/modules/app/lib/constants";
 import { TestimonialCard } from "@/modules/testimonial/components/card";
-import { cn } from "@/utils/classNames";
-import { useQuery } from "@tanstack/react-query";
-import { useTransform } from "motion/react";
-import { ComponentProps } from "react";
-import { useScrollTracking } from "./scroll-tracking-container";
 
-export type TestimonialsProps = ComponentProps<"section"> & {
-  initialData?: Awaited<ReturnType<typeof getTestimonials>>;
-};
-
-export default function Testimonials({
-  className,
-  initialData,
-  ...props
-}: TestimonialsProps) {
-  const { data, error } = useQuery({
-    queryKey: ["testimonials"],
-    queryFn: getTestimonials,
-    initialData,
-  });
-
-  const { smoothYProgress } = useScrollTracking();
-
-  const scale = useTransform(smoothYProgress, [0, 1], [1, 0.8]);
-  const rotate = useTransform(smoothYProgress, [0, 1], [0, -10]);
+/**
+ * Rendered on the server (deduped with TrustBar's query via React.cache).
+ * `stack-out` tilts it away as Contact slides over; see global.css.
+ */
+const Testimonials = async () => {
+  const testimonials = await getTestimonials();
+  if (!testimonials.length) return null;
 
   return (
-    <MotionSection
+    <section
       id="testimonials"
-      className={cn(
-        "sm:sticky sm:top-0 relative py-24 px-8 flex flex-col gap-12 max-sm:px-4 bg-gradient-none overflow-hidden",
-        className,
-      )}
-      style={{
-        scale,
-        rotate,
-        willChange: "transform",
-        transformOrigin: "50% 50%",
-      }}
+      className="stack-out bg-gradient-none relative flex flex-col gap-12 overflow-hidden px-4 py-24 sm:sticky sm:top-0 sm:px-8"
     >
       <div className="relative container mx-auto flex flex-col items-center gap-12">
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-1/2 -right-40 w-80 h-80 bg-neutral-500 dark:bg-neutral-800 rounded-full mix-blend-multiply filter blur-3xl" />
-          <div className="absolute bottom-1/2 -left-40 w-80 h-80 bg-neutral-500 dark:bg-neutral-800 rounded-full mix-blend-multiply filter blur-3xl" />
+        <div aria-hidden className="absolute inset-0 opacity-40">
+          <div className="absolute top-1/2 -right-40 size-80 rounded-full bg-neutral-500 mix-blend-multiply blur-3xl dark:bg-neutral-800" />
+          <div className="absolute bottom-1/2 -left-40 size-80 rounded-full bg-neutral-500 mix-blend-multiply blur-3xl dark:bg-neutral-800" />
         </div>
         <SectionTitle
           tagline={pages.testimonials.tagline}
           title={pages.testimonials.title}
           description={pages.testimonials.description}
           subtitle={pages.testimonials.subtitle}
-          className="text-center max-w-4xl mx-auto items-center"
+          className="relative mx-auto max-w-4xl items-center text-center"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {data?.docs.map((testimonial, idx) => (
-            <div
-              key={testimonial.id}
-              className="flex justify-center items-center"
-            >
+        <ul className="relative grid w-full gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {testimonials.map((testimonial) => (
+            <li key={testimonial.id}>
               <TestimonialCard testimonial={testimonial} />
-            </div>
+            </li>
           ))}
-        </div>
-        <CTAButtons />
+        </ul>
+        <CTAButtons className="relative max-w-md" />
       </div>
-    </MotionSection>
+    </section>
   );
-}
+};
+
+export default Testimonials;

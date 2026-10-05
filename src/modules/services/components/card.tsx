@@ -1,63 +1,55 @@
-"use client";
-
-import FontAwesomeIcon from "@/modules/app/components/dynamic/font-awesome-icon";
+import { serviceIcons } from "@/components/ui/icons";
+import type { listOfServices } from "@/modules/app/lib/constants";
 import { cn } from "@/utils/classNames";
-import {
-  faCheckCircle,
-  type IconDefinition,
-} from "@fortawesome/free-solid-svg-icons";
-import { ComponentProps } from "react";
+import { Check } from "lucide-react";
+import type { ComponentProps } from "react";
 
-export type ServiceCardProps = ComponentProps<"div"> &
-  Readonly<{
-    service: {
-      title: string;
-      price: string;
-      features: string[];
-      libraries: string[];
-      description: string;
-      faIconUrl: IconDefinition;
-    };
-  }>;
+export type ServiceCardProps = ComponentProps<"article"> & {
+  service: (typeof listOfServices)[number];
+};
 
 const ServiceCard = ({ service, className, ...props }: ServiceCardProps) => {
+  const Icon = serviceIcons[service.icon];
+
   return (
-    <div
+    <article
       className={cn(
-        "relative flex w-full flex-grow flex-col items-start gap-6 rounded-md border border-neutral-300/75 p-8 shadow-sm transition ease-in-out hover:border-indigo-400 hover:shadow-md max-sm:p-4 sm:max-w-lg dark:border-neutral-700/75",
+        "flex h-full flex-col gap-6 rounded-xl border border-neutral-300 bg-white/60 p-6 shadow-sm transition-colors hover:border-indigo-400 sm:p-8 dark:border-neutral-800 dark:bg-neutral-950/60 dark:hover:border-indigo-500",
         className,
       )}
       {...props}
     >
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between gap-2">
-          <h1 className="text-4xl font-bold tracking-tighter max-sm:text-4xl">
-            {service.title}
-          </h1>
-          <FontAwesomeIcon icon={service.faIconUrl} className="text-4xl" />
+      <div className="flex flex-col gap-3">
+        <div className="flex items-start justify-between gap-4">
+          <h3 className="text-2xl font-bold tracking-tight">{service.title}</h3>
+          <Icon aria-hidden className="size-7 shrink-0 text-indigo-500" />
         </div>
-        <p className="opacity-70">{service.description}</p>
+        <p className="text-muted text-pretty">{service.description}</p>
       </div>
-      {/* <p className="text-lg font-medium opacity-70">{service.price}</p> */}
-      <div className="flex flex-wrap gap-2">
-        {service.libraries.map((library, index) => (
-          <p
-            key={index}
-            className="rounded-md bg-neutral-200 p-2 dark:bg-neutral-800"
+
+      <ul aria-label="Tools" className="flex flex-wrap gap-2">
+        {service.libraries.map((library) => (
+          <li
+            key={library}
+            className="rounded-md bg-neutral-100 px-2.5 py-1 text-sm dark:bg-neutral-800"
           >
             {library}
-          </p>
-        ))}
-      </div>
-      <ul className="mt-auto">
-        {service.features.map((feature, index) => (
-          <li key={index} className="flex items-center gap-2">
-            <FontAwesomeIcon icon={faCheckCircle} />
-            <p className="text-base">{feature}</p>
           </li>
         ))}
       </ul>
-    </div>
+
+      <ul className="mt-auto flex flex-col gap-2">
+        {service.features.map((feature) => (
+          <li key={feature} className="flex items-start gap-2">
+            <Check
+              aria-hidden
+              className="mt-1 size-4 shrink-0 text-emerald-600 dark:text-emerald-400"
+            />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </article>
   );
 };
 
