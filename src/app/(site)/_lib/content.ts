@@ -51,8 +51,16 @@ export const projects: Project[] = [
     name: "bed.gg",
     summary: "Player profiles for competitive Minecraft",
     sector: "Gaming",
-    image: shot("bed-gg"),
+    image: shot("bed.gg"),
     domain: "bed.gg",
+  },
+  {
+    slug: "gambit-dev",
+    name: "Gambit Dev",
+    summary: "Studio site for skill-based games",
+    sector: "Gaming",
+    image: shot("gambitdev"),
+    domain: "gambit.dev",
   },
   {
     slug: "unified-stop-payment",
@@ -77,6 +85,13 @@ export const projects: Project[] = [
     sector: "Fintech",
     image: shot("altoken"),
     domain: "altoken.io",
+  },
+  {
+    slug: "new-yorkers-international",
+    name: "New Yorker\u2019s International",
+    summary: "Commodity trading from New York to Lahore",
+    image: shot("nyi"),
+    domain: "newyorkersinternational.com",
   },
   {
     slug: "quip",
@@ -114,7 +129,7 @@ export const projects: Project[] = [
     name: "Quip WRLD",
     summary: "A player-built online world",
     sector: "Gaming",
-    image: shot("quip-wrld"),
+    image: shot("quip.gg"),
   },
   {
     slug: "johnny-luna",
@@ -177,8 +192,15 @@ export const projects: Project[] = [
     slug: "appify-visions",
     name: "Appify Visions",
     summary: "My studio\u2019s own site",
-    image: shot("appify-visions"),
+    image: shot("appifyvisions"),
     domain: "appifyvisions.com",
+  },
+  {
+    slug: "oliver-morla",
+    name: "Oliver Morla",
+    summary: "The site you\u2019re on",
+    image: shot("olivermorla"),
+    domain: "olivermorla.com",
   },
 ];
 
@@ -217,9 +239,14 @@ export const wall: { name: string; image: string }[] = [
     "ny-general-renovation",
     "appify-visions",
     "mirza-construction",
+    "bedgg",
+    "gambit-dev",
+    "liftforge",
+    "bon-gou-foods",
+    "oliver-morla",
+    "new-yorkers-international",
   ].map(bySlug),
   { name: "Unified Stop Payment", image: shot("unified-stop-payment-alt") },
-  ...["bedgg", "liftforge", "bon-gou-foods"].map(bySlug),
 ];
 
 // Scrolls along the bottom of the hero.

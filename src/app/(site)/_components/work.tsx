@@ -1,7 +1,7 @@
 import { cn } from "@/utils/classNames";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import { featured, links, wall, type Project } from "../_lib/content";
+import { featured, links, projects, wall, type Project } from "../_lib/content";
 import { Reveal } from "./reveal";
 
 type CSSVars = React.CSSProperties & Record<`--${string}`, string | number>;
@@ -45,8 +45,8 @@ export default function Work() {
       <div className="mt-24 md:mt-32">
         <div className="wrap flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <p className="type-h3 max-w-[26ch]">
-            And 15 more, from fractional real estate to a player-built online
-            world.
+            And {projects.length - featured.length} more, from fractional real
+            estate to a player-built online world.
           </p>
           <a
             href={links.portfolio}
