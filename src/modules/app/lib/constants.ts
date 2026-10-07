@@ -281,13 +281,16 @@ export const experienceHistory = [
     startDate: "Apr 2026",
     endDate: "Current",
     highlights: [
-      "Build internal platforms, several with automated workflows, that make everyday work smoother for the teams using them.",
-      "TypeScript end to end: React and Next.js up front, Node, Express and Fastify on AWS (ECS, Lambda, S3, API Gateway).",
+      "Lead the pipeline that brings SAP and Alteryx data into Snowflake and serves it to our internal platform, working with business stakeholders and team leads on what each team needs.",
+      "Helped reshape the platform’s architecture early on, proposing Better Auth for authentication, Prisma as the ORM, stronger GitHub Actions pipelines and agentic AI workflows for opening pull requests.",
+      "Build across the stack in TypeScript: React and Next.js up front; Node, Express and Fastify on AWS (ECS on Fargate, Lambda, API Gateway, RDS), shipped with Docker.",
     ],
     responsibilities: [
-      "Build internal platforms, several with automated workflows, that make everyday work smoother for the teams using them.",
-      "TypeScript end to end: React and Next.js up front, Node, Express and Fastify on AWS (ECS, Lambda, S3, API Gateway).",
-      "Ship in agile sprints alongside the teams that use the tools.",
+      "Lead the pipeline that brings SAP and Alteryx data into Snowflake and serves it to our internal platform, working with business stakeholders and team leads on what each team needs.",
+      "Built scheduled jobs with BullMQ that keep the platform’s Snowflake endpoints up to date.",
+      "Helped reshape the platform’s architecture early on, proposing Better Auth for authentication, Prisma as the ORM, stronger GitHub Actions pipelines and agentic AI workflows for opening pull requests.",
+      "Build across the stack in TypeScript: React and Next.js up front; Node, Express and Fastify on AWS (ECS on Fargate, Lambda, API Gateway, RDS), shipped with Docker.",
+      "Work in agile sprints with ServiceNow, Figma and Tableau.",
     ],
   },
   {

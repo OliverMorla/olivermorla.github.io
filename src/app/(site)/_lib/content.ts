@@ -323,7 +323,7 @@ export const experience: {
     // No logo until he confirms the contract allows showing it.
     initials: "F",
     place: "remote contract",
-    body: "Internal platforms, several with automated workflows, that make everyday work smoother for the teams using them. TypeScript end to end: React and Next.js up front, Node, Express and Fastify on AWS (ECS, Lambda, S3, API Gateway), shipped in agile sprints.",
+    body: "Leading our Snowflake integration, bringing SAP and Alteryx data into the internal platform with business stakeholders and team leads. Helped reshape its architecture: Better Auth, Prisma, stronger GitHub Actions and agentic PR workflows. TypeScript end to end, on AWS.",
   },
   {
     years: "2019 – Now",
