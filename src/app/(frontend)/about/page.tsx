@@ -90,8 +90,10 @@ export default function AboutPage() {
             </p>
             <p className="text-muted leading-relaxed text-pretty">
               I studied Computer Systems Technology at New York City College of
-              Technology and have shipped production software since 2019, first
-              at New Yorkers International and now at Gambit Dev.
+              Technology and have shipped production software since 2019: at New
+              Yorkers International, then Gambit Dev, and now as a senior
+              engineer at FUJIFILM Biotechnologies. Alongside that I run my own
+              studio, Appify Visions, which I started in college.
             </p>
             <p className="text-muted leading-relaxed text-pretty">
               Most of my work is React and Next.js on the front end, Node on the

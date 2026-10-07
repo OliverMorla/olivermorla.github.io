@@ -301,7 +301,8 @@ export const services = [
 ];
 
 // Matches LinkedIn (Oct 2026), plus his own studio. Current roles first,
-// then newest first; the last entry is education.
+// then newest first; the last entry is education. "7+ years" counts from the
+// Oct 2019 internship; keep the metric, menu and section copy in step.
 // `url` links the organisation's name to its site. `logo` is a square tile
 // in /assets/media/companies; without one, `initials` fill the tile.
 export const experience: {
@@ -332,7 +333,7 @@ export const experience: {
     logo: "/assets/media/companies/appify-visions.webp",
     initials: "AV",
     place: "New York, NY",
-    body: "My own studio: websites, apps and AI tools for startups and small businesses, from first call to launch. Running since 2019; registered as Appify Visions Group LLC in 2026.",
+    body: "My own studio: websites, apps and AI tools for startups and small businesses, from first call to launch. Started in college in 2019; registered as Appify Visions Group LLC in March 2026.",
   },
   {
     years: "2023 – 2026",
@@ -429,7 +430,7 @@ export const hero = {
 // The band under the hero. The live hero's "Age 25" became the age he
 // started coding, which says more.
 export const metrics = [
-  { value: 8, suffix: "+", label: "Years of professional work" },
+  { value: 7, suffix: "+", label: "Years of professional work" },
   { value: 20, suffix: "+", label: "Products shipped" },
   { value: 25, suffix: "+", label: "Happy clients" },
   { value: 14, suffix: "", label: "Age I wrote my first line of code" },

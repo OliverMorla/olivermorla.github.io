@@ -31,7 +31,7 @@ export default function Work() {
           <h2 className="type-h2">Selected work</h2>
           <p className="max-w-[24rem] text-slate">
             From fintech to a family bakery: a few of the 20+ products
-            I&rsquo;ve shipped since 2020.
+            I&rsquo;ve shipped since 2019.
           </p>
         </Reveal>
 

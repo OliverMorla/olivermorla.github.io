@@ -6,9 +6,9 @@ import { links } from "../_lib/content";
 import PaperPlane from "./paper-plane";
 
 const items = [
-  { label: "Work", href: links.portfolio, hint: "20 products shipped" },
+  { label: "Work", href: links.portfolio, hint: "20+ products shipped" },
   { label: "Services", href: "/#services", hint: "Web, mobile, automation" },
-  { label: "Experience", href: "/#experience", hint: "8+ years" },
+  { label: "Experience", href: "/#experience", hint: "7+ years" },
   { label: "Process", href: "/#process", hint: "Kickoff to launch" },
   { label: "Résumé", href: links.resume, hint: "Full history" },
 ];

@@ -272,13 +272,45 @@ export const listOfServices: {
   },
 ];
 
+// Keep in step with `experience` in src/app/(site)/_lib/content.ts.
 export const experienceHistory = [
+  {
+    companyName: "FUJIFILM Biotechnologies",
+    location: "Remote (contract)",
+    position: "Senior Full Stack Engineer",
+    startDate: "Apr 2026",
+    endDate: "Current",
+    highlights: [
+      "Build internal platforms, several with automated workflows, that make everyday work smoother for the teams using them.",
+      "TypeScript end to end: React and Next.js up front, Node, Express and Fastify on AWS (ECS, Lambda, S3, API Gateway).",
+    ],
+    responsibilities: [
+      "Build internal platforms, several with automated workflows, that make everyday work smoother for the teams using them.",
+      "TypeScript end to end: React and Next.js up front, Node, Express and Fastify on AWS (ECS, Lambda, S3, API Gateway).",
+      "Ship in agile sprints alongside the teams that use the tools.",
+    ],
+  },
+  {
+    companyName: "Appify Visions",
+    location: "New York, NY",
+    position: "Founder",
+    startDate: "2019",
+    endDate: "Current",
+    highlights: [
+      "My own studio: websites, apps and AI tools for startups and small businesses, from first call to launch.",
+      "Started in college in 2019; registered as Appify Visions Group LLC in March 2026.",
+    ],
+    responsibilities: [
+      "My own studio: websites, apps and AI tools for startups and small businesses, from first call to launch.",
+      "Started in college in 2019; registered as Appify Visions Group LLC in March 2026.",
+    ],
+  },
   {
     companyName: "Gambit Dev LLC",
     location: "Long Island City, NY",
     position: "Full Stack Developer",
     startDate: "Feb 2023",
-    endDate: "Current",
+    endDate: "Mar 2026",
     // A short pick from `responsibilities`, shown on the About page.
     highlights: [
       "Pioneered the use of TypeScript in web application development, achieving a 30% reduction in code maintenance efforts.",

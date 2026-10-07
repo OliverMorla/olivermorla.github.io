@@ -9,8 +9,8 @@ export default function Experience() {
         <Reveal className="lg:sticky lg:top-28 lg:col-span-4 lg:self-start">
           <h2 className="type-h2">Experience</h2>
           <p className="mt-4 max-w-[24rem] text-slate">
-            8+ years of professional work: internships, university projects,
-            full-time roles and my own studio,{" "}
+            7+ years of professional work: an internship, full-time roles and my
+            own studio,{" "}
             <a
               href={links.studio}
               target="_blank"
