@@ -1,4 +1,3 @@
-import { withPayload } from "@payloadcms/next/withPayload";
 import { withSentryConfig } from "@sentry/nextjs/config";
 import type { NextConfig } from "next";
 
@@ -11,7 +10,6 @@ const posthogAssetHost = posthogHost
 const securityHeaders = [
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
-  // SAMEORIGIN keeps Payload's live preview (which frames the site) working.
   { key: "X-Frame-Options", value: "SAMEORIGIN" },
   {
     key: "Permissions-Policy",
@@ -33,16 +31,7 @@ const nextConfig: NextConfig = {
     globalNotFound: true,
   },
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "ihcntrkzhwqeiajreqfp.supabase.co",
-      },
-    ],
     localPatterns: [
-      {
-        pathname: "/api/*/file/**",
-      },
       {
         pathname: "/assets/**",
         search: "",
@@ -78,11 +67,9 @@ const nextConfig: NextConfig = {
   skipTrailingSlashRedirect: true,
 };
 
-export default withPayload(
-  withSentryConfig(nextConfig, {
-    org: "oliver-morla",
-    project: "portfolio-nextjs",
-    silent: !process.env.CI,
-    widenClientFileUpload: true,
-  }),
-);
+export default withSentryConfig(nextConfig, {
+  org: "oliver-morla",
+  project: "portfolio-nextjs",
+  silent: !process.env.CI,
+  widenClientFileUpload: true,
+});

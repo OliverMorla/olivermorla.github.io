@@ -9,7 +9,7 @@ import { ac, roles } from "./permissions";
 // `server-only` so the CLI can load it (`pnpm dlx auth@latest migrate` and
 // `create-admin`); it's only ever imported from server code.
 //
-// Env: DATABASE_URL or DIRECT_URL (shared with Payload; see database-url.ts),
+// Env: DATABASE_URL or DIRECT_URL (see database-url.ts),
 // BETTER_AUTH_SECRET, and BETTER_AUTH_URL in production. See .env.example.
 
 // One pool per server instance, reused across dev hot reloads so they don't
@@ -39,9 +39,8 @@ export const auth = betterAuth({
     : {}),
   trustedOrigins: vercelOrigins,
 
-  // Payload owns the rest of this database, so every auth table is prefixed
-  // `auth_`, and Payload's schema push is told to leave `auth_*` alone (see
-  // tablesFilter in payload.config.ts).
+  // Every auth table is prefixed `auth_`, keeping them apart from the older
+  // tables already in this database.
   user: { modelName: "auth_user" },
   account: { modelName: "auth_account" },
   verification: { modelName: "auth_verification" },

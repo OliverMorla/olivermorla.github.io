@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 
-// The app has several root layouts (site, Payload, preview), so there is no
+// The app has several root layouts (site, dashboard, preview), so there is no
 // single root not-found. Unmatched URLs land here and render the site's
 // not-found page inside the site header and footer.
 //

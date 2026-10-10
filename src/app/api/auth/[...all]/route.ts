@@ -1,8 +1,7 @@
 import { isAuthConfigured, loadAuth } from "@/lib/auth-session";
 
-// Better Auth's endpoints (/api/auth/*). The static "auth" segment takes
-// precedence over Payload's /api/[...slug] catch-all. Until the auth env is
-// set, they answer 503 instead of failing to start.
+// Better Auth's endpoints (/api/auth/*). Until the auth env is set, they
+// answer 503 instead of failing to start.
 async function handler(request: Request) {
   if (!isAuthConfigured) {
     return Response.json(

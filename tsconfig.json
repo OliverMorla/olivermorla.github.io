@@ -20,9 +20,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./src/*"],
-      "@payload-types": ["./src/payload-types.ts"],
-      "@payload-config": ["./src/payload.config.ts"]
+      "@/*": ["./src/*"]
     }
   },
   "include": [

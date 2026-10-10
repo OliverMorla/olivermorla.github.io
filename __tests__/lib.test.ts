@@ -1,4 +1,3 @@
-import { getMediaImage } from "@/lib/payload/client/utils";
 import { contactFormSchema } from "@/modules/contact/lib/schema";
 import { formatYear } from "@/utils/date";
 import { escapeHtml } from "@/utils/escape-html";
@@ -23,27 +22,6 @@ describe("formatYear", () => {
   it("returns null for missing or invalid dates", () => {
     expect(formatYear(null)).toBeNull();
     expect(formatYear("not a date")).toBeNull();
-  });
-});
-
-describe("getMediaImage", () => {
-  const timestamps = { createdAt: "", updatedAt: "" };
-
-  it("uses the upload's URL and intrinsic size", () => {
-    expect(
-      getMediaImage({
-        id: 1,
-        url: "/api/media/file/shot.webp",
-        width: 1600,
-        height: 1000,
-        ...timestamps,
-      }),
-    ).toEqual({ src: "/api/media/file/shot.webp", width: 1600, height: 1000 });
-  });
-
-  it("falls back to the placeholder for unpopulated uploads", () => {
-    expect(getMediaImage(42).src).toBe("/placeholder.svg");
-    expect(getMediaImage(null).src).toBe("/placeholder.svg");
   });
 });
 
