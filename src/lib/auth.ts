@@ -2,19 +2,21 @@ import { betterAuth } from "better-auth";
 import { nextCookies } from "better-auth/next-js";
 import { admin } from "better-auth/plugins/admin";
 import { Pool } from "pg";
+import { databaseUrl } from "./database-url";
+import { ac, roles } from "./permissions";
 
 // Better Auth server config (https://better-auth.com/docs). Kept free of
 // `server-only` so the CLI can load it (`pnpm dlx auth@latest migrate` and
 // `create-admin`); it's only ever imported from server code.
 //
-// Env: DATABASE_URI (shared with Payload), BETTER_AUTH_SECRET, and
-// BETTER_AUTH_URL in production. See .env.example.
+// Env: DATABASE_URL or DIRECT_URL (shared with Payload; see database-url.ts),
+// BETTER_AUTH_SECRET, and BETTER_AUTH_URL in production. See .env.example.
 
 // One pool per server instance, reused across dev hot reloads so they don't
 // pile up connections against the shared database.
 const globalForAuth = globalThis as unknown as { authPool?: Pool };
 const pool = (globalForAuth.authPool ??= new Pool({
-  connectionString: process.env.DATABASE_URI,
+  connectionString: databaseUrl,
   max: 5,
   idleTimeoutMillis: 10_000,
 }));
@@ -50,8 +52,9 @@ export const auth = betterAuth({
     cookieCache: { enabled: true, maxAge: 60 * 5, strategy: "jwe" },
   },
 
-  // A private admin area: there is no public sign-up. Accounts are created
-  // server-side with `pnpm dlx auth@latest create-admin`.
+  // A private area: there is no public sign-up. The owner's account is
+  // created with `pnpm dlx auth@latest create-admin`, friends' chat-only
+  // accounts with `pnpm chat:create-user` (scripts/chat-users.ts).
   emailAndPassword: {
     enabled: true,
     disableSignUp: true,
@@ -86,7 +89,8 @@ export const auth = betterAuth({
   },
 
   // nextCookies must stay last: it sets cookies from server actions.
-  plugins: [admin(), nextCookies()],
+  // Role changes reach a signed-in user within cookieCache.maxAge (5 min).
+  plugins: [admin({ ac, roles }), nextCookies()],
 });
 
 export type Session = typeof auth.$Infer.Session;

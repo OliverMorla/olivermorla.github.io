@@ -27,17 +27,39 @@ const createClient = (key: string) =>
     ],
   });
 
+// The private chat: keyed on the signed-in user rather than the IP, so
+// friends on one network don't share a budget. No bot detection; every
+// caller has already signed in. ~20 messages per 10 minutes.
+const createChatClient = (key: string) =>
+  arcjet({
+    key,
+    characteristics: ["userId"],
+    rules: [
+      shield({ mode: "LIVE" }),
+      tokenBucket({
+        mode: "LIVE",
+        capacity: 20,
+        interval: 60,
+        refillRate: 2,
+      }),
+    ],
+  });
+
+const arcjetKey = () => {
+  const key = process.env.ARCJET_API_KEY;
+  if (!key) throw new Error("Missing environment variable: ARCJET_API_KEY");
+  return key;
+};
+
 let client: ReturnType<typeof createClient> | undefined;
+let chatClient: ReturnType<typeof createChatClient> | undefined;
 
 /**
  * Created on first use (not at import time) so a missing key fails the one
  * request that needs it, with a clear message, instead of the whole route.
  */
-export const getArcjet = () => {
-  // NB: the variable is spelled ARKJET in the deployed environment.
-  const key = process.env.ARKJET_API_KEY;
-  if (!key) throw new Error("Missing environment variable: ARKJET_API_KEY");
+export const getArcjet = () => (client ??= createClient(arcjetKey()));
 
-  client ??= createClient(key);
-  return client;
-};
+/** Per-user limits for /api/chat. Pass `{ userId, requested: 1 }`. */
+export const getChatArcjet = () =>
+  (chatClient ??= createChatClient(arcjetKey()));

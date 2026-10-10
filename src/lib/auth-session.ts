@@ -1,5 +1,7 @@
 import "server-only";
 
+import { accessFor } from "@/lib/access";
+import { databaseUrl } from "@/lib/database-url";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { cache } from "react";
@@ -11,7 +13,7 @@ import { cache } from "react";
  * say sign-in isn't set up yet.
  */
 export const isAuthConfigured = Boolean(
-  process.env.DATABASE_URI && process.env.BETTER_AUTH_SECRET,
+  databaseUrl && process.env.BETTER_AUTH_SECRET,
 );
 
 /** The auth instance, loaded on first use and only when configured. */
@@ -39,4 +41,23 @@ export async function requireAdmin(from = "/dashboard") {
   }
 
   return session;
+}
+
+/**
+ * Gate for the chat page: admins and invited `chat` users. Anyone else who
+ * is signed in gets the login page's "no access" message.
+ */
+export async function requireChatAccess(from = "/dashboard/chat") {
+  const session = await getSession();
+
+  if (!session) {
+    redirect(`/auth/login?next=${encodeURIComponent(from)}`);
+  }
+
+  const access = accessFor(session.user.role);
+  if (access === "none") {
+    redirect("/auth/login?error=forbidden");
+  }
+
+  return { session, access };
 }

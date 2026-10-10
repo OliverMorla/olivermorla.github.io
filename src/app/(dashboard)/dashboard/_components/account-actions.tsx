@@ -1,6 +1,7 @@
 "use client";
 
 import { authClient } from "@/lib/auth-client";
+import { clearChats } from "@/lib/chat-storage";
 import { LoaderCircle, LogOut, Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { useRouter } from "next/navigation";
@@ -26,12 +27,14 @@ export function ThemeToggle() {
   );
 }
 
-export function SignOutButton() {
+export function SignOutButton({ userId }: { userId: string }) {
   const router = useRouter();
   const [pending, setPending] = useState(false);
 
   async function signOut() {
     setPending(true);
+    // Chats live only in this browser; signing out takes them with it.
+    clearChats(userId);
     await authClient.signOut();
     router.replace("/auth/login");
     router.refresh();

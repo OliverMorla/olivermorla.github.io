@@ -2,6 +2,7 @@
    route group's files are scanned for utilities. */
 @import "tailwindcss" source(none);
 @source "./";
+@plugin "@tailwindcss/typography";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -22,6 +23,11 @@
   --color-down: #c22f2f;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+
+  /* Strong ease-out for anything answering the user; iOS drawer curve for
+     the mobile chat list. */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
 .dark {
@@ -57,4 +63,52 @@ body {
 
 ::selection {
   background: color-mix(in oklab, var(--color-series-1) 25%, transparent);
+}
+
+/* Assistant answers in the chat: Markdown on the dashboard's own tokens. */
+.chat-prose {
+  --tw-prose-body: var(--color-ink);
+  --tw-prose-headings: var(--color-ink);
+  --tw-prose-bold: var(--color-ink);
+  --tw-prose-links: var(--color-ink);
+  --tw-prose-bullets: var(--color-muted);
+  --tw-prose-counters: var(--color-muted);
+  --tw-prose-quotes: var(--color-ink-2);
+  --tw-prose-quote-borders: var(--color-line);
+  --tw-prose-hr: var(--color-line);
+  --tw-prose-code: var(--color-ink);
+  --tw-prose-th-borders: var(--color-line);
+  --tw-prose-td-borders: var(--color-grid);
+}
+
+/* "Thinking": a highlight sweeping across muted text, until the first token. */
+.chat-shimmer {
+  background: linear-gradient(
+      90deg,
+      var(--color-muted) 0%,
+      var(--color-muted) 40%,
+      var(--color-ink) 50%,
+      var(--color-muted) 60%,
+      var(--color-muted) 100%
+    )
+    0 0 / 250% 100%;
+  background-clip: text;
+  color: transparent;
+  animation: chat-shimmer 1.6s linear infinite;
+}
+
+@keyframes chat-shimmer {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: 0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chat-shimmer {
+    animation: none;
+    color: var(--color-muted);
+  }
 }

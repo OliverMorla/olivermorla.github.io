@@ -26,7 +26,7 @@ export default function LoginForm({
     !configured
       ? "Sign-in isn't set up on this deployment yet."
       : signedInWithoutAccess
-        ? "This account doesn't have access to the dashboard."
+        ? "This account doesn't have access here."
         : null,
   );
 

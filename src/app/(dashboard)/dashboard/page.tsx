@@ -1,13 +1,14 @@
+import { accessFor } from "@/lib/access";
 import { posthogWebAnalyticsUrl } from "@/lib/analytics";
 import { parseRange } from "@/lib/analytics-shared";
-import { requireAdmin } from "@/lib/auth-session";
+import { getSession, requireAdmin } from "@/lib/auth-session";
 import { ArrowUpRight } from "lucide-react";
 import type { Metadata } from "next";
-import Link from "next/link";
+import { redirect } from "next/navigation";
 import { Suspense } from "react";
-import { SignOutButton, ThemeToggle } from "./_components/account-actions";
 import Analytics from "./_components/analytics";
 import AnalyticsSkeleton from "./_components/analytics-skeleton";
+import DashboardHeader from "./_components/dashboard-header";
 import {
   RangeFrame,
   RangeProvider,
@@ -21,33 +22,22 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ range?: string | string[] }>;
 }) {
+  // Invited friends only have the chat; send them there rather than to the
+  // login page's "no access" message. requireAdmin stays strict.
+  if (accessFor((await getSession())?.user.role) === "chat") {
+    redirect("/dashboard/chat");
+  }
   const session = await requireAdmin("/dashboard");
   const range = parseRange((await searchParams).range);
 
   return (
     <RangeProvider range={range}>
       <div className="mx-auto max-w-6xl px-4 pb-16 sm:px-6">
-        <header className="flex h-16 items-center justify-between gap-4 border-b border-line">
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 font-semibold tracking-[-0.01em]"
-          >
-            <span
-              aria-hidden="true"
-              className="grid size-8 place-items-center rounded-lg bg-ink text-[0.8125rem] font-bold text-page"
-            >
-              OM
-            </span>
-            <span className="hidden sm:inline">Oliver Morla</span>
-          </Link>
-          <div className="flex items-center gap-2">
-            <span className="mr-1 hidden max-w-[16rem] truncate text-sm text-ink-2 md:inline">
-              {session.user.email}
-            </span>
-            <ThemeToggle />
-            <SignOutButton />
-          </div>
-        </header>
+        <DashboardHeader
+          email={session.user.email}
+          userId={session.user.id}
+          access="admin"
+        />
 
         <main className="pt-8">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">

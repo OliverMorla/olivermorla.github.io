@@ -22,6 +22,7 @@ import { Testimonials } from "./collections/Testimonials";
 import { PrivacyPolicy } from "./collections/PrivacyPolicy";
 import { TermsOfService } from "./collections/TermsOfService";
 import { Certifications } from "./collections/Certifications";
+import { databaseUrl } from "./lib/database-url";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -75,7 +76,7 @@ export default buildConfig({
   },
   db: postgresAdapter({
     pool: {
-      connectionString: process.env.DATABASE_URI || "",
+      connectionString: databaseUrl,
     },
     // Better Auth keeps its tables in this database too, all prefixed
     // `auth_` (see src/lib/auth.ts). Without this, the dev schema push would

@@ -1,3 +1,4 @@
+import { databaseUrl } from "@/lib/database-url";
 import config from "@payload-config";
 import { getPayload } from "payload";
 
@@ -7,7 +8,7 @@ import { getPayload } from "payload";
  * `.env`), while real query failures still throw so ISR keeps serving the
  * last good page instead of caching a degraded one.
  */
-export const isCmsConfigured = Boolean(process.env.DATABASE_URI);
+export const isCmsConfigured = Boolean(databaseUrl);
 
 // getPayload caches the initialized instance internally, so this is cheap to
 // call per query and avoids connecting to the database at import time.

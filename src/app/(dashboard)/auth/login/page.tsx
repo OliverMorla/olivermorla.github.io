@@ -1,3 +1,4 @@
+import { accessFor } from "@/lib/access";
 import { getSession, isAuthConfigured } from "@/lib/auth-session";
 import { ArrowLeft } from "lucide-react";
 import type { Metadata } from "next";
@@ -23,7 +24,12 @@ export default async function LoginPage({
   const forbidden = params.error === "forbidden";
 
   const session = await getSession();
-  if (session?.user.role === "admin") redirect(next);
+  const access = accessFor(session?.user.role);
+  if (access === "admin") redirect(next);
+  // Chat-only accounts can't open analytics; keep them on their own page.
+  if (access === "chat") {
+    redirect(next.startsWith("/dashboard/chat") ? next : "/dashboard/chat");
+  }
 
   return (
     <main className="grid min-h-svh place-items-center px-4 py-12">
@@ -39,7 +45,7 @@ export default async function LoginPage({
         <div className="mt-5 rounded-2xl bg-surface p-7 shadow-[0_1px_2px_rgb(0_0_0/0.04)] ring-1 ring-line sm:p-8">
           <h1 className="text-2xl font-semibold tracking-[-0.02em]">Sign in</h1>
           <p className="mt-1.5 text-sm text-ink-2">
-            The dashboard is for the site owner only.
+            Private area. Invite only.
           </p>
 
           <LoginForm
