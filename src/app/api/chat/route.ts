@@ -9,9 +9,10 @@ import {
 import type { NextRequest } from "next/server";
 import { authorizeChat, jsonError, privateHeaders } from "./auth";
 
-// Streams for as long as the model takes. 300 s is the Vercel ceiling with
-// Fluid compute on every plan.
-export const maxDuration = 300;
+// The Hobby plan's ceiling without Fluid compute. At ~33 tokens/s on the
+// 4-bit model that covers about 2,000 tokens, close to max_tokens in llm.ts.
+// With Fluid compute enabled on the project this can go up to 300.
+export const maxDuration = 60;
 
 // Privacy: nothing here logs message content. Errors are reported by type
 // and status only, and Sentry doesn't attach request bodies (sendDefaultPii
